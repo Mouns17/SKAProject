@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,13 +26,51 @@ namespace SKAProject
             InitializeComponent();
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private async void Login_Click(object sender, RoutedEventArgs e)
         {
+            string login = LoginBox.Text.Trim();
+            string password = PassBox.Text.Trim();
 
+            if (login == "" || password == "")
+            {
+                MessageBox.Show("Введите логин и пароль");
+                return;
+            }
 
-            MainWindow tralalelotralala = new MainWindow();
-            tralalelotralala.Show();
-            this.Close();
+            try
+            {
+                using (var conn = Db.GetConnection())
+                {
+                    await conn.OpenAsync();
+
+                    var cmd = new MySqlCommand(@"
+                SELECT UserID 
+                FROM Users
+                WHERE Login=@l AND Password=@p", conn);
+
+                    cmd.Parameters.AddWithValue("@l", login);
+                    cmd.Parameters.AddWithValue("@p", password);
+
+                    var result = await cmd.ExecuteScalarAsync();
+
+                    if (result != null)
+                    {
+                        // успех
+                        MessageBox.Show("Вход выполнен");
+
+                        new MainWindow().Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неверный логин или пароль");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void OpenRegister_Click(object sender, RoutedEventArgs e)
