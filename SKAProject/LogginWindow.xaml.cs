@@ -36,7 +36,7 @@ namespace SKAProject
 
         private void OpenRegister_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow tungtungtungsahur = new RegisterWindow();
+            RegisterWindow tungtungtungsahur = new RegisterWindon();
             tungtungtungsahur.Show();
             this.Close();
         }
