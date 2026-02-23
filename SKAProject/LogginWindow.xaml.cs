@@ -46,7 +46,7 @@ namespace SKAProject
                     var cmd = new MySqlCommand(@"
                 SELECT UserID 
                 FROM Users
-                WHERE Login=@l AND Password=@p", conn);
+                WHERE Login=@l AND PasswordHash=@p", conn);
 
                     cmd.Parameters.AddWithValue("@l", login);
                     cmd.Parameters.AddWithValue("@p", password);

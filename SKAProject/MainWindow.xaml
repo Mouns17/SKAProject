@@ -21,7 +21,7 @@
             <Setter Property="Margin" Value="10 4"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontSize" Value="18"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="Padding" Value="18 0"/>
@@ -44,8 +44,8 @@
 
         <Style TargetType="TextBlock" x:Key="MenuHeader">
             <Setter Property="Foreground" Value="#94a3b8"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Margin" Value="20 0 20 8"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="20 0 20 20"/>
         </Style>
 
     </Window.Resources>
@@ -61,57 +61,37 @@
 
         <!-- Боковая менюшка(где кнопки типа) -->
         <Border Background="{StaticResource SideBar}" Grid.Column="0">
-
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-
+            <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
+                    <TextBlock Text="Здесь потом будет логотип" FontSize="26" Foreground="White" Margin="20 30" Width="320"/>
 
-                    <TextBlock Text="Здесь потом будет логотип"
-                               FontSize="26"
-                               Foreground="White"
-                               Margin="20 30" Width="320"/>
-
-
-                    <!-- АНАЛИТИКА -->
-                    <TextBlock Text="======== АНАЛИТИКА ========" Style="{StaticResource MenuHeader}"/>
+                    <TextBlock Text="======= АНАЛИТИКА =======" Style="{StaticResource MenuHeader}"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🏠  Главное меню" Click="Home_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="📈  Статистика" Click="Stats_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="📉  Пересдачи" Click="Retake_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="📅  Посещаемость" Click="Attendance_Click"/>
 
-
-                    <!-- ЛЮДИ -->
-                    <TextBlock Text="========== ЛЮДИ ===========" Style="{StaticResource MenuHeader}" Width="314"/>
+                    <TextBlock Text="======== ЛЮДИ =========" Style="{StaticResource MenuHeader}" Width="314"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🎓  Студенты" Click="Students_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="👨‍🏫  Преподаватели" Click="Teachers_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="👤  Профиль" Click="Profile_Click"/>
 
-
-                    <!-- УПРАВЛЕНИЕ -->
-                    <TextBlock Text="======== УПРАВЛЕНИЕ ========" Style="{StaticResource MenuHeader}"/>
+                    <TextBlock Text="====== УПРАВЛЕНИЕ ======" Style="{StaticResource MenuHeader}"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🔔  Уведомления" Click="Notify_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="🎨  Внешний вид" Click="Theme_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="🔐  Аккаунт" Click="Account_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="⚙  Настройки" Click="Settings_Click"/>
 
-
-                    <!-- СИСТЕМА -->
-                    <TextBlock Text="========= СИСТЕМА =========" Style="{StaticResource MenuHeader}"/>
+                    <TextBlock Text="======= СИСТЕМА =======" Style="{StaticResource MenuHeader}"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="💾  Экспорт данных" Click="Export_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="🗂  Логи" Click="Logs_Click"/>
                     <Button Style="{StaticResource MenuBtn}" Content="🚪  Выход" Click="Logout_Click"/>
-
                 </StackPanel>
             </ScrollViewer>
         </Border>
-
-        <!--  CONTENT (ChatGPT выдал хуй знает зачем пока что)  -->
-        <Frame x:Name="MainFrame"
-               Grid.Column="1"
-               NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
