@@ -24,9 +24,76 @@ namespace SKAProject
             InitializeComponent();
         }
 
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Stats_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Retake_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Attendance_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Students_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Teachers_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Notify_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Theme_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Account_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Export_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Logs_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            LogginWindow tungtungtungsahur = new LogginWindow();
+            tungtungtungsahur.Show();
+            this.Close();
         }
     }
 }

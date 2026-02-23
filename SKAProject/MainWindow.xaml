@@ -5,248 +5,113 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SKAProject"
         mc:Ignorable="d"
-        Title="СИСТЕМА КОНТРОЛЯ И АНАЛИЗА | АКАДЕМИК" Height="1080" Width="1920">
+        Title="СИСТЕМА КОНТРОЛЯ И АНАЛИЗА | АКАДЕМИК" Height="1080" Width="1920"
+        WindowStartupLocation="CenterScreen"
+        Background="#0e1a2b">
+
     <Window.Resources>
-        <Color x:Key="DeepNight">#000000</Color>
-        <Color x:Key="SteelBlue">#1a151f</Color>
-        <Color x:Key="VeryDarkViolet">#241e2a</Color>
-        <Color x:Key="GrayishViolet">#2c2433</Color>
-        <Color x:Key="DarkGrayishViolet">#393041</Color>
-        <Color x:Key="Anthracite">#4c4454</Color>
 
-        <LinearGradientBrush x:Key="IsakovGradient" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="{StaticResource DeepNight}" Offset="0.0"/>
-            <GradientStop Color="{StaticResource SteelBlue}" Offset="0.3"/>
-            <GradientStop Color="{StaticResource VeryDarkViolet}" Offset="0.5"/>
-            <GradientStop Color="{StaticResource GrayishViolet}" Offset="0.7"/>
-            <GradientStop Color="{StaticResource DarkGrayishViolet}" Offset="0.85"/>
-            <GradientStop Color="{StaticResource Anthracite}" Offset="1.0"/>
-        </LinearGradientBrush>
+        <SolidColorBrush x:Key="SideBar" Color="#0b1220"/>
+        <SolidColorBrush x:Key="Hover" Color="#1e293b"/>
+        <SolidColorBrush x:Key="Accent" Color="#3b82f6"/>
+
+        <!-- Стиль для кнопкок (боковых - не названий разделов) -->
+        <Style x:Key="MenuBtn" TargetType="Button">
+            <Setter Property="Height" Value="52"/>
+            <Setter Property="Margin" Value="10 4"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="18 0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Hover}"/>
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Accent}"/>
+                </Trigger>
+
+            </Style.Triggers>
+
+            <!-- Стиль для боковых названий разделов -->
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="MenuHeader">
+            <Setter Property="Foreground" Value="#94a3b8"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="20 0 20 8"/>
+        </Style>
+
     </Window.Resources>
-    <Window.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-        </LinearGradientBrush>
-    </Window.Background>
+
+
     <Grid>
-        <Grid.Resources>
-            <Style x:Key="HintTextBox" TargetType="TextBox">
 
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="Background" Value="#25223A"/>
-                <Setter Property="BorderBrush" Value="#3A3556"/>
-                <Setter Property="BorderThickness" Value="2"/>
-                <Setter Property="Padding" Value="10"/>
-
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TextBox">
-
-                            <Grid>
-
-                                <!-- рамка -->
-                                <Border x:Name="border"
-                            CornerRadius="10"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"/>
-
-                                <ScrollViewer x:Name="PART_ContentHost" Margin="10 0"/>
-
-                                <!-- placeholder -->
-                                <TextBlock x:Name="hint"
-                               Text="{TemplateBinding Tag}"
-                               Foreground="#77748F"
-                               Margin="22 0"
-                               VerticalAlignment="Center"
-                               IsHitTestVisible="False"
-                               Visibility="Collapsed"/>
-
-                            </Grid>
-
-                            <ControlTemplate.Triggers>
-
-                                <!-- рамка при фокусе -->
-                                <Trigger Property="IsFocused" Value="True">
-                                    <Setter TargetName="border"
-                                Property="BorderBrush"
-                                Value="#7C5CFF"/>
-                                </Trigger>
-
-                                <!-- ПОКАЗАТЬ placeholder когда текст пуст -->
-                                <Trigger Property="Text" Value="">
-                                    <Setter TargetName="hint"
-                                Property="Visibility"
-                                Value="Visible"/>
-                                </Trigger>
-
-                            </ControlTemplate.Triggers>
-
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-
-            </Style>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="360"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
 
+        <!-- Боковая менюшка(где кнопки типа) -->
+        <Border Background="{StaticResource SideBar}" Grid.Column="0">
 
-            <Style x:Key="LoginButtonStyle" TargetType="Button">
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="Background" Value="#7C5CFF"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="2"/>
-                <Setter Property="Height" Value="42"/>
-                <Setter Property="FontSize" Value="15"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border x:Name="border"
-                                    CornerRadius="12"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}">
-                                <ContentPresenter HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"/>
-                            </Border>
+                <StackPanel>
 
-                            <ControlTemplate.Triggers>
-
-                                <!-- подсветка фокуса -->
-                                <Trigger Property="IsKeyboardFocused" Value="True">
-                                    <Setter TargetName="border" Property="BorderBrush" Value="#FFFFFF"/>
-                                </Trigger>
-
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#9274FF"/>
-                                </Trigger>
-
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="LinkButton" TargetType="Button">
-
-                <Setter Property="Foreground" Value="#9A97B3"/>
-                <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-
-                            <!-- НИКАКИХ фонов -->
-                            <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-
-                            <ControlTemplate.Triggers>
-
-                                <!-- только смена текста -->
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="#7C5CFF"/>
-                                </Trigger>
-
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Foreground" Value="#B39DFF"/>
-                                </Trigger>
-
-                            </ControlTemplate.Triggers>
-
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-
-            </Style>
+                    <TextBlock Text="Здесь потом будет логотип"
+                               FontSize="26"
+                               Foreground="White"
+                               Margin="20 30" Width="320"/>
 
 
-        </Grid.Resources>
+                    <!-- АНАЛИТИКА -->
+                    <TextBlock Text="======== АНАЛИТИКА ========" Style="{StaticResource MenuHeader}"/>
 
-        <Rectangle>
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#0c0a0e" Offset="0.0"/>
-                    <GradientStop Color="#1a151f" Offset="0.3"/>
-                    <GradientStop Color="#2c2433" Offset="0.5"/>
-                    <GradientStop Color="#393041" Offset="0.7"/>
-                    <GradientStop Color="#393041" Offset="0.85"/>
-                    <GradientStop Color="#241e2a" Offset="1.0"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
+                    <Button Style="{StaticResource MenuBtn}" Content="🏠  Главное меню" Click="Home_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="📈  Статистика" Click="Stats_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="📉  Пересдачи" Click="Retake_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="📅  Посещаемость" Click="Attendance_Click"/>
 
-        <Rectangle>
-            <Rectangle.Fill>
-                <RadialGradientBrush Center="0.5,0.4" RadiusX="0.8" RadiusY="0.6">
-                    <GradientStop Color="#30FFFFFF" Offset="0.0"/>
-                    <GradientStop Color="#207A8A7A" Offset="0.4"/>
-                    <GradientStop Color="#105A6A5A" Offset="0.7"/>
-                    <GradientStop Color="#003A4A3A" Offset="1.0"/>
-                </RadialGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
 
-        <Grid Margin="10">
-            <Border CornerRadius="40" 
-                Background="#D00B0E14"
-                Padding="30"
-                MaxWidth="1920"
-                MaxHeight="1080" Margin="0,0,1608,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <!-- ЛЮДИ -->
+                    <TextBlock Text="========== ЛЮДИ ===========" Style="{StaticResource MenuHeader}" Width="314"/>
 
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="50" 
-                                ShadowDepth="5" 
-                                Color="#0c0a0e" 
-                                Opacity="0.6"/>
-                </Border.Effect>
+                    <Button Style="{StaticResource MenuBtn}" Content="🎓  Студенты" Click="Students_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="👨‍🏫  Преподаватели" Click="Teachers_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="👤  Профиль" Click="Profile_Click"/>
 
-                <StackPanel Margin="-20,-25,-20,-25">
 
-                    <TextBlock Text="ГЛАВНОЕ МЕНЮ" FontSize="24" FontWeight="Bold" Foreground="#FFE8E8E8" HorizontalAlignment="Center" Margin="0,10,0,10"/>
+                    <!-- УПРАВЛЕНИЕ -->
+                    <TextBlock Text="======== УПРАВЛЕНИЕ ========" Style="{StaticResource MenuHeader}"/>
+
+                    <Button Style="{StaticResource MenuBtn}" Content="🔔  Уведомления" Click="Notify_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="🎨  Внешний вид" Click="Theme_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="🔐  Аккаунт" Click="Account_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="⚙  Настройки" Click="Settings_Click"/>
+
+
+                    <!-- СИСТЕМА -->
+                    <TextBlock Text="========= СИСТЕМА =========" Style="{StaticResource MenuHeader}"/>
+
+                    <Button Style="{StaticResource MenuBtn}" Content="💾  Экспорт данных" Click="Export_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="🗂  Логи" Click="Logs_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="🚪  Выход" Click="Logout_Click"/>
 
                 </StackPanel>
-            </Border>
+            </ScrollViewer>
+        </Border>
 
-            <Border CornerRadius="40" 
-                Background="#D00B0E14"
-                Padding="30"
-                MaxWidth="1920"
-                MaxHeight="1080" Margin="320,100,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="50" 
-                                ShadowDepth="5" 
-                                Color="#0c0a0e" 
-                                Opacity="0.6"/>
-                </Border.Effect>
-
-                <StackPanel Margin="0,13,0,0">
-                    
-                    
-                
-                </StackPanel>
-            </Border>
-            <Border CornerRadius="40" 
-                Background="#D00B0E14"
-                Padding="30"
-                MaxWidth="1920"
-                MaxHeight="1080" Margin="320,0,0,0" Width="1580" Height="80" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="50" 
-                        ShadowDepth="5" 
-                        Color="#0c0a0e" 
-                        Opacity="0.6"/>
-                </Border.Effect>
-
-                <StackPanel Margin="0,-25,0,-25">
-
-                    <TextBox Style="{StaticResource HintTextBox}" Tag="Поиск" x:Name="LoginBox" Height="40" Margin="8 15 8 15" Width="692" HorizontalAlignment="Left"/>
-                    <Button Content="Учетная запись" FontSize="20" Style="{StaticResource LinkButton}" Margin="110 -70 0 0" Click="Account_Click" HorizontalAlignment="Right" Width="194"/>
-                </StackPanel>
-            </Border>
-        </Grid>
+        <!--  CONTENT (ChatGPT выдал хуй знает зачем пока что)  -->
+        <Frame x:Name="MainFrame"
+               Grid.Column="1"
+               NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
