@@ -111,7 +111,7 @@ namespace SKAProject
                         // Подтверждение транзакции
                         tx.Commit();
                     }
-                }
+                } 
 
                 // Проверка на пустые поля
                 if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(group))
