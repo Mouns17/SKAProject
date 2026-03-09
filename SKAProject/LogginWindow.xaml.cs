@@ -28,9 +28,11 @@ namespace SKAProject
 
         private async void Login_Click(object sender, RoutedEventArgs e)
         {
+            // Получем данные и удаляем пробелы в них
             string login = LoginBox.Text.Trim();
             string password = PassBox.Text.Trim();
 
+            // Проверка на пустые поля
             if (login == "" || password == "")
             {
                 MessageBox.Show("Введите логин и пароль");
@@ -39,23 +41,24 @@ namespace SKAProject
 
             try
             {
+                // Подключение к БД
                 using (var conn = Db.GetConnection())
                 {
                     await conn.OpenAsync();
 
-                    var cmd = new MySqlCommand(@"
-                SELECT UserID 
-                FROM Users
-                WHERE Login=@l AND PasswordHash=@p", conn);
+                    // Проверка есть ли пользователь с таким логином и паролем
+                    var cmd = new MySqlCommand(@"SELECT UserID FROM Users WHERE Login=@l AND Password=@p", conn);
 
+                    // Передаем параметры в запрос
                     cmd.Parameters.AddWithValue("@l", login);
                     cmd.Parameters.AddWithValue("@p", password);
 
+                    // Выполняем запрос
                     var result = await cmd.ExecuteScalarAsync();
 
+                    // Тут думаю ничего не надо обьяснять
                     if (result != null)
                     {
-                        // успех
                         MessageBox.Show("Вход выполнен");
 
                         new MainWindow().Show();
@@ -67,9 +70,11 @@ namespace SKAProject
                     }
                 }
             }
+
+            // При каких то ошибках связанных с БД
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ошибка авторизации: " + ex.Message);
             }
         }
 

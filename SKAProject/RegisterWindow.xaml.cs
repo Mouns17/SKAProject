@@ -35,6 +35,7 @@ namespace SKAProject
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
+            // Получем данные и удаляем пробелы в них
             string login = LoginBox.Text.Trim();
             string password = PassBox.Text.Trim();
             string email = EmailBox.Text.Trim();
@@ -44,7 +45,5 @@ namespace SKAProject
             next.Show();
             this.Close();
         }
-
-
     }
 }
