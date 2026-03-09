@@ -28,7 +28,6 @@
             <Setter Property="Cursor" Value="Hand"/>
 
             <Style.Triggers>
-
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="{StaticResource Hover}"/>
                 </Trigger>
@@ -36,29 +35,22 @@
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="Background" Value="{StaticResource Accent}"/>
                 </Trigger>
-
             </Style.Triggers>
 
             <!-- Стиль для боковых названий разделов -->
         </Style>
-
         <Style TargetType="TextBlock" x:Key="MenuHeader">
             <Setter Property="Foreground" Value="#94a3b8"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Margin" Value="20 0 20 20"/>
         </Style>
-
     </Window.Resources>
 
-
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="360"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-
         <!-- Боковая менюшка(где кнопки типа) -->
         <Border Background="{StaticResource SideBar}" Grid.Column="0">
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
@@ -68,27 +60,37 @@
                     <TextBlock Text="======= АНАЛИТИКА =======" Style="{StaticResource MenuHeader}"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🏠  Главное меню" Click="Home_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="📈  Статистика" Click="Stats_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="📉  Пересдачи" Click="Retake_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="📅  Посещаемость" Click="Attendance_Click"/>
 
                     <TextBlock Text="======== ЛЮДИ =========" Style="{StaticResource MenuHeader}" Width="314"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🎓  Студенты" Click="Students_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="👨‍🏫  Преподаватели" Click="Teachers_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="👤  Профиль" Click="Profile_Click"/>
 
                     <TextBlock Text="====== УПРАВЛЕНИЕ ======" Style="{StaticResource MenuHeader}"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🔔  Уведомления" Click="Notify_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="🎨  Внешний вид" Click="Theme_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="🔐  Аккаунт" Click="Account_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="⚙  Настройки" Click="Settings_Click"/>
 
                     <TextBlock Text="======= СИСТЕМА =======" Style="{StaticResource MenuHeader}"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="💾  Экспорт данных" Click="Export_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="🗂  Логи" Click="Logs_Click"/>
+                    
                     <Button Style="{StaticResource MenuBtn}" Content="🚪  Выход" Click="Logout_Click"/>
                 </StackPanel>
             </ScrollViewer>
