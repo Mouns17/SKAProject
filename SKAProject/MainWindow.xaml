@@ -10,7 +10,6 @@
         Background="#0e1a2b">
 
     <Window.Resources>
-
         <SolidColorBrush x:Key="SideBar" Color="#0b1220"/>
         <SolidColorBrush x:Key="Hover" Color="#1e293b"/>
         <SolidColorBrush x:Key="Accent" Color="#3b82f6"/>
@@ -45,7 +44,7 @@
             <Setter Property="Margin" Value="20 0 20 20"/>
         </Style>
     </Window.Resources>
-
+    <!-- Основная сетка -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="360"/>
