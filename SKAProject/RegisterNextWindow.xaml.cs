@@ -55,7 +55,7 @@ namespace SKAProject
             try
             {
                 // Подключение к бд
-                using (MySqlConnection conn = Db.GetConnection())
+                using (MySqlConnection conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
 

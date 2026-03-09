@@ -7,10 +7,9 @@ using MySqlConnector;
 
 namespace SKAProject
 {
-    public static class Db
+    public static class DataBase
     {
-        private static string connStr =
-            "server=localhost;database=SKADB;user=root;password=12345;SslMode=None";
+        private static string connStr = "server=localhost;database=SKADB;user=root;password=12345;SslMode=None";
 
         public static MySqlConnection GetConnection()
         {

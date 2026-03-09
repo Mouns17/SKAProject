@@ -87,7 +87,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Db.cs" />
+    <Compile Include="DataBase.cs" />
     <Compile Include="EmailLogginWindow.xaml.cs">
       <DependentUpon>EmailLogginWindow.xaml</DependentUpon>
     </Compile>

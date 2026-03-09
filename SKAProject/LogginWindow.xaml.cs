@@ -42,7 +42,7 @@ namespace SKAProject
             try
             {
                 // Подключение к БД
-                using (var conn = Db.GetConnection())
+                using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
 
