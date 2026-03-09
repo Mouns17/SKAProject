@@ -64,7 +64,7 @@ namespace SKAProject
                             SELECT LAST_INSERT_ID();", conn, tx);
 
                         cmdUser.Parameters.AddWithValue("@l", _login);
-                        cmdUser.Parameters.AddWithValue("@p", _password); // Без хэширования
+                        cmdUser.Parameters.AddWithValue("@p", _password); 
                         cmdUser.Parameters.AddWithValue("@e", _email);
                         cmdUser.Parameters.AddWithValue("@ph", _phone);
 

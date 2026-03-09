@@ -15,7 +15,7 @@
         <Color x:Key="Blue5">#6a87cc</Color>
         <Color x:Key="Blue6">#7e9cde</Color>
 
-        <LinearGradientBrush x:Key="IsakovGradient" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush x:Key="BackgroundGradient" StartPoint="0,0" EndPoint="0,1">
             <GradientStop Color="{StaticResource Blue1}" Offset="0.0"/>
             <GradientStop Color="{StaticResource Blue2}" Offset="0.3"/>
             <GradientStop Color="{StaticResource Blue3}" Offset="0.5"/>
