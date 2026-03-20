@@ -14,6 +14,13 @@
         <SolidColorBrush x:Key="Hover" Color="#1e293b"/>
         <SolidColorBrush x:Key="Accent" Color="#3b82f6"/>
 
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#1e293b"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
         <!-- Стиль для кнопкок (боковых - не названий разделов) -->
         <Style x:Key="MenuBtn" TargetType="Button">
             <Setter Property="Height" Value="52"/>
@@ -59,40 +66,43 @@
                     <TextBlock Text="======= АНАЛИТИКА =======" Style="{StaticResource MenuHeader}"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🏠  Главное меню" Click="Home_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="📈  Статистика" Click="Stats_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="📉  Пересдачи" Click="Retake_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="📅  Посещаемость" Click="Attendance_Click"/>
 
                     <TextBlock Text="======== ЛЮДИ =========" Style="{StaticResource MenuHeader}" Width="314"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🎓  Студенты" Click="Students_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="👨‍🏫  Преподаватели" Click="Teachers_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="👤  Профиль" Click="Profile_Click"/>
 
                     <TextBlock Text="====== УПРАВЛЕНИЕ ======" Style="{StaticResource MenuHeader}"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🔔  Уведомления" Click="Notify_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="🎨  Внешний вид" Click="Theme_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="🔐  Аккаунт" Click="Account_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="⚙  Настройки" Click="Settings_Click"/>
 
                     <TextBlock Text="======= СИСТЕМА =======" Style="{StaticResource MenuHeader}"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="💾  Экспорт данных" Click="Export_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="🗂  Логи" Click="Logs_Click"/>
-                    
+
                     <Button Style="{StaticResource MenuBtn}" Content="🚪  Выход" Click="Logout_Click"/>
                 </StackPanel>
             </ScrollViewer>
         </Border>
+        
+        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+
     </Grid>
 </Window>

@@ -95,19 +95,6 @@ namespace SKAProject
                         // Выполняем запрос
                         await cmdStudent.ExecuteNonQueryAsync();
 
-                        // Проверка на существующий логин
-                        MySqlCommand checkUser = new MySqlCommand(@"SELECT COUNT(*) FROM Users WHERE Login=@login", conn);
-
-                        checkUser.Parameters.AddWithValue("@login", _login);
-
-                        int exists = Convert.ToInt32(await checkUser.ExecuteScalarAsync());
-
-                        if (exists > 0)
-                        {
-                            MessageBox.Show("Такой логин уже существует");
-                            return;
-                        }
-
                         // Подтверждение транзакции
                         tx.Commit();
                     }

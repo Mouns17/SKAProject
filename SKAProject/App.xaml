@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:SKAProject"
              StartupUri="LogginWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#1e293b"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
     </Application.Resources>
 </Application>
