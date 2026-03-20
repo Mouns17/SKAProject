@@ -45,5 +45,10 @@ namespace SKAProject
             next.Show();
             this.Close();
         }
+        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
     }
 }

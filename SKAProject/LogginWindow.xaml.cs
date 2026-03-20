@@ -85,11 +85,9 @@ namespace SKAProject
             this.Close();
         }
 
-        private void OpenOtherAutorization_Click(object sender, RoutedEventArgs e)
+        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            PhoneLogginWindow brbrpatapim = new PhoneLogginWindow();
-            brbrpatapim.Show();
-            this.Close();
+            DragMove();
         }
     }
 }

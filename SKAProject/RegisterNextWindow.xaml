@@ -1,4 +1,4 @@
-﻿<Window x:Class="SKAProject.RegisterNextWindow" WindowStyle="ThreeDBorderWindow" WindowState="Maximized" Topmost="True"
+﻿<Window x:Class="SKAProject.RegisterNextWindow" WindowStyle="None" WindowState="Normal" Topmost="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,20 +14,7 @@
         <Color x:Key="Blue4">#5773ba</Color>
         <Color x:Key="Blue5">#6a87cc</Color>
         <Color x:Key="Blue6">#7e9cde</Color>
-
-        <LinearGradientBrush x:Key="BackgroundGradient" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="{StaticResource Blue1}" Offset="0.0"/>
-            <GradientStop Color="{StaticResource Blue2}" Offset="0.3"/>
-            <GradientStop Color="{StaticResource Blue3}" Offset="0.5"/>
-            <GradientStop Color="{StaticResource Blue4}" Offset="0.7"/>
-            <GradientStop Color="{StaticResource Blue5}" Offset="0.85"/>
-            <GradientStop Color="{StaticResource Blue6}" Offset="1.0"/>
-        </LinearGradientBrush>
     </Window.Resources>
-    <Window.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-        </LinearGradientBrush>
-    </Window.Background>
     <Grid>
         <Grid.Resources>
             <!-- Стиль для TextBox в виде плашки с изменением обводки при фокусе типа -->
@@ -115,41 +102,10 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
         </Grid.Resources>
-        <!-- Цвета фона (Градиент синий) -->
-        <Rectangle>
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="{StaticResource Blue1}" Offset="0.0"/>
-                    <GradientStop Color="{StaticResource Blue2}" Offset="0.3"/>
-                    <GradientStop Color="{StaticResource Blue3}" Offset="0.5"/>
-                    <GradientStop Color="{StaticResource Blue4}" Offset="0.7"/>
-                    <GradientStop Color="{StaticResource Blue5}" Offset="0.85"/>
-                    <GradientStop Color="{StaticResource Blue6}" Offset="1.0"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-        <!-- Вот это типа линия перегородки красивая градиентная -->
-        <Rectangle>
-            <Rectangle.Fill>
-                <RadialGradientBrush Center="0.5,0.4" RadiusX="0.8" RadiusY="0.6">
-                    <GradientStop Color="#30FFFFFF" Offset="0.0"/>
-                    <GradientStop Color="#207A8A7A" Offset="0.4"/>
-                    <GradientStop Color="#105A6A5A" Offset="0.7"/>
-                    <GradientStop Color="#003A4A3A" Offset="1.0"/>
-                </RadialGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
 
         <Grid Margin="50">
-            <Border CornerRadius="40" Background="#D00B0E14" Padding="30" MaxWidth="1000" HorizontalAlignment="Center" VerticalAlignment="Center" Height="496" Width="740">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="50" 
-                                ShadowDepth="5" 
-                                Color="#0c0a0e" 
-                                Opacity="0.6"/>
-                </Border.Effect>
+            <Border x:Name="MainBorder" CornerRadius="40" Background="#081025" Padding="30" MaxWidth="1000" HorizontalAlignment="Center" VerticalAlignment="Center" Height="496" Width="740" MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
 
                 <StackPanel Margin="0,13,0,0">
                     <TextBlock Text="РЕГИСТРАЦИЯ" FontSize="28" FontWeight="Bold" Foreground="#FFE8E8E8" HorizontalAlignment="Center" Margin="0,0,0,10"/>

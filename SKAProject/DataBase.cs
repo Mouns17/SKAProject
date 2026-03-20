@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySqlConnector;
 
 namespace SKAProject
-{
+{  
     public static class DataBase
     {
         private static string connStr = "server=localhost;database=SKADB;user=root;password=12345;SslMode=None";
