@@ -28,7 +28,7 @@ namespace SKAProject
 
         private void OpenLoggin_Click(object sender, RoutedEventArgs e)
         {
-            LogginWindow skebob = new LogginWindow();
+            LoginWindow skebob = new LoginWindow();
             skebob.Show();
             this.Close();
         }

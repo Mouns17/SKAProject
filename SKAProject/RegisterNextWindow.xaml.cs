@@ -108,7 +108,7 @@ namespace SKAProject
                 }
 
                 MessageBox.Show("Регистрация завершена");
-                new LogginWindow().Show();
+                new LoginWindow().Show();
                 Close();
             }
 
@@ -121,7 +121,7 @@ namespace SKAProject
 
         private void OpenLoggin_Click(object sender, RoutedEventArgs e)
         {
-            LogginWindow shpionirogolubiro = new LogginWindow();
+            LoginWindow shpionirogolubiro = new LoginWindow();
             shpionirogolubiro.Show();
             this.Close();
         }

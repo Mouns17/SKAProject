@@ -19,9 +19,9 @@ namespace SKAProject
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class LogginWindow : Window
+    public partial class LoginWindow : Window
     {
-        public LogginWindow()
+        public LoginWindow()
         {
             InitializeComponent();
         }
