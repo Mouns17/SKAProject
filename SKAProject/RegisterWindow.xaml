@@ -51,6 +51,7 @@
             <!-- Стиль для кнопки входа или регистрации -->
             <Style x:Key="LoginButtonStyle" TargetType="Button">
                 <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Background" Value="#7e9cde"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="2"/>
@@ -102,13 +103,44 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <Style x:Key="ControlButton" TargetType="Button">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="LightGray"/>
+                                    <Setter Property="Background" Value="SlateGray"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Foreground" Value="LightSlateGray"/>
+                                    <Setter Property="Background" Value="DimGray"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
         </Grid.Resources>
 
         <Grid Margin="50">
             <Border x:Name="MainBorder" CornerRadius="40" Background="#081025" Padding="30" MaxWidth="1000" HorizontalAlignment="Center" VerticalAlignment="Center" Height="562" Width="740" MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
 
                 <StackPanel Margin="0,13,0,0">
-                    <TextBlock Text="РЕГИСТРАЦИЯ" FontSize="28" FontWeight="Bold" Foreground="#FFE8E8E8" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                    <Button Content="X" Style="{StaticResource ControlButton}" Width="25" Height="25" Margin="647 0 0 1" Click="BtnClose1_Click"/>
+
+                    <Button Content="-" Style="{StaticResource ControlButton}" Width="25" Height="25" Margin="600 -26 0 0" Click="BtnClose2_Click"/>
+
+                    <TextBlock Text="РЕГИСТРАЦИЯ" FontSize="28" FontWeight="Bold" Foreground="#FFE8E8E8" HorizontalAlignment="Center" Margin="0 -15 0 10"/>
 
                     <TextBlock Text="Чтобы зарегистрироваться, заполните все поля" FontSize="14" Foreground="#7e9cde" HorizontalAlignment="Center" Margin="0 0 0 30"/>
 

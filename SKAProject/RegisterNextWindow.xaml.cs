@@ -135,5 +135,15 @@ namespace SKAProject
         {
             DragMove();
         }
+
+        private void BtnClose1_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnClose2_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }
