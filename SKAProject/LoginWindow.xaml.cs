@@ -80,8 +80,7 @@ namespace SKAProject
 
         private void OpenRegister_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow tungtungtungsahur = new RegisterWindow();
-            tungtungtungsahur.Show();
+            new RegisterWindow().Show();
             this.Close();
         }
 

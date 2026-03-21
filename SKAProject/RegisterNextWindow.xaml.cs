@@ -121,14 +121,12 @@ namespace SKAProject
 
         private void OpenLoggin_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow shpionirogolubiro = new LoginWindow();
-            shpionirogolubiro.Show();
+            new LoginWindow().Show();
             this.Close();
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow shpionirogolubiro = new RegisterWindow();
-            shpionirogolubiro.Show();
+            new RegisterWindow().Show();
             this.Close();
         }
         private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

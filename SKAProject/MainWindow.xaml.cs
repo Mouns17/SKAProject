@@ -91,8 +91,7 @@ namespace SKAProject
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow tungtungtungsahur = new LoginWindow();
-            tungtungtungsahur.Show();
+            new LoginWindow().Show();
             this.Close();
         }
     }
