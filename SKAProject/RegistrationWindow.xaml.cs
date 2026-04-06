@@ -1,7 +1,10 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,29 +12,24 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MySqlConnector;
-using System.Security.Cryptography;
 
 namespace SKAProject
 {
     /// <summary>
-    /// Логика взаимодействия для RegisterWindow.xaml
+    /// Логика взаимодействия для RegistrationWindow.xaml
     /// </summary>
-    public partial class RegisterWindow : Window
+    public partial class RegistrationWindow : Window
     {
-        public RegisterWindow()
+
+        public RegistrationWindow()
         {
             InitializeComponent();
         }
 
-        private void OpenLoggin_Click(object sender, RoutedEventArgs e)
-        {
-            new LoginWindow().Show();
-            this.Close();
-        }
-
+        /*
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             // Получем данные и удаляем пробелы в них
@@ -44,10 +42,6 @@ namespace SKAProject
             next.Show();
             this.Close();
         }
-        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
 
         private void BtnClose1_Click(object sender, RoutedEventArgs e)
         {
@@ -58,6 +52,23 @@ namespace SKAProject
         {
             this.WindowState = WindowState.Minimized;
         }
+        */
 
+        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void RegisterUser(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackToLogin(object sender, RoutedEventArgs e)
+        {
+            LoginWindow login = new LoginWindow();
+            login.Show();
+            this.Close();
+        }
     }
 }

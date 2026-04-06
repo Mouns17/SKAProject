@@ -126,7 +126,7 @@ namespace SKAProject
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            new RegisterWindow().Show();
+            new RegistrationWindow().Show();
             this.Close();
         }
         private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -5,41 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SKAProject"
         mc:Ignorable="d"
-        Title="СИСТЕМА КОНТРОЛЯ И АНАЛИЗА | АКАДЕМИК" Height="440" Width="600">
-    <Window.Resources>
-        <!-- Набор цветов -->
-        <Color x:Key="Blue1">#163b85</Color>
-        <Color x:Key="Blue2">#2f4d97</Color>
-        <Color x:Key="Blue3">#4360a8</Color>
-        <Color x:Key="Blue4">#5773ba</Color>
-        <Color x:Key="Blue5">#6a87cc</Color>
-        <Color x:Key="Blue6">#7e9cde</Color>
-    </Window.Resources>
-    
-    <Grid>
+        Height="480" Width="720">
+    <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
         <Grid.Resources>
             <!-- Стиль для TextBox в виде плашки с изменением обводки при фокусе типа -->
-            <Style x:Key="HintTextBox" TargetType="TextBox">
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="Background" Value="#4360a8"/>
-                <Setter Property="BorderBrush" Value="#7e9cde"/>
-                <Setter Property="BorderThickness" Value="2"/>
+            <Style x:Key="TxtBoxStyle" TargetType="TextBox">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="#250044"/>
+                <Setter Property="BorderThickness" Value="1.4"/>
                 <Setter Property="Padding" Value="10"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="TextBox">
                             <Grid>
-                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                                <Border x:Name="Border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
                                 <ScrollViewer x:Name="PART_ContentHost" Margin="10 0"/>
-                                <TextBlock x:Name="hint" Text="{TemplateBinding Tag}" Foreground="White" Margin="22 0" VerticalAlignment="Center" IsHitTestVisible="False" Visibility="Collapsed"/>
+                                <TextBlock x:Name="hint" Text="{TemplateBinding Tag}" Foreground="DimGray" Margin="22 0" VerticalAlignment="Center" IsHitTestVisible="False" Visibility="Collapsed"/>
                             </Grid>
-                            <!-- Это вроде фигня чтобы при нажатии на поле ввода исчезал тег -->
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsFocused" Value="True">
-                                    <Setter TargetName="border" Property="BorderBrush" Value="#b8e0d4"/>
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#513965"/>
                                 </Trigger>
-                                <!-- А здесь наоборот, если поле для ввода пустое - то показывает тег -->
                                 <Trigger Property="Text" Value="">
                                     <Setter TargetName="hint" Property="Visibility" Value="Visible"/>
                                 </Trigger>
@@ -48,27 +36,29 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!-- Стиль для кнопки входа или регистрации -->
-            <Style x:Key="LoginButtonStyle" TargetType="Button">
+            
+            <!-- Стиль для кнопки перехода далее -->
+            <Style x:Key="LogBtnStyle" TargetType="Button">
                 <Setter Property="Foreground" Value="White"/>
-                <Setter Property="Background" Value="#7e9cde"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Background" Value="#250044"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="2"/>
                 <Setter Property="Height" Value="42"/>
                 <Setter Property="FontSize" Value="15"/>
-                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border x:Name="border" CornerRadius="12" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border x:Name="Border" CornerRadius="12" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsKeyboardFocused" Value="True">
-                                    <Setter TargetName="border" Property="BorderBrush" Value="#FFFFFF"/>
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#FFFFFF"/>
                                 </Trigger>
+
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#4360a8"/>
+                                    <Setter TargetName="Border" Property="Background" Value="#370066"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -76,98 +66,94 @@
                 </Setter>
             </Style>
 
-            <!-- Стиль для кнопок снизу типа -->
-            <Style x:Key="LinkButton" TargetType="Button">
-                <Setter Property="Foreground" Value="#7e9cde"/>
+            <!-- Стиль для кнопки перехода в окно регистрации -->
+            <Style x:Key="RegBtnStyle" TargetType="Button">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
                 <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="BorderThickness" Value="1.4"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Width" Value="140"/>
+                <Setter Property="FontSize" Value="11"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Border x:Name="Border" CornerRadius="12" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
                             <ControlTemplate.Triggers>
-                                <!-- Если юзер навелся на кнопку, то она меняет цвет -->
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="DimGray"/>
+                                </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="#5773ba"/>
+                                    <Setter Property="Background" Value="WhiteSmoke"/>
+                                    <Setter Property="Foreground" Value="Black"/>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Foreground" Value="#B39DFF"/>
+                                    <Setter Property="Foreground" Value="Black"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
-
-            <Style x:Key="ControlButton" TargetType="Button">
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="Background" Value="Gray"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="LightGray"/>
-                                    <Setter Property="Background" Value="SlateGray"/>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Foreground" Value="LightSlateGray"/>
-                                    <Setter Property="Background" Value="DimGray"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
         </Grid.Resources>
+        
+        <Border Width="720" Height="480" CornerRadius="20" Background="#bdbdbd" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        <Grid Margin="0">
-            <Border x:Name="MainBorder" CornerRadius="40" Background="#081025" Padding="30" MaxWidth="800" MaxHeight="800" HorizontalAlignment="Center" VerticalAlignment="Center" Height="441" Width="594" MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="330"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" CornerRadius="20,120,120,20" Background="#250044">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="270">
+                        <TextBlock Text="Добро пожаловать!" FontSize="26" FontWeight="Bold" Foreground="White" TextAlignment="Center" Margin="0,0,0,10"/>
 
-                <StackPanel Margin="0,0,0,0">
+                        <TextBlock Text="Ещё нет аккаунта?" FontSize="14" Foreground="#D0D0D0" TextAlignment="Center" Margin="0,0,0,20"/>
 
-                    <Button Content="X" Style="{StaticResource ControlButton}" Width="25" Height="25" Margin="507 0 0 1" Click="BtnClose1_Click"/>
+                        <Button Content="Зарегистрироваться" Style="{StaticResource RegBtnStyle}" Click="OpenRegWindow"/>
+                    </StackPanel>
+                </Border>
 
-                    <Button Content="-" Style="{StaticResource ControlButton}" Width="25" Height="25" Margin="450 -26 0 0" Click="BtnClose2_Click"/>
+                <Grid Grid.Column="1" Margin="35">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Авторизация" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5"/>
 
-                    <TextBlock Text="АВТОРИЗАЦИЯ" FontSize="28" FontWeight="Bold" Foreground="#FFE8E8E8" HorizontalAlignment="Center" Margin="0 -15 0 10"/>
+                        <TextBlock Text="Чтобы войти, заполните все поля" FontSize="12" Foreground="#250044" TextAlignment="Center" Margin="0,0,0,0"/>
 
-                    <TextBlock Text="Чтобы войти, заполните все поля" FontSize="14" Foreground="#7e9cde" HorizontalAlignment="Center" Margin="0 0 0 30"/>
+                        <Border Height="1" Margin="0,10" HorizontalAlignment="Stretch">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#00250044" Offset="0"/>
+                                    <GradientStop Color="#FF250044" Offset="0.5"/>
+                                    <GradientStop Color="#FF2e0055" Offset="0.7"/>
+                                    <GradientStop Color="#002e0055" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
 
-                    <Rectangle Height="1" Margin="0,-8,0,30">
-                        <Rectangle.Fill>
-                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                                <GradientStop Color="#00FFFFFF" Offset="0"/>
-                                <GradientStop Color="#50FFFFFF" Offset="0.5"/>
-                                <GradientStop Color="#00FFFFFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
+                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите логин" x:Name="LoginBox" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center"/>
 
-                    <TextBox Style="{StaticResource HintTextBox}" Tag="Введите логин" x:Name="LoginBox" Height="40" Margin="8 0 8 15" Width="460"/>
+                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите пароль" x:Name="PasswordBox" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center"/>
 
-                    <TextBox Style="{StaticResource HintTextBox}" Tag="Введите пароль" x:Name="PassBox" Height="40" Margin="8 15 8 20" Width="460"/>
+                        <Border Height="1" Margin="0,10" HorizontalAlignment="Stretch">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#00250044" Offset="0"/>
+                                    <GradientStop Color="#FF250044" Offset="0.5"/>
+                                    <GradientStop Color="#FF2e0055" Offset="0.7"/>
+                                    <GradientStop Color="#002e0055" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
 
-                    <Button Content="Войти" Style="{StaticResource LoginButtonStyle}" Click="Login_Click" Margin="20 10 20 0" Width="400"/>
-
-                    <Rectangle Height="1" Margin="0,30,0,30">
-                        <Rectangle.Fill>
-                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                                <GradientStop Color="#00FFFFFF" Offset="0"/>
-                                <GradientStop Color="#50FFFFFF" Offset="0.5"/>
-                                <GradientStop Color="#00FFFFFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    <Button Content="Ещё нет аккаунта? Зарегистрироваться" Style="{StaticResource LinkButton}" Click="OpenRegister_Click" Width="220" Margin="-10"/>
-                </StackPanel>
-            </Border>
-        </Grid>
+                        <Button Content="Войти" Style="{StaticResource LogBtnStyle}" Click="OpenNextWin" Margin="20 10 20 0"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
