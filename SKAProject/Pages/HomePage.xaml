@@ -5,20 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SKAProject.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1520"
-      Title="HomePage">
-
+      d:DesignHeight="1080" d:DesignWidth="1520">
     <Grid>
-        <Border CornerRadius="30" Background="#250044" Padding="0" Height="1000" Width="1420" Margin="0,0,0,0">
+        <Border CornerRadius="30" Background="#250044" Padding="0" Margin="40,90,40,32">
             <StackPanel Height="960" Width="1380" Margin="10,10">
-                <Border CornerRadius="30" Background="White" Padding="0" Height="200" Width="350" Margin="0,40,940,0">
-                    <StackPanel Margin="20,10,20,10">
-                        <TextBox Text="Здесь могла быть ваша реклама" BorderBrush="Transparent" FontSize="19" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
+                <TextBox Text="Здесь могла быть ваша реклама" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 440 0 0"/>
             </StackPanel>
         </Border>
-
     </Grid>
-    
 </Page>
