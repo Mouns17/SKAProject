@@ -109,5 +109,15 @@ namespace SKAProject
             login.Show();
             this.Close();
         }
+
+        private void BtnRollup(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void BtnClose(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

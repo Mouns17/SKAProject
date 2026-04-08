@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="СИСТЕМА КОНТРОЛЯ И АНАЛИЗА | АКАДЕМИК" Height="1080" Width="1920"
         WindowStartupLocation="CenterScreen"
-        Background="#0e1a2b">
+        Background="White">
 
     <Window.Resources>
-        <SolidColorBrush x:Key="SideBar" Color="#0b1220"/>
-        <SolidColorBrush x:Key="Hover" Color="#1e293b"/>
+        <SolidColorBrush x:Key="SideBar" Color="#250044"/>
+        <SolidColorBrush x:Key="Hover" Color="#370066"/>
         <SolidColorBrush x:Key="Accent" Color="#3b82f6"/>
 
         <Style x:Key="CardStyle" TargetType="Border">
-            <Setter Property="Background" Value="#1e293b"/>
+            <Setter Property="Background" Value="#370066"/>
             <Setter Property="CornerRadius" Value="14"/>
             <Setter Property="Padding" Value="20"/>
             <Setter Property="Margin" Value="10"/>
@@ -27,7 +27,7 @@
             <Setter Property="Margin" Value="10 4"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="Padding" Value="18 0"/>
@@ -55,53 +55,34 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="360"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1560"/>
         </Grid.ColumnDefinitions>
+
         <!-- Боковая менюшка(где кнопки типа) -->
         <Border Background="{StaticResource SideBar}" Grid.Column="0">
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
-                    <TextBlock Text="Здесь потом будет логотип" FontSize="26" Foreground="White" Margin="20 30" Width="320"/>
-
-                    <TextBlock Text="======= АНАЛИТИКА =======" Style="{StaticResource MenuHeader}"/>
+                    <TextBlock Text="Здесь потом будет логотип" FontSize="25" Foreground="White" Margin="20 30" Width="320"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🏠  Главное меню" Click="Home_Click"/>
 
-                    <Button Style="{StaticResource MenuBtn}" Content="📈  Статистика" Click="Stats_Click"/>
-
-                    <Button Style="{StaticResource MenuBtn}" Content="📉  Пересдачи" Click="Retake_Click"/>
-
-                    <Button Style="{StaticResource MenuBtn}" Content="📅  Посещаемость" Click="Attendance_Click"/>
-
-                    <TextBlock Text="======== ЛЮДИ =========" Style="{StaticResource MenuHeader}" Width="314"/>
-
-                    <Button Style="{StaticResource MenuBtn}" Content="🎓  Студенты" Click="Students_Click"/>
-
-                    <Button Style="{StaticResource MenuBtn}" Content="👨‍🏫  Преподаватели" Click="Teachers_Click"/>
-
                     <Button Style="{StaticResource MenuBtn}" Content="👤  Профиль" Click="Profile_Click"/>
-
-                    <TextBlock Text="====== УПРАВЛЕНИЕ ======" Style="{StaticResource MenuHeader}"/>
-
-                    <Button Style="{StaticResource MenuBtn}" Content="🔔  Уведомления" Click="Notify_Click"/>
-
-                    <Button Style="{StaticResource MenuBtn}" Content="🎨  Внешний вид" Click="Theme_Click"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🔐  Аккаунт" Click="Account_Click"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="⚙  Настройки" Click="Settings_Click"/>
 
-                    <TextBlock Text="======= СИСТЕМА =======" Style="{StaticResource MenuHeader}"/>
-
                     <Button Style="{StaticResource MenuBtn}" Content="💾  Экспорт данных" Click="Export_Click"/>
 
                     <Button Style="{StaticResource MenuBtn}" Content="🗂  Логи" Click="Logs_Click"/>
 
-                    <Button Style="{StaticResource MenuBtn}" Content="🚪  Выход" Click="Logout_Click"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="🚪  Выход" Click="Logout_Click" Margin="0 500"/>
                 </StackPanel>
             </ScrollViewer>
         </Border>
         
+        
+
         <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
 
     </Grid>

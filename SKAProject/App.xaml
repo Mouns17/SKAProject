@@ -95,5 +95,44 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Стиль для кнопок закрыть и свернуть окно -->
+        <Style x:Key="ControlBtnStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Opacity" Value="10"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1.4"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Разделительная линия -->
+        <LinearGradientBrush x:Key="DividerBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#00250044" Offset="0"/>
+            <GradientStop Color="#FF250044" Offset="0.5"/>
+            <GradientStop Color="#FF2e0055" Offset="0.7"/>
+            <GradientStop Color="#002e0055" Offset="1"/>
+        </LinearGradientBrush>
     </Application.Resources>
 </Application>
