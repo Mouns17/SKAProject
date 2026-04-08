@@ -18,9 +18,9 @@ namespace SKAProject.Pages
     /// <summary>
     /// Логика взаимодействия для Settings.xaml
     /// </summary>
-    public partial class Settings : Page
+    public partial class SettingsPage : Page
     {
-        public Settings()
+        public SettingsPage()
         {
             InitializeComponent();
         }

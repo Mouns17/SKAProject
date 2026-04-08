@@ -18,9 +18,9 @@ namespace SKAProject.Pages
     /// <summary>
     /// Логика взаимодействия для Profile.xaml
     /// </summary>
-    public partial class Profile : Page
+    public partial class ProfilePage : Page
     {
-        public Profile()
+        public ProfilePage()
         {
             InitializeComponent();
         }

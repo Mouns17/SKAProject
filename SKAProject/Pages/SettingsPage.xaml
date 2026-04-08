@@ -1,14 +1,16 @@
-﻿<Page x:Class="SKAProject.Pages.Settings"
+﻿<Page x:Class="SKAProject.Pages.SettingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SKAProject.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Settings">
-
+      d:DesignHeight="1080" d:DesignWidth="1520">
     <Grid>
-        
+        <Border CornerRadius="30" Background="#250044" Padding="0" Margin="40,90,40,32">
+            <StackPanel Height="960" Width="1380" Margin="10,10">
+                <TextBox Text="Здесь будут настройки" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 440 0 0"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

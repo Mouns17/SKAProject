@@ -9,7 +9,7 @@
     <Grid>
         <Border CornerRadius="30" Background="#250044" Padding="0" Margin="40,90,40,32">
             <StackPanel Height="960" Width="1380" Margin="10,10">
-                <TextBox Text="Здесь могла быть ваша реклама" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 440 0 0"/>
+                <TextBox Text="Здесь будет хз че потом придумаю" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 440 0 0"/>
             </StackPanel>
         </Border>
     </Grid>

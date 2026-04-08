@@ -18,9 +18,9 @@ namespace SKAProject.Pages
     /// <summary>
     /// Логика взаимодействия для Account.xaml
     /// </summary>
-    public partial class Account : Page
+    public partial class AccountPage : Page
     {
-        public Account()
+        public AccountPage()
         {
             InitializeComponent();
         }
