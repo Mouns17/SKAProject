@@ -71,10 +71,10 @@
                         <!-- Кнопка Назад -->
                         <Button Content="Назад"
                                 Style="{StaticResource RegBtnStyle}"
-                                Click="BackToLogin"/>
+                                Click="BtnBack"/>
 
                     </StackPanel>
-
+                    
                 </Border>
 
                 <!-- Правая часть -->
@@ -94,62 +94,89 @@
                                    Foreground="#250044"
                                    TextAlignment="Center"/>
 
-                        <!-- Линия -->
                         <Border Height="1"
                                 Margin="0,10"
                                 Background="{StaticResource DividerBrush}"/>
 
-                        <!-- Имя -->
+                        <TextBox Style="{StaticResource TxtBoxStyle}"
+                                 Tag="Введите логин"
+                                 x:Name="TBoxLogin"
+                                 Height="35"
+                                 Width="300"
+                                 Margin="0 6"
+                                 HorizontalAlignment="Center"
+                                 Visibility="Visible"/>
+
+                        <TextBox Style="{StaticResource TxtBoxStyle}"
+                                 Tag="Введите пароль"
+                                 x:Name="TBoxPassword"
+                                 Height="35"
+                                 Width="300"
+                                 Margin="0 6"
+                                 HorizontalAlignment="Center"
+                                 Visibility="Visible"/>
+
+                        <TextBox Style="{StaticResource TxtBoxStyle}"
+                                 Tag="Повторите пароль"
+                                 x:Name="TBoxRePassword"
+                                 Height="35"
+                                 Width="300"
+                                 Margin="0 6"
+                                 HorizontalAlignment="Center"
+                                 Visibility="Visible"/>
+
                         <TextBox Style="{StaticResource TxtBoxStyle}"
                                  Tag="Введите имя"
+                                 x:Name="TBoxFirstName"
                                  Height="35"
                                  Width="300"
                                  Margin="0 6"
-                                 HorizontalAlignment="Center"/>
+                                 HorizontalAlignment="Center"
+                                 Visibility="Collapsed"/>
 
-                        <!-- Фамилия -->
                         <TextBox Style="{StaticResource TxtBoxStyle}"
-                                 Tag="Введите фамилию"
+                                 Tag="Введите имя"
+                                 x:Name="TBoxLastName"
                                  Height="35"
                                  Width="300"
                                  Margin="0 6"
-                                 HorizontalAlignment="Center"/>
+                                 HorizontalAlignment="Center"
+                                 Visibility="Collapsed"/>
 
-                        <!-- Отчество -->
                         <TextBox Style="{StaticResource TxtBoxStyle}"
                                  Tag="Введите отчество"
+                                 x:Name="TBoxMiddleName"
                                  Height="35"
                                  Width="300"
                                  Margin="0 6"
-                                 HorizontalAlignment="Center"/>
+                                 HorizontalAlignment="Center"
+                                 Visibility="Collapsed"/>
 
-                        <!-- Телефон -->
-                        <TextBox Style="{StaticResource TxtBoxStyle}"
-                                 Tag="Введите номер телефона"
-                                 Height="35"
-                                 Width="300"
-                                 Margin="0 6"
-                                 HorizontalAlignment="Center"/>
-
-                        <!-- Линия -->
                         <Border Height="1"
                                 Margin="0,10"
                                 Background="{StaticResource DividerBrush}"/>
 
-                        <!-- Кнопка регистрации -->
+                        <Button Content="Продолжить > > >"
+                                Style="{StaticResource LogBtnStyle}"
+                                Margin="20 10 20 0"
+                                x:Name="BtnNextRegVis"
+                                Click="BtnNextReg"
+                                Visibility="Visible"/>
+
                         <Button Content="Зарегистрироваться"
                                 Style="{StaticResource LogBtnStyle}"
                                 Margin="20 10 20 0"
-                                Click="RegisterUser"/>
+                                x:Name="BtnRegisterVis" 
+                                Click="BtnRegister"
+                                Visibility="Collapsed"/>
 
                     </StackPanel>
-
+                    
                 </Grid>
-
             </Grid>
-
+            
         </Border>
-
+        
     </Grid>
-
+    
 </Window>
