@@ -28,32 +28,32 @@ namespace SKAProject
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new Pages.HomePage());
         }
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new Pages.ProfilePage());
         }
 
         private void Account_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new Pages.AccountPage());
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new Pages.SettingsPage());
         }
 
         private void Export_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new Pages.ExportPage());
         }
 
         private void Logs_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new Pages.LogsPage());
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
