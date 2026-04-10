@@ -25,7 +25,7 @@
                 <Label Content="Список организаций пользователя" FontSize="40" Margin="50 40 650 0"/>
 
                 <Border CornerRadius="30" Background="#C0C9EA" Height="550" Width="1350" Margin="0 0 0 0">
-                    
+                    <TextBlock Text="Пользователь пока не состоит в организациях" TextWrapping="Wrap" FontSize="50" Margin="150 230 150 200"/>
                 </Border>
 
             </StackPanel>
