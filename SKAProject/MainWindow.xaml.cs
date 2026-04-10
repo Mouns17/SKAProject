@@ -26,6 +26,16 @@ namespace SKAProject
             MainFrame.Navigate(new Pages.HomePage());
         }
 
+        private void BtnClose(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnRollup(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Pages.HomePage());

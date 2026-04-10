@@ -7,9 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1520">
     <Grid>
-        <Border CornerRadius="30" Background="#250044" Padding="0" Margin="40,90,40,32">
+        <Border CornerRadius="30" Background="#EDF4FF" Padding="0" Margin="15,40,15,15">
             <StackPanel Height="960" Width="1380" Margin="10,10">
-                <TextBox Text="Здесь будет профиль" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 440 0 0"/>
+                <TextBox Text="Здесь будет профиль" Foreground="#010002" Background="Transparent" BorderBrush="Transparent" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 440 0 0"/>
             </StackPanel>
         </Border>
     </Grid>
