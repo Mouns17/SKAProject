@@ -11,7 +11,7 @@
             <StackPanel Height="960" Width="1380" Margin="10,10">
 
                 <Border CornerRadius="30" Background="#C0C9EA" Height="250" Width="250" Margin="0 15 1100 0">
-                    <TextBlock Text="👤" FontSize="150" Foreground="#EDF4FF" Margin="20 40 20 20"/>
+                    <TextBlock Text="👤" FontSize="150" Foreground="#EDF4FF" Margin="25 45 20 20"/>
                 </Border>
 
                 <Label Content="Имя - Здесь будет отображаться имя" Foreground="#090011" FontSize="40" Margin="340 -220 300 10"/>
