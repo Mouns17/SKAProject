@@ -5,11 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SKAProject.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1520">
+      d:DesignHeight="1080" d:DesignWidth="1520" FontFamily="Palqa">
     <Grid>
         <Border CornerRadius="30" Background="#EDF4FF" Padding="0" Margin="15,40,15,15">
             <StackPanel Height="960" Width="1380" Margin="10,10">
-                <TextBox Text="Здесь будет профиль" Foreground="#010002" Background="Transparent" BorderBrush="Transparent" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 440 0 0"/>
+
+                <Border CornerRadius="30" Background="#C0C9EA" Height="250" Width="250" Margin="0 15 1100 0">
+                    <TextBlock Text="👤" FontSize="150" Foreground="#EDF4FF" Margin="20 40 20 20"/>
+                </Border>
+
+                <Label Content="Имя - Здесь будет отображаться имя" Foreground="#090011" FontSize="40" Margin="340 -220 300 10"/>
+
+                <Label Content="Фамилия - Здесь будет отображаться фамилия" Foreground="#090011" FontSize="40" Margin="340 -160 200 10"/>
+
+                <Label Content="Отчество - Здесь будет отображаться отчество" Foreground="#090011" FontSize="40" Margin="340 -100 200 10"/>
+
+                <Border Height="2" Margin="100 40 100 0" Background="{StaticResource DividerBrush}"/>
+
+                <Label Content="Список организаций пользователя" FontSize="40" Margin="50 40 650 0"/>
+
+                <Border CornerRadius="30" Background="#C0C9EA" Height="550" Width="1350" Margin="0 0 0 0">
+                    
+                </Border>
+
             </StackPanel>
         </Border>
     </Grid>
