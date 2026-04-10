@@ -10,7 +10,7 @@
         <Border CornerRadius="30" Background="#EDF4FF" Padding="0" Margin="15,40,15,15">
             <StackPanel Height="960" Width="1380" Margin="10,10">
 
-                <Border CornerRadius="30" Background="#C0C9EA" Height="250" Width="250" Margin="0 15 1100 0">
+                <Border CornerRadius="30" Background="#b7b4e0" Height="250" Width="250" Margin="0 15 1100 0">
                     <TextBlock Text="👤" FontSize="150" Foreground="#EDF4FF" Margin="25 45 20 20"/>
                 </Border>
 
@@ -24,7 +24,7 @@
 
                 <Label Content="Список организаций пользователя" Foreground="#090011" FontSize="40" Margin="50 40 650 0"/>
 
-                <Border CornerRadius="30" Background="#C0C9EA" Height="550" Width="1350" Margin="0 0 0 0">
+                <Border CornerRadius="30" Background="#b7b4e0" Height="550" Width="1350" Margin="0 0 0 0">
                     <TextBlock Text="Пользователь пока не состоит в организациях" Foreground="#090011" TextWrapping="Wrap" FontSize="50" Margin="150 230 150 200"/>
                 </Border>
 
