@@ -6,119 +6,6 @@
         xmlns:local="clr-namespace:SKAProject"
         mc:Ignorable="d"
         Height="1080" Width="1920">
-
-    <Window.Resources>
-        <SolidColorBrush x:Key="SideBar" Color="#EDF4FF"/>
-        <SolidColorBrush x:Key="Hover" Color="#b7b4e0"/>
-        <SolidColorBrush x:Key="Accent" Color="#b7b4e0"/>
-
-        <Style x:Key="CardStyle" TargetType="Border">
-            <Setter Property="Background" Value="#370066"/>
-            <Setter Property="CornerRadius" Value="14"/>
-            <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-
-        <Style x:Key="MenuBtnStyle" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#010002"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="FontFamily" Value="Palqa"/>
-            <Setter Property="FontSize" Value="25"/>
-            <Setter Property="Height" Value="48"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="menuButton"
-                                Background="{TemplateBinding Background}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <!-- Selected  -->
-                                <Border x:Name="btnSelected"
-                                        Grid.ColumnSpan="2"
-                                        CornerRadius="10"
-                                        Width="315" HorizontalAlignment="Right">
-                                </Border>
-
-                                <!-- Indicator -->
-                                <Rectangle Name="Indicator"
-                                           HorizontalAlignment="Left"
-                                           Width="6" Height="30"
-                                           VerticalAlignment="Center"
-                                           RadiusX="3" RadiusY="3">
-                                    <Rectangle.BitmapEffect>
-                                        <DropShadowBitmapEffect
-                                            ShadowDepth="3"
-                                            Direction="0"
-                                            Color="#1c0033"
-                                            Softness="0.6"/>
-                                    </Rectangle.BitmapEffect>
-                                </Rectangle>
-
-                                <!-- Text -->
-                                <TextBlock x:Name="txtName" HorizontalAlignment="Left"
-                                           VerticalAlignment="Center" Margin="12 0 0 0"
-                                           Grid.Column="1" Text="{TemplateBinding Content}"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontWeight="{TemplateBinding FontWeight}"
-                                           FontSize="{TemplateBinding FontSize}"/>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="txtName" Property="Foreground" Value="#090011"/>
-                                <Setter TargetName="btnSelected" Property="Background" Value="#b7b4e0"/>
-                            </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="Indicator" Property="Fill" Value="#250044"/>
-                                <Setter TargetName="btnSelected" Property="Background" Value="#b7b4e0"/>
-                                <Setter TargetName="txtName" Property="Foreground" Value="#250044"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-
-
-        <!-- Стиль для кнопкок (боковых - не названий разделов) -->
-        <Style x:Key="MenuBtn" TargetType="Button">
-            <Setter Property="Height" Value="52"/>
-            <Setter Property="FontFamily" Value="Palqa"/>
-            <Setter Property="Margin" Value="10 4"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#010002"/>
-            <Setter Property="FontSize" Value="25"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="18 0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <!-- Тригеры для курсора -->
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource Hover}"/>
-                </Trigger>
-
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="{StaticResource Accent}"/>
-                </Trigger>
-            </Style.Triggers>
-
-            <!-- Стиль для боковых названий разделов -->
-        </Style>
-        <Style TargetType="TextBlock" x:Key="MenuHeader">
-            <Setter Property="Foreground" Value="#94a3b8"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Margin" Value="20 0 20 20"/>
-        </Style>
-    </Window.Resources>
-    <!-- Основная сетка -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -134,8 +21,7 @@
 
             <Button Content="✖︎" Style="{StaticResource ControlBtnStyle}" Margin="1510, -25 0,80" Click="BtnClose"/>
         </StackPanel>
-        
-        
+
         <!-- Боковая менюшка(где кнопки типа) -->
         <Border Background="{StaticResource SideBar}" Grid.Column="0" Grid.RowSpan="2">
             <StackPanel Margin="0 20 20 20" >
@@ -145,16 +31,31 @@
 
                 <Button Style="{StaticResource MenuBtnStyle}" Content="👤  Профиль" Click="Profile_Click" Margin="0 15 0 0"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="🔐  Аккаунт" Click="Account_Click" Visibility="Collapsed" Margin="0 15 0 0"/>
-
                 <Button Style="{StaticResource MenuBtnStyle}" Content="⚙  Настройки" Click="Settings_Click" Margin="0 15 0 0"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="💾  Экспорт данных" Click="Export_Click" Margin="0 15 0 0"/>
+                <Button Style="{StaticResource MenuBtnStyle}" Content="👥  Список работников" Click="Settings_Click" Margin="0 15 0 0"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="🗂  Логи" Click="Logs_Click" Visibility="Collapsed" Margin="0 15 0 0"/>
+                <Button Style="{StaticResource MenuBtnStyle}" Content="🏢  Моя организация" Click="Settings_Click" Margin="0 15 0 0"/>
 
-                <Border CornerRadius="25" Background="#250044" Margin="30 400 30 0" Height="140" Width="260">
+                <Button Style="{StaticResource MenuBtnStyle}" Content="📅  Задачи организации" Click="Settings_Click" Margin="0 15 0 0"/>
 
+                <Button Style="{StaticResource MenuBtnStyle}" Content="📅  Мои задачи" Click="Settings_Click" Margin="0 15 0 0"/>
+
+                <Button Style="{StaticResource MenuBtnStyle}" Content="📂  Отчеты работников" Click="Settings_Click" Margin="0 15 0 0"/>
+
+                <Button Style="{StaticResource MenuBtnStyle}" Content="🗂  Логи" Click="Logs_Click" Margin="0 15 0 0"/>
+
+                <Border CornerRadius="25" BorderBrush="#300044" BorderThickness="1" Background="#250044" Margin="30 50 30 0" Height="170" Width="280">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="0" Color="#6600bb" Opacity="1" BlurRadius="15"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <TextBlock Text="Создание организации" FontSize="20" FontFamily="Palqa" Foreground="{StaticResource SideBar}" Margin="35 25 35 0" HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Пока не придумал что здесь написать" TextWrapping="Wrap" FontSize="15" FontFamily="Palqa" Foreground="{StaticResource Hover}" Margin="35 10 35 0" HorizontalAlignment="Center" />
+
+                        <Button Style="{StaticResource RegOrgBtnStyle}" Content="Создать организацию" Margin="0 25 0 0" Click="BtnRegOrg"/>
+                    </StackPanel>
                 </Border>
 
                 <Button Style="{StaticResource MenuBtnStyle}" Content="🚪  Выход" Click="Logout_Click" Margin="0 80"/>

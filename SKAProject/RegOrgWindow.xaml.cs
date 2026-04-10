@@ -10,19 +10,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SKAProject.Pages
+namespace SKAProject
 {
     /// <summary>
-    /// Логика взаимодействия для ExportPage.xaml
+    /// Логика взаимодействия для RegOrgWindow.xaml
     /// </summary>
-    public partial class ExportPage : Page
+    public partial class RegOrgWindow : Window
     {
-        public ExportPage()
+        public RegOrgWindow()
         {
             InitializeComponent();
+        }
+
+        private void BtnClose(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnEnter(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Успешно!");
+            Close();
         }
     }
 }
