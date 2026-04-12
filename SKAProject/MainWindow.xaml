@@ -25,9 +25,14 @@
         <!-- Боковая менюшка(где кнопки типа) -->
         <Border Background="{StaticResource SideBar}" Grid.Column="0" Grid.RowSpan="2">
             <StackPanel Margin="0 20 20 20" >
-                <TextBlock Text="Здесь потом будет логотип" FontSize="25" Foreground="#09030e" Margin="20 0 50 0" Width="320" Height="100"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="🏠  Главное меню" Click="Home_Click" Margin="0 0 0 0"/>
+                <Image Source="D:\Users\tuman\OneDrive\Изображения\img_352950_104310.png" Height="80" Width="115" Margin="0 0 170 0"/>
+
+                <TextBlock Text="СКА" FontSize="40" Foreground="Black" FontFamily="Arian Bold" Margin="60 -80 0 0" Width="100" Height="100"/>
+
+                <TextBlock Text="СИСТЕМА КОНТРОЛЯ И АНАЛИЗА" FontSize="17" Foreground="Black" TextWrapping="Wrap" FontFamily="Arian Bold" Margin="153 -58 0 0" Width="187" Height="100"/>
+
+                <Button Style="{StaticResource MenuBtnStyle}" Content="🏠  Главное меню" Click="Home_Click" Margin="0 -40 0 0"/>
 
                 <Button Style="{StaticResource MenuBtnStyle}" Content="👤  Профиль" Click="Profile_Click" Margin="0 15 0 0"/>
 
@@ -50,11 +55,11 @@
                         <DropShadowEffect ShadowDepth="0" Color="#6600bb" Opacity="1" BlurRadius="15"/>
                     </Border.Effect>
                     <StackPanel>
-                        <TextBlock Text="Создание организации" FontSize="20" FontFamily="Palqa" Foreground="{StaticResource SideBar}" Margin="35 25 35 0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Создание организации" FontSize="20" FontFamily="Arian" Foreground="{StaticResource SideBar}" Margin="35 25 35 0" HorizontalAlignment="Center"/>
 
-                        <TextBlock Text="Пока не придумал что здесь написать" TextWrapping="Wrap" FontSize="15" FontFamily="Palqa" Foreground="{StaticResource Hover}" Margin="35 10 35 0" HorizontalAlignment="Center" />
+                        <TextBlock Text="Для регистрации нажмите на кнопку ниже" TextWrapping="Wrap" FontSize="15" FontFamily="Arian" Foreground="{StaticResource Hover}" Margin="35 10 35 0" HorizontalAlignment="Center" />
 
-                        <Button Style="{StaticResource RegOrgBtnStyle}" Content="Создать организацию" Margin="0 25 0 0" Click="BtnRegOrg"/>
+                        <Button Style="{StaticResource RegOrgBtnStyle}" Content="ЗАРЕГИСТРИРОВАТЬ" Margin="0 20 0 0" Click="BtnRegOrg"/>
                     </StackPanel>
                 </Border>
 

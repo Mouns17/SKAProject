@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SKAProject.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1520" FontFamily="Palqa">
+      d:DesignHeight="1080" d:DesignWidth="1520" FontFamily="Arian">
     <Grid>
         <Border CornerRadius="30" Background="#EDF4FF" Padding="0" Margin="15,40,15,15">
             <StackPanel Height="960" Width="1380" Margin="10,10">

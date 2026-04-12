@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SKAProject"
         mc:Ignorable="d"
-        Height="480" Width="720" FontFamily="Palqa">
+        Height="480" Width="720" FontFamily="Arian">
     <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
         <Border Width="720" Height="480" CornerRadius="20" Background="#EDF4FF" HorizontalAlignment="Center" VerticalAlignment="Center">
 

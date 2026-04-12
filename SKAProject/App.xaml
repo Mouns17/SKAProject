@@ -8,6 +8,7 @@
             <Style x:Key="TxtBoxStyle" TargetType="TextBox">
                 <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontFamily" Value="Arian"/>
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="#250044"/>
                 <Setter Property="BorderThickness" Value="1.4"/>
@@ -37,6 +38,7 @@
             <Style x:Key="LogBtnStyle" TargetType="Button">
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontFamily" Value="Arian"/>
                 <Setter Property="Background" Value="#250044"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="2"/>
@@ -66,6 +68,7 @@
         <Style x:Key="RegBtnStyle" TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontFamily" Value="Arian"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="White"/>
@@ -202,7 +205,7 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#010002"/>
             <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="FontFamily" Value="Palqa"/>
+            <Setter Property="FontFamily" Value="Arian"/>
             <Setter Property="FontSize" Value="25"/>
             <Setter Property="Height" Value="48"/>
             <Setter Property="Template">
@@ -264,14 +267,14 @@
         <Style x:Key="RegOrgBtnStyle" TargetType="Button">
             <Setter Property="Foreground" Value="#090011"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontFamily" Value="Palqa"/>
+            <Setter Property="FontFamily" Value="Arian"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Background" Value="#EDF4FF"/>
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="BorderThickness" Value="1.4"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="160"/>
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
