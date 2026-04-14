@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SKAProject.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -20,10 +21,12 @@ namespace SKAProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Frame MainFrameStatic { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Pages.HomePage());
+            MainFrameStatic = MainFrame;  // сохраняем ссылку
+            MainFrame.Navigate(new HomePage());
         }
 
         private void BtnClose(object sender, RoutedEventArgs e)
@@ -67,6 +70,31 @@ namespace SKAProject
         private void BtnRegOrg(object sender, RoutedEventArgs e)
         {
             new RegOrgWindow().Show();
+        }
+
+        private void Workers_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.WorkersPage());
+        }
+
+        private void MyOrg_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.MyOrganizationPage());
+        }
+
+        private void TasksOrg_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.OrgTasksPage());
+        }
+
+        private void MyTasks_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.MyTasks());
+        }
+
+        private void Otcheti_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.ReportsPage());
         }
     }
 }

@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace SKAProject.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для HomePage.xaml
+    /// Логика взаимодействия для ReportsPage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class ReportsPage : Page
     {
-        public HomePage()
+        public ReportsPage()
         {
             InitializeComponent();
-        }
-
-        private void BtnDashboard_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

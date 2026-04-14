@@ -1,0 +1,231 @@
+﻿<Page x:Class="SKAProject.Pages.ReportsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="ReportsPage"
+      Background="#0A0A0A" FontFamily="Arian">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="40,30,40,50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,32">
+                <TextBlock Text="Отчеты работников" FontSize="34" FontWeight="SemiBold" 
+                           Foreground="#FFFFFF"/>
+                <TextBlock Text="Просмотр и анализ отчетов сотрудников" 
+                           FontSize="14" Foreground="#888888" Margin="0,8,0,0"/>
+            </StackPanel>
+
+            <!-- Фильтры -->
+            <Border Grid.Row="1" Background="#121212" CornerRadius="20" 
+                    Padding="20" Margin="0,0,0,24" BorderBrush="#1E1E1E" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <Border Background="#1A1A1A" CornerRadius="10" Height="40" Width="200" Margin="0,0,10,0">
+                            <ComboBox Background="Transparent" BorderThickness="0" Foreground="White" 
+                                      VerticalContentAlignment="Center" Height="40">
+                                <ComboBoxItem Content="Все сотрудники" IsSelected="True"/>
+                                <ComboBoxItem Content="Иванов И.И."/>
+                                <ComboBoxItem Content="Петров П.П."/>
+                                <ComboBoxItem Content="Сидорова С.А."/>
+                            </ComboBox>
+                        </Border>
+
+                        <Border Background="#1A1A1A" CornerRadius="10" Height="40" Width="150">
+                            <ComboBox Background="Transparent" BorderThickness="0" Foreground="White" 
+                                      VerticalContentAlignment="Center" Height="40">
+                                <ComboBoxItem Content="Март 2025" IsSelected="True"/>
+                                <ComboBoxItem Content="Февраль 2025"/>
+                                <ComboBoxItem Content="Январь 2025"/>
+                            </ComboBox>
+                        </Border>
+                    </StackPanel>
+
+                    <Button Grid.Column="1" Background="#6366F1" Width="100" Height="40" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <TextBlock Text="Применить" Foreground="White"/>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <!-- Список отчетов -->
+            <StackPanel Grid.Row="2" Margin="0,0,0,20">
+
+                <!-- Отчет 1 -->
+                <Border Background="#121212" CornerRadius="16" Padding="20" Margin="0,0,0,12" 
+                        BorderBrush="#1E1E1E" BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Width="48" Height="48" CornerRadius="24" 
+                                Margin="0,0,15,0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="1,1">
+                                    <GradientStop Color="#6366F1" Offset="0"/>
+                                    <GradientStop Color="#8B5CF6" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock Text="ИИ" FontSize="16" FontWeight="Bold" Foreground="White" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <StackPanel Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Недельный отчет Иванов И.И." FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+                                <Border Background="#10B981" CornerRadius="12" Padding="8,3" Margin="12,0,0,0">
+                                    <TextBlock Text="Одобрен" FontSize="10" Foreground="White"/>
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Text="Период: 17.03.2025 - 23.03.2025" FontSize="13" Foreground="#888888" Margin="0,5,0,0"/>
+                            <TextBlock Text="Выполнены все плановые показатели. Завершено 12 задач." 
+                                       FontSize="13" Foreground="#666666" Margin="0,5,0,0"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="2" Width="90" Height="36" Background="#1A1A1A" 
+                                Cursor="Hand" Margin="10,0,0,0"
+                                BorderBrush="#2A2A2A" BorderThickness="1">
+                            <TextBlock Text="Скачать" Foreground="#6366F1" FontSize="12"/>
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <!-- Отчет 2 -->
+                <Border Background="#121212" CornerRadius="16" Padding="20" Margin="0,0,0,12" 
+                        BorderBrush="#1E1E1E" BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Width="48" Height="48" CornerRadius="24" 
+                                Margin="0,0,15,0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="1,1">
+                                    <GradientStop Color="#10B981" Offset="0"/>
+                                    <GradientStop Color="#34D399" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock Text="ПП" FontSize="16" FontWeight="Bold" Foreground="White" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <StackPanel Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Месячный отчет Петров П.П." FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+                                <Border Background="#F59E0B" CornerRadius="12" Padding="8,3" Margin="12,0,0,0">
+                                    <TextBlock Text="На проверке" FontSize="10" Foreground="White"/>
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Text="Период: 01.03.2025 - 31.03.2025" FontSize="13" Foreground="#888888" Margin="0,5,0,0"/>
+                            <TextBlock Text="Проект находится в графике. Ожидается завершение в апреле." 
+                                       FontSize="13" Foreground="#666666" Margin="0,5,0,0"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="2" Width="90" Height="36" Background="#1A1A1A" 
+                                Cursor="Hand" Margin="10,0,0,0"
+                                BorderBrush="#2A2A2A" BorderThickness="1">
+                            <TextBlock Text="Скачать" Foreground="#F59E0B" FontSize="12"/>
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <!-- Отчет 3 -->
+                <Border Background="#121212" CornerRadius="16" Padding="20" Margin="0,0,0,12" 
+                        BorderBrush="#1E1E1E" BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Width="48" Height="48" CornerRadius="24" 
+                                Margin="0,0,15,0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="1,1">
+                                    <GradientStop Color="#EC4899" Offset="0"/>
+                                    <GradientStop Color="#F43F5E" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock Text="СС" FontSize="16" FontWeight="Bold" Foreground="White" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <StackPanel Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Квартальный отчет Сидорова С.А." FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+                                <Border Background="#EC4899" CornerRadius="12" Padding="8,3" Margin="12,0,0,0">
+                                    <TextBlock Text="Отклонен" FontSize="10" Foreground="White"/>
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Text="Период: 01.01.2025 - 31.03.2025" FontSize="13" Foreground="#888888" Margin="0,5,0,0"/>
+                            <TextBlock Text="Требуется доработка: добавить показатели эффективности." 
+                                       FontSize="13" Foreground="#666666" Margin="0,5,0,0"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="2" Width="90" Height="36" Background="#1A1A1A" 
+                                Cursor="Hand" Margin="10,0,0,0"
+                                BorderBrush="#2A2A2A" BorderThickness="1">
+                            <TextBlock Text="Скачать" Foreground="#EC4899" FontSize="12"/>
+                        </Button>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <!-- Статистика отчетов -->
+            <Border Grid.Row="3" Background="#121212" CornerRadius="20" Padding="20" 
+                    BorderBrush="#1E1E1E" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                        <TextBlock Text="24" FontSize="24" FontWeight="Bold" Foreground="White" TextAlignment="Center"/>
+                        <TextBlock Text="Всего отчетов" FontSize="12" Foreground="#888888"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Text="18" FontSize="24" FontWeight="Bold" Foreground="#10B981" TextAlignment="Center"/>
+                        <TextBlock Text="Одобрено" FontSize="12" Foreground="#888888"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                        <TextBlock Text="4" FontSize="24" FontWeight="Bold" Foreground="#F59E0B" TextAlignment="Center"/>
+                        <TextBlock Text="На проверке" FontSize="12" Foreground="#888888"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3" HorizontalAlignment="Center">
+                        <TextBlock Text="2" FontSize="24" FontWeight="Bold" Foreground="#EC4899" TextAlignment="Center"/>
+                        <TextBlock Text="Отклонено" FontSize="12" Foreground="#888888"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

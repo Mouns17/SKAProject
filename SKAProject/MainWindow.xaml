@@ -26,7 +26,7 @@
         <Border Background="{StaticResource SideBar}" Grid.Column="0" Grid.RowSpan="2">
             <StackPanel Margin="0 20 20 20" >
 
-                <Image Source="D:\Users\tuman\OneDrive\Изображения\img_352950_104310.png" Height="80" Width="115" Margin="0 0 170 0"/>
+                <Image Source="\Images\Logotype.png" Height="80" Width="115" Margin="0 0 170 0"/>
 
                 <TextBlock Text="СКА" FontSize="40" Foreground="Black" FontFamily="Arian Bold" Margin="60 -80 0 0" Width="100" Height="100"/>
 
@@ -38,15 +38,15 @@
 
                 <Button Style="{StaticResource MenuBtnStyle}" Content="⚙  Настройки" Click="Settings_Click" Margin="0 15 0 0"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="👥  Список работников" Click="Settings_Click" Margin="0 15 0 0"/>
+                <Button Style="{StaticResource MenuBtnStyle}" Content="👥  Список работников" Click="Workers_Click" Margin="0 15 0 0"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="🏢  Моя организация" Click="Settings_Click" Margin="0 15 0 0"/>
+                <Button Style="{StaticResource MenuBtnStyle}" Content="🏢  Моя организация" Click="MyOrg_Click" Margin="0 15 0 0"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="📅  Задачи организации" Click="Settings_Click" Margin="0 15 0 0"/>
+                <Button Style="{StaticResource MenuBtnStyle}" Content="📅  Задачи организации" Click="TasksOrg_Click" Margin="0 15 0 0"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="📅  Мои задачи" Click="Settings_Click" Margin="0 15 0 0"/>
+                <Button Style="{StaticResource MenuBtnStyle}" Content="📅  Мои задачи" Click="MyTasks_Click" Margin="0 15 0 0"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="📂  Отчеты работников" Click="Settings_Click" Margin="0 15 0 0"/>
+                <Button Style="{StaticResource MenuBtnStyle}" Content="📂  Отчеты работников" Click="Otcheti_Click" Margin="0 15 0 0"/>
 
                 <Button Style="{StaticResource MenuBtnStyle}" Content="🗂  Логи" Click="Logs_Click" Margin="0 15 0 0"/>
 
