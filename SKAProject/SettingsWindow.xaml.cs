@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace SKAProject
 {
-    /// <summary>
-    /// Логика взаимодействия для SettingsWindow.xaml
-    /// </summary>
     public partial class SettingsWindow : Window
     {
         public SettingsWindow()

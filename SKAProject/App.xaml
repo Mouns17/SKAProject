@@ -10,7 +10,7 @@
                 <Setter Property="FontSize" Value="13"/>
                 <Setter Property="FontFamily" Value="Arian"/>
                 <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="#250044"/>
+            <Setter Property="BorderBrush" Value="#6366F1"/>
                 <Setter Property="BorderThickness" Value="1.4"/>
                 <Setter Property="Padding" Value="10"/>
                 <Setter Property="Template">
@@ -39,7 +39,7 @@
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="FontFamily" Value="Arian"/>
-                <Setter Property="Background" Value="#250044"/>
+            <Setter Property="Background" Value="#6366F1"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="2"/>
                 <Setter Property="Height" Value="42"/>
@@ -133,66 +133,20 @@
         <!-- Разделительная линия -->
         <LinearGradientBrush x:Key="DividerBrush" StartPoint="0,0" EndPoint="1,0">
             <GradientStop Color="#00250044" Offset="0"/>
-            <GradientStop Color="#FF250044" Offset="0.5"/>
-            <GradientStop Color="#FF2e0055" Offset="0.7"/>
+            <GradientStop Color="#6366F1" Offset="0.5"/>
+            <GradientStop Color="#6366F1" Offset="0.7"/>
             <GradientStop Color="#002e0055" Offset="1"/>
         </LinearGradientBrush>
 
-        <!-- Background Colors -->
-        <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#C0C9EA"/>
-        <SolidColorBrush x:Key="SecundaryBackgroundColor" Color="#EDF4FF"/>
-        <SolidColorBrush x:Key="TertiaryBackgroundColor" Color="#FFFFFF"/>
+        <!-- Цвета фона и т.д. -->
+        <SolidColorBrush x:Key="BackgroundColor1" Color="#C0C9EA"/>
+        <SolidColorBrush x:Key="BackgroundColor2" Color="#EDF4FF"/>
+        <SolidColorBrush x:Key="BackgroundColor3" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundColor4" Color="#EDF4FF"/>
+        <SolidColorBrush x:Key="BackgroundColor5" Color="#b7b4e0"/>
+        <SolidColorBrush x:Key="BackgroundColor6" Color="#6366F1"/>
 
-        <!-- System Colors -->
-        <!-- Typograhy Colors -->
-        <SolidColorBrush x:Key="PrimaryTextColor" Color="#0E1A32"/>
-        <SolidColorBrush x:Key="SecundaryTextColor" Color="#102341"/>
-        <SolidColorBrush x:Key="TertiaryTextColor" Color="#1C3254"/>
-
-        <!-- Blue Colors-->
-        <SolidColorBrush x:Key="PrimaryBlueColor" Color="#004FC4"/>
-        <SolidColorBrush x:Key="SecundaryBlueColor" Color="#0063F7"/>
-        <SolidColorBrush x:Key="TertiaryBlueColor" Color="#5B8DEF"/>
-
-        <!-- Red Colors-->
-        <SolidColorBrush x:Key="PrimaryRedColor" Color="#E63535"/>
-        <SolidColorBrush x:Key="SecundaryRedColor" Color="#FF3B3B"/>
-        <SolidColorBrush x:Key="TertiaryRedColor" Color="#FF5C5C"/>
-
-        <!-- Green Colors-->
-        <SolidColorBrush x:Key="PrimaryGreenColor" Color="#05A660"/>
-        <SolidColorBrush x:Key="SecundaryGreenColor" Color="#06C270"/>
-        <SolidColorBrush x:Key="TertiaryGreenColor" Color="#39D98A"/>
-
-        <!-- Orange Colors-->
-        <SolidColorBrush x:Key="PrimaryOrangeColor" Color="#E67A00"/>
-        <SolidColorBrush x:Key="SecundaryOrangeColor" Color="#FF8800"/>
-        <SolidColorBrush x:Key="TertiaryOrangeColor" Color="#FDAC42"/>
-
-        <!-- Yellow Colors-->
-        <SolidColorBrush x:Key="PrimaryYellowColor" Color="#E6B800"/>
-        <SolidColorBrush x:Key="SecundaryYellowColor" Color="#FFCC00"/>
-        <SolidColorBrush x:Key="TertiaryYellowColor" Color="#FDDD48"/>
-
-        <!-- Teal Colors-->
-        <SolidColorBrush x:Key="PrimaryTealColor" Color="#00B7C4"/>
-        <SolidColorBrush x:Key="SecundaryTealColor" Color="#00CFDE"/>
-        <SolidColorBrush x:Key="TertiaryTealColor" Color="#73DFE7"/>
-
-        <!-- White -->
-        <SolidColorBrush x:Key="PrimaryWhiteColor" Color="#C0C9EA"/>
-        <SolidColorBrush x:Key="SecundaryWhiteColor" Color="#EDF4FF"/>
-        <SolidColorBrush x:Key="TertiaryWhiteColor" Color="#FFFFFF"/>
-
-        <!-- Black -->
-        <SolidColorBrush x:Key="PrimaryBlackColor" Color="#0E1A32"/>
-        <SolidColorBrush x:Key="SecundaryBlackColor" Color="#102341"/>
-        <SolidColorBrush x:Key="TertiaryBlackColor" Color="#1C3254"/>
-
-        <SolidColorBrush x:Key="SideBar" Color="#EDF4FF"/>
-        <SolidColorBrush x:Key="Hover" Color="#b7b4e0"/>
-        <SolidColorBrush x:Key="Accent" Color="#b7b4e0"/>
-
+        <!-- Стиль карточки -->
         <Style x:Key="CardStyle" TargetType="Border">
             <Setter Property="Background" Value="#370066"/>
             <Setter Property="CornerRadius" Value="14"/>
@@ -235,7 +189,7 @@
                                         <DropShadowBitmapEffect
                                             ShadowDepth="3"
                                             Direction="0"
-                                            Color="#1c0033"
+                                            Color="#6366F1"
                                             Softness="0.6"/>
                                     </Rectangle.BitmapEffect>
                                 </Rectangle>
@@ -263,7 +217,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+        
+        <!-- Стиль кнопки регистрации организации -->
         <Style x:Key="RegOrgBtnStyle" TargetType="Button">
             <Setter Property="Foreground" Value="#090011"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -301,6 +256,7 @@
             </Setter>
         </Style>
 
+        <!-- Стиль карточки -->
         <Style x:Key="ModernCard" TargetType="Border">
             <Setter Property="Background" Value="#b7b4e0"/>
             <Setter Property="CornerRadius" Value="20"/>

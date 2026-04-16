@@ -16,7 +16,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Левая панель -->
-                <Border Grid.Column="0" CornerRadius="20,120,120,20" Background="#250044">
+                <Border Grid.Column="0" CornerRadius="20,120,120,20" Background="{StaticResource BackgroundColor6}">
 
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="270">
 
@@ -39,7 +39,7 @@
 
                         <TextBlock Text="Создание аккаунта" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5"/>
 
-                        <TextBlock Text="Введите личные данные" FontSize="12" Foreground="#250044" TextAlignment="Center"/>
+                        <TextBlock Text="Введите личные данные" FontSize="12" Foreground="{StaticResource BackgroundColor6}" TextAlignment="Center"/>
 
                         <Border Height="1" Margin="0,10" Background="{StaticResource DividerBrush}"/>
 
@@ -51,7 +51,7 @@
 
                         <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите имя" x:Name="TBoxFirstName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите имя" x:Name="TBoxLastName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите фамилию" x:Name="TBoxLastName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
 
                         <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите отчество" x:Name="TBoxMiddleName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
 

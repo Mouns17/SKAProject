@@ -37,18 +37,10 @@
             </StackPanel>
 
             <!-- Баннер с метриками -->
-            <Border Grid.Row="1" Height="140" CornerRadius="20" Margin="0,0,0,32">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="1,1">
-                        <GradientStop Color="#6366F1" Offset="0"/>
-                        <GradientStop Color="#8B5CF6" Offset="0.5"/>
-                        <GradientStop Color="#EC4899" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+                    <Border Grid.Row="1" Height="140" Background="{StaticResource BackgroundColor6}" CornerRadius="20" Margin="0,0,0,32">
 
-                <Grid Margin="30,0">
+                        <Grid Margin="30,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -63,11 +55,8 @@
                                 <TextBlock Text="Задачи" FontSize="20" Foreground="#E0E0E0" Margin="0,5,0,0"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="98%" FontSize="50" FontWeight="Bold" Foreground="White"/>
-                                <TextBlock Text="Эффективность" FontSize="20" Foreground="#E0E0E0" Margin="0,5,0,0"/>
-                    </StackPanel>
-                </Grid>
+                    <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
             </Border>
 
             <!-- Основная информация -->
@@ -76,7 +65,7 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                         <TextBlock Text="Основная информация" FontSize="28" FontWeight="SemiBold" 
                                    Foreground="Black"/>
-                        <Border Background="{StaticResource SideBar}" CornerRadius="12" Padding="8,4" Margin="12,0,0,0">
+                        <Border Background="{StaticResource BackgroundColor4}" CornerRadius="12" Padding="8,4" Margin="12,0,0,0">
                             <TextBlock Text="ID: USR-001" FontSize="19" Foreground="Black"/>
                         </Border>
                     </StackPanel>
