@@ -1,0 +1,49 @@
+﻿<Window x:Class="SKAProject.SettingsWindow" WindowStyle="None" WindowState="Normal" Topmost="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent"  
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SKAProject"
+        mc:Ignorable="d"
+        Height="400" Width="400" FontFamily="Arian">
+    <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
+        <Border Width="400" Height="400" CornerRadius="20" BorderThickness="1" BorderBrush="#090011" Background="#EDF4FF" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid>
+                <StackPanel>
+                    <Button Content="✖︎" Style="{StaticResource ControlBtnStyle}" Margin="355,5,0,80" Click="BtnClose"/>
+
+                    <TextBlock Text="Настройки приложения" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-60,0,0"/>
+
+                    <TextBlock Text="После изменения параметров, нажмите на кнопку ниже" FontSize="12" Foreground="#250044" TextAlignment="Center" Margin="0,-25,0,0"/>
+
+                    <Border Height="1" Margin="40 0 40 0" Background="{StaticResource DividerBrush}"/>
+
+                    <TextBlock Text="Тема приложения" Margin="60 15 60 -10"/>
+
+                    <ComboBox Margin="60 15 60 15">
+                        <ComboBoxItem Content="Светлая" VerticalAlignment="Center" IsSelected="True"/>
+                        <ComboBoxItem Content="Темная" VerticalAlignment="Center"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Язык интерфейса" Margin="60 5 60 -5" VerticalAlignment="Center"/>
+                    <ComboBox Margin="60 10 60 15" VerticalAlignment="Center">
+                        <ComboBoxItem Content="Русский" IsSelected="True"/>
+                        <ComboBoxItem Content="English"/>
+                    </ComboBox>
+
+                    <TextBlock Margin="60 5 60 5" Text="Часовой пояс" VerticalAlignment="Center"/>
+                    <ComboBox Margin="60 0 60 15" VerticalAlignment="Center">
+                        <ComboBoxItem Content="Москва (UTC+3)" IsSelected="True"/>
+                        <ComboBoxItem Content="Екатеринбург (UTC+5)"/>
+                        <ComboBoxItem Content="Владивосток (UTC+10)"/>
+                    </ComboBox>
+
+                    <Border Height="1" Margin="40 0 40 0" Background="{StaticResource DividerBrush}"/>
+
+                    <Button Content="Сохранить" Style="{StaticResource LogBtnStyle}" Click="BtnEnter" Margin="80 15 80 190"/>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
