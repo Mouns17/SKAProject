@@ -23,5 +23,11 @@ namespace SKAProject
         {
             InitializeComponent();
         }
+
+        private void BtnEnter(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Успешно!");
+            Close();
+        }
     }
 }
