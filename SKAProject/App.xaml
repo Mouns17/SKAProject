@@ -220,7 +220,7 @@
         
         <!-- Стиль кнопки регистрации организации -->
         <Style x:Key="RegOrgBtnStyle" TargetType="Button">
-            <Setter Property="Foreground" Value="#090011"/>
+            <Setter Property="Foreground" Value="#6366F1"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="FontFamily" Value="Arian"/>
             <Setter Property="Cursor" Value="Hand"/>

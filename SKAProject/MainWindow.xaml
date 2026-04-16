@@ -23,7 +23,7 @@
         </StackPanel>
 
         <!-- Боковая менюшка(где кнопки типа) -->
-        <Border Background="{StaticResource SideBar}" Grid.Column="0" Grid.RowSpan="2">
+        <Border Background="{StaticResource BackgroundColor4}" Grid.Column="0" Grid.RowSpan="2">
             <StackPanel Margin="0 20 20 20" >
 
                 <Image Source="\Images\Logotype.png" Height="80" Width="115" Margin="0 0 170 0"/>
@@ -50,14 +50,14 @@
 
                 <Button Style="{StaticResource MenuBtnStyle}" Content="🗂  Логи" Click="Logs_Click" Margin="0 15 0 0"/>
 
-                <Border CornerRadius="25" BorderBrush="#300044" BorderThickness="1" Background="#250044" Margin="30 50 30 0" Height="170" Width="280">
+                <Border CornerRadius="25" BorderBrush="Transparent" Background="{StaticResource BackgroundColor6}" Margin="30 50 30 0" Height="170" Width="280">
                     <Border.Effect>
-                        <DropShadowEffect ShadowDepth="0" Color="#6600bb" Opacity="1" BlurRadius="15"/>
+                        <DropShadowEffect ShadowDepth="0" Color="#6366F1" Opacity="1" BlurRadius="15"/>
                     </Border.Effect>
                     <StackPanel>
-                        <TextBlock Text="Создание организации" FontSize="20" FontFamily="Arian" Foreground="{StaticResource SideBar}" Margin="35 25 35 0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Создание организации" FontSize="20" FontFamily="Arian" Foreground="{StaticResource BackgroundColor4}" Margin="35 25 35 0" HorizontalAlignment="Center"/>
 
-                        <TextBlock Text="Для регистрации нажмите на кнопку ниже" TextWrapping="Wrap" FontSize="15" FontFamily="Arian" Foreground="{StaticResource Hover}" Margin="35 10 35 0" HorizontalAlignment="Center" />
+                        <TextBlock Text="Для регистрации нажмите на кнопку ниже" TextWrapping="Wrap" FontSize="15" FontFamily="Arian" Foreground="{StaticResource BackgroundColor5}" Margin="35 10 35 0" HorizontalAlignment="Center" />
 
                         <Button Style="{StaticResource RegOrgBtnStyle}" Content="ЗАРЕГИСТРИРОВАТЬ" Margin="0 20 0 0" Click="BtnRegOrg"/>
                     </StackPanel>
