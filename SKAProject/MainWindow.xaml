@@ -17,13 +17,15 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Margin="360 0 -1560 0">
-            <Button Content="➖" Style="{StaticResource ControlBtnStyle}" Margin="1450,5,0,0" Click="BtnRollup"/>
+            <Button Content="➖" Style="{StaticResource ControlBtnStyle2}" Margin="1420 5 0 0" Click="BtnRollup"/>
 
-            <Button Content="✖︎" Style="{StaticResource ControlBtnStyle}" Margin="1510, -25 0,80" Click="BtnClose"/>
+            <Button Content="✖︎" Style="{StaticResource ControlBtnStyle2}" Margin="1500 -35 0 80" Click="BtnClose"/>
+
+            <Border Margin="20 -110 120 70" Background="{StaticResource BackgroundColor4}" CornerRadius="20" BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="1"/>
         </StackPanel>
 
         <!-- Боковая менюшка(где кнопки типа) -->
-        <Border Background="{StaticResource BackgroundColor4}" Grid.Column="0" Grid.RowSpan="2">
+        <Border Background="{StaticResource BackgroundColor4}" BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="0 0 1 0" Grid.Column="0" Grid.RowSpan="2">
             <StackPanel Margin="0 20 20 20" >
 
                 <Image Source="\Images\Logotype.png" Height="80" Width="115" Margin="0 0 170 0"/>

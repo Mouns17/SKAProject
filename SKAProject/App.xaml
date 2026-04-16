@@ -130,6 +130,37 @@
             </Setter>
         </Style>
 
+        <!-- Стиль для кнопок закрыть и свернуть окно -->
+        <Style x:Key="ControlBtnStyle2" TargetType="Button">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Opacity" Value="10"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1.4"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!-- Разделительная линия -->
         <LinearGradientBrush x:Key="DividerBrush" StartPoint="0,0" EndPoint="1,0">
             <GradientStop Color="#00250044" Offset="0"/>
@@ -145,6 +176,7 @@
         <SolidColorBrush x:Key="BackgroundColor4" Color="#EDF4FF"/>
         <SolidColorBrush x:Key="BackgroundColor5" Color="#b7b4e0"/>
         <SolidColorBrush x:Key="BackgroundColor6" Color="#6366F1"/>
+        <SolidColorBrush x:Key="ForegroundColor1" Color="#010210"/>
 
         <!-- Стиль карточки -->
         <Style x:Key="CardStyle" TargetType="Border">
@@ -157,7 +189,7 @@
         <!-- Стиль для кнопкок (боковых - не названий разделов) -->
         <Style x:Key="MenuBtnStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#010002"/>
+            <Setter Property="Foreground" Value="#010210"/>
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="FontFamily" Value="Arian"/>
             <Setter Property="FontSize" Value="25"/>
