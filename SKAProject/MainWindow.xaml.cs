@@ -52,7 +52,7 @@ namespace SKAProject
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Pages.SettingsPage());
+            
         }
 
 
