@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Height="480" Width="520" FontFamily="Arian">
     <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
-        <Border Width="420" Height="480" CornerRadius="20" BorderThickness="1" BorderBrush="#090011" Background="#EDF4FF" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Width="420" Height="480" CornerRadius="20" BorderThickness="1" BorderBrush="#6366F1" Background="#EDF4FF" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid>
                 <StackPanel>
                     <Button Content="✖︎" Style="{StaticResource ControlBtnStyle}" Margin="375,5,0,80" Click="BtnClose"/>
