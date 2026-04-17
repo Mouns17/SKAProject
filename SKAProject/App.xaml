@@ -23,7 +23,7 @@
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsFocused" Value="True">
-                                    <Setter TargetName="Border" Property="BorderBrush" Value="#513965"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#9294f5"/>
                                 </Trigger>
                                 <Trigger Property="Text" Value="">
                                     <Setter TargetName="hint" Property="Visibility" Value="Visible"/>
@@ -56,7 +56,7 @@
                                 </Trigger>
 
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="#370066"/>
+                                <Setter TargetName="Border" Property="Background" Value="#7375f2"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -88,10 +88,10 @@
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="WhiteSmoke"/>
-                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Foreground" Value="#010210"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Foreground" Value="#010210"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
