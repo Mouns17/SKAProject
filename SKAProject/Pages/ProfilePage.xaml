@@ -64,9 +64,9 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                         <TextBlock Text="Основная информация" FontSize="28" FontWeight="SemiBold" 
-                                   Foreground="Black"/>
+                                   Foreground="{StaticResource ForegroundColor1}"/>
                         <Border Background="{StaticResource BackgroundColor4}" CornerRadius="12" Padding="8,4" Margin="12,0,0,0">
-                            <TextBlock Text="ID: USR-001" FontSize="19" Foreground="Black"/>
+                                    <TextBlock Text="ID: USR-001" FontSize="19" Foreground="{StaticResource ForegroundColor1}"/>
                         </Border>
                     </StackPanel>
 
@@ -82,20 +82,20 @@
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="ФИО" Foreground="Black" VerticalAlignment="Center" FontSize="20"/>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Иванов Иван Иванович" Foreground="White" 
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="ФИО" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Иванов Иван Иванович" Foreground="{StaticResource ForegroundColor1}" 
                                    FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
 
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Должность" Foreground="Black" VerticalAlignment="Center" FontSize="20"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Старший аналитик" Foreground="White" 
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Должность" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="Старший аналитик" Foreground="{StaticResource ForegroundColor1}" 
                                    FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
 
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Отдел" Foreground="Black" VerticalAlignment="Center" FontSize="20"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Отдел контроля и анализа" Foreground="White" 
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Отдел" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="Отдел контроля и анализа" Foreground="{StaticResource ForegroundColor1}" 
                                    FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
 
-                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Дата регистрации" Foreground="Black" VerticalAlignment="Center" FontSize="20"/>
-                        <TextBlock Grid.Row="3" Grid.Column="1" Text="15 марта 2024" Foreground="White" 
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Дата регистрации" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
+                                <TextBlock Grid.Row="3" Grid.Column="1" Text="15 марта 2024" Foreground="{StaticResource ForegroundColor1}" 
                                    FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
                     </Grid>
                 </StackPanel>
@@ -105,7 +105,7 @@
             <Border Grid.Row="3" Style="{StaticResource ModernCard}" Margin="0,0,0,24">
                 <StackPanel>
                     <TextBlock Text="Контактные данные" FontSize="28" FontWeight="SemiBold" 
-                               Foreground="Black" Margin="0,0,0,20"/>
+                               Foreground="{StaticResource ForegroundColor1}" Margin="0,0,0,20"/>
 
                     <Grid Margin="0,10,0,0">
                         <Grid.ColumnDefinitions>
@@ -117,15 +117,15 @@
                              <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Email" Foreground="Black" VerticalAlignment="Center" FontSize="20"/>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Email" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
                                 <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBlock Text="ivan.ivanov@analytics.ru" Foreground="White" FontWeight="Medium" FontSize="20"/>
-                                    <Border Background="#2A2A2A" CornerRadius="8" Padding="8,4" Margin="12,0,0,0">
+                                    <TextBlock Text="ivan.ivanov@analytics.ru" Foreground="{StaticResource ForegroundColor1}" FontWeight="Medium" FontSize="20"/>
+                                    <Border Background="{StaticResource BackgroundColor4}" CornerRadius="8" Padding="8,4" Margin="12,0,0,0">
                                         <TextBlock Text="Подтверждён" FontSize="12" Foreground="#10B981"/>
                                     </Border>
                                 </StackPanel>
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Телефон" Foreground="Black" VerticalAlignment="Center" FontSize="20"/>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="+7 (999) 123-45-67" Foreground="White" 
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Телефон" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="+7 (999) 123-45-67" Foreground="{StaticResource ForegroundColor1}" 
                                    FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
                             </Grid>
                 </StackPanel>
