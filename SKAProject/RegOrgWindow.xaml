@@ -14,7 +14,7 @@
 
                     <TextBlock Text="Регистрация организации" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-60,0,0"/>
 
-                    <TextBlock Text="Чтобы зарегистрировать вашу организацию, заполните все поля" FontSize="12" Foreground="#250044" TextAlignment="Center" Margin="0,-25,0,0"/>
+                    <TextBlock Text="Чтобы зарегистрировать вашу организацию, заполните все поля" FontSize="12" Foreground="#6366F1" TextAlignment="Center" Margin="0,-25,0,0"/>
 
                     <Border Height="1" Margin="40 0 40 0" Background="{StaticResource DividerBrush}"/>
 
