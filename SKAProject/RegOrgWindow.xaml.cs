@@ -22,6 +22,8 @@ namespace SKAProject
         public RegOrgWindow()
         {
             InitializeComponent();
+            
+
         }
 
         private void BtnClose(object sender, RoutedEventArgs e)
@@ -39,5 +41,6 @@ namespace SKAProject
         {
             DragMove();
         }
+        
     }
 }

@@ -26,6 +26,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <!-- Заголовок -->
@@ -79,8 +80,8 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                        </Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
 
                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="ФИО" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
                                 <TextBlock Grid.Row="0" Grid.Column="1" Text="Иванов Иван Иванович" Foreground="{StaticResource ForegroundColor1}" 
@@ -102,20 +103,20 @@
             </Border>
 
             <!-- Контактные данные -->
-            <Border Grid.Row="3" Style="{StaticResource ModernCard}" Margin="0,0,0,24">
-                <StackPanel>
-                    <TextBlock Text="Контактные данные" FontSize="28" FontWeight="SemiBold" 
+                    <Border Grid.Row="3" Style="{StaticResource ModernCard}" Margin="0,0,0,24">
+                        <StackPanel>
+                            <TextBlock Text="Контактные данные" FontSize="28" FontWeight="SemiBold" 
                                Foreground="{StaticResource ForegroundColor1}" Margin="0,0,0,20"/>
 
-                    <Grid Margin="0,10,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="120"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                             <RowDefinition Height="50"/>
-                        </Grid.RowDefinitions>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
 
                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Email" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
                                 <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
@@ -128,12 +129,12 @@
                                 <TextBlock Grid.Row="1" Grid.Column="1" Text="+7 (999) 123-45-67" Foreground="{StaticResource ForegroundColor1}" 
                                    FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
                             </Grid>
-                </StackPanel>
-            </Border>
+                        </StackPanel>
+                    </Border>
 
-            <!-- Кнопки действий -->
+                    <!-- Кнопки действий -->
             <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,30,0,0" HorizontalAlignment="Center">
-                <Button Height="60" Width="180" Margin="0,-10,12,20" Background="#6366F1" 
+                <Button Height="60" Width="180" Margin="0,-460,12,20" Background="#6366F1" 
                         Cursor="Hand" FontWeight="SemiBold">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -149,7 +150,7 @@
                 </Button>
 
                         <Button Height="60" Width="180" Background="#1A1A1A" BorderBrush="#2A2A2A" 
-                        BorderThickness="1" Cursor="Hand" Margin="0,-30,12,0">
+                        BorderThickness="1" Cursor="Hand" Margin="0,-480,12,0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" 
@@ -166,6 +167,12 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
+
+                    <StackPanel Grid.Row="6" Margin="0 100 0 30" >
+                        <Border Background="{StaticResource BackgroundColor2}" Height="400">
+                            
+                        </Border>
+                    </StackPanel>
         </Grid>
     </ScrollViewer>
         </Border>

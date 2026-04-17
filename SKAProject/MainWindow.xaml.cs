@@ -21,6 +21,7 @@ namespace SKAProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private RegOrgWindow _regOrgWindow; // 
         public static Frame MainFrameStatic { get; private set; }
         public MainWindow()
         {
@@ -69,7 +70,16 @@ namespace SKAProject
 
         private void BtnRegOrg(object sender, RoutedEventArgs e)
         {
-            new RegOrgWindow().Show();
+            if (_regOrgWindow == null)
+            {
+                _regOrgWindow = new RegOrgWindow();
+                _regOrgWindow.Closed += (s, args) => _regOrgWindow = null;
+                _regOrgWindow.Show();
+            }
+            else
+            {
+                _regOrgWindow.Activate(); // Активируем окно, если оно уже открыто
+            }
         }
 
         private void Workers_Click(object sender, RoutedEventArgs e)

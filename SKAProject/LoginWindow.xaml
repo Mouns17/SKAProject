@@ -37,9 +37,9 @@
 
                         <Border Height="1" Margin="0,10" Background="{StaticResource DividerBrush}"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите логин" x:Name="TBoxLogin" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center"/>
+                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите логин" x:Name="TBoxLogin" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center" Text="Admin"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите пароль" x:Name="TboxPassword" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center"/>
+                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите пароль" x:Name="TboxPassword" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center" Text="123"/>
 
                         <Border Height="1" Margin="0,10" Background="{StaticResource DividerBrush}"/>
 

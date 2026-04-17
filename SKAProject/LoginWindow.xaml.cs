@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MySqlConnector;
 
 namespace SKAProject
 {
@@ -33,6 +32,7 @@ namespace SKAProject
             this.Close();
         }
 
+        /*
         private async void BtnEnter(object sender, RoutedEventArgs e)
         {
             // Получем данные и удаляем пробелы в них
@@ -84,6 +84,9 @@ namespace SKAProject
                 MessageBox.Show("Ошибка авторизации: " + ex.Message);
             }
         }
+        */
+
+
 
         private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -98,6 +101,18 @@ namespace SKAProject
         private void BtnRollup(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void BtnEnter(object sender, RoutedEventArgs e)
+        {
+            string login = TBoxLogin.Text.Trim();
+            string password = TboxPassword.Text.Trim();
+
+            if (login == "Admin" || password == "123")
+            {
+                new MainWindow().Show();
+                this.Close();
+            }
         }
     }
 }
