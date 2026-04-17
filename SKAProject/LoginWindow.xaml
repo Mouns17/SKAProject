@@ -14,7 +14,7 @@
                     <ColumnDefinition Width="330"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" CornerRadius="20,120,120,20" Background="#250044">
+                <Border Grid.Column="0" CornerRadius="20,120,120,20" Background="{StaticResource BackgroundColor6}">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="270">
                         <TextBlock Text="Добро пожаловать!" FontSize="26" FontWeight="Bold" Foreground="White" TextAlignment="Center" Margin="0,0,0,10"/>
 
@@ -33,7 +33,7 @@
 
                         <TextBlock Text="Авторизация" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,0"/>
 
-                        <TextBlock Text="Чтобы войти, заполните все поля" FontSize="12" Foreground="#250044" TextAlignment="Center" Margin="0,0,0,0"/>
+                        <TextBlock Text="Чтобы войти, заполните все поля" FontSize="12" Foreground="#6366F1" TextAlignment="Center" Margin="0,0,0,0"/>
 
                         <Border Height="1" Margin="0,10" Background="{StaticResource DividerBrush}"/>
 
