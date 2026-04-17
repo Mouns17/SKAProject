@@ -236,13 +236,13 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="txtName" Property="Foreground" Value="#090011"/>
+                                <Setter TargetName="txtName" Property="Foreground" Value="#4447ee"/>
                                 <Setter TargetName="btnSelected" Property="Background" Value="#b7b4e0"/>
                             </Trigger>
                             <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="Indicator" Property="Fill" Value="#250044"/>
+                                <Setter TargetName="Indicator" Property="Fill" Value="#6366F1"/>
                                 <Setter TargetName="btnSelected" Property="Background" Value="#b7b4e0"/>
-                                <Setter TargetName="txtName" Property="Foreground" Value="#250044"/>
+                                <Setter TargetName="txtName" Property="Foreground" Value="#6366F1"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -277,10 +277,10 @@
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="WhiteSmoke"/>
-                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Foreground" Value="#4447ee"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Foreground" Value="#6366F1"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
