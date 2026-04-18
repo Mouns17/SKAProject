@@ -8,8 +8,8 @@
         Height="1080" Width="1920">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
             <RowDefinition/>
-            <RowDefinition Height="17*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="360"/>
@@ -17,12 +17,37 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Margin="360 0 -1560 0">
-            <Button Content="➖" Style="{StaticResource ControlBtnStyle2}" Margin="1420 5 0 0" Click="BtnRollup"/>
+            <Button Content="➖" Style="{StaticResource ControlBtnStyle2}" Margin="1320 10 0 0" Click="BtnRollup"/>
 
-            <Button Content="✖︎" Style="{StaticResource ControlBtnStyle2}" Margin="1500 -35 0 80" Click="BtnClose"/>
+            <Button Content="🔲"  Style="{StaticResource ControlBtnStyle2}" Margin="1405 -35 0 0" Click="BtnMinimize"/>
+            
+            <Button Content="✖︎" Style="{StaticResource ControlBtnStyle2}" Margin="1490 -35 0 80" Click="BtnClose"/>
 
-            <Border Margin="15 -110 100 70" Background="{StaticResource BackgroundColor4}" CornerRadius="20" BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="1">
-                <TextBox Text="🔍 Поиск..." Foreground="#666666" Background="Transparent" BorderBrush="Transparent" Margin="15 1 0 0" FontSize="22"/>
+            <Border BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="1" Margin="10 -120 200 70" Background="#EDF4FF" CornerRadius="12" Height="40" Width="1350">
+                <DockPanel Margin="0 0 0 0">
+                    <TextBlock Text="🔍" FontSize="14" DockPanel.Dock="Left" Foreground="#666666" Margin="5 10 0 0"/>
+                    <TextBox x:Name="SearchBox" TextChanged="SearchBox_TextChanged" Background="Transparent" BorderThickness="0"  Foreground="White" FontSize="13" Margin="8,0,0,0" VerticalContentAlignment="Center">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Grid>
+                                                <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center"/>
+                                                <TextBlock x:Name="Placeholder" Text="Поиск..."  Foreground="#666666" IsHitTestVisible="False" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter TargetName="Placeholder" Property="Visibility" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </DockPanel>
             </Border>
         </StackPanel>
 
@@ -71,7 +96,7 @@
             </StackPanel>
         </Border>
 
-        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Grid.RowSpan="2"/>
+        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Grid.RowSpan="2" Navigated="MainFrame_Navigated"/>
 
     </Grid>
 </Window>

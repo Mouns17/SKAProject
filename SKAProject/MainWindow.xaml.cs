@@ -37,6 +37,11 @@ namespace SKAProject
             this.WindowState = WindowState.Minimized;
         }
 
+        private void BtnMinimize(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Pages.HomePage());
@@ -102,6 +107,11 @@ namespace SKAProject
         private void Otcheti_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Pages.ReportsPage());
+        }
+
+        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            
         }
     }
 }
