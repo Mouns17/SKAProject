@@ -37,6 +37,7 @@
                            FontSize="30" Foreground="{StaticResource ForegroundColor1}" Margin="0,8,0,0"/>
                     </StackPanel>
 
+                    <!-- 1 -->
                     <StackPanel Grid.Row="1">
                         <Border Margin="500 0 500 20" Height="50" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
                             <Border.Effect>
@@ -61,7 +62,48 @@
 
                             <StackPanel>
                                 <TextBlock Margin="20 35 500 100" Text="ФИО:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
-                                <TextBlock Margin="20 -60 500 0" Text="Роль:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock Margin="20 -70 500 0" Text="Роль:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- 2 -->
+                    <StackPanel Grid.Row="2">
+                        <Border Margin="500 40 500 20" Height="50" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
+
+                            <TextBlock Text="Личные данные" FontFamily="Arian Bold" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                        </Border>
+
+                        <Border Margin="1250 -100 0 -10" Height="50" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
+
+                            <TextBlock Text="Время" FontFamily="Arian Bold" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                        </Border>
+
+                        <Border Margin="0 0 200 20" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
+
+                            <StackPanel>
+                                <TextBlock Margin="20 30 500 0" Text="Логин:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock Margin="20 30 500 0" Text="Email:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock Margin="20 30 500 0" Text="Телефон:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Margin="1250 -310 0 0" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
+
+                            <StackPanel Margin="40 20 40 20">
+                                <TextBlock Margin="0 30 0 0" Text="1839" TextWrapping="Wrap" FontSize="75" FontFamily="Arian Bold" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>
