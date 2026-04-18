@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Height="400" Width="400" FontFamily="Arian">
     <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
-        <Border Width="400" Height="400" CornerRadius="20" BorderThickness="1" BorderBrush="#090011" Background="#EDF4FF" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Width="400" Height="400" CornerRadius="20" BorderThickness="1" BorderBrush="{StaticResource BackgroundColor6}" Background="#EDF4FF" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid>
                 <StackPanel>
                     <Button Content="✖︎" Style="{StaticResource ControlBtnStyle}" Margin="355,5,0,80" Click="BtnClose"/>
 
                     <TextBlock Text="Настройки приложения" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-60,0,0"/>
 
-                    <TextBlock Text="После изменения параметров, нажмите на кнопку ниже" FontSize="12" Foreground="#250044" TextAlignment="Center" Margin="0,-25,0,0"/>
+                    <TextBlock Text="После изменения параметров, нажмите на кнопку ниже" FontSize="12" Foreground="{StaticResource BackgroundColor6}" TextAlignment="Center" Margin="0,-25,0,0"/>
 
                     <Border Height="1" Margin="40 0 40 0" Background="{StaticResource DividerBrush}"/>
 

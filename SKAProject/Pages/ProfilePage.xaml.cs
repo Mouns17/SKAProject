@@ -50,6 +50,19 @@ namespace SKAProject.Pages
             public string Organization { get; set; }
         }
 
+        private string GetValueOrEmpty(object value)
+        {
+            if (value == DBNull.Value || value == null)
+                return "Пусто";
+
+            string text = value.ToString();
+
+            if (string.IsNullOrWhiteSpace(text))
+                return "Пусто";
+
+            return text;
+        }
+
         // Загрузка профиля
         private async void LoadProfile()
         {
@@ -103,14 +116,14 @@ WHERE u.UserID = @id";
 
                     if (await reader.ReadAsync())
                     {
-                        TBlockNames.Text = "ФИО: " + reader["LastName"] + " " + reader["FirstName"] + " " + reader["MiddleName"];
-                        TBlockRole.Text = "Роль: " + reader["Role"];
-                        TBlockLogin.Text = "Логин: " + reader["Login"];
-                        TBlockEmail.Text = "Email: " + reader["Email"];
-                        TBlockPhone.Text = "Телефон: " + reader["Phone"];
-                        TBlockOrg.Text = "Организация: " + reader["OrgName"];
-                        TBlockDep.Text = "Отдел: " + reader["DepName"];
-                        TBlockPost.Text = "Должность: " + reader["Post"];
+                        TBlockNames.Text = "ФИО: " + GetValueOrEmpty(reader["LastName"]) + " " + GetValueOrEmpty(reader["FirstName"]) + " " + GetValueOrEmpty(reader["MiddleName"]);
+                        TBlockRole.Text = "Роль: " + GetValueOrEmpty(reader["Role"]);
+                        TBlockLogin.Text = "Логин: " + GetValueOrEmpty(reader["Login"]);
+                        TBlockEmail.Text = "Email: " + GetValueOrEmpty(reader["Email"]);
+                        TBlockPhone.Text = "Телефон: " + GetValueOrEmpty(reader["Phone"]);
+                        TBlockOrg.Text = "Организация: " + GetValueOrEmpty(reader["OrgName"]);
+                        TBlockDep.Text = "Отдел: " + GetValueOrEmpty(reader["DepName"]);
+                        TBlockPost.Text = "Должность: " + GetValueOrEmpty(reader["Post"]);
                     }
                     else
                     {
