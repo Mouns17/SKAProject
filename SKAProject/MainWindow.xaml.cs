@@ -27,6 +27,13 @@ namespace SKAProject
             MainFrame.Navigate(new HomePage());
         }
 
+        private void SearchBox2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Логика поиска сотрудников
+            string searchText = SearchBox2.Text.ToLower();
+            // Здесь будет фильтрация списка
+        }
+
         private void BtnClose(object sender, RoutedEventArgs e)
         {
             Close();

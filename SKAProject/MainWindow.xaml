@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SKAProject"
         mc:Ignorable="d"
-        Height="1080" Width="1920">
+        Height="1080" Width="1920" FontFamily="Arian">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -23,10 +23,10 @@
             
             <Button Content="✖︎" Style="{StaticResource ControlBtnStyle2}" Margin="1490 -35 0 80" Click="BtnClose"/>
 
-            <Border BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="1" Margin="10 -120 200 70" Background="#EDF4FF" CornerRadius="12" Height="40" Width="1350">
+            <Border BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="1" Margin="15 -120 150 70" Background="#EDF4FF" CornerRadius="15" Height="40">
                 <DockPanel Margin="0 0 0 0">
                     <TextBlock Text="🔍" FontSize="14" DockPanel.Dock="Left" Foreground="#666666" Margin="5 10 0 0"/>
-                    <TextBox x:Name="SearchBox" TextChanged="SearchBox_TextChanged" Background="Transparent" BorderThickness="0"  Foreground="White" FontSize="13" Margin="8,0,0,0" VerticalContentAlignment="Center">
+                    <TextBox x:Name="SearchBox2" TextChanged="SearchBox2_TextChanged" Background="Transparent" BorderThickness="0"  Foreground="#010210" FontSize="13" Margin="8,0,0,0" VerticalContentAlignment="Center">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="Template">
