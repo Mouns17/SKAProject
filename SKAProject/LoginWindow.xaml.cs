@@ -16,14 +16,12 @@ using MySqlConnector;
 
 namespace SKAProject
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
         public LoginWindow()
         {
             InitializeComponent();
+
         }
 
         private void OpenRegWindow(object sender, RoutedEventArgs e)
@@ -32,59 +30,51 @@ namespace SKAProject
             reg.Show();
             this.Close();
         }
-        /*
-private async void BtnEnter(object sender, RoutedEventArgs e)
-{
-    // Получем данные и удаляем пробелы в них
-    string login = TBoxLogin.Text.Trim();
-    string password = TboxPassword.Text.Trim();
-
-    // Проверка на пустые поля
-    if (login == "" || password == "")
-    {
-        MessageBox.Show("Введите логин и пароль");
-        return;
-    }
-
-    try
-    {
-        // Подключение к БД
-        using (var conn = DataBase.GetConnection())
+        private async void BtnEnter(object sender, RoutedEventArgs e)
         {
-            await conn.OpenAsync();
-
-            // Проверка есть ли пользователь с таким логином и паролем
-            var cmd = new MySqlCommand(@"SELECT UserID FROM Users WHERE Login=@lg AND Password=@ps", conn);
-
-            // Передаем параметры в запрос
-            cmd.Parameters.AddWithValue("@lg", login);
-            cmd.Parameters.AddWithValue("@ps", password);
-
-            // Выполняем запрос
-            var result = await cmd.ExecuteScalarAsync();
-
-            // Тут думаю ничего не надо обьяснять
-            if (result != null)
+            string login = TBoxLogin.Text.Trim();
+            string password = TboxPassword.Text.Trim();
+            if (login == "" || password == "")
             {
-                MessageBox.Show("Вход выполнен");
-
-                new MainWindow().Show();
-                this.Close();
+                MessageBox.Show("Введите логин и пароль");
+                return;
             }
-            else
+            
+            try
             {
-                MessageBox.Show("Неверный логин или пароль");
+                using (var conn = DataBase.GetConnection())
+                {
+                    await conn.OpenAsync();
+                    var cmd = new MySqlCommand(@"SELECT UserID FROM Users WHERE Login=@lg AND Password=@ps", conn);
+
+                    cmd.Parameters.AddWithValue("@lg", login);
+                    cmd.Parameters.AddWithValue("@ps", password);
+                    
+                    var result = await cmd.ExecuteScalarAsync();
+
+                    if (result == null)
+                    {
+                        MessageBox.Show("Неверный логин или пароль");
+                    }
+                    else
+                    {
+                        int userId = Convert.ToInt32(result);
+                        Session.UserID = userId;
+
+                        MessageBox.Show("Вход выполнен");
+                        new MainWindow().Show();
+                        this.Close();
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка авторизации: " + ex.Message);
             }
         }
-    }
 
-    // При каких то ошибках связанных с БД
-    catch (Exception ex)
-    {
-        MessageBox.Show("Ошибка авторизации: " + ex.Message);
-    }
-}
- */
+
 
 
         private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -101,6 +91,7 @@ private async void BtnEnter(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
+        /*
         private void BtnEnter(object sender, RoutedEventArgs e)
         {
             string login = TBoxLogin.Text.Trim();
@@ -112,5 +103,6 @@ private async void BtnEnter(object sender, RoutedEventArgs e)
                 this.Close();
             }
         }
+         */
     }
 }

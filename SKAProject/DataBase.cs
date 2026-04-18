@@ -9,7 +9,7 @@ namespace SKAProject
 {  
     public static class DataBase
     {
-        private static string connStr = "server=localhost;database=SKADataBase;user=root;password=123456;SslMode=None";
+        private static string connStr = "server=localhost;database=SKADataBase;user=root;password=12345;SslMode=None";
 
         public static MySqlConnection GetConnection()
         {

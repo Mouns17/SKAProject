@@ -26,7 +26,6 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <!-- Заголовок -->
@@ -61,8 +60,8 @@
                             </Border.Effect>
 
                             <StackPanel>
-                                <TextBlock Margin="20 35 500 100" Text="ФИО:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
-                                <TextBlock Margin="20 -70 500 0" Text="Роль:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock x:Name="TBlockNames" Margin="20 35 200 100" Text="ФИО:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock x:Name="TBlockRole" Margin="20 -70 500 0" Text="Роль:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>
@@ -91,9 +90,9 @@
                             </Border.Effect>
 
                             <StackPanel>
-                                <TextBlock Margin="20 30 500 0" Text="Логин:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
-                                <TextBlock Margin="20 30 500 0" Text="Email:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
-                                <TextBlock Margin="20 30 500 0" Text="Телефон:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock x:Name="TBlockLogin" Margin="20 30 500 0" Text="Логин:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock x:Name="TBlockEmail" Margin="20 30 500 0" Text="Email:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock x:Name="TBlockPhone" Margin="20 30 500 0" Text="Телефон:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
                             </StackPanel>
                         </Border>
 
@@ -107,11 +106,33 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
+                    <!-- 3 -->
+                    <StackPanel Grid.Row="3">
+                        <Border Margin="500 20 500 20" Height="50" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
+
+                            <TextBlock Text="Рабочие данные" FontFamily="Arian Bold" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                        </Border>
+
+                        <Border Margin="0 0 0 20" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
+
+                            <StackPanel>
+                                <TextBlock x:Name="TBlockOrg" Margin="20 30 500 0" Text="Организация:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock x:Name="TBlockDep" Margin="20 30 500 0" Text="Отдел:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock x:Name="TBlockPost" Margin="20 30 500 0" Text="Должность:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
                     <!-- Кнопки действий -->
-                    <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,800,0,0" HorizontalAlignment="Center">
-                        <Button Height="60" Width="180" Margin="0,-460,12,20" Background="#6366F1" 
-                        Cursor="Hand" FontWeight="SemiBold">
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Center">
+                        <Button Height="60" Width="180" Margin="0,40,20,0" Background="#6366F1" Cursor="Hand" FontWeight="SemiBold">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border Background="{TemplateBinding Background}" CornerRadius="12">
@@ -125,14 +146,10 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Height="60" Width="180" Background="#1A1A1A" BorderBrush="#2A2A2A" 
-                        BorderThickness="1" Cursor="Hand" Margin="0,-480,12,0">
+                        <Button Height="60" Width="180" Background="#1A1A1A" BorderBrush="#2A2A2A"  BorderThickness="1" Cursor="Hand" Margin="0,40,20,0">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="12">
+                                    <Border Background="{TemplateBinding Background}"  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="12">
                                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
@@ -143,7 +160,6 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    <StackPanel Grid.Row="6" Margin="0 100 0 30" />
                 </Grid>
             </ScrollViewer>
         </Border>

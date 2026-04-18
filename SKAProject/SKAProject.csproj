@@ -127,6 +127,7 @@
     <Compile Include="RegOrgWindow.xaml.cs">
       <DependentUpon>RegOrgWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Session.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
