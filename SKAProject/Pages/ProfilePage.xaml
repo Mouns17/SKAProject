@@ -103,7 +103,7 @@
                             </Border.Effect>
 
                             <StackPanel Margin="40 20 40 20">
-                                <TextBlock Margin="0 30 0 0" Text="1839" TextWrapping="Wrap" FontSize="75" FontFamily="Arian Bold" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock x:Name="TBlockTime" Margin="0 50 0 0" TextWrapping="Wrap" FontSize="60" FontFamily="Arian Bold" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>

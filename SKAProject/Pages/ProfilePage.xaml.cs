@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,12 @@ namespace SKAProject.Pages
     {
         public ProfilePage()
         {
+            var timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.IsEnabled = true;
+            timer.Tick += (o, t) => { TBlockTime.Text =  DateTime.Now.ToString("HH mm"); };
+            timer.Start();
+
             InitializeComponent();
         }
     }
