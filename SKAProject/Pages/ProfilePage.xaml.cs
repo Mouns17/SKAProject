@@ -46,7 +46,6 @@ namespace SKAProject.Pages
             public string Phone { get; set; }
             public string Role { get; set; }
             public string Post { get; set; }
-            public string Status { get; set; }
             public string Department { get; set; }
             public string Organization { get; set; }
         }
