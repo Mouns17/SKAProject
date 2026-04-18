@@ -20,6 +20,7 @@ namespace SKAProject.Pages
     /// </summary>
     public partial class HomePage : Page
     {
+        private RegOrgWindow _regOrgWindow;
         public HomePage()
         {
             InitializeComponent();
@@ -28,6 +29,20 @@ namespace SKAProject.Pages
         private void BtnDashboard_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnRegOrg(object sender, RoutedEventArgs e)
+        {
+            if (_regOrgWindow == null)
+            {
+                _regOrgWindow = new RegOrgWindow();
+                _regOrgWindow.Closed += (s, args) => _regOrgWindow = null;
+                _regOrgWindow.Show();
+            }
+            else
+            {
+                _regOrgWindow.Activate(); // Активируем окно, если оно уже открыто
+            }
         }
     }
 }

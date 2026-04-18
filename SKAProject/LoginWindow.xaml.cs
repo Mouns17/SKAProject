@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySqlConnector;
 
 namespace SKAProject
 {
@@ -31,61 +32,59 @@ namespace SKAProject
             reg.Show();
             this.Close();
         }
-
         /*
-        private async void BtnEnter(object sender, RoutedEventArgs e)
+private async void BtnEnter(object sender, RoutedEventArgs e)
+{
+    // Получем данные и удаляем пробелы в них
+    string login = TBoxLogin.Text.Trim();
+    string password = TboxPassword.Text.Trim();
+
+    // Проверка на пустые поля
+    if (login == "" || password == "")
+    {
+        MessageBox.Show("Введите логин и пароль");
+        return;
+    }
+
+    try
+    {
+        // Подключение к БД
+        using (var conn = DataBase.GetConnection())
         {
-            // Получем данные и удаляем пробелы в них
-            string login = TBoxLogin.Text.Trim();
-            string password = TboxPassword.Text.Trim();
+            await conn.OpenAsync();
 
-            // Проверка на пустые поля
-            if (login == "" || password == "")
+            // Проверка есть ли пользователь с таким логином и паролем
+            var cmd = new MySqlCommand(@"SELECT UserID FROM Users WHERE Login=@lg AND Password=@ps", conn);
+
+            // Передаем параметры в запрос
+            cmd.Parameters.AddWithValue("@lg", login);
+            cmd.Parameters.AddWithValue("@ps", password);
+
+            // Выполняем запрос
+            var result = await cmd.ExecuteScalarAsync();
+
+            // Тут думаю ничего не надо обьяснять
+            if (result != null)
             {
-                MessageBox.Show("Введите логин и пароль");
-                return;
+                MessageBox.Show("Вход выполнен");
+
+                new MainWindow().Show();
+                this.Close();
             }
-
-            try
+            else
             {
-                // Подключение к БД
-                using (var conn = DataBase.GetConnection())
-                {
-                    await conn.OpenAsync();
-
-                    // Проверка есть ли пользователь с таким логином и паролем
-                    var cmd = new MySqlCommand(@"SELECT UserID FROM Users WHERE Login=@lg AND Password=@ps", conn);
-
-                    // Передаем параметры в запрос
-                    cmd.Parameters.AddWithValue("@lg", login);
-                    cmd.Parameters.AddWithValue("@ps", password);
-
-                    // Выполняем запрос
-                    var result = await cmd.ExecuteScalarAsync();
-
-                    // Тут думаю ничего не надо обьяснять
-                    if (result != null)
-                    {
-                        MessageBox.Show("Вход выполнен");
-
-                        new MainWindow().Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Неверный логин или пароль");
-                    }
-                }
-            }
-
-            // При каких то ошибках связанных с БД
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка авторизации: " + ex.Message);
+                MessageBox.Show("Неверный логин или пароль");
             }
         }
-        */
+    }
 
+    // При каких то ошибках связанных с БД
+    catch (Exception ex)
+    {
+        MessageBox.Show("Ошибка авторизации: " + ex.Message);
+    }
+}
+ */
 
 
         private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -102,7 +101,6 @@ namespace SKAProject
         {
             this.WindowState = WindowState.Minimized;
         }
-
         private void BtnEnter(object sender, RoutedEventArgs e)
         {
             string login = TBoxLogin.Text.Trim();
