@@ -104,47 +104,14 @@ WHERE u.UserID = @id";
 
                     if (await reader.ReadAsync())
                     {
-                        // ФИО
-                        TBlockNames.Text =
-                            "ФИО: " +
-                            reader["LastName"] + " " +
-                            reader["FirstName"] + " " +
-                            reader["MiddleName"];
-
-                        // Роль
-                        TBlockRole.Text =
-                            "Роль: " +
-                            reader["Role"];
-
-                        // Логин
-                        TBlockLogin.Text =
-                            "Логин: " +
-                            reader["Login"];
-
-                        // Email
-                        TBlockEmail.Text =
-                            "Email: " +
-                            reader["Email"];
-
-                        // Телефон
-                        TBlockPhone.Text =
-                            "Телефон: " +
-                            reader["Phone"];
-
-                        // Организация
-                        TBlockOrg.Text =
-                            "Организация: " +
-                            reader["OrgName"];
-
-                        // Отдел
-                        TBlockDep.Text =
-                            "Отдел: " +
-                            reader["DepName"];
-
-                        // Должность
-                        TBlockPost.Text =
-                            "Должность: " +
-                            reader["Post"];
+                        TBlockNames.Text = "ФИО: " + reader["LastName"] + " " + reader["FirstName"] + " " + reader["MiddleName"];
+                        TBlockRole.Text = "Роль: " + reader["Role"];
+                        TBlockLogin.Text = "Логин: " + reader["Login"];
+                        TBlockEmail.Text = "Email: " + reader["Email"];
+                        TBlockPhone.Text = "Телефон: " + reader["Phone"];
+                        TBlockOrg.Text = "Организация: " + reader["OrgName"];
+                        TBlockDep.Text = "Отдел: " + reader["DepName"];
+                        TBlockPost.Text = "Должность: " + reader["Post"];
                     }
                     else
                     {
