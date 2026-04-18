@@ -6,175 +6,104 @@
     <Grid Margin="0 60 0 0">
         <Border BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="1" CornerRadius="30" Background="#EDF4FF" Padding="0" Margin="-5,0,-5,15">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-        <ScrollViewer.Resources>
-            <Style TargetType="ScrollBar">
-                <Setter Property="Width" Value="6"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ScrollBar">
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </ScrollViewer.Resources>
+                <ScrollViewer.Resources>
+                    <Style TargetType="ScrollBar">
+                        <Setter Property="Width" Value="6"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ScrollBar">
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ScrollViewer.Resources>
 
-        <Grid Margin="40,30,40,50">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+                <Grid Margin="40,30,40,50">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-            <!-- Заголовок -->
-            <StackPanel Grid.Row="0" Margin="0,0,0,32">
-                <TextBlock Text="Профиль" FontSize="40" FontWeight="SemiBold" 
-                           Foreground="Black"/>
-                <TextBlock Text="Управление личной информацией и безопасностью" 
-                           FontSize="30" Foreground="Black" Margin="0,8,0,0"/>
-            </StackPanel>
-
-            <!-- Баннер с метриками -->
-                    <Border Grid.Row="1" Height="140" Background="{StaticResource BackgroundColor6}" CornerRadius="20" Margin="0,0,0,32">
-
-                        <Grid Margin="30,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="85" FontSize="50" FontWeight="Bold" Foreground="White"/>
-                        <TextBlock Text="Активность" FontSize="20" Foreground="#E0E0E0" Margin="0,5,0,0"/>
+                    <!-- Заголовок -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,32">
+                        <TextBlock Text="Профиль" FontSize="40" FontWeight="SemiBold" 
+                           Foreground="{StaticResource ForegroundColor1}"/>
+                        <TextBlock Text="Управление личной информацией и безопасностью" 
+                           FontSize="30" Foreground="{StaticResource ForegroundColor1}" Margin="0,8,0,0"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="24" FontSize="50" FontWeight="Bold" Foreground="White"/>
-                                <TextBlock Text="Задачи" FontSize="20" Foreground="#E0E0E0" Margin="0,5,0,0"/>
-                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <Border Margin="500 0 500 20" Height="50" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
 
-                    <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-            </Border>
+                            <TextBlock Text="Основная информация" FontFamily="Arian Bold" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                        </Border>
+                        
+                        <Border Margin="0 0 1230 0" Height="200" Width="200" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
 
-            <!-- Основная информация -->
-            <Border Grid.Row="2" Style="{StaticResource ModernCard}" Margin="0,0,0,24">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                        <TextBlock Text="Основная информация" FontSize="28" FontWeight="SemiBold" 
-                                   Foreground="{StaticResource ForegroundColor1}"/>
-                        <Border Background="{StaticResource BackgroundColor4}" CornerRadius="12" Padding="8,4" Margin="12,0,0,0">
-                                    <TextBlock Text="ID: USR-001" FontSize="19" Foreground="{StaticResource ForegroundColor1}"/>
+                            <TextBlock Text="👤" FontSize="100" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                        </Border>
+
+                        <Border CornerRadius="30" Margin="240 -200 0 0" Background="{StaticResource BackgroundColor3}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
+
+                            <StackPanel>
+                                <TextBlock Margin="20 35 500 100" Text="ФИО:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock Margin="20 -60 500 0" Text="Роль:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                            </StackPanel>
                         </Border>
                     </StackPanel>
-
-                    <Grid Margin="0,10,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="170"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                                    <RowDefinition Height="50"/>
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="ФИО" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Иванов Иван Иванович" Foreground="{StaticResource ForegroundColor1}" 
-                                   FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
-
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Должность" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="Старший аналитик" Foreground="{StaticResource ForegroundColor1}" 
-                                   FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
-
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Отдел" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
-                                <TextBlock Grid.Row="2" Grid.Column="1" Text="Отдел контроля и анализа" Foreground="{StaticResource ForegroundColor1}" 
-                                   FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
-
-                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Дата регистрации" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
-                                <TextBlock Grid.Row="3" Grid.Column="1" Text="15 марта 2024" Foreground="{StaticResource ForegroundColor1}" 
-                                   FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-            <!-- Контактные данные -->
-                    <Border Grid.Row="3" Style="{StaticResource ModernCard}" Margin="0,0,0,24">
-                        <StackPanel>
-                            <TextBlock Text="Контактные данные" FontSize="28" FontWeight="SemiBold" 
-                               Foreground="{StaticResource ForegroundColor1}" Margin="0,0,0,20"/>
-
-                            <Grid Margin="0,10,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="50"/>
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Email" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
-                                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBlock Text="ivan.ivanov@analytics.ru" Foreground="{StaticResource ForegroundColor1}" FontWeight="Medium" FontSize="20"/>
-                                    <Border Background="{StaticResource BackgroundColor4}" CornerRadius="8" Padding="8,4" Margin="12,0,0,0">
-                                        <TextBlock Text="Подтверждён" FontSize="12" Foreground="#10B981"/>
-                                    </Border>
-                                </StackPanel>
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Телефон" Foreground="{StaticResource ForegroundColor1}" VerticalAlignment="Center" FontSize="20"/>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="+7 (999) 123-45-67" Foreground="{StaticResource ForegroundColor1}" 
-                                   FontWeight="Medium" VerticalAlignment="Center" FontSize="20"/>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-
+                    
                     <!-- Кнопки действий -->
-            <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,30,0,0" HorizontalAlignment="Center">
-                <Button Height="60" Width="180" Margin="0,-460,12,20" Background="#6366F1" 
+                    <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,800,0,0" HorizontalAlignment="Center">
+                        <Button Height="60" Width="180" Margin="0,-460,12,20" Background="#6366F1" 
                         Cursor="Hand" FontWeight="SemiBold">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="12">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                    <StackPanel Orientation="Horizontal">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="✏️" Margin="0,0,8,0" Foreground="White" FontSize="18"/>
                                 <TextBlock Text="Редактировать" Foreground="White" FontSize="18"/>
-                    </StackPanel>
-                </Button>
+                            </StackPanel>
+                        </Button>
 
                         <Button Height="60" Width="180" Background="#1A1A1A" BorderBrush="#2A2A2A" 
                         BorderThickness="1" Cursor="Hand" Margin="0,-480,12,0">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" 
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     CornerRadius="12">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                    <StackPanel Orientation="Horizontal">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="🔒" Margin="0,0,8,0" Foreground="White" FontSize="18"/>
                                 <TextBlock Text="Сменить пароль" Foreground="White" FontSize="18"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
-                </Button>
-            </StackPanel>
-
-                    <StackPanel Grid.Row="6" Margin="0 100 0 30" >
-                        <Border Background="{StaticResource BackgroundColor2}" Height="400">
-                            
-                        </Border>
-                    </StackPanel>
-        </Grid>
-    </ScrollViewer>
+                    <StackPanel Grid.Row="6" Margin="0 100 0 30" />
+                </Grid>
+            </ScrollViewer>
         </Border>
     </Grid>
 </Page>

@@ -17,11 +17,11 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Margin="360 0 -1560 0">
-            <Button Content="➖" Style="{StaticResource ControlBtnStyle2}" Margin="1320 10 0 0" Click="BtnRollup"/>
+            <Button Content="➖" Foreground="#010210" Style="{StaticResource ControlBtnStyle2}" Margin="1320 10 0 0" Click="BtnRollup"/>
 
-            <Button Content="🔲"  Style="{StaticResource ControlBtnStyle2}" Margin="1405 -35 0 0" Click="BtnMinimize"/>
-            
-            <Button Content="✖︎" Style="{StaticResource ControlBtnStyle2}" Margin="1490 -35 0 80" Click="BtnClose"/>
+            <Button Content="🔲"  Foreground="#010210" Style="{StaticResource ControlBtnStyle2}" Margin="1405 -35 0 0" Click="BtnMinimize"/>
+
+            <Button Content="✖︎" Foreground="#010210" Style="{StaticResource ControlBtnStyle2}" Margin="1490 -35 0 80" Click="BtnClose"/>
 
             <Border BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="1" Margin="15 -120 150 70" Background="#EDF4FF" CornerRadius="15" Height="40">
                 <DockPanel Margin="0 0 0 0">
@@ -79,7 +79,7 @@
 
                 <Button Style="{StaticResource MenuBtnStyle}" Content="🗂  Логи" Click="Logs_Click" Margin="0 15 0 0"/>
 
-                <Border CornerRadius="25" BorderBrush="Transparent" Background="{StaticResource BackgroundColor6}" Margin="30 50 30 0" Height="170" Width="280">
+                <Border CornerRadius="25" BorderBrush="Transparent" Background="{StaticResource BackgroundColor6}" Margin="30 60 30 0">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="0" Color="#6366F1" Opacity="1" BlurRadius="15"/>
                     </Border.Effect>
@@ -88,7 +88,7 @@
 
                         <TextBlock Text="Для регистрации нажмите на кнопку ниже" TextWrapping="Wrap" FontSize="15" FontFamily="Arian" Foreground="{StaticResource BackgroundColor5}" Margin="35 10 35 0" HorizontalAlignment="Center" />
 
-                        <Button Style="{StaticResource RegOrgBtnStyle}" Content="ЗАРЕГИСТРИРОВАТЬ" Margin="0 20 0 0" Click="BtnRegOrg"/>
+                        <Button Style="{StaticResource RegOrgBtnStyle}" Content="ЗАРЕГИСТРИРОВАТЬ" Margin="0 50 0 10" Click="BtnRegOrg"/>
                     </StackPanel>
                 </Border>
 
