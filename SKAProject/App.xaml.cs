@@ -13,5 +13,14 @@ namespace SKAProject
     /// </summary>
     public partial class App : Application
     {
+        public static UserSession CurrentUser { get; set; }
+    }
+
+    public class UserSession
+    {
+        public int UserID { get; set; }
+        public int OrgID { get; set; }
+        public string Role { get; set; }
+        // ... другие поля
     }
 }

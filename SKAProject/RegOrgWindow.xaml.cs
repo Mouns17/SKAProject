@@ -11,20 +11,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SKAProject
 {
-    /// <summary>
-    /// Логика взаимодействия для RegOrgWindow.xaml
-    /// </summary>
     public partial class RegOrgWindow : Window
     {
         public RegOrgWindow()
         {
             InitializeComponent();
-            
-
         }
 
         private void BtnClose(object sender, RoutedEventArgs e)
@@ -86,6 +82,5 @@ namespace SKAProject
         {
             DragMove();
         }
-        
     }
 }

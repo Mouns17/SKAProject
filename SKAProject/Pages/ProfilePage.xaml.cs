@@ -18,12 +18,9 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace SKAProject.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Profile.xaml
-    /// </summary>
     public partial class ProfilePage : Page
     {
-        Profile profile = new Profile();
+        Models.ProfileModel profile = new Models.ProfileModel();
         public ProfilePage()
         {
             InitializeComponent();
@@ -35,19 +32,6 @@ namespace SKAProject.Pages
             timer.Start();
 
             LoadProfile();
-        }
-        public class Profile
-        {
-            public string Login { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string MiddleName { get; set; }
-            public string Email { get; set; }
-            public string Phone { get; set; }
-            public string Role { get; set; }
-            public string Post { get; set; }
-            public string Department { get; set; }
-            public string Organization { get; set; }
         }
 
         private string GetValueOrEmpty(object value)
@@ -62,8 +46,6 @@ namespace SKAProject.Pages
 
             return text;
         }
-
-        // Загрузка профиля
         private async void LoadProfile()
         {
             try
@@ -74,45 +56,13 @@ namespace SKAProject.Pages
                 {
                     await conn.OpenAsync();
 
-                    string query = @"
-SELECT 
-    u.Login,
-    u.FirstName,
-    u.LastName,
-    u.MiddleName,
-    u.Email,
-    u.Phone,
-    u.Role,
+                    string query = @"SELECT u.Login, u.FirstName, u.LastName, u.MiddleName, u.Email, u.Phone, u.Role, w.Post, w.Status, d.DepName, o.OrgName FROM Users u LEFT JOIN Workers w  ON u.UserID = w.UserID LEFT JOIN Departments d ON w.DepID = d.DepID LEFT JOIN Organizations o ON w.OrgID = o.OrgID WHERE u.UserID = @id";
 
-    w.Post,
-    w.Status,
+                    var cmd = new MySqlCommand(query, conn);
 
-    d.DepName,
-    o.OrgName
+                    cmd.Parameters.AddWithValue("@id", userId);
 
-FROM Users u
-
-LEFT JOIN Workers w 
-    ON u.UserID = w.UserID
-
-LEFT JOIN Departments d 
-    ON w.DepID = d.DepID
-
-LEFT JOIN Organizations o 
-    ON w.OrgID = o.OrgID
-
-WHERE u.UserID = @id";
-
-                    var cmd =
-                        new MySqlCommand(query, conn);
-
-                    cmd.Parameters.AddWithValue(
-                        "@id",
-                        userId
-                    );
-
-                    var reader =
-                        await cmd.ExecuteReaderAsync();
+                    var reader = await cmd.ExecuteReaderAsync();
 
                     if (await reader.ReadAsync())
                     {
@@ -127,17 +77,13 @@ WHERE u.UserID = @id";
                     }
                     else
                     {
-                        System.Windows.MessageBox.Show(
-                            "Пользователь не найден"
-                        );
+                        System.Windows.MessageBox.Show("Пользователь не найден");
                     }
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(
-                    ex.Message
-                );
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
     }

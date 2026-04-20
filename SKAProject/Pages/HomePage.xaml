@@ -1,72 +1,113 @@
 ﻿<Page x:Class="SKAProject.Pages.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="ProfilePage"
-      Height="1080" Width="1520" FontFamily="Arian">
+      Height="1080"
+      Width="1520"
+      FontFamily="Arian">
+
     <Grid Margin="0 60 0 0">
-        <Border BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="1" CornerRadius="30" Background="#EDF4FF" Padding="0" Margin="-5,0,-5,15">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <ScrollViewer.Resources>
-                    <Style TargetType="ScrollBar">
-                        <Setter Property="Width" Value="6"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ScrollBar">
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ScrollViewer.Resources>
 
-                <!-- Заголовок -->
-                <StackPanel Margin="40,30,40,30">
-                    <TextBlock Text="Главное меню" FontSize="40" FontWeight="SemiBold" 
-                           Foreground="Black"/>
-                    <TextBlock Text="Потом напишу" 
-                           FontSize="30" Foreground="Black" Margin="0,8,0,0"/>
+        <Border BorderBrush="{StaticResource BackgroundColor6}"
+        BorderThickness="1"
+        CornerRadius="30"
+        Background="#EDF4FF"
+        Margin="-5,0,-5,15">
 
-                    <Border Style="{StaticResource ModernCard}" Height="200" Width="200" Margin="0 30 1160 0">
-                        <StackPanel Margin="0">
-                            <TextBlock Text="42" FontSize="60" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Организаций" FontSize="36" TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
+            <ScrollViewer>
 
-                    <Border Style="{StaticResource ModernCard}" Height="200" Width="200" Margin="0 -200 700 0">
-                        <StackPanel Margin="0">
-                            <TextBlock Text="67" FontSize="60" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Пользователей" FontSize="36" TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
+                <Grid Margin="40,30,40,50">
 
-                    <Border Style="{StaticResource ModernCard}" Height="200" Width="900" Margin="450 -200 0 0">
-                        <StackPanel Margin="0">
-                            <TextBlock Text="Здесь наверное тоже что то будет" FontSize="40" HorizontalAlignment="Center"/>
-                            <TextBlock Text="" FontSize="36" TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                    <Border CornerRadius="25" BorderBrush="Transparent" Background="{StaticResource BackgroundColor6}" Margin="0 50 930 0" Height="270" Width="430">
-                        <Border.Effect>
-                            <DropShadowEffect ShadowDepth="0" Color="#6366F1" Opacity="1" BlurRadius="15"/>
-                        </Border.Effect>
+                    <!-- Заголовок -->
+
+                    <StackPanel Grid.Row="0" Margin="0,0,0,32">
+
+                        <TextBlock Text="Главное меню"
+           FontSize="40"
+           FontWeight="SemiBold"
+           Foreground="{StaticResource ForegroundColor1}"/>
+
+                        <TextBlock Text="Общая статистика и быстрый доступ"
+           FontSize="30"
+           Foreground="{StaticResource ForegroundColor1}"
+           Margin="0,8,0,0"/>
+
+                    </StackPanel>
+
+                    <!-- Карточки статистики -->
+
+                    <UniformGrid Grid.Row="1"
+              Columns="4"
+              Margin="0,0,0,30">
+
+                        <Border Style="{StaticResource ModernCard}">
+                            <StackPanel>
+                                <TextBlock Text="👥 Работники"
+           FontSize="22"/>
+                                <TextBlock Text="124"
+           FontSize="40"
+           FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource ModernCard}">
+                            <StackPanel>
+                                <TextBlock Text="📋 Задачи"
+           FontSize="22"/>
+                                <TextBlock Text="36"
+           FontSize="40"
+           FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource ModernCard}">
+                            <StackPanel>
+                                <TextBlock Text="🏢 Организации"
+           FontSize="22"/>
+                                <TextBlock Text="3"
+           FontSize="40"
+           FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource ModernCard}">
+                            <StackPanel>
+                                <TextBlock Text="⚠ События"
+           FontSize="22"/>
+                                <TextBlock Text="12"
+           FontSize="40"
+           FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+
+                    </UniformGrid>
+
+                    <!-- Последние действия -->
+
+                    <Border Grid.Row="2"
+        Style="{StaticResource ModernCard}">
+
                         <StackPanel>
-                            <TextBlock Text="Создание организации" FontSize="30" FontFamily="Arian" Foreground="{StaticResource BackgroundColor4}" Margin="35 25 35 0" HorizontalAlignment="Center"/>
 
-                            <TextBlock Text="Зарегистрируйте свою организацию и эффективно управляйте всеми процессами в своем предприятии" TextWrapping="Wrap" FontSize="25" FontFamily="Arian" Foreground="{StaticResource BackgroundColor5}" Margin="35 10 35 0" HorizontalAlignment="Center" />
+                            <TextBlock Text="Последние события"
+           FontSize="26"
+           FontWeight="Bold"
+           Margin="0 0 0 15"/>
 
-                            <Button Style="{StaticResource RegOrgBtnStyle}" Content="ЗАРЕГИСТРИРОВАТЬ" Margin="0 20 0 0" Click="BtnRegOrg" Width="250"/>
+                            <TextBlock Text="• Добавлен новый сотрудник"/>
+                            <TextBlock Text="• Создана задача"/>
+                            <TextBlock Text="• Изменены настройки"/>
+
                         </StackPanel>
+
                     </Border>
 
-                    <Border Style="{StaticResource ModernCard}" Height="100" Width="100" Margin="0 -450 350 0">
-                        <StackPanel Margin="0">
-                            <TextBlock Text="⚙" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-                
+                </Grid>
             </ScrollViewer>
         </Border>
     </Grid>

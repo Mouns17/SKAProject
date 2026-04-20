@@ -21,7 +21,6 @@ namespace SKAProject
         public LoginWindow()
         {
             InitializeComponent();
-
         }
 
         private void OpenRegWindow(object sender, RoutedEventArgs e)
@@ -91,18 +90,5 @@ namespace SKAProject
         {
             this.WindowState = WindowState.Minimized;
         }
-        /*
-        private void BtnEnter(object sender, RoutedEventArgs e)
-        {
-            string login = TBoxLogin.Text.Trim();
-            string password = TboxPassword.Text.Trim();
-
-            if (login == "Admin" || password == "123")
-            {
-                new MainWindow().Show();
-                this.Close();
-            }
-        }
-         */
     }
 }
