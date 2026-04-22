@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using MySqlConnector;
+using System.Xml.Linq;
 
 namespace SKAProject
 {
@@ -41,38 +43,51 @@ namespace SKAProject
             BtnAddVis.Visibility = Visibility.Visible;
         }
 
-        private void BtnAdd(object sender, RoutedEventArgs e)
+        private async void BtnAdd(object sender, RoutedEventArgs e)
         {
-            string email = TBoxWorkEmail.Text.Trim();
             string department = TBoxWorkDep.Text.Trim();
             string post = TBoxWorkPost.Text.Trim();
             string status = TBoxWorkStatus.Text.Trim();
 
             try
             {
+                // Подключение к бд
                 using (MySqlConnection conn = DataBase.GetConnection())
                 {
-                    conn.Open();
-                    MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Workers(Email, Department, Post, Status) VALUES(@em, @dep, @post, @st)", conn);
-                    cmd.Parameters.AddWithValue("@em", email);
-                    cmd.Parameters.AddWithValue("@dep", department);
-                    cmd.Parameters.AddWithValue("@post", post);
-                    cmd.Parameters.AddWithValue("@st", status);
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected > 0)
+                    await conn.OpenAsync();
+
+                    using (MySqlTransaction tx = conn.BeginTransaction())
                     {
-                        MessageBox.Show("Работник успешно добавлен!");
-                        Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ошибка при добавлении работника. Попробуйте снова.");
+                        MySqlCommand cmdUser = new MySqlCommand(@"INSERT INTO Workers(Departament, Post, Status) VALUES(@dep, @p, @s); SELECT LAST_INSERT_ID();", conn, tx);
+
+                        // Передаём параметры в запрос
+                        cmdUser.Parameters.AddWithValue("@dep", department);
+                        cmdUser.Parameters.AddWithValue("@p", post);
+                        cmdUser.Parameters.AddWithValue("@s", status);
+
+                        // Выполняем запрос
+                        await cmdUser.ExecuteScalarAsync();
+
+                        // Подтверждение транзакции
+                        tx.Commit();
                     }
                 }
+
+                // Проверка на пустые поля
+                if (string.IsNullOrWhiteSpace(department) || string.IsNullOrWhiteSpace(post) || string.IsNullOrWhiteSpace(status))
+                {
+                    MessageBox.Show("Заполните все поля");
+                    return;
+                }
+
+                MessageBox.Show("Сотрудник добавлен");
+                Close();
             }
+
+            // При каких то ошибках связанных с БД
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+                MessageBox.Show("Ошибка регистрации: " + ex.Message);
             }
         }
     }

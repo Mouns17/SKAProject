@@ -22,5 +22,20 @@ namespace SKAProject.Pages
         {
             new AddWorkerWindow().Show();
         }
+
+        private void EditWorkerButton_Click(object sender, RoutedEventArgs e)
+        {
+            // new EditWorkerWindow().Show();
+        }
+
+        private void ExportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // new ExportExcelWindow().Show();
+        }
+
+        private void ImportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // new ImportExcelWindow().Show();
+        }
     }  
 }
