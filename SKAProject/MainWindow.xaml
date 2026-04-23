@@ -71,8 +71,6 @@
 
                 <Button Style="{StaticResource MenuBtnStyle}" Content="🏢  Моя организация" Click="MyOrg_Click" Margin="0 15 0 0"/>
 
-                <Button Style="{StaticResource MenuBtnStyle}" Content="📅  Задачи организации" Click="TasksOrg_Click" Margin="0 15 0 0"/>
-
                 <Button Style="{StaticResource MenuBtnStyle}" Content="📅  Мои задачи" Click="MyTasks_Click" Margin="0 15 0 0"/>
 
                 <Button Style="{StaticResource MenuBtnStyle}" Content="📂  Отчеты работников" Click="Otcheti_Click" Margin="0 15 0 0"/>

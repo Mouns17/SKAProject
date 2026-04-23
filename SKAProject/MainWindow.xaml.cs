@@ -102,11 +102,6 @@ namespace SKAProject
             MainFrame.Navigate(new Pages.MyOrganizationPage());
         }
 
-        private void TasksOrg_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new Pages.OrgTasksPage());
-        }
-
         private void MyTasks_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Pages.MyTasks());
