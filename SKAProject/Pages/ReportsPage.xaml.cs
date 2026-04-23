@@ -24,5 +24,15 @@ namespace SKAProject.Pages
         {
             InitializeComponent();
         }
+
+        private void ExportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // new ExportExcelWindow().Show();
+        }
+
+        private void ImportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // new ImportExcelWindow().Show();
+        }
     }
 }
