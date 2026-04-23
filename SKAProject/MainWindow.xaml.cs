@@ -18,12 +18,12 @@ namespace SKAProject
 {
     public partial class MainWindow : Window
     {
-        private RegOrgWindow _regOrgWindow; // 
+        private RegOrgWindow _regOrgWindow;
         public static Frame MainFrameStatic { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
-            MainFrameStatic = MainFrame;  // сохраняем ссылку
+            MainFrameStatic = MainFrame; 
             MainFrame.Navigate(new HomePage());
         }
 
@@ -44,7 +44,10 @@ namespace SKAProject
 
         private void BtnMinimize(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            if (WindowState == WindowState.Normal)
+                WindowState = WindowState.Maximized;
+            else
+                WindowState = WindowState.Normal;
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
@@ -85,7 +88,7 @@ namespace SKAProject
             }
             else
             {
-                _regOrgWindow.Activate(); // Активируем окно, если оно уже открыто
+                _regOrgWindow.Activate(); 
             }
         }
 

@@ -1,231 +1,419 @@
-﻿<Page x:Class="SKAProject.Pages.ReportsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="ReportsPage"
-      Background="#0A0A0A" FontFamily="Arian">
+﻿<Page
+    x:Class="SKAProject.Pages.ReportsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="WorkersPage"
+    Width="1520"
+    Height="1080"
+    FontFamily="Arian">
+    <Grid Margin="0,60,0,0">
+        <Border
+            Margin="-5,0,-5,15"
+            Padding="0"
+            Background="#EDF4FF"
+            BorderBrush="{StaticResource BackgroundColor6}"
+            BorderThickness="1"
+            CornerRadius="30">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <ScrollViewer.Resources>
+                    <Style TargetType="ScrollBar">
+                        <Setter Property="Width" Value="6" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ScrollBar">
+                                    <Grid>
+                                        <Border Background="Transparent" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ScrollViewer.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid Margin="40,30,40,50">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+                <Grid Margin="40,30,40,50">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-            <!-- Заголовок -->
-            <StackPanel Grid.Row="0" Margin="0,0,0,32">
-                <TextBlock Text="Отчеты работников" FontSize="34" FontWeight="SemiBold" 
-                           Foreground="#FFFFFF"/>
-                <TextBlock Text="Просмотр и анализ отчетов сотрудников" 
-                           FontSize="14" Foreground="#888888" Margin="0,8,0,0"/>
-            </StackPanel>
-
-            <!-- Фильтры -->
-            <Border Grid.Row="1" Background="#121212" CornerRadius="20" 
-                    Padding="20" Margin="0,0,0,24" BorderBrush="#1E1E1E" BorderThickness="1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0" Orientation="Horizontal">
-                        <Border Background="#1A1A1A" CornerRadius="10" Height="40" Width="200" Margin="0,0,10,0">
-                            <ComboBox Background="Transparent" BorderThickness="0" Foreground="White" 
-                                      VerticalContentAlignment="Center" Height="40">
-                                <ComboBoxItem Content="Все сотрудники" IsSelected="True"/>
-                                <ComboBoxItem Content="Иванов И.И."/>
-                                <ComboBoxItem Content="Петров П.П."/>
-                                <ComboBoxItem Content="Сидорова С.А."/>
-                            </ComboBox>
-                        </Border>
-
-                        <Border Background="#1A1A1A" CornerRadius="10" Height="40" Width="150">
-                            <ComboBox Background="Transparent" BorderThickness="0" Foreground="White" 
-                                      VerticalContentAlignment="Center" Height="40">
-                                <ComboBoxItem Content="Март 2025" IsSelected="True"/>
-                                <ComboBoxItem Content="Февраль 2025"/>
-                                <ComboBoxItem Content="Январь 2025"/>
-                            </ComboBox>
-                        </Border>
+                    <!--  Заголовок и панель управления  -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,32">
+                        <TextBlock
+                            FontSize="40"
+                            FontWeight="SemiBold"
+                            Foreground="{StaticResource ForegroundColor1}"
+                            Text="Отчеты работников" />
+                        <TextBlock
+                            Margin="0,8,0,0"
+                            FontSize="30"
+                            Foreground="{StaticResource ForegroundColor1}"
+                            Text="Просмотр и анализ отчетов сотрудников" />
                     </StackPanel>
 
-                    <Button Grid.Column="1" Background="#6366F1" Width="100" Height="40" Cursor="Hand">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="10">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                        <TextBlock Text="Применить" Foreground="White"/>
-                    </Button>
+                    <!--  Панель инструментов (поиск, фильтр, кнопки)  -->
+                    <StackPanel Grid.Row="1" Margin="0,0,0,20">
+                        <!--  Верхняя строка: Поиск и кнопки  -->
+                        <Grid Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </StackPanel>
+
+                    <!--  Поисковая строка  -->
+                    <Border
+                        Grid.Column="0"
+                        Height="55"
+                        Margin="0,100,0,0"
+                        Background="{StaticResource BackgroundColor3}"
+                        BorderBrush="{StaticResource BackgroundColor6}"
+                        BorderThickness="1"
+                        CornerRadius="15">
+                        <Border.Effect>
+                            <DropShadowEffect
+                                BlurRadius="15"
+                                Opacity="0.8"
+                                ShadowDepth="0"
+                                Color="#010210" />
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="20,0,10,0"
+                                VerticalAlignment="Center"
+                                FontSize="20"
+                                Foreground="{StaticResource ForegroundColor1}"
+                                Text="🔍" />
+                            <TextBox
+                                x:Name="SearchTextBox"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                FontFamily="Arian"
+                                FontSize="18"
+                                Foreground="{StaticResource ForegroundColor1}" />
+                            <TextBlock
+                                x:Name="SearchPlaceholder"
+                                Grid.Column="1"
+                                Margin="2,0,0,0"
+                                VerticalAlignment="Center"
+                                FontFamily="Arian"
+                                FontSize="18"
+                                Foreground="#8899AA"
+                                IsHitTestVisible="False"
+                                Text="Поиск по номеру, приоритету, статусу..." />
+                        </Grid>
+                    </Border>
+
+                    <!--  Таблица сотрудников в стиле логов  -->
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,0,270,0"
+                        Background="{StaticResource BackgroundColor3}"
+                        CornerRadius="20">
+                        <Border.Effect>
+                            <DropShadowEffect
+                                BlurRadius="15"
+                                Opacity="1"
+                                ShadowDepth="0"
+                                Color="#010210" />
+                        </Border.Effect>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <!--  Заголовок таблицы  -->
+                            <Border
+                                Grid.Row="0"
+                                Background="#F0F5FF"
+                                BorderBrush="#D0D9E8"
+                                BorderThickness="0,0,0,2"
+                                CornerRadius="20 20 0 0">
+                                <Grid Height="60">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="80" />
+                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="160" />
+                                        <ColumnDefinition Width="280" />
+                                        <ColumnDefinition Width="190" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="#4A5568"
+                                        Text="№" />
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="#4A5568"
+                                        Text="От кого" />
+                                    <TextBlock
+                                        Grid.Column="3"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="#4A5568"
+                                        Text="Кому" />
+                                    <TextBlock
+                                        Grid.Column="4"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="#4A5568"
+                                        Text="Дата" />
+                                    <TextBlock
+                                        Grid.Column="5"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="#4A5568"
+                                        Text="Краткое описание" />
+                                    <TextBlock
+                                        Grid.Column="6"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="#4A5568"
+                                        Text="Статус" />
+                                </Grid>
+                            </Border>
+
+                            <!--  Список сотрудников  -->
+                            <ScrollViewer
+                                Grid.Row="1"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <ScrollViewer.Resources>
+                                    <Style TargetType="ScrollBar">
+                                        <Setter Property="Width" Value="6" />
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </Style>
+                                </ScrollViewer.Resources>
+
+                                <ItemsControl x:Name="WorkersItemsControl">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border
+                                                Background="Transparent"
+                                                BorderBrush="#E2E8F0"
+                                                BorderThickness="0,0,0,1">
+                                                <Grid Height="65">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition Width="180" />
+                                                        <ColumnDefinition Width="180" />
+                                                        <ColumnDefinition Width="150" />
+                                                        <ColumnDefinition Width="250" />
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition Width="120" />
+                                                        <ColumnDefinition Width="50" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <CheckBox
+                                                        Grid.Column="0"
+                                                        Margin="15,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        Cursor="Hand"
+                                                        IsChecked="{Binding IsSelected}" />
+
+                                                    <StackPanel
+                                                        Grid.Column="1"
+                                                        Margin="10,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Vertical">
+                                                        <TextBlock
+                                                            FontSize="16"
+                                                            FontWeight="SemiBold"
+                                                            Foreground="#2D3748"
+                                                            Text="{Binding FullName}" />
+                                                        <TextBlock
+                                                            FontSize="12"
+                                                            Foreground="#A0AEC0"
+                                                            Text="{Binding WorkerId}" />
+                                                    </StackPanel>
+
+                                                    <TextBlock
+                                                        Grid.Column="2"
+                                                        Margin="10,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="16"
+                                                        Foreground="#4A5568"
+                                                        Text="{Binding Department}" />
+                                                    <TextBlock
+                                                        Grid.Column="3"
+                                                        Margin="10,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="16"
+                                                        Foreground="#4A5568"
+                                                        Text="{Binding Position}" />
+                                                    <TextBlock
+                                                        Grid.Column="4"
+                                                        Margin="10,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="16"
+                                                        Foreground="#4A5568"
+                                                        Text="{Binding Phone}" />
+                                                    <TextBlock
+                                                        Grid.Column="5"
+                                                        Margin="10,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="16"
+                                                        Foreground="#4A5568"
+                                                        Text="{Binding Email}" />
+
+                                                    <!--  Статус с цветовой индикацией  -->
+                                                    <Border
+                                                        Grid.Column="6"
+                                                        Margin="10,0,0,0"
+                                                        Padding="10,5"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        Background="{Binding StatusColor}"
+                                                        CornerRadius="20">
+                                                        <TextBlock
+                                                            FontSize="14"
+                                                            FontWeight="SemiBold"
+                                                            Foreground="White"
+                                                            Text="{Binding Status}" />
+                                                    </Border>
+
+                                                    <!--  Кнопки действий  -->
+                                                    <StackPanel
+                                                        Grid.Column="7"
+                                                        Margin="10,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                        <Button
+                                                            Background="Transparent"
+                                                            BorderThickness="0"
+                                                            CommandParameter="{Binding WorkerId}"
+                                                            Cursor="Hand">
+                                                            <TextBlock FontSize="18" Text="✏️" />
+                                                        </Button>
+                                                        <Button
+                                                            Margin="10,0,0,0"
+                                                            Background="Transparent"
+                                                            BorderThickness="0"
+                                                            CommandParameter="{Binding WorkerId}"
+                                                            Cursor="Hand">
+                                                            <TextBlock FontSize="18" Text="🗑️" />
+                                                        </Button>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                    <Button
+                        Grid.Column="2"
+                        Width="230"
+                        Margin="1195,0,0,-300"
+                        Click="ExportBtn_Click"
+                        Content="Экспорт в Excel"
+                        Cursor="Hand"
+                        Style="{StaticResource ExportBtnStyle}" />
+                    <Button
+                        Grid.Column="2"
+                        Width="230"
+                        Margin="1195,0,0,-400"
+                        Click="ImportBtn_Click"
+                        Content="Импорт из Excel"
+                        Cursor="Hand"
+                        Style="{StaticResource ImportBtnStyle}" />
+
+                    <Border
+                        Grid.Row="2"
+                        Height="600"
+                        Margin="1200,0,0,0"
+                        VerticalAlignment="Bottom"
+                        Background="{StaticResource BackgroundColor3}"
+                        CornerRadius="20">
+                        <Border.Effect>
+                            <DropShadowEffect
+                                BlurRadius="15"
+                                Opacity="1"
+                                ShadowDepth="0"
+                                Color="#010210" />
+                        </Border.Effect>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="150" />
+                                <RowDefinition Height="150" />
+                                <RowDefinition Height="150" />
+                                <RowDefinition Height="150" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Grid.Row="0"
+                                Margin="20,20,20,10"
+                                HorizontalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Всего отчетов" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Margin="20,20,20,10"
+                                HorizontalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Принято" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Margin="20,20,20,10"
+                                HorizontalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="На проверке" />
+                            <TextBlock
+                                Grid.Row="3"
+                                Margin="20,20,20,10"
+                                HorizontalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Отклонено" />
+                        </Grid>
+                    </Border>
                 </Grid>
-            </Border>
-
-            <!-- Список отчетов -->
-            <StackPanel Grid.Row="2" Margin="0,0,0,20">
-
-                <!-- Отчет 1 -->
-                <Border Background="#121212" CornerRadius="16" Padding="20" Margin="0,0,0,12" 
-                        BorderBrush="#1E1E1E" BorderThickness="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Border Grid.Column="0" Width="48" Height="48" CornerRadius="24" 
-                                Margin="0,0,15,0">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="1,1">
-                                    <GradientStop Color="#6366F1" Offset="0"/>
-                                    <GradientStop Color="#8B5CF6" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock Text="ИИ" FontSize="16" FontWeight="Bold" Foreground="White" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-
-                        <StackPanel Grid.Column="1">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Недельный отчет Иванов И.И." FontSize="16" FontWeight="SemiBold" Foreground="White"/>
-                                <Border Background="#10B981" CornerRadius="12" Padding="8,3" Margin="12,0,0,0">
-                                    <TextBlock Text="Одобрен" FontSize="10" Foreground="White"/>
-                                </Border>
-                            </StackPanel>
-                            <TextBlock Text="Период: 17.03.2025 - 23.03.2025" FontSize="13" Foreground="#888888" Margin="0,5,0,0"/>
-                            <TextBlock Text="Выполнены все плановые показатели. Завершено 12 задач." 
-                                       FontSize="13" Foreground="#666666" Margin="0,5,0,0"/>
-                        </StackPanel>
-
-                        <Button Grid.Column="2" Width="90" Height="36" Background="#1A1A1A" 
-                                Cursor="Hand" Margin="10,0,0,0"
-                                BorderBrush="#2A2A2A" BorderThickness="1">
-                            <TextBlock Text="Скачать" Foreground="#6366F1" FontSize="12"/>
-                        </Button>
-                    </Grid>
-                </Border>
-
-                <!-- Отчет 2 -->
-                <Border Background="#121212" CornerRadius="16" Padding="20" Margin="0,0,0,12" 
-                        BorderBrush="#1E1E1E" BorderThickness="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Border Grid.Column="0" Width="48" Height="48" CornerRadius="24" 
-                                Margin="0,0,15,0">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="1,1">
-                                    <GradientStop Color="#10B981" Offset="0"/>
-                                    <GradientStop Color="#34D399" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock Text="ПП" FontSize="16" FontWeight="Bold" Foreground="White" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-
-                        <StackPanel Grid.Column="1">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Месячный отчет Петров П.П." FontSize="16" FontWeight="SemiBold" Foreground="White"/>
-                                <Border Background="#F59E0B" CornerRadius="12" Padding="8,3" Margin="12,0,0,0">
-                                    <TextBlock Text="На проверке" FontSize="10" Foreground="White"/>
-                                </Border>
-                            </StackPanel>
-                            <TextBlock Text="Период: 01.03.2025 - 31.03.2025" FontSize="13" Foreground="#888888" Margin="0,5,0,0"/>
-                            <TextBlock Text="Проект находится в графике. Ожидается завершение в апреле." 
-                                       FontSize="13" Foreground="#666666" Margin="0,5,0,0"/>
-                        </StackPanel>
-
-                        <Button Grid.Column="2" Width="90" Height="36" Background="#1A1A1A" 
-                                Cursor="Hand" Margin="10,0,0,0"
-                                BorderBrush="#2A2A2A" BorderThickness="1">
-                            <TextBlock Text="Скачать" Foreground="#F59E0B" FontSize="12"/>
-                        </Button>
-                    </Grid>
-                </Border>
-
-                <!-- Отчет 3 -->
-                <Border Background="#121212" CornerRadius="16" Padding="20" Margin="0,0,0,12" 
-                        BorderBrush="#1E1E1E" BorderThickness="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Border Grid.Column="0" Width="48" Height="48" CornerRadius="24" 
-                                Margin="0,0,15,0">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="1,1">
-                                    <GradientStop Color="#EC4899" Offset="0"/>
-                                    <GradientStop Color="#F43F5E" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock Text="СС" FontSize="16" FontWeight="Bold" Foreground="White" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-
-                        <StackPanel Grid.Column="1">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Квартальный отчет Сидорова С.А." FontSize="16" FontWeight="SemiBold" Foreground="White"/>
-                                <Border Background="#EC4899" CornerRadius="12" Padding="8,3" Margin="12,0,0,0">
-                                    <TextBlock Text="Отклонен" FontSize="10" Foreground="White"/>
-                                </Border>
-                            </StackPanel>
-                            <TextBlock Text="Период: 01.01.2025 - 31.03.2025" FontSize="13" Foreground="#888888" Margin="0,5,0,0"/>
-                            <TextBlock Text="Требуется доработка: добавить показатели эффективности." 
-                                       FontSize="13" Foreground="#666666" Margin="0,5,0,0"/>
-                        </StackPanel>
-
-                        <Button Grid.Column="2" Width="90" Height="36" Background="#1A1A1A" 
-                                Cursor="Hand" Margin="10,0,0,0"
-                                BorderBrush="#2A2A2A" BorderThickness="1">
-                            <TextBlock Text="Скачать" Foreground="#EC4899" FontSize="12"/>
-                        </Button>
-                    </Grid>
-                </Border>
-            </StackPanel>
-
-            <!-- Статистика отчетов -->
-            <Border Grid.Row="3" Background="#121212" CornerRadius="20" Padding="20" 
-                    BorderBrush="#1E1E1E" BorderThickness="1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                        <TextBlock Text="24" FontSize="24" FontWeight="Bold" Foreground="White" TextAlignment="Center"/>
-                        <TextBlock Text="Всего отчетов" FontSize="12" Foreground="#888888"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                        <TextBlock Text="18" FontSize="24" FontWeight="Bold" Foreground="#10B981" TextAlignment="Center"/>
-                        <TextBlock Text="Одобрено" FontSize="12" Foreground="#888888"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                        <TextBlock Text="4" FontSize="24" FontWeight="Bold" Foreground="#F59E0B" TextAlignment="Center"/>
-                        <TextBlock Text="На проверке" FontSize="12" Foreground="#888888"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="3" HorizontalAlignment="Center">
-                        <TextBlock Text="2" FontSize="24" FontWeight="Bold" Foreground="#EC4899" TextAlignment="Center"/>
-                        <TextBlock Text="Отклонено" FontSize="12" Foreground="#888888"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </Grid>
-    </ScrollViewer>
+            </ScrollViewer>
+        </Border>
+    </Grid>
 </Page>

@@ -1,45 +1,159 @@
-﻿<Window x:Class="SKAProject.AddWorkerWindow" WindowStyle="None" WindowState="Normal" Topmost="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent"  
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SKAProject"
-        mc:Ignorable="d"
-        Height="480" Width="420" FontFamily="Arian">
+﻿<Window
+    x:Class="SKAProject.AddWorkerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SKAProject"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="420"
+    Height="480"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="Arian"
+    ResizeMode="NoResize"
+    Topmost="True"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Normal"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
-        <Border Width="420" Height="480" CornerRadius="20" BorderThickness="1" BorderBrush="#6366F1" Background="#EDF4FF" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border
+            Width="420"
+            Height="480"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="#EDF4FF"
+            BorderBrush="#6366F1"
+            BorderThickness="1"
+            CornerRadius="20">
             <Grid>
                 <StackPanel>
-                    <Button Content="✖︎" Style="{StaticResource ControlBtnStyle}" Margin="375,5,0,80" Click="BtnClose"/>
+                    <Button
+                        Margin="375,5,0,80"
+                        Click="BtnClose"
+                        Content="✖︎"
+                        Style="{StaticResource ControlBtnStyle}" />
 
-                    <TextBlock Text="Добавление сотрудника" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-60,0,0"/>
+                    <TextBlock
+                        Margin="0,-60,0,0"
+                        HorizontalAlignment="Center"
+                        FontSize="28"
+                        FontWeight="Bold"
+                        Text="Добавление сотрудника" />
 
-                    <TextBlock Text="Чтобы добавить сотрудника, заполните все поля" FontSize="12" Foreground="#6366F1" TextAlignment="Center" Margin="0,-25,0,0"/>
+                    <TextBlock
+                        Margin="0,-25,0,0"
+                        FontSize="12"
+                        Foreground="#6366F1"
+                        Text="Чтобы добавить сотрудника, заполните все поля"
+                        TextAlignment="Center" />
 
-                    <Border Height="1" Margin="40 0 40 0" Background="{StaticResource DividerBrush}"/>
+                    <Border
+                        Height="1"
+                        Margin="40,0,40,0"
+                        Background="{StaticResource DividerBrush}" />
 
-                    <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите фамилию" x:Name="TBoxWorkLastName" Height="35" Width="300" Margin="0 15 0 15" HorizontalAlignment="Center" Visibility="Visible"/>
+                    <TextBox
+                        x:Name="TBoxWorkLastName"
+                        Width="300"
+                        Height="35"
+                        Margin="0,15,0,15"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource TxtBoxStyle}"
+                        Tag="Введите фамилию"
+                        Visibility="Visible" />
 
-                    <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите имя" x:Name="TBoxWorkFirstName" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center" Visibility="Visible"/>
+                    <TextBox
+                        x:Name="TBoxWorkFirstName"
+                        Width="300"
+                        Height="35"
+                        Margin="0,10,0,15"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource TxtBoxStyle}"
+                        Tag="Введите имя"
+                        Visibility="Visible" />
 
-                    <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите отчество" x:Name="TBoxWorkMiddleName" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center" Visibility="Visible"/>
+                    <TextBox
+                        x:Name="TBoxWorkMiddleName"
+                        Width="300"
+                        Height="35"
+                        Margin="0,10,0,15"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource TxtBoxStyle}"
+                        Tag="Введите отчество"
+                        Visibility="Visible" />
 
-                    <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите телефон" x:Name="TBoxWorkPhone" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center" Visibility="Visible"/>
+                    <TextBox
+                        x:Name="TBoxWorkPhone"
+                        Width="300"
+                        Height="35"
+                        Margin="0,10,0,15"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource TxtBoxStyle}"
+                        Tag="Введите телефон"
+                        Visibility="Visible" />
 
 
-                    <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите email" x:Name="TBoxWorkEmail" Height="35" Width="300" Margin="0 15 0 15" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                    <TextBox
+                        x:Name="TBoxWorkEmail"
+                        Width="300"
+                        Height="35"
+                        Margin="0,15,0,15"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource TxtBoxStyle}"
+                        Tag="Введите email"
+                        Visibility="Collapsed" />
 
-                    <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите отдел" x:Name="TBoxWorkDep" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                    <TextBox
+                        x:Name="TBoxWorkDep"
+                        Width="300"
+                        Height="35"
+                        Margin="0,10,0,15"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource TxtBoxStyle}"
+                        Tag="Введите отдел"
+                        Visibility="Collapsed" />
 
-                    <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите должность" x:Name="TBoxWorkPost" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                    <TextBox
+                        x:Name="TBoxWorkPost"
+                        Width="300"
+                        Height="35"
+                        Margin="0,10,0,15"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource TxtBoxStyle}"
+                        Tag="Введите должность"
+                        Visibility="Collapsed" />
 
-                    <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите статус" x:Name="TBoxWorkStatus" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center" Visibility="Collapsed"/>
- 
-                    <Border Height="1" Margin="40 0 40 0" Background="{StaticResource DividerBrush}"/>
+                    <TextBox
+                        x:Name="TBoxWorkStatus"
+                        Width="300"
+                        Height="35"
+                        Margin="0,10,0,15"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource TxtBoxStyle}"
+                        Tag="Введите статус"
+                        Visibility="Collapsed" />
 
-                    <Button x:Name="BtnNextVis" Content="Продолжить > > >" Style="{StaticResource LogBtnStyle}" Click="BtnNext" Margin="50 15 50 190" Visibility="Visible"/>
+                    <Border
+                        Height="1"
+                        Margin="40,0,40,0"
+                        Background="{StaticResource DividerBrush}" />
 
-                    <Button x:Name="BtnAddVis" Content="Добавить" Style="{StaticResource LogBtnStyle}" Click="BtnAdd" Margin="50 15 50 190" Visibility="Collapsed"/>
+                    <Button
+                        x:Name="BtnNextVis"
+                        Margin="50,15,50,190"
+                        Click="BtnNext"
+                        Content="Продолжить &gt; &gt; &gt;"
+                        Style="{StaticResource LogBtnStyle}"
+                        Visibility="Visible" />
+
+                    <Button
+                        x:Name="BtnAddVis"
+                        Margin="50,15,50,190"
+                        Click="BtnAdd"
+                        Content="Добавить"
+                        Style="{StaticResource LogBtnStyle}"
+                        Visibility="Collapsed" />
 
                 </StackPanel>
             </Grid>
