@@ -1,18 +1,26 @@
-﻿<Page x:Class="SKAProject.Pages.MyOrganizationPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            Height="1080" Width="1520" FontFamily="Arian">
-    <Grid Margin="0 60 0 0">
-        <Border BorderBrush="{StaticResource BackgroundColor6}" BorderThickness="1" CornerRadius="30" Background="#EDF4FF" Padding="0" Margin="-5,0,-5,15">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+﻿<Page
+    x:Class="SKAProject.Pages.MyOrganizationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="1520"
+    Height="1080"
+    FontFamily="Arian">
+    <Grid Margin="0,60,0,0">
+        <Border
+            Margin="-5,0,-5,15"
+            Padding="0"
+            Background="#EDF4FF"
+            BorderBrush="{StaticResource BackgroundColor6}"
+            BorderThickness="1"
+            CornerRadius="30">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                 <ScrollViewer.Resources>
                     <Style TargetType="ScrollBar">
-                        <Setter Property="Width" Value="6"/>
-                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Width" Value="6" />
+                        <Setter Property="Background" Value="Transparent" />
                         <Setter Property="Template">
                             <Setter.Value>
-                                <ControlTemplate TargetType="ScrollBar">
-                                </ControlTemplate>
+                                <ControlTemplate TargetType="ScrollBar" />
                             </Setter.Value>
                         </Setter>
                     </Style>
@@ -20,130 +28,315 @@
 
                 <Grid Margin="40,30,40,50">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <!-- Заголовок -->
+                    <!--  Заголовок  -->
                     <StackPanel Grid.Row="0" Margin="0,0,0,32">
-                        <TextBlock Text="Моя организация" FontSize="40" FontWeight="SemiBold" 
-                           Foreground="{StaticResource ForegroundColor1}"/>
-                        <TextBlock Text="Управление информацией о вашей организации" 
-                           FontSize="30" Foreground="{StaticResource ForegroundColor1}" Margin="0,8,0,0"/>
+                        <TextBlock
+                            FontSize="40"
+                            FontWeight="SemiBold"
+                            Foreground="{StaticResource ForegroundColor1}"
+                            Text="Моя организация" />
+                        <TextBlock
+                            Margin="0,8,0,0"
+                            FontSize="30"
+                            Foreground="{StaticResource ForegroundColor1}"
+                            Text="Управление информацией о вашей организации" />
                     </StackPanel>
-                    
-                    <!-- 1 -->
+
+                    <!--  1  -->
                     <StackPanel Grid.Row="1">
-                        <Border CornerRadius="30" Margin="0 0 0 0" Background="{StaticResource BackgroundColor6}">
+                        <Border
+                            Margin="0,0,0,0"
+                            Background="{StaticResource BackgroundColor6}"
+                            CornerRadius="30">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
                             </Border.Effect>
 
                             <StackPanel>
-                                <Border Width="150" Height="150" CornerRadius="20" Background="{StaticResource BackgroundColor3}" Opacity="0.4" Margin="0 30 1150 30">
-                                    <TextBlock Text="🏢" Foreground="{StaticResource BackgroundColor6}" FontSize="70" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Border
+                                    Width="150"
+                                    Height="150"
+                                    Margin="0,30,1150,30"
+                                    Background="{StaticResource BackgroundColor3}"
+                                    CornerRadius="20"
+                                    Opacity="0.4">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="70"
+                                        Foreground="{StaticResource BackgroundColor6}"
+                                        Text="🏢" />
                                 </Border>
-                                <TextBlock x:Name="TBlockOrgName" Margin="300 -140 100 60" FontSize="65" FontFamily="Arian Bold" Foreground="{StaticResource BackgroundColor3}"/>
+                                <TextBlock
+                                    x:Name="TBlockOrgName"
+                                    Margin="300,-140,100,60"
+                                    FontFamily="Arian Bold"
+                                    FontSize="65"
+                                    Foreground="{StaticResource BackgroundColor3}" />
                             </StackPanel>
                         </Border>
                     </StackPanel>
 
-                    <!-- 2 -->
+                    <!--  2  -->
                     <StackPanel Grid.Row="2">
-                        <Border Margin="500 40 500 20" Height="50" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                        <Border
+                            Height="50"
+                            Margin="500,40,500,20"
+                            Background="{StaticResource BackgroundColor3}"
+                            CornerRadius="30">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
                             </Border.Effect>
 
-                            <TextBlock Text="Основная информация" FontFamily="Arian Bold" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="Arian Bold"
+                                FontSize="30"
+                                Foreground="{StaticResource ForegroundColor1}"
+                                Text="Основная информация" />
                         </Border>
 
-                        <Border Margin="0 0 300 0" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                        <Border
+                            Height="270"
+                            Margin="0,0,300,0"
+                            Background="{StaticResource BackgroundColor3}"
+                            CornerRadius="30">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
                             </Border.Effect>
 
                             <StackPanel>
-                                <TextBlock x:Name="TBlockOrgAddress" Margin="20 30 500 0" Text="Адрес:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
-                                <TextBlock x:Name="TBlockOrgEmail" Margin="20 30 500 0" Text="Email:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
-                                <TextBlock x:Name="TBlockOrgPhone" Margin="20 30 500 0" Text="Телефон:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
+                                <TextBlock
+                                    x:Name="TBlockOrgAddress"
+                                    Margin="20,30,500,0"
+                                    FontFamily="Arian Bold"
+                                    FontSize="45"
+                                    Foreground="{StaticResource ForegroundColor1}"
+                                    Text="Адрес:" />
+                                <TextBlock
+                                    x:Name="TBlockOrgEmail"
+                                    Margin="20,30,500,0"
+                                    FontFamily="Arian Bold"
+                                    FontSize="45"
+                                    Foreground="{StaticResource ForegroundColor1}"
+                                    Text="Email:" />
+                                <TextBlock
+                                    x:Name="TBlockOrgPhone"
+                                    Margin="20,30,500,0"
+                                    FontFamily="Arian Bold"
+                                    FontSize="45"
+                                    Foreground="{StaticResource ForegroundColor1}"
+                                    Text="Телефон:" />
                             </StackPanel>
                         </Border>
 
-                        <Border Margin="1150 -600 0 20" Height="50" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                        <Border
+                            Height="50"
+                            Margin="1150,-600,0,20"
+                            Background="{StaticResource BackgroundColor3}"
+                            CornerRadius="30">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
                             </Border.Effect>
 
-                            <TextBlock Text="Сотрудников" FontFamily="Arian Bold" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="Arian Bold"
+                                FontSize="30"
+                                Foreground="{StaticResource ForegroundColor1}"
+                                Text="Сотрудников" />
                         </Border>
 
-                        <Border Margin="1150 -270 0 0" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                        <Border
+                            Height="270"
+                            Margin="1150,-270,0,0"
+                            Background="{StaticResource BackgroundColor3}"
+                            CornerRadius="30">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
                             </Border.Effect>
 
-                            <TextBlock x:Name="TBlockOrgWorkers" Text="0" FontSize="60" FontFamily="Arian Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                            <TextBlock
+                                x:Name="TBlockOrgCountWorkers"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="Arian Bold"
+                                FontSize="60"
+                                Foreground="{StaticResource ForegroundColor1}"
+                                Text="0" />
                         </Border>
                     </StackPanel>
 
-                    <!-- 3 -->
+                    <!--  3  -->
                     <StackPanel Grid.Row="3">
-                        <Border Margin="500 40 500 20" Height="50" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                        <Border
+                            Height="50"
+                            Margin="500,40,500,20"
+                            Background="{StaticResource BackgroundColor3}"
+                            CornerRadius="30">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
                             </Border.Effect>
 
-                            <TextBlock Text="Управление организацией" FontFamily="Arian Bold" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="Arian Bold"
+                                FontSize="30"
+                                Foreground="{StaticResource ForegroundColor1}"
+                                Text="Управление организацией" />
                         </Border>
 
-                        <Border Margin="0 0 1200 20" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor6}">
+                        <Border
+                            Height="270"
+                            Margin="0,0,1200,20"
+                            Background="{StaticResource BackgroundColor6}"
+                            CornerRadius="30">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
                             </Border.Effect>
 
                             <StackPanel>
-                                <TextBlock Margin="30 30 30 0" Text="Добавить отделы" FontSize="35" TextWrapping="Wrap" FontFamily="Arian Bold" Foreground="{StaticResource BackgroundColor3}"/>
-                                <Button Margin="0 40 0 0" Height="100" Width="100" Style="{StaticResource RegOrgBtnStyle}" Content="+" FontSize="60" Click="BtnAddDepartment"/>
+                                <TextBlock
+                                    Margin="30,30,30,0"
+                                    FontFamily="Arian Bold"
+                                    FontSize="35"
+                                    Foreground="{StaticResource BackgroundColor3}"
+                                    Text="Добавить отделы"
+                                    TextWrapping="Wrap" />
+                                <Button
+                                    Width="100"
+                                    Height="100"
+                                    Margin="0,40,0,0"
+                                    Click="BtnAddDepartment"
+                                    Content="+"
+                                    FontSize="60"
+                                    Style="{StaticResource RegOrgBtnStyle}" />
                             </StackPanel>
                         </Border>
 
-                        <Border Margin="260 -290 920 20" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor6}">
+                        <Border
+                            Height="270"
+                            Margin="260,-290,920,20"
+                            Background="{StaticResource BackgroundColor6}"
+                            CornerRadius="30">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
                             </Border.Effect>
 
                             <StackPanel>
-                                <TextBlock Margin="30 30 30 0" Text="Добавить должности" FontSize="35" TextWrapping="Wrap" FontFamily="Arian Bold" Foreground="{StaticResource BackgroundColor3}"/>
-                                <Button Margin="0 40 0 0" Height="100" Width="100" Style="{StaticResource RegOrgBtnStyle}" Content="+" FontSize="60" Click="BtnAddPost"/>
+                                <TextBlock
+                                    Margin="30,30,30,0"
+                                    FontFamily="Arian Bold"
+                                    FontSize="35"
+                                    Foreground="{StaticResource BackgroundColor3}"
+                                    Text="Добавить должности"
+                                    TextWrapping="Wrap" />
+                                <Button
+                                    Width="100"
+                                    Height="100"
+                                    Margin="0,40,0,0"
+                                    Click="BtnAddPost"
+                                    Content="+"
+                                    FontSize="60"
+                                    Style="{StaticResource RegOrgBtnStyle}" />
                             </StackPanel>
                         </Border>
 
-                        <Border Margin="550 -310 0 0" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                        <Border
+                            Height="270"
+                            Margin="550,-310,0,0"
+                            Background="{StaticResource BackgroundColor3}"
+                            CornerRadius="30">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
                             </Border.Effect>
 
-                            <TextBlock Text="Здесь что то будет" FontSize="60" FontFamily="Arian Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="Arian Bold"
+                                FontSize="60"
+                                Foreground="{StaticResource ForegroundColor1}"
+                                Text="Здесь что то будет" />
                         </Border>
                     </StackPanel>
 
-                    <!-- Кнопки действий -->
-                    <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
-                        <Button Height="60" Width="180" Margin="0,40,20,0" Background="#6366F1" Cursor="Hand" FontWeight="SemiBold">
+                    <!--  Кнопки действий  -->
+                    <StackPanel
+                        Grid.Row="4"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Button
+                            Width="180"
+                            Height="60"
+                            Margin="0,40,20,0"
+                            Background="#6366F1"
+                            Cursor="Hand"
+                            FontWeight="SemiBold">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border Background="{TemplateBinding Background}" CornerRadius="12">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Border>
                                 </ControlTemplate>
                             </Button.Template>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="✏️" Margin="0,0,8,0" Foreground="White" FontSize="18"/>
-                                <TextBlock Text="Редактировать" Foreground="White" FontSize="18"/>
+                                <TextBlock
+                                    Margin="0,0,8,0"
+                                    FontSize="18"
+                                    Foreground="White"
+                                    Text="✏️" />
+                                <TextBlock
+                                    FontSize="18"
+                                    Foreground="White"
+                                    Text="Редактировать" />
                             </StackPanel>
                         </Button>
                     </StackPanel>

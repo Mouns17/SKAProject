@@ -24,5 +24,15 @@ namespace SKAProject.Pages
         {
             InitializeComponent();
         }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = SearchTextBox.Text.ToLower();
+        }
+
+        private void ReportCreate_Click(object sender, RoutedEventArgs e)
+        {
+            // new CreateReportWindow().Show();
+        }
     }
 }

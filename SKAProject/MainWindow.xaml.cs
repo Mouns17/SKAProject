@@ -60,13 +60,6 @@ namespace SKAProject
             MainFrame.Navigate(new Pages.ProfilePage());
         }
 
-
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            new SettingsWindow().Show();
-        }
-
-
         private void Logs_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Pages.LogsPage());
@@ -76,20 +69,6 @@ namespace SKAProject
         {
             new LoginWindow().Show();
             this.Close();
-        }
-
-        private void BtnRegOrg(object sender, RoutedEventArgs e)
-        {
-            if (_regOrgWindow == null)
-            {
-                _regOrgWindow = new RegOrgWindow();
-                _regOrgWindow.Closed += (s, args) => _regOrgWindow = null;
-                _regOrgWindow.Show();
-            }
-            else
-            {
-                _regOrgWindow.Activate(); 
-            }
         }
 
         private void Workers_Click(object sender, RoutedEventArgs e)

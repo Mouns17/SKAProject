@@ -93,6 +93,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddDepartmentWindow.xaml.cs">
+      <DependentUpon>AddDepartmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddPostWindow.xaml.cs">
+      <DependentUpon>AddPostWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddWorkerWindow.xaml.cs">
       <DependentUpon>AddWorkerWindow.xaml</DependentUpon>
     </Compile>
@@ -134,6 +140,14 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddDepartmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddPostWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddWorkerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

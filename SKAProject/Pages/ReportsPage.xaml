@@ -341,23 +341,15 @@
                     <Button
                         Grid.Column="2"
                         Width="230"
-                        Margin="1195,0,0,-300"
+                        Margin="1195,0,0,-260"
                         Click="ExportBtn_Click"
                         Content="Экспорт в Excel"
                         Cursor="Hand"
                         Style="{StaticResource ExportBtnStyle}" />
-                    <Button
-                        Grid.Column="2"
-                        Width="230"
-                        Margin="1195,0,0,-400"
-                        Click="ImportBtn_Click"
-                        Content="Импорт из Excel"
-                        Cursor="Hand"
-                        Style="{StaticResource ImportBtnStyle}" />
 
                     <Border
                         Grid.Row="2"
-                        Height="600"
+                        Height="680"
                         Margin="1200,0,0,0"
                         VerticalAlignment="Bottom"
                         Background="{StaticResource BackgroundColor3}"
@@ -372,10 +364,10 @@
 
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="150" />
-                                <RowDefinition Height="150" />
-                                <RowDefinition Height="150" />
-                                <RowDefinition Height="150" />
+                                <RowDefinition Height="170" />
+                                <RowDefinition Height="170" />
+                                <RowDefinition Height="170" />
+                                <RowDefinition Height="170" />
                             </Grid.RowDefinitions>
 
                             <TextBlock

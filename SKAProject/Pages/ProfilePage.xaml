@@ -83,19 +83,18 @@
                             <TextBlock Text="Время" FontFamily="Arian Bold" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ForegroundColor1}"/>
                         </Border>
 
-                        <Border Margin="0 0 200 20" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                        <Border Margin="0 0 200 20" Height="200" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
                             <Border.Effect>
                                 <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
                             </Border.Effect>
 
                             <StackPanel>
-                                <TextBlock x:Name="TBlockLogin" Margin="20 30 500 0" Text="Логин:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
                                 <TextBlock x:Name="TBlockEmail" Margin="20 30 500 0" Text="Email:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
                                 <TextBlock x:Name="TBlockPhone" Margin="20 30 500 0" Text="Телефон:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
                             </StackPanel>
                         </Border>
 
-                        <Border Margin="1250 -310 0 0" Height="270" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
+                        <Border Margin="1250 -240 0 0" Height="200" CornerRadius="30" Background="{StaticResource BackgroundColor3}">
                             <Border.Effect>
                                 <DropShadowEffect ShadowDepth="0" Color="#010210" Opacity="1" BlurRadius="15"/>
                             </Border.Effect>
@@ -122,7 +121,6 @@
                             </Border.Effect>
 
                             <StackPanel>
-                                <TextBlock x:Name="TBlockOrg" Margin="20 30 500 0" Text="Организация:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
                                 <TextBlock x:Name="TBlockDep" Margin="20 30 500 0" Text="Отдел:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
                                 <TextBlock x:Name="TBlockPost" Margin="20 30 500 0" Text="Должность:" FontSize="45" FontFamily="Arian Bold" Foreground="{StaticResource ForegroundColor1}"/>
                             </StackPanel>

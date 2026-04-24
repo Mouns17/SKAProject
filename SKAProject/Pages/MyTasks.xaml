@@ -338,10 +338,12 @@
                             </ScrollViewer>
                         </Grid>
                     </Border>
+ 
+                    <Button Style="{StaticResource ImportBtnStyle}" Margin="1070 0 0 -337" Width="360" Content="Сделать отчёт" Click="ReportCreate_Click"/>
 
                     <Border
                         Grid.Row="2"
-                        Margin="1070,0,0,0"
+                        Margin="1070,70,0,0"
                         Background="{StaticResource BackgroundColor3}"
                         CornerRadius="20">
                         <Border.Effect>
@@ -354,8 +356,8 @@
 
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="240" />
-                                <RowDefinition Height="240" />
+                                <RowDefinition Height="230" />
+                                <RowDefinition Height="230" />
                                 <RowDefinition Height="230" />
                             </Grid.RowDefinitions>
 
@@ -366,7 +368,7 @@
                                 FontSize="18"
                                 FontWeight="Bold"
                                 Foreground="#4A5568"
-                                Text="Статистика по задачам" />
+                                Text="Всего задач" />
                             <TextBlock
                                 Grid.Row="1"
                                 Margin="20,20,20,10"
@@ -374,7 +376,7 @@
                                 FontSize="18"
                                 FontWeight="Bold"
                                 Foreground="#4A5568"
-                                Text="График выполнения задач" />
+                                Text="Завершенных задач" />
                             <TextBlock
                                 Grid.Row="2"
                                 Margin="20,20,20,10"
@@ -382,7 +384,7 @@
                                 FontSize="18"
                                 FontWeight="Bold"
                                 Foreground="#4A5568"
-                                Text="Последние обновления по задачам" />
+                                Text="Незавершенных задач" />
                         </Grid>
                     </Border>
                 </Grid>
