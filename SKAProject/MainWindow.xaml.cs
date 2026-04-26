@@ -25,6 +25,23 @@ namespace SKAProject
             InitializeComponent();
             MainFrameStatic = MainFrame; 
             MainFrame.Navigate(new HomePage());
+            ApplyRoleAccess();
+        }
+
+        private void ApplyRoleAccess()
+        {
+            if (Session.Role != "User")
+                return;
+
+            BtnWorkers.Visibility = Visibility.Collapsed;       
+            BtnOrganization.Visibility = Visibility.Collapsed;   
+            BtnReports.Visibility = Visibility.Collapsed;        
+            BtnLogs.Visibility = Visibility.Collapsed;                                                           
+        }
+
+        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
 
         private void SearchBox2_TextChanged(object sender, TextChangedEventArgs e)

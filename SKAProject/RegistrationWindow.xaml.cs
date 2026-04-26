@@ -57,50 +57,66 @@ namespace SKAProject
             string lastname = TBoxLastName.Text.Trim();
             string middlename = TBoxMiddleName.Text.Trim();
 
+            // Проверка на пустые поля
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Заполните все обязательные поля (логин и пароль).");
+                return;
+            }
+
             try
             {
-                // Подключение к бд
                 using (MySqlConnection conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
 
-                    using (MySqlTransaction tx = conn.BeginTransaction())
+                    // Проверяем, не занят ли логин
+                    string checkQuery = "SELECT COUNT(*) FROM users WHERE Login = @lg";
+                    using (var checkCmd = new MySqlCommand(checkQuery, conn))
                     {
-                        MySqlCommand cmdUser = new MySqlCommand(@"INSERT INTO Users(Login, Password, FirstName, LastName, MiddleName) VALUES(@lg,@ps, @fn, @ln, @mn); SELECT LAST_INSERT_ID();", conn, tx);
+                        checkCmd.Parameters.AddWithValue("@lg", login);
+                        long exists = (long)await checkCmd.ExecuteScalarAsync();
+                        if (exists > 0)
+                        {
+                            MessageBox.Show("Этот логин уже используется. Пожалуйста, выберите другой.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+                    }
 
-                        // Передаём параметры в запрос
+                    // Начинаем транзакцию только после проверки
+                    using (var tx = conn.BeginTransaction())
+                    {
+                        MySqlCommand cmdUser = new MySqlCommand(
+                            @"INSERT INTO users (Login, Password, FirstName, LastName, MiddleName) 
+                      VALUES (@lg, @ps, @fn, @ln, @mn); 
+                      SELECT LAST_INSERT_ID();", conn, tx);
+
                         cmdUser.Parameters.AddWithValue("@lg", login);
-                        cmdUser.Parameters.AddWithValue("@ps", password);
+                        cmdUser.Parameters.AddWithValue("@ps", password);  // пароль лучше хэшировать, но пока оставим так
                         cmdUser.Parameters.AddWithValue("@fn", firstname);
                         cmdUser.Parameters.AddWithValue("@ln", lastname);
                         cmdUser.Parameters.AddWithValue("@mn", middlename);
 
-                        // Выполняем запрос
-                        await cmdUser.ExecuteScalarAsync();
-
-                        // Подтверждение транзакции
+                        int newUserId = Convert.ToInt32(await cmdUser.ExecuteScalarAsync());
                         tx.Commit();
+
+                        // Запись в лог
+                        await Logger.LogAsync(newUserId, "Регистрация нового пользователя", "Пользователи", $"Логин: {login}");
                     }
                 }
 
-                // Проверка на пустые поля
-                if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
-                {
-                    MessageBox.Show("Заполните все поля");
-                    return;
-                }
-
-                MessageBox.Show("Регистрация завершена");
+                MessageBox.Show("Регистрация успешно завершена!");
                 new LoginWindow().Show();
-                Close();
+                this.Close();
             }
-
-            // При каких то ошибках связанных с БД
+            catch (MySqlException ex) when (ex.Number == 1062) // дубликат ключа
+            {
+                MessageBox.Show("Этот логин уже занят. Выберите другой.", "Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка регистрации: " + ex.Message);
             }
-
         }
 
         private void BtnBack(object sender, RoutedEventArgs e)

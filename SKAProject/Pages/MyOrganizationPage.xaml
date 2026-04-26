@@ -83,7 +83,8 @@
                                     Margin="300,-140,100,60"
                                     FontFamily="Arian Bold"
                                     FontSize="65"
-                                    Foreground="{StaticResource BackgroundColor3}" />
+                                    Foreground="{StaticResource BackgroundColor3}"
+                                    Text="Моя организация" />
                             </StackPanel>
                         </Border>
                     </StackPanel>

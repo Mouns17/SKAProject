@@ -8,6 +8,7 @@ namespace SKAProject
 {
     public static class Session
     {
-        public static int UserID { get; set; }
+            public static int UserID { get; set; }
+            public static string Role { get; set; } 
     }
 }

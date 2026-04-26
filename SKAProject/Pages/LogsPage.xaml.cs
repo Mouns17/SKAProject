@@ -67,10 +67,10 @@ namespace SKAProject.Pages
                                 userId = reader.GetInt32(reader.GetOrdinal("UserID"));
 
                             string userName;
-                            if (reader.IsDBNull(reader.GetOrdinal("UserFullName")))
+                            if (reader.IsDBNull(reader.GetOrdinal("Login")))
                                 userName = "Система";
                             else
-                                userName = reader.GetString(reader.GetOrdinal("UserFullName"));
+                                userName = reader.GetString(reader.GetOrdinal("Login"));
 
                             string action = reader.GetString(reader.GetOrdinal("Action"));
 
@@ -101,10 +101,17 @@ namespace SKAProject.Pages
                         }
                     }
                 }
-
+                LogsItemsControl.ItemsSource = null;
                 LogsItemsControl.ItemsSource = allLogs;
+
                 LoadEventTypes();
-                //  ApplyFilters();
+
+                // Принудительно обновляем привязку
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    LogsItemsControl.ItemsSource = allLogs;
+                });
+                ApplyFilters();
             }
             catch (Exception ex)
             {
@@ -134,7 +141,6 @@ namespace SKAProject.Pages
             }
         }
 
-        /*
         private void ApplyFilters()
         {
             string search = SearchTextBox.Text?.ToLower() ?? "";
@@ -189,19 +195,18 @@ namespace SKAProject.Pages
 
             LogsItemsControl.ItemsSource = new ObservableCollection<LogEntry>(filtered);
         }
-        */
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             SearchPlaceholder.Visibility = string.IsNullOrWhiteSpace(SearchTextBox.Text)
                 ? Visibility.Visible
                 : Visibility.Collapsed;
-            // ApplyFilters();
+            ApplyFilters();
         }
 
         private void Filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // ApplyFilters();
+            ApplyFilters();
         }
     }
 }

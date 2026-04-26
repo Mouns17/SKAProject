@@ -29,6 +29,7 @@ namespace SKAProject
             reg.Show();
             this.Close();
         }
+
         private async void BtnEnter(object sender, RoutedEventArgs e)
         {
             string login = TBoxLogin.Text.Trim();
@@ -38,43 +39,49 @@ namespace SKAProject
                 MessageBox.Show("Введите логин и пароль");
                 return;
             }
-            
+
             try
             {
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    var cmd = new MySqlCommand(@"SELECT UserID FROM Users WHERE Login=@lg AND Password=@ps", conn);
+                    // Изменён запрос – теперь выбираем и UserID, и Role
+                    var cmd = new MySqlCommand(
+                        @"SELECT UserID, Role FROM Users WHERE Login=@lg AND Password=@ps", conn);
 
                     cmd.Parameters.AddWithValue("@lg", login);
                     cmd.Parameters.AddWithValue("@ps", password);
-                    
-                    var result = await cmd.ExecuteScalarAsync();
 
-                    if (result == null)
+                    using (var reader = await cmd.ExecuteReaderAsync())
                     {
-                        MessageBox.Show("Неверный логин или пароль");
-                    }
-                    else
-                    {
-                        int userId = Convert.ToInt32(result);
-                        Session.UserID = userId;
+                        if (await reader.ReadAsync())
+                        {
+                            int userId = reader.GetInt32("UserID");
+                            string role = reader.GetString("Role");
 
-                        MessageBox.Show("Вход выполнен");
-                        new MainWindow().Show();
-                        this.Close();
+                            // Сохраняем в сессию
+                            Session.UserID = userId;
+                            Session.Role = role;          
+
+                            // Логирование входа
+                            await Logger.LogAsync(userId, "Вход в систему", "Авторизация", "Успешный вход");
+
+                            MessageBox.Show("Вход выполнен");
+                            new MainWindow().Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Неверный логин или пароль");
+                        }
                     }
                 }
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка авторизации: " + ex.Message);
             }
         }
-
-
-
 
         private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

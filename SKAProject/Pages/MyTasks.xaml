@@ -338,8 +338,13 @@
                             </ScrollViewer>
                         </Grid>
                     </Border>
- 
-                    <Button Style="{StaticResource ImportBtnStyle}" Margin="1070 0 0 -337" Width="360" Content="Сделать отчёт" Click="ReportCreate_Click"/>
+
+                    <Button
+                        Width="360"
+                        Margin="1070,0,0,-337"
+                        Click="ReportCreate_Click"
+                        Content="Отправить отчёт"
+                        Style="{StaticResource ImportBtnStyle}" />
 
                     <Border
                         Grid.Row="2"

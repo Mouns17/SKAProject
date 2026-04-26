@@ -14,7 +14,7 @@
             BorderBrush="{StaticResource BackgroundColor6}"
             BorderThickness="1"
             CornerRadius="30">
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
                 <ScrollViewer.Resources>
                     <Style TargetType="ScrollBar">
                         <Setter Property="Width" Value="6" />
@@ -139,7 +139,6 @@
                                         ShadowDepth="0"
                                         Color="#010210" />
                                 </ComboBox.Effect>
-                                <ComboBoxItem Content="Редактирование" IsSelected="True" />
                             </ComboBox>
 
                             <!--  Фильтр по должности  -->
@@ -210,17 +209,17 @@
                                 <Grid Height="60">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="260" />
+                                        <ColumnDefinition Width="260" />
+                                        <ColumnDefinition Width="340" />
+                                        <ColumnDefinition Width="260" />
                                         <ColumnDefinition Width="320" />
-                                        <ColumnDefinition Width="220" />
-                                        <ColumnDefinition Width="240" />
-                                        <ColumnDefinition Width="360" />
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock
                                         Grid.Column="1"
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Center"
+                                        Margin="30,0,0,0"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         FontSize="18"
                                         FontWeight="Bold"
@@ -229,7 +228,7 @@
                                     <TextBlock
                                         Grid.Column="2"
                                         Margin="10,0,0,0"
-                                        HorizontalAlignment="Center"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         FontSize="18"
                                         FontWeight="Bold"
@@ -237,8 +236,8 @@
                                         Text="Пользователь" />
                                     <TextBlock
                                         Grid.Column="3"
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Center"
+                                        Margin="50,0,0,0"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         FontSize="18"
                                         FontWeight="Bold"
@@ -246,8 +245,8 @@
                                         Text="Событие" />
                                     <TextBlock
                                         Grid.Column="4"
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Center"
+                                        Margin="80,0,0,0"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         FontSize="18"
                                         FontWeight="Bold"
@@ -255,8 +254,8 @@
                                         Text="Тип" />
                                     <TextBlock
                                         Grid.Column="5"
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Center"
+                                        Margin="90,0,0,0"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         FontSize="18"
                                         FontWeight="Bold"
@@ -265,11 +264,11 @@
                                 </Grid>
                             </Border>
 
-                            <!--  Список сотрудников  -->
+                            <!--  Логи  -->
                             <ScrollViewer
                                 Grid.Row="1"
                                 HorizontalScrollBarVisibility="Disabled"
-                                VerticalScrollBarVisibility="Auto">
+                                VerticalScrollBarVisibility="Hidden">
                                 <ScrollViewer.Resources>
                                     <Style TargetType="ScrollBar">
                                         <Setter Property="Width" Value="6" />
@@ -286,16 +285,17 @@
                                                 BorderThickness="0,0,0,1">
                                                 <Grid Height="65">
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="300" />
-                                                        <ColumnDefinition Width="320" />
-                                                        <ColumnDefinition Width="220" />
-                                                        <ColumnDefinition Width="240" />
-                                                        <ColumnDefinition Width="360" />
+                                                        <ColumnDefinition Width="260" />
+                                                        <ColumnDefinition Width="260" />
+                                                        <ColumnDefinition Width="260" />
+                                                        <ColumnDefinition Width="260" />
+                                                        <ColumnDefinition Width="280" />
                                                     </Grid.ColumnDefinitions>
 
                                                     <TextBlock
                                                         Grid.Column="0"
-                                                        Margin="10,0,0,0"
+                                                        Margin="30,0,0,0"
+                                                        HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         Foreground="#4A5568"
@@ -303,6 +303,7 @@
                                                     <TextBlock
                                                         Grid.Column="1"
                                                         Margin="10,0,0,0"
+                                                        HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         FontWeight="SemiBold"
@@ -310,21 +311,24 @@
                                                         Text="{Binding UserName}" />
                                                     <TextBlock
                                                         Grid.Column="2"
-                                                        Margin="10,0,0,0"
+                                                        Margin="50,0,0,0"
+                                                        HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         Foreground="#4A5568"
                                                         Text="{Binding Action}" />
                                                     <TextBlock
                                                         Grid.Column="3"
-                                                        Margin="10,0,0,0"
+                                                        Margin="50,0,0,0"
+                                                        HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         Foreground="#4A5568"
                                                         Text="{Binding EventType}" />
                                                     <TextBlock
                                                         Grid.Column="4"
-                                                        Margin="10,0,0,0"
+                                                        Margin="70,0,0,0"
+                                                        HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         Foreground="#4A5568"

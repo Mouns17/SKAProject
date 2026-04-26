@@ -188,6 +188,11 @@ namespace SKAProject
                         }
 
                         tx.Commit();
+
+                        // Лог: «Добавлен сотрудник такой-то»
+                        string logMsg = $"Добавлен сотрудник: {foundUserId}";
+                        // или можно подставить ФИО из формы
+                        await Logger.LogAsync(Session.UserID, "Добавление сотрудника", "Управление персоналом", logMsg);
                     }
                 }
 

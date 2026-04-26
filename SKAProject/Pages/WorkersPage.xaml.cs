@@ -186,6 +186,10 @@ namespace SKAProject.Pages
                         cmd.Parameters.AddWithValue("@id", id);
                         await cmd.ExecuteNonQueryAsync();
                     }
+
+                    string logMsg = $"Удалён сотрудник с WrkID = {id}";
+                    await Logger.LogAsync(Session.UserID, "Удаление сотрудника", "Управление персоналом", logMsg);
+
                 }
                 LoadWorkers();
             }

@@ -9,13 +9,13 @@
     Height="1080"
     Background="#b7b4e0"
     FontFamily="Arian"
-    ResizeMode="NoResize"
+    ResizeMode="CanResize"
     Topmost="False"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Grid>
+    <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition />
@@ -147,16 +147,20 @@
                     Style="{StaticResource MenuBtnStyle}" />
 
                 <Button
+                    x:Name="BtnWorkers"
                     Margin="0,15,0,0"
                     Click="Workers_Click"
                     Content="👥  Список работников"
-                    Style="{StaticResource MenuBtnStyle}" />
+                    Style="{StaticResource MenuBtnStyle}"
+                    Visibility="Visible" />
 
                 <Button
+                    x:Name="BtnOrganization"
                     Margin="0,15,0,0"
                     Click="MyOrg_Click"
                     Content="🏢  Моя организация"
-                    Style="{StaticResource MenuBtnStyle}" />
+                    Style="{StaticResource MenuBtnStyle}"
+                    Visibility="Visible" />
 
                 <Button
                     Margin="0,15,0,0"
@@ -165,16 +169,20 @@
                     Style="{StaticResource MenuBtnStyle}" />
 
                 <Button
+                    x:Name="BtnReports"
                     Margin="0,15,0,0"
                     Click="Otcheti_Click"
                     Content="📂  Отчеты работников"
-                    Style="{StaticResource MenuBtnStyle}" />
+                    Style="{StaticResource MenuBtnStyle}"
+                    Visibility="Visible" />
 
                 <Button
+                    x:Name="BtnLogs"
                     Margin="0,15,0,0"
                     Click="Logs_Click"
                     Content="🗂  Логи"
-                    Style="{StaticResource MenuBtnStyle}" />
+                    Style="{StaticResource MenuBtnStyle}"
+                    Visibility="Visible" />
 
                 <Button
                     Margin="0,380"
