@@ -11,7 +11,7 @@
         <Border
             Margin="-5,0,-5,15"
             Background="#EDF4FF"
-            BorderBrush="{StaticResource BackgroundColor6}"
+            BorderBrush="{DynamicResource BackgroundColor6}"
             BorderThickness="1"
             CornerRadius="30">
 
@@ -32,13 +32,13 @@
                         <TextBlock
                             FontSize="40"
                             FontWeight="SemiBold"
-                            Foreground="{StaticResource ForegroundColor1}"
+                            Foreground="{DynamicResource ForegroundColor1}"
                             Text="Главное меню" />
 
                         <TextBlock
                             Margin="0,8,0,0"
                             FontSize="30"
-                            Foreground="{StaticResource ForegroundColor1}"
+                            Foreground="{DynamicResource ForegroundColor1}"
                             Text="Общая статистика и быстрый доступ" />
 
                     </StackPanel>
@@ -50,7 +50,7 @@
                         Margin="0,0,0,30"
                         Columns="4">
 
-                        <Border Style="{StaticResource ModernCard}">
+                        <Border Style="{DynamicResource ModernCard}">
                             <StackPanel>
                                 <TextBlock FontSize="22" Text="👥 Работники" />
                                 <TextBlock
@@ -60,7 +60,7 @@
                             </StackPanel>
                         </Border>
 
-                        <Border Style="{StaticResource ModernCard}">
+                        <Border Style="{DynamicResource ModernCard}">
                             <StackPanel>
                                 <TextBlock FontSize="22" Text="📋 Задачи" />
                                 <TextBlock
@@ -70,7 +70,7 @@
                             </StackPanel>
                         </Border>
 
-                        <Border Style="{StaticResource ModernCard}">
+                        <Border Style="{DynamicResource ModernCard}">
                             <StackPanel>
                                 <TextBlock FontSize="22" Text="🏢 Организации" />
                                 <TextBlock
@@ -79,7 +79,7 @@
                                     Text="3" />
                             </StackPanel>
                         </Border>
-                        <Border Style="{StaticResource ModernCard}">
+                        <Border Style="{DynamicResource ModernCard}">
                             <StackPanel>
                                 <TextBlock FontSize="22" Text="⚠ События" />
                                 <TextBlock
@@ -91,7 +91,7 @@
                     </UniformGrid>
 
                     <!--  Последние действия  -->
-                    <Border Grid.Row="2" Style="{StaticResource ModernCard}">
+                    <Border Grid.Row="2" Style="{DynamicResource ModernCard}">
                         <StackPanel>
                             <TextBlock
                                 Margin="0,0,0,15"

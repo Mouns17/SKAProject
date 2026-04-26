@@ -32,7 +32,7 @@
                         Margin="375,5,0,80"
                         Click="BtnClose"
                         Content="✖︎"
-                        Style="{StaticResource ControlBtnStyle}" />
+                        Style="{DynamicResource ControlBtnStyle}" />
 
                     <TextBlock
                         Margin="0,-60,0,0"
@@ -51,7 +51,7 @@
                     <Border
                         Height="1"
                         Margin="40,0,40,0"
-                        Background="{StaticResource DividerBrush}" />
+                        Background="{DynamicResource DividerBrush}" />
 
                     <TextBox
                         x:Name="TBoxPostName"
@@ -59,21 +59,21 @@
                         Height="35"
                         Margin="0,15,0,15"
                         HorizontalAlignment="Center"
-                        Style="{StaticResource TxtBoxStyle}"
+                        Style="{DynamicResource TxtBoxStyle}"
                         Tag="Введите название должности"
                         Visibility="Visible" />
 
                     <Border
                         Height="1"
                         Margin="40,0,40,0"
-                        Background="{StaticResource DividerBrush}" />
+                        Background="{DynamicResource DividerBrush}" />
 
                     <Button
                         x:Name="BtnAddVis"
                         Margin="50,15,50,0"
                         Click="BtnAdd"
                         Content="Добавить"
-                        Style="{StaticResource LogBtnStyle}"
+                        Style="{DynamicResource LogBtnStyle}"
                         Visibility="Visible" />
 
                 </StackPanel>

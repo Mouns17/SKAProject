@@ -11,7 +11,7 @@
             Margin="-5,0,-5,15"
             Padding="0"
             Background="#EDF4FF"
-            BorderBrush="{StaticResource BackgroundColor6}"
+            BorderBrush="{DynamicResource BackgroundColor6}"
             BorderThickness="1"
             CornerRadius="30">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
@@ -43,12 +43,12 @@
                         <TextBlock
                             FontSize="40"
                             FontWeight="SemiBold"
-                            Foreground="{StaticResource ForegroundColor1}"
+                            Foreground="{DynamicResource ForegroundColor1}"
                             Text="Мои задачи" />
                         <TextBlock
                             Margin="0,8,0,0"
                             FontSize="30"
-                            Foreground="{StaticResource ForegroundColor1}"
+                            Foreground="{DynamicResource ForegroundColor1}"
                             Text="Ваши персональные задачи и назначения" />
                     </StackPanel>
 
@@ -66,8 +66,8 @@
                                 Grid.Column="0"
                                 Height="55"
                                 Margin="0,0,0,0"
-                                Background="{StaticResource BackgroundColor3}"
-                                BorderBrush="{StaticResource BackgroundColor6}"
+                                Background="{DynamicResource BackgroundColor3}"
+                                BorderBrush="{DynamicResource BackgroundColor6}"
                                 BorderThickness="1"
                                 CornerRadius="15">
                                 <Border.Effect>
@@ -87,7 +87,7 @@
                                         Margin="20,0,10,0"
                                         VerticalAlignment="Center"
                                         FontSize="20"
-                                        Foreground="{StaticResource ForegroundColor1}"
+                                        Foreground="{DynamicResource ForegroundColor1}"
                                         Text="🔍" />
                                     <TextBox
                                         x:Name="SearchTextBox"
@@ -97,7 +97,7 @@
                                         BorderThickness="0"
                                         FontFamily="Arian"
                                         FontSize="18"
-                                        Foreground="{StaticResource ForegroundColor1}" />
+                                        Foreground="{DynamicResource ForegroundColor1}" />
                                     <TextBlock
                                         x:Name="SearchPlaceholder"
                                         Grid.Column="1"
@@ -117,7 +117,7 @@
                     <Border
                         Grid.Row="2"
                         Margin="0,0,400,0"
-                        Background="{StaticResource BackgroundColor3}"
+                        Background="{DynamicResource BackgroundColor3}"
                         CornerRadius="20">
                         <Border.Effect>
                             <DropShadowEffect
@@ -344,12 +344,12 @@
                         Margin="1070,0,0,-337"
                         Click="ReportCreate_Click"
                         Content="Отправить отчёт"
-                        Style="{StaticResource ImportBtnStyle}" />
+                        Style="{DynamicResource ImportBtnStyle}" />
 
                     <Border
                         Grid.Row="2"
                         Margin="1070,70,0,0"
-                        Background="{StaticResource BackgroundColor3}"
+                        Background="{DynamicResource BackgroundColor3}"
                         CornerRadius="20">
                         <Border.Effect>
                             <DropShadowEffect

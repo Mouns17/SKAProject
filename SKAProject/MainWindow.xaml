@@ -31,27 +31,27 @@
                 Click="BtnRollup"
                 Content="➖"
                 Foreground="#010210"
-                Style="{StaticResource ControlBtnStyle2}" />
+                Style="{DynamicResource ControlBtnStyle2}" />
 
             <Button
                 Margin="1405,-35,0,0"
                 Click="BtnMinimize"
                 Content="🔲"
                 Foreground="#010210"
-                Style="{StaticResource ControlBtnStyle2}" />
+                Style="{DynamicResource ControlBtnStyle2}" />
 
             <Button
                 Margin="1490,-35,0,80"
                 Click="BtnClose"
                 Content="✖︎"
                 Foreground="#010210"
-                Style="{StaticResource ControlBtnStyle2}" />
+                Style="{DynamicResource ControlBtnStyle2}" />
 
             <Border
                 Height="40"
                 Margin="15,-120,150,70"
                 Background="#EDF4FF"
-                BorderBrush="{StaticResource BackgroundColor6}"
+                BorderBrush="{DynamicResource BackgroundColor6}"
                 BorderThickness="1"
                 CornerRadius="15">
                 <DockPanel Margin="0,0,0,0">
@@ -104,8 +104,8 @@
         <Border
             Grid.RowSpan="2"
             Grid.Column="0"
-            Background="{StaticResource BackgroundColor4}"
-            BorderBrush="{StaticResource BackgroundColor6}"
+            Background="{DynamicResource BackgroundColor4}"
+            BorderBrush="{DynamicResource BackgroundColor6}"
             BorderThickness="0,0,1,0">
             <StackPanel Margin="0,20,20,20">
 
@@ -138,20 +138,20 @@
                     Margin="0,-40,0,0"
                     Click="Home_Click"
                     Content="🏠  Главное меню"
-                    Style="{StaticResource MenuBtnStyle}" />
+                    Style="{DynamicResource MenuBtnStyle}" />
 
                 <Button
                     Margin="0,15,0,0"
                     Click="Profile_Click"
                     Content="👤  Профиль"
-                    Style="{StaticResource MenuBtnStyle}" />
+                    Style="{DynamicResource MenuBtnStyle}" />
 
                 <Button
                     x:Name="BtnWorkers"
                     Margin="0,15,0,0"
                     Click="Workers_Click"
                     Content="👥  Список работников"
-                    Style="{StaticResource MenuBtnStyle}"
+                    Style="{DynamicResource MenuBtnStyle}"
                     Visibility="Visible" />
 
                 <Button
@@ -159,21 +159,21 @@
                     Margin="0,15,0,0"
                     Click="MyOrg_Click"
                     Content="🏢  Моя организация"
-                    Style="{StaticResource MenuBtnStyle}"
+                    Style="{DynamicResource MenuBtnStyle}"
                     Visibility="Visible" />
 
                 <Button
                     Margin="0,15,0,0"
                     Click="MyTasks_Click"
                     Content="📅  Мои задачи"
-                    Style="{StaticResource MenuBtnStyle}" />
+                    Style="{DynamicResource MenuBtnStyle}" />
 
                 <Button
                     x:Name="BtnReports"
                     Margin="0,15,0,0"
                     Click="Otcheti_Click"
                     Content="📂  Отчеты работников"
-                    Style="{StaticResource MenuBtnStyle}"
+                    Style="{DynamicResource MenuBtnStyle}"
                     Visibility="Visible" />
 
                 <Button
@@ -181,14 +181,23 @@
                     Margin="0,15,0,0"
                     Click="Logs_Click"
                     Content="🗂  Логи"
-                    Style="{StaticResource MenuBtnStyle}"
+                    Style="{DynamicResource MenuBtnStyle}"
                     Visibility="Visible" />
+
+                <Button
+                    x:Name="ThemeToggleButton"
+                    Width="150"
+                    Height="40"
+                    Margin="10"
+                    Click="ThemeToggleButton_Click"
+                    Content="🌙 Тёмная тема"
+                    Cursor="Hand" />
 
                 <Button
                     Margin="0,380"
                     Click="Logout_Click"
                     Content="🚪  Выход"
-                    Style="{StaticResource MenuBtnStyle}" />
+                    Style="{DynamicResource MenuBtnStyle}" />
             </StackPanel>
         </Border>
 

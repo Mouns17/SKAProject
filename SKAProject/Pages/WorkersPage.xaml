@@ -11,7 +11,7 @@
             Margin="-5,0,-5,15"
             Padding="0"
             Background="#EDF4FF"
-            BorderBrush="{StaticResource BackgroundColor6}"
+            BorderBrush="{DynamicResource BackgroundColor6}"
             BorderThickness="1"
             CornerRadius="30">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
@@ -43,12 +43,12 @@
                         <TextBlock
                             FontSize="40"
                             FontWeight="SemiBold"
-                            Foreground="{StaticResource ForegroundColor1}"
+                            Foreground="{DynamicResource ForegroundColor1}"
                             Text="Сотрудники" />
                         <TextBlock
                             Margin="0,8,0,0"
                             FontSize="30"
-                            Foreground="{StaticResource ForegroundColor1}"
+                            Foreground="{DynamicResource ForegroundColor1}"
                             Text="Управление персоналом организации" />
                     </StackPanel>
 
@@ -66,8 +66,8 @@
                                 Grid.Column="0"
                                 Height="55"
                                 Margin="0,0,20,0"
-                                Background="{StaticResource BackgroundColor3}"
-                                BorderBrush="{StaticResource BackgroundColor6}"
+                                Background="{DynamicResource BackgroundColor3}"
+                                BorderBrush="{DynamicResource BackgroundColor6}"
                                 BorderThickness="1"
                                 CornerRadius="15">
                                 <Border.Effect>
@@ -87,7 +87,7 @@
                                         Margin="20,0,10,0"
                                         VerticalAlignment="Center"
                                         FontSize="20"
-                                        Foreground="{StaticResource ForegroundColor1}"
+                                        Foreground="{DynamicResource ForegroundColor1}"
                                         Text="🔍" />
                                     <TextBox
                                         x:Name="SearchTextBox"
@@ -97,7 +97,7 @@
                                         BorderThickness="0"
                                         FontFamily="Arian"
                                         FontSize="18"
-                                        Foreground="{StaticResource ForegroundColor1}" />
+                                        Foreground="{DynamicResource ForegroundColor1}" />
                                     <TextBlock
                                         x:Name="SearchPlaceholder"
                                         Grid.Column="1"
@@ -211,7 +211,7 @@
                                 Margin="0,0,15,0"
                                 VerticalAlignment="Center"
                                 FontSize="20"
-                                Foreground="{StaticResource ForegroundColor1}"
+                                Foreground="{DynamicResource ForegroundColor1}"
                                 Text="Отдел:" />
                             <ComboBox
                                 x:Name="DepartmentFilterComboBox"
@@ -220,10 +220,10 @@
                                 Margin="0,0,25,0"
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                Background="{StaticResource BackgroundColor3}"
+                                Background="{DynamicResource BackgroundColor3}"
                                 BorderThickness="0"
                                 FontSize="18"
-                                Foreground="{StaticResource ForegroundColor1}">
+                                Foreground="{DynamicResource ForegroundColor1}">
                                 <ComboBox.Effect>
                                     <DropShadowEffect
                                         BlurRadius="10"
@@ -240,7 +240,7 @@
                                 Margin="0,0,15,0"
                                 VerticalAlignment="Center"
                                 FontSize="20"
-                                Foreground="{StaticResource ForegroundColor1}"
+                                Foreground="{DynamicResource ForegroundColor1}"
                                 Text="Должность:" />
                             <ComboBox
                                 x:Name="PositionFilterComboBox"
@@ -249,10 +249,10 @@
                                 Margin="0,0,25,0"
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                Background="{StaticResource BackgroundColor3}"
+                                Background="{DynamicResource BackgroundColor3}"
                                 BorderThickness="0"
                                 FontSize="18"
-                                Foreground="{StaticResource ForegroundColor1}">
+                                Foreground="{DynamicResource ForegroundColor1}">
                                 <ComboBox.Effect>
                                     <DropShadowEffect
                                         BlurRadius="10"
@@ -269,7 +269,7 @@
                                 Margin="0,0,15,0"
                                 VerticalAlignment="Center"
                                 FontSize="20"
-                                Foreground="{StaticResource ForegroundColor1}"
+                                Foreground="{DynamicResource ForegroundColor1}"
                                 Text="Статус:" />
                             <ComboBox
                                 x:Name="StatusFilterComboBox"
@@ -277,10 +277,10 @@
                                 Height="45"
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                Background="{StaticResource BackgroundColor3}"
+                                Background="{DynamicResource BackgroundColor3}"
                                 BorderThickness="0"
                                 FontSize="18"
-                                Foreground="{StaticResource ForegroundColor1}">
+                                Foreground="{DynamicResource ForegroundColor1}">
                                 <ComboBox.Effect>
                                     <DropShadowEffect
                                         BlurRadius="10"
@@ -300,14 +300,14 @@
                                 Click="ExportBtn_Click"
                                 Content="Экспорт в Excel"
                                 Cursor="Hand"
-                                Style="{StaticResource ExportBtnStyle}" />
+                                Style="{DynamicResource ExportBtnStyle}" />
                         </Grid>
                     </StackPanel>
 
                     <!--  Таблица сотрудников в стиле логов  -->
                     <Border
                         Grid.Row="2"
-                        Background="{StaticResource BackgroundColor3}"
+                        Background="{DynamicResource BackgroundColor3}"
                         CornerRadius="20">
                         <Border.Effect>
                             <DropShadowEffect

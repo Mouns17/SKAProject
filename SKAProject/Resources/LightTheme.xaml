@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="BackgroundColor1" Color="#C0C9EA" />
+    <SolidColorBrush x:Key="BackgroundColor2" Color="#EDF4FF" />
+    <SolidColorBrush x:Key="BackgroundColor3" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="BackgroundColor4" Color="#EDF4FF" />
+    <SolidColorBrush x:Key="BackgroundColor5" Color="#b7b4e0" />
+    <SolidColorBrush x:Key="BackgroundColor6" Color="#6366F1" />
+    <SolidColorBrush x:Key="ForegroundColor1" Color="#010210" />
+
+    <SolidColorBrush x:Key="TextForeground" Color="#010210" />
+    <SolidColorBrush x:Key="HintForeground" Color="DimGray" />
+    <SolidColorBrush x:Key="PlaceholderForeground" Color="#8899AA" />
+
+    <SolidColorBrush x:Key="ButtonBackground" Color="#6366F1" />
+    <SolidColorBrush x:Key="ButtonForeground" Color="White" />
+    <SolidColorBrush x:Key="ButtonHoverBackground" Color="#7375f2" />
+    <SolidColorBrush x:Key="ButtonBorderBrush" Color="Transparent" />
+
+    <SolidColorBrush x:Key="MenuButtonHoverForeground" Color="#4447ee" />
+    <SolidColorBrush x:Key="MenuButtonSelectedBackground" Color="#b7b4e0" />
+    <SolidColorBrush x:Key="MenuButtonIndicatorFill" Color="#6366F1" />
+
+    <SolidColorBrush x:Key="CardBackground" Color="#370066" />
+    <SolidColorBrush x:Key="ModernCardBackground" Color="#b7b4e0" />
+    <SolidColorBrush x:Key="WorkerCardBackground" Color="#b7b4e0" />
+    <SolidColorBrush x:Key="StatusBadgeBackground" Color="#EDF4FF" />
+
+    <LinearGradientBrush x:Key="DividerBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#00250044" />
+        <GradientStop Offset="0.5" Color="#6366F1" />
+        <GradientStop Offset="0.7" Color="#6366F1" />
+        <GradientStop Offset="1" Color="#002e0055" />
+    </LinearGradientBrush>
+
+</ResourceDictionary>

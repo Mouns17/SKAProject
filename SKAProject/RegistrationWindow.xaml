@@ -16,7 +16,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Левая панель -->
-                <Border Grid.Column="0" CornerRadius="20,120,120,20" Background="{StaticResource BackgroundColor6}">
+                <Border Grid.Column="0" CornerRadius="20,120,120,20" Background="{DynamicResource BackgroundColor6}">
 
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="270">
 
@@ -24,7 +24,7 @@
 
                         <TextBlock Text="Заполните данные для создания аккаунта" FontSize="14" Foreground="#D0D0D0" TextAlignment="Center" Margin="0,0,0,20"/>
 
-                        <Button Content="Назад" Style="{StaticResource RegBtnStyle}" Click="BtnBack"/>
+                        <Button Content="Назад" Style="{DynamicResource RegBtnStyle}" Click="BtnBack"/>
 
                     </StackPanel>
                 </Border>
@@ -33,33 +33,33 @@
                 <Grid Grid.Column="1">
                     <StackPanel>
 
-                        <Button Content="➖" Style="{StaticResource ControlBtnStyle}" Margin="292,10,0,0" Click="BtnRollup"/>
+                        <Button Content="➖" Style="{DynamicResource ControlBtnStyle}" Margin="292,10,0,0" Click="BtnRollup"/>
 
-                        <Button Content="✖︎" Style="{StaticResource ControlBtnStyle}" Margin="345,-25,0,70" Click="BtnClose"/>
+                        <Button Content="✖︎" Style="{DynamicResource ControlBtnStyle}" Margin="345,-25,0,70" Click="BtnClose"/>
 
                         <TextBlock Text="Создание аккаунта" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5"/>
 
-                        <TextBlock Text="Введите личные данные" FontSize="12" Foreground="{StaticResource BackgroundColor6}" TextAlignment="Center"/>
+                        <TextBlock Text="Введите личные данные" FontSize="12" Foreground="{DynamicResource BackgroundColor6}" TextAlignment="Center"/>
 
-                        <Border Height="1" Margin="0,10" Background="{StaticResource DividerBrush}"/>
+                        <Border Height="1" Margin="0,10" Background="{DynamicResource DividerBrush}"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите логин" x:Name="TBoxLogin" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Visible"/>
+                        <TextBox Style="{DynamicResource TxtBoxStyle}" Tag="Введите логин" x:Name="TBoxLogin" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Visible"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите пароль" x:Name="TBoxPassword" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Visible"/>
+                        <TextBox Style="{DynamicResource TxtBoxStyle}" Tag="Введите пароль" x:Name="TBoxPassword" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Visible"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Повторите пароль" x:Name="TBoxRePassword" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Visible"/>
+                        <TextBox Style="{DynamicResource TxtBoxStyle}" Tag="Повторите пароль" x:Name="TBoxRePassword" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Visible"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите имя" x:Name="TBoxFirstName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                        <TextBox Style="{DynamicResource TxtBoxStyle}" Tag="Введите имя" x:Name="TBoxFirstName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите фамилию" x:Name="TBoxLastName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                        <TextBox Style="{DynamicResource TxtBoxStyle}" Tag="Введите фамилию" x:Name="TBoxLastName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите отчество" x:Name="TBoxMiddleName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                        <TextBox Style="{DynamicResource TxtBoxStyle}" Tag="Введите отчество" x:Name="TBoxMiddleName" Height="35" Width="300" Margin="0 6" HorizontalAlignment="Center" Visibility="Collapsed"/>
 
-                        <Border Height="1" Margin="0,10" Background="{StaticResource DividerBrush}"/>
+                        <Border Height="1" Margin="0,10" Background="{DynamicResource DividerBrush}"/>
 
-                        <Button Content="Продолжить > > >" Style="{StaticResource LogBtnStyle}" Margin="50 10 50 0" x:Name="BtnNextRegVis" Click="BtnNextReg" Visibility="Visible"/>
+                        <Button Content="Продолжить > > >" Style="{DynamicResource LogBtnStyle}" Margin="50 10 50 0" x:Name="BtnNextRegVis" Click="BtnNextReg" Visibility="Visible"/>
 
-                        <Button Content="Зарегистрироваться" Style="{StaticResource LogBtnStyle}" Margin="50 10 50 0" x:Name="BtnRegisterVis"  Click="BtnRegister" Visibility="Collapsed"/>
+                        <Button Content="Зарегистрироваться" Style="{DynamicResource LogBtnStyle}" Margin="50 10 50 0" x:Name="BtnRegisterVis"  Click="BtnRegister" Visibility="Collapsed"/>
 
                     </StackPanel>
                 </Grid>

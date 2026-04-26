@@ -14,36 +14,36 @@
                     <ColumnDefinition Width="330"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" CornerRadius="20,120,120,20" Background="{StaticResource BackgroundColor6}">
+                <Border Grid.Column="0" CornerRadius="20,120,120,20" Background="{DynamicResource BackgroundColor6}">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="270">
                         <TextBlock Text="Добро пожаловать!" FontSize="26" FontWeight="Bold" Foreground="White" TextAlignment="Center" Margin="0,0,0,10"/>
 
                         <TextBlock Text="Ещё нет аккаунта?" FontSize="14" Foreground="#D0D0D0" TextAlignment="Center" Margin="0,0,0,20"/>
 
-                        <Button Content="Зарегистрироваться" Style="{StaticResource RegBtnStyle}" Click="OpenRegWindow"/>
+                        <Button Content="Зарегистрироваться" Style="{DynamicResource RegBtnStyle}" Click="OpenRegWindow"/>
                     </StackPanel>
                 </Border>
 
                 <Grid Grid.Column="1">
                     <StackPanel >
 
-                        <Button Content="➖" Style="{StaticResource ControlBtnStyle}" Margin="292,10,0,0" Click="BtnRollup"/>
+                        <Button Content="➖" Style="{DynamicResource ControlBtnStyle}" Margin="292,10,0,0" Click="BtnRollup"/>
 
-                        <Button Content="✖︎" Style="{StaticResource ControlBtnStyle}" Margin="345,-25,0,80" Click="BtnClose"/>
+                        <Button Content="✖︎" Style="{DynamicResource ControlBtnStyle}" Margin="345,-25,0,80" Click="BtnClose"/>
 
                         <TextBlock Text="Авторизация" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,0"/>
 
                         <TextBlock Text="Чтобы войти, заполните все поля" FontSize="12" Foreground="#6366F1" TextAlignment="Center" Margin="0,0,0,0"/>
 
-                        <Border Height="1" Margin="0,10" Background="{StaticResource DividerBrush}"/>
+                        <Border Height="1" Margin="0,10" Background="{DynamicResource DividerBrush}"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите логин" x:Name="TBoxLogin" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center"/>
+                        <TextBox Style="{DynamicResource TxtBoxStyle}" Tag="Введите логин" x:Name="TBoxLogin" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center"/>
 
-                        <TextBox Style="{StaticResource TxtBoxStyle}" Tag="Введите пароль" x:Name="TboxPassword" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center"/>
+                        <TextBox Style="{DynamicResource TxtBoxStyle}" Tag="Введите пароль" x:Name="TboxPassword" Height="35" Width="300" Margin="0 10 0 15" HorizontalAlignment="Center"/>
 
-                        <Border Height="1" Margin="0,10" Background="{StaticResource DividerBrush}"/>
+                        <Border Height="1" Margin="0,10" Background="{DynamicResource DividerBrush}"/>
 
-                        <Button Content="Войти" Style="{StaticResource LogBtnStyle}" Click="BtnEnter" Margin="50 10 50 190"/>
+                        <Button Content="Войти" Style="{DynamicResource LogBtnStyle}" Click="BtnEnter" Margin="50 10 50 190"/>
                     </StackPanel>
                 </Grid>
             </Grid>

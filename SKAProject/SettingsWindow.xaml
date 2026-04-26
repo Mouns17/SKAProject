@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Height="400" Width="400" FontFamily="Arian">
     <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
-        <Border Width="400" Height="400" CornerRadius="20" BorderThickness="1" BorderBrush="{StaticResource BackgroundColor6}" Background="#EDF4FF" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Width="400" Height="400" CornerRadius="20" BorderThickness="1" BorderBrush="{DynamicResource BackgroundColor6}" Background="#EDF4FF" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid>
                 <StackPanel>
-                    <Button Content="✖︎" Style="{StaticResource ControlBtnStyle}" Margin="355,5,0,80" Click="BtnClose"/>
+                    <Button Content="✖︎" Style="{DynamicResource ControlBtnStyle}" Margin="355,5,0,80" Click="BtnClose"/>
 
                     <TextBlock Text="Настройки приложения" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-60,0,0"/>
 
-                    <TextBlock Text="После изменения параметров, нажмите на кнопку ниже" FontSize="12" Foreground="{StaticResource BackgroundColor6}" TextAlignment="Center" Margin="0,-25,0,0"/>
+                    <TextBlock Text="После изменения параметров, нажмите на кнопку ниже" FontSize="12" Foreground="{DynamicResource BackgroundColor6}" TextAlignment="Center" Margin="0,-25,0,0"/>
 
-                    <Border Height="1" Margin="40 0 40 0" Background="{StaticResource DividerBrush}"/>
+                    <Border Height="1" Margin="40 0 40 0" Background="{DynamicResource DividerBrush}"/>
 
                     <TextBlock Text="Тема приложения" Margin="60 15 60 -10"/>
 
@@ -38,9 +38,9 @@
                         <ComboBoxItem Content="Владивосток (UTC+10)"/>
                     </ComboBox>
 
-                    <Border Height="1" Margin="40 0 40 0" Background="{StaticResource DividerBrush}"/>
+                    <Border Height="1" Margin="40 0 40 0" Background="{DynamicResource DividerBrush}"/>
 
-                    <Button Content="Сохранить" Style="{StaticResource LogBtnStyle}" Click="BtnEnter" Margin="80 15 80 190"/>
+                    <Button Content="Сохранить" Style="{DynamicResource LogBtnStyle}" Click="BtnEnter" Margin="80 15 80 190"/>
 
                 </StackPanel>
             </Grid>

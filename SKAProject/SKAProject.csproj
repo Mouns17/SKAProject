@@ -141,6 +141,72 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Styles\CardStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>CardStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\ControlBtnStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ControlBtnStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\ControlBtnStyle2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ControlBtnStyle2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\ExportBtnStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ExportBtnStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\ImportBtnStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ImportBtnStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\LogBtnStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>LogBtnStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\MenuBtnStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>MenuBtnStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\ModernCardStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ModernCardStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\RegBtnStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>RegBtnStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\RegOrgBtnStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>RegOrgBtnStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\StatusBadgeStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>StatusBadgeStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\TxtBoxStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>TxtBoxStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\WorkerCardStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>WorkerCardStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemeManager.cs" />
     <Page Include="AddDepartmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,9 +271,67 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\CardStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>CardStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\ControlBtnStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ControlBtnStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\ControlBtnStyle2.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ControlBtnStyle2.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\ExportBtnStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ExportBtnStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\ImportBtnStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ImportBtnStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\LogBtnStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>LogBtnStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\MenuBtnStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MenuBtnStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\ModernCardStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ModernCardStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\RegBtnStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>RegBtnStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\RegOrgBtnStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>RegOrgBtnStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\StatusBadgeStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>StatusBadgeStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\TxtBoxStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>TxtBoxStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\WorkerCardStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>WorkerCardStyle.Designer.cs</LastGenOutput>
     </Page>
   </ItemGroup>
   <ItemGroup>

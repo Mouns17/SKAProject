@@ -26,6 +26,7 @@ namespace SKAProject
             MainFrameStatic = MainFrame; 
             MainFrame.Navigate(new HomePage());
             ApplyRoleAccess();
+            ThemeManager.LoadSavedTheme();
         }
 
         private void ApplyRoleAccess()
@@ -111,6 +112,22 @@ namespace SKAProject
         private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             
+        }
+
+        private void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ThemeToggleButton.Content.ToString().Contains("Тёмная"))
+            {
+                ThemeManager.ApplyTheme("Dark");
+                ThemeToggleButton.Content = "☀️ Светлая тема";
+                MessageBox.Show("Переключили на тёмную");  // тест
+            }
+            else
+            {
+                ThemeManager.ApplyTheme("Light");
+                ThemeToggleButton.Content = "🌙 Тёмная тема";
+                MessageBox.Show("Переключили на светлую");
+            }
         }
     }
 }

@@ -14,6 +14,12 @@ namespace SKAProject
     public partial class App : Application
     {
         public static UserSession CurrentUser { get; set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            ThemeManager.LoadSavedTheme();
+        }
     }
 
     public class UserSession
@@ -21,6 +27,5 @@ namespace SKAProject
         public int UserID { get; set; }
         public int OrgID { get; set; }
         public string Role { get; set; }
-        // ... другие поля
     }
 }

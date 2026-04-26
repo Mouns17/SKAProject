@@ -32,7 +32,7 @@
                         Margin="375,5,0,80"
                         Click="BtnClose"
                         Content="✖︎"
-                        Style="{StaticResource ControlBtnStyle}" />
+                        Style="{DynamicResource ControlBtnStyle}" />
 
                     <TextBlock
                         Margin="0,-60,0,0"
@@ -51,7 +51,7 @@
                     <Border
                         Height="1"
                         Margin="40,0,40,0"
-                        Background="{StaticResource DividerBrush}" />
+                        Background="{DynamicResource DividerBrush}" />
 
                     <TextBox
                         x:Name="TBoxWorkLastName"
@@ -59,7 +59,7 @@
                         Height="35"
                         Margin="0,15,0,15"
                         HorizontalAlignment="Center"
-                        Style="{StaticResource TxtBoxStyle}"
+                        Style="{DynamicResource TxtBoxStyle}"
                         Tag="Введите фамилию"
                         Visibility="Visible" />
 
@@ -69,7 +69,7 @@
                         Height="35"
                         Margin="0,10,0,15"
                         HorizontalAlignment="Center"
-                        Style="{StaticResource TxtBoxStyle}"
+                        Style="{DynamicResource TxtBoxStyle}"
                         Tag="Введите имя"
                         Visibility="Visible" />
 
@@ -79,7 +79,7 @@
                         Height="35"
                         Margin="0,10,0,15"
                         HorizontalAlignment="Center"
-                        Style="{StaticResource TxtBoxStyle}"
+                        Style="{DynamicResource TxtBoxStyle}"
                         Tag="Введите отчество"
                         Visibility="Visible" />
 
@@ -89,7 +89,7 @@
                         Height="35"
                         Margin="0,10,0,15"
                         HorizontalAlignment="Center"
-                        Style="{StaticResource TxtBoxStyle}"
+                        Style="{DynamicResource TxtBoxStyle}"
                         Tag="Введите телефон"
                         Visibility="Visible" />
 
@@ -100,7 +100,7 @@
                         Height="35"
                         Margin="0,15,0,15"
                         HorizontalAlignment="Center"
-                        Style="{StaticResource TxtBoxStyle}"
+                        Style="{DynamicResource TxtBoxStyle}"
                         Tag="Введите email"
                         Visibility="Collapsed" />
 
@@ -110,7 +110,7 @@
                         Height="35"
                         Margin="0,10,0,15"
                         HorizontalAlignment="Center"
-                        Style="{StaticResource TxtBoxStyle}"
+                        Style="{DynamicResource TxtBoxStyle}"
                         Tag="Введите отдел"
                         Visibility="Collapsed" />
 
@@ -120,7 +120,7 @@
                         Height="35"
                         Margin="0,10,0,15"
                         HorizontalAlignment="Center"
-                        Style="{StaticResource TxtBoxStyle}"
+                        Style="{DynamicResource TxtBoxStyle}"
                         Tag="Введите должность"
                         Visibility="Collapsed" />
 
@@ -130,21 +130,21 @@
                         Height="35"
                         Margin="0,10,0,15"
                         HorizontalAlignment="Center"
-                        Style="{StaticResource TxtBoxStyle}"
+                        Style="{DynamicResource TxtBoxStyle}"
                         Tag="Введите статус"
                         Visibility="Collapsed" />
 
                     <Border
                         Height="1"
                         Margin="40,0,40,0"
-                        Background="{StaticResource DividerBrush}" />
+                        Background="{DynamicResource DividerBrush}" />
 
                     <Button
                         x:Name="BtnNextVis"
                         Margin="50,15,50,190"
                         Click="BtnNext"
                         Content="Продолжить &gt; &gt; &gt;"
-                        Style="{StaticResource LogBtnStyle}"
+                        Style="{DynamicResource LogBtnStyle}"
                         Visibility="Visible" />
 
                     <Button
@@ -152,7 +152,7 @@
                         Margin="50,15,50,190"
                         Click="BtnAdd"
                         Content="Добавить"
-                        Style="{StaticResource LogBtnStyle}"
+                        Style="{DynamicResource LogBtnStyle}"
                         Visibility="Collapsed" />
 
                 </StackPanel>

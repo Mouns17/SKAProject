@@ -10,7 +10,7 @@
             Margin="-5,0,-5,15"
             Padding="0"
             Background="#EDF4FF"
-            BorderBrush="{StaticResource BackgroundColor6}"
+            BorderBrush="{DynamicResource BackgroundColor6}"
             BorderThickness="1"
             CornerRadius="30">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
@@ -40,12 +40,12 @@
                         <TextBlock
                             FontSize="40"
                             FontWeight="SemiBold"
-                            Foreground="{StaticResource ForegroundColor1}"
+                            Foreground="{DynamicResource ForegroundColor1}"
                             Text="Моя организация" />
                         <TextBlock
                             Margin="0,8,0,0"
                             FontSize="30"
-                            Foreground="{StaticResource ForegroundColor1}"
+                            Foreground="{DynamicResource ForegroundColor1}"
                             Text="Управление информацией о вашей организации" />
                     </StackPanel>
 
@@ -53,7 +53,7 @@
                     <StackPanel Grid.Row="1">
                         <Border
                             Margin="0,0,0,0"
-                            Background="{StaticResource BackgroundColor6}"
+                            Background="{DynamicResource BackgroundColor6}"
                             CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect
@@ -68,14 +68,14 @@
                                     Width="150"
                                     Height="150"
                                     Margin="0,30,1150,30"
-                                    Background="{StaticResource BackgroundColor3}"
+                                    Background="{DynamicResource BackgroundColor3}"
                                     CornerRadius="20"
                                     Opacity="0.4">
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="70"
-                                        Foreground="{StaticResource BackgroundColor6}"
+                                        Foreground="{DynamicResource BackgroundColor6}"
                                         Text="🏢" />
                                 </Border>
                                 <TextBlock
@@ -83,7 +83,7 @@
                                     Margin="300,-140,100,60"
                                     FontFamily="Arian Bold"
                                     FontSize="65"
-                                    Foreground="{StaticResource BackgroundColor3}"
+                                    Foreground="{DynamicResource BackgroundColor3}"
                                     Text="Моя организация" />
                             </StackPanel>
                         </Border>
@@ -94,7 +94,7 @@
                         <Border
                             Height="50"
                             Margin="500,40,500,20"
-                            Background="{StaticResource BackgroundColor3}"
+                            Background="{DynamicResource BackgroundColor3}"
                             CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect
@@ -109,14 +109,14 @@
                                 VerticalAlignment="Center"
                                 FontFamily="Arian Bold"
                                 FontSize="30"
-                                Foreground="{StaticResource ForegroundColor1}"
+                                Foreground="{DynamicResource ForegroundColor1}"
                                 Text="Основная информация" />
                         </Border>
 
                         <Border
                             Height="270"
                             Margin="0,0,300,0"
-                            Background="{StaticResource BackgroundColor3}"
+                            Background="{DynamicResource BackgroundColor3}"
                             CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect
@@ -132,21 +132,21 @@
                                     Margin="20,30,500,0"
                                     FontFamily="Arian Bold"
                                     FontSize="45"
-                                    Foreground="{StaticResource ForegroundColor1}"
+                                    Foreground="{DynamicResource ForegroundColor1}"
                                     Text="Адрес:" />
                                 <TextBlock
                                     x:Name="TBlockOrgEmail"
                                     Margin="20,30,500,0"
                                     FontFamily="Arian Bold"
                                     FontSize="45"
-                                    Foreground="{StaticResource ForegroundColor1}"
+                                    Foreground="{DynamicResource ForegroundColor1}"
                                     Text="Email:" />
                                 <TextBlock
                                     x:Name="TBlockOrgPhone"
                                     Margin="20,30,500,0"
                                     FontFamily="Arian Bold"
                                     FontSize="45"
-                                    Foreground="{StaticResource ForegroundColor1}"
+                                    Foreground="{DynamicResource ForegroundColor1}"
                                     Text="Телефон:" />
                             </StackPanel>
                         </Border>
@@ -154,7 +154,7 @@
                         <Border
                             Height="50"
                             Margin="1150,-600,0,20"
-                            Background="{StaticResource BackgroundColor3}"
+                            Background="{DynamicResource BackgroundColor3}"
                             CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect
@@ -169,14 +169,14 @@
                                 VerticalAlignment="Center"
                                 FontFamily="Arian Bold"
                                 FontSize="30"
-                                Foreground="{StaticResource ForegroundColor1}"
+                                Foreground="{DynamicResource ForegroundColor1}"
                                 Text="Сотрудников" />
                         </Border>
 
                         <Border
                             Height="270"
                             Margin="1150,-270,0,0"
-                            Background="{StaticResource BackgroundColor3}"
+                            Background="{DynamicResource BackgroundColor3}"
                             CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect
@@ -192,7 +192,7 @@
                                 VerticalAlignment="Center"
                                 FontFamily="Arian Bold"
                                 FontSize="60"
-                                Foreground="{StaticResource ForegroundColor1}"
+                                Foreground="{DynamicResource ForegroundColor1}"
                                 Text="0" />
                         </Border>
                     </StackPanel>
@@ -202,7 +202,7 @@
                         <Border
                             Height="50"
                             Margin="500,40,500,20"
-                            Background="{StaticResource BackgroundColor3}"
+                            Background="{DynamicResource BackgroundColor3}"
                             CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect
@@ -217,14 +217,14 @@
                                 VerticalAlignment="Center"
                                 FontFamily="Arian Bold"
                                 FontSize="30"
-                                Foreground="{StaticResource ForegroundColor1}"
+                                Foreground="{DynamicResource ForegroundColor1}"
                                 Text="Управление организацией" />
                         </Border>
 
                         <Border
                             Height="270"
                             Margin="0,0,1200,20"
-                            Background="{StaticResource BackgroundColor6}"
+                            Background="{DynamicResource BackgroundColor6}"
                             CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect
@@ -239,7 +239,7 @@
                                     Margin="30,30,30,0"
                                     FontFamily="Arian Bold"
                                     FontSize="35"
-                                    Foreground="{StaticResource BackgroundColor3}"
+                                    Foreground="{DynamicResource BackgroundColor3}"
                                     Text="Добавить отделы"
                                     TextWrapping="Wrap" />
                                 <Button
@@ -249,14 +249,14 @@
                                     Click="BtnAddDepartment"
                                     Content="+"
                                     FontSize="60"
-                                    Style="{StaticResource RegOrgBtnStyle}" />
+                                    Style="{DynamicResource RegOrgBtnStyle}" />
                             </StackPanel>
                         </Border>
 
                         <Border
                             Height="270"
                             Margin="260,-290,920,20"
-                            Background="{StaticResource BackgroundColor6}"
+                            Background="{DynamicResource BackgroundColor6}"
                             CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect
@@ -271,7 +271,7 @@
                                     Margin="30,30,30,0"
                                     FontFamily="Arian Bold"
                                     FontSize="35"
-                                    Foreground="{StaticResource BackgroundColor3}"
+                                    Foreground="{DynamicResource BackgroundColor3}"
                                     Text="Добавить должности"
                                     TextWrapping="Wrap" />
                                 <Button
@@ -281,14 +281,14 @@
                                     Click="BtnAddPost"
                                     Content="+"
                                     FontSize="60"
-                                    Style="{StaticResource RegOrgBtnStyle}" />
+                                    Style="{DynamicResource RegOrgBtnStyle}" />
                             </StackPanel>
                         </Border>
 
                         <Border
                             Height="270"
                             Margin="550,-310,0,0"
-                            Background="{StaticResource BackgroundColor3}"
+                            Background="{DynamicResource BackgroundColor3}"
                             CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect
@@ -303,7 +303,7 @@
                                 VerticalAlignment="Center"
                                 FontFamily="Arian Bold"
                                 FontSize="60"
-                                Foreground="{StaticResource ForegroundColor1}"
+                                Foreground="{DynamicResource ForegroundColor1}"
                                 Text="Здесь что то будет" />
                         </Border>
                     </StackPanel>
