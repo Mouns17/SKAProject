@@ -5,6 +5,7 @@
     StartupUri="LoginWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+
             <ResourceDictionary.MergedDictionaries>
                 <!--  Тема по умолчанию (будет заменена при загрузке сохранённой)  -->
                 <ResourceDictionary Source="/Resources/LightTheme.xaml" />
@@ -23,6 +24,8 @@
                 <ResourceDictionary Source="Styles/ModernCardStyle.xaml" />
                 <ResourceDictionary Source="Styles/WorkerCardStyle.xaml" />
                 <ResourceDictionary Source="Styles/StatusBadgeStyle.xaml" />
+                <ResourceDictionary Source="Styles/ThemeToggleButtonStyle.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

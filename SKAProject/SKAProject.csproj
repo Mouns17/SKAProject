@@ -196,6 +196,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>StatusBadgeStyle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Styles\ThemeToggleButtonStyle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ThemeToggleButtonStyle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Styles\TxtBoxStyle.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -324,6 +329,10 @@
     <Page Include="Styles\StatusBadgeStyle.xaml">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>StatusBadgeStyle.Designer.cs</LastGenOutput>
+    </Page>
+    <Page Include="Styles\ThemeToggleButtonStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ThemeToggleButtonStyle.Designer.cs</LastGenOutput>
     </Page>
     <Page Include="Styles\TxtBoxStyle.xaml">
       <Generator>SettingsSingleFileGenerator</Generator>

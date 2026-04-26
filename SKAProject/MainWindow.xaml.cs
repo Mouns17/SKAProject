@@ -114,20 +114,19 @@ namespace SKAProject
             
         }
 
-        private void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
+        private void ThemeToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            if (ThemeToggleButton.Content.ToString().Contains("Тёмная"))
-            {
-                ThemeManager.ApplyTheme("Dark");
-                ThemeToggleButton.Content = "☀️ Светлая тема";
-                MessageBox.Show("Переключили на тёмную");  // тест
-            }
-            else
-            {
-                ThemeManager.ApplyTheme("Light");
-                ThemeToggleButton.Content = "🌙 Тёмная тема";
-                MessageBox.Show("Переключили на светлую");
-            }
+            ThemeManager.ApplyTheme("Dark");
+        }
+
+        private void ThemeToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ThemeManager.ApplyTheme("Light");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Функция в разработке");
         }
     }
 }

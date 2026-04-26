@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="1920"
     Height="1080"
-    Background="#b7b4e0"
+    Background="{DynamicResource BackgroundColor5}"
     FontFamily="Arian"
     ResizeMode="CanResize"
     Topmost="False"
@@ -107,7 +107,7 @@
             Background="{DynamicResource BackgroundColor4}"
             BorderBrush="{DynamicResource BackgroundColor6}"
             BorderThickness="0,0,1,0">
-            <StackPanel Margin="0,20,20,20">
+            <StackPanel Margin="0,20,0,20">
 
                 <Image
                     Width="115"
@@ -121,7 +121,7 @@
                     Margin="60,-80,0,0"
                     FontFamily="Arian Bold"
                     FontSize="40"
-                    Foreground="Black"
+                    Foreground="{DynamicResource ForegroundColor1}"
                     Text="СКА" />
 
                 <TextBlock
@@ -130,25 +130,25 @@
                     Margin="153,-58,0,0"
                     FontFamily="Arian Bold"
                     FontSize="17"
-                    Foreground="Black"
+                    Foreground="{DynamicResource ForegroundColor1}"
                     Text="СИСТЕМА КОНТРОЛЯ И АНАЛИЗА"
                     TextWrapping="Wrap" />
 
                 <Button
-                    Margin="0,-40,0,0"
+                    Margin="0,-40,20,0"
                     Click="Home_Click"
                     Content="🏠  Главное меню"
                     Style="{DynamicResource MenuBtnStyle}" />
 
                 <Button
-                    Margin="0,15,0,0"
+                    Margin="0,15,20,0"
                     Click="Profile_Click"
                     Content="👤  Профиль"
                     Style="{DynamicResource MenuBtnStyle}" />
 
                 <Button
                     x:Name="BtnWorkers"
-                    Margin="0,15,0,0"
+                    Margin="0,15,20,0"
                     Click="Workers_Click"
                     Content="👥  Список работников"
                     Style="{DynamicResource MenuBtnStyle}"
@@ -156,21 +156,21 @@
 
                 <Button
                     x:Name="BtnOrganization"
-                    Margin="0,15,0,0"
+                    Margin="0,15,20,0"
                     Click="MyOrg_Click"
                     Content="🏢  Моя организация"
                     Style="{DynamicResource MenuBtnStyle}"
                     Visibility="Visible" />
 
                 <Button
-                    Margin="0,15,0,0"
+                    Margin="0,15,20,0"
                     Click="MyTasks_Click"
                     Content="📅  Мои задачи"
                     Style="{DynamicResource MenuBtnStyle}" />
 
                 <Button
                     x:Name="BtnReports"
-                    Margin="0,15,0,0"
+                    Margin="0,15,20,0"
                     Click="Otcheti_Click"
                     Content="📂  Отчеты работников"
                     Style="{DynamicResource MenuBtnStyle}"
@@ -178,25 +178,72 @@
 
                 <Button
                     x:Name="BtnLogs"
-                    Margin="0,15,0,0"
+                    Margin="0,15,20,0"
                     Click="Logs_Click"
                     Content="🗂  Логи"
                     Style="{DynamicResource MenuBtnStyle}"
                     Visibility="Visible" />
 
-                <Button
+                <Separator
+                    Width="360"
+                    Margin="0,30,0,0"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource ForegroundColor1}" />
+
+                <Border
+                    Height="200"
+                    Margin="20,30,20,0"
+                    Background="{DynamicResource BackgroundColor6}"
+                    CornerRadius="15">
+                    <Border.BitmapEffect>
+                        <DropShadowBitmapEffect
+                            Direction="0"
+                            ShadowDepth="1"
+                            Softness="0.8"
+                            Color="Black" />
+                    </Border.BitmapEffect>
+                    <Grid Margin="20">
+                        <Label
+                            Margin="0,-12,0,0"
+                            HorizontalAlignment="Center"
+                            Content="Подписка СКА PRO"
+                            FontSize="24"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource ButtonForeground}" />
+                        <TextBlock
+                            Margin="5,40,5,0"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            FontWeight="Regular"
+                            Foreground="{DynamicResource BackgroundColor1}"
+                            Text="Управляйте несколькими организациями и т.д."
+                            TextWrapping="Wrap" />
+                        <Button
+                            Width="200"
+                            Margin="0,90,0,0"
+                            Click="Button_Click"
+                            Content="Подписаться"
+                            Style="{DynamicResource RegOrgBtnStyle}" />
+                    </Grid>
+                </Border>
+
+                <Separator
+                    Width="360"
+                    Margin="0,30,0,0"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource ForegroundColor1}" />
+
+                <ToggleButton
                     x:Name="ThemeToggleButton"
-                    Width="150"
-                    Height="40"
-                    Margin="10"
-                    Click="ThemeToggleButton_Click"
-                    Content="🌙 Тёмная тема"
-                    Cursor="Hand" />
+                    Margin="200,0,0,-350"
+                    Checked="ThemeToggleButton_Checked"
+                    Style="{DynamicResource ThemeToggleButtonStyle}"
+                    Unchecked="ThemeToggleButton_Unchecked" />
 
                 <Button
-                    Margin="0,380"
+                    Margin="0,150,140,0"
                     Click="Logout_Click"
-                    Content="🚪  Выход"
+                    Content="🚪  Logout"
                     Style="{DynamicResource MenuBtnStyle}" />
             </StackPanel>
         </Border>

@@ -3,7 +3,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FontFamily" Value="Arian" />
-        <Setter Property="Background" Value="{DynamicResource ButtonBackground}" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundColor6}" />
         <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush}" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="Height" Value="42" />

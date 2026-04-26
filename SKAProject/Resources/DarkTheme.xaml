@@ -26,6 +26,11 @@
     <SolidColorBrush x:Key="WorkerCardBackground" Color="#3E3E5C" />
     <SolidColorBrush x:Key="StatusBadgeBackground" Color="#2B2B3C" />
 
+    <SolidColorBrush x:Key="ThemeSwitchTrackBrush" Color="#4A5568" />
+    <SolidColorBrush x:Key="ThemeSwitchThumbBrush" Color="#A0AEC0" />
+    <SolidColorBrush x:Key="ThemeSwitchBorderBrush" Color="#718096" />
+    <SolidColorBrush x:Key="ThemeSwitchForeground" Color="White" />
+
     <LinearGradientBrush x:Key="DividerBrush" StartPoint="0,0" EndPoint="1,0">
         <GradientStop Offset="0" Color="#00333355" />
         <GradientStop Offset="0.5" Color="#818CF8" />

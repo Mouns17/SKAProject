@@ -16,6 +16,7 @@
     <SolidColorBrush x:Key="ButtonForeground" Color="White" />
     <SolidColorBrush x:Key="ButtonHoverBackground" Color="#7375f2" />
     <SolidColorBrush x:Key="ButtonBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="ButtonBorderBrush2" Color="#9294f5" />
 
     <SolidColorBrush x:Key="MenuButtonHoverForeground" Color="#4447ee" />
     <SolidColorBrush x:Key="MenuButtonSelectedBackground" Color="#b7b4e0" />
@@ -25,6 +26,11 @@
     <SolidColorBrush x:Key="ModernCardBackground" Color="#b7b4e0" />
     <SolidColorBrush x:Key="WorkerCardBackground" Color="#b7b4e0" />
     <SolidColorBrush x:Key="StatusBadgeBackground" Color="#EDF4FF" />
+
+    <SolidColorBrush x:Key="ThemeSwitchTrackBrush" Color="#475569" />
+    <SolidColorBrush x:Key="ThemeSwitchThumbBrush" Color="#F1F5F9" />
+    <SolidColorBrush x:Key="ThemeSwitchBorderBrush" Color="#64748B" />
+    <SolidColorBrush x:Key="ThemeSwitchForeground" Color="White" />
 
     <LinearGradientBrush x:Key="DividerBrush" StartPoint="0,0" EndPoint="1,0">
         <GradientStop Offset="0" Color="#00250044" />

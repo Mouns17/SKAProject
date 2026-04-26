@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SKAProject.Pages
 {
@@ -34,6 +35,29 @@ namespace SKAProject.Pages
             public string Description { get; set; }
             public DateTime CreatedAt { get; set; }
             public string CreatedAtStr => CreatedAt.ToString("dd.MM.yyyy HH:mm:ss");
+
+            public SolidColorBrush IndicatorColor
+            {
+                get
+                {
+                    // Сопоставление типа события с цветом
+                    switch (EventType)
+                    {
+                        case "Авторизация":
+                            return new SolidColorBrush(Color.FromRgb(59, 130, 246));   // синий
+                        case "Управление персоналом":
+                            return new SolidColorBrush(Color.FromRgb(16, 185, 129));   // зелёный
+                        case "Пользователи":
+                            return new SolidColorBrush(Color.FromRgb(245, 158, 11));   // оранжевый
+                        case "Справочники":
+                            return new SolidColorBrush(Color.FromRgb(139, 92, 246));   // фиолетовый
+                        case "Система":
+                            return new SolidColorBrush(Color.FromRgb(107, 114, 128));  // серый
+                        default:
+                            return new SolidColorBrush(Color.FromRgb(156, 163, 175));  // серый по умолчанию
+                    }
+                }
+            }
 
             public event PropertyChangedEventHandler PropertyChanged;
             protected void OnPropertyChanged(string name) =>

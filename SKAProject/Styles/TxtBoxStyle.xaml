@@ -29,7 +29,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource ButtonHoverBackground}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush2}" />
                         </Trigger>
                         <Trigger Property="Text" Value="">
                             <Setter TargetName="hint" Property="Visibility" Value="Visible" />
