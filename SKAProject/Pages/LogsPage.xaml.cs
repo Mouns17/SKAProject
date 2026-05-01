@@ -49,7 +49,7 @@ namespace SKAProject.Pages
                             return new SolidColorBrush(Color.FromRgb(16, 185, 129));   // зелёный
                         case "Пользователи":
                             return new SolidColorBrush(Color.FromRgb(245, 158, 11));   // оранжевый
-                        case "Справочники":
+                        case "Управление организацией":
                             return new SolidColorBrush(Color.FromRgb(139, 92, 246));   // фиолетовый
                         case "Система":
                             return new SolidColorBrush(Color.FromRgb(107, 114, 128));  // серый

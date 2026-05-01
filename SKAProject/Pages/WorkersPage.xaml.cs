@@ -156,7 +156,6 @@ namespace SKAProject.Pages
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // placeholder скрытие/показ можно оставить
             ApplyFilters();
         }
 
@@ -173,7 +172,6 @@ namespace SKAProject.Pages
         {
             MessageBox.Show("Редактирование сотрудника (заглушка)");
         }
-
 
         private string GetValue(object val) =>
             val == null || string.IsNullOrWhiteSpace(val.ToString()) ? "Пусто" : val.ToString();

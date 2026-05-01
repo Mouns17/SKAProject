@@ -1,6 +1,7 @@
 ﻿using MySqlConnector;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -19,87 +20,32 @@ namespace SKAProject
         private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => DragMove();
         private void BtnClose(object sender, RoutedEventArgs e) => Close();
 
-        // Шаг 1: поиск пользователя по ФИО и телефону
-        private void BtnNext(object sender, RoutedEventArgs e)
-        {
-            string lastName = TBoxWorkLastName.Text.Trim();
-            string firstName = TBoxWorkFirstName.Text.Trim();
-            string middleName = TBoxWorkMiddleName.Text.Trim();
-            string phone = TBoxWorkPhone.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(firstName))
-            {
-                MessageBox.Show("Фамилия и имя обязательны.");
-                return;
-            }
-
-            // Поиск в базе
-            try
-            {
-                using (var conn = DataBase.GetConnection())
-                {
-                    conn.Open();
-                    string query = @"
-                        SELECT UserID FROM Users
-                        WHERE LastName = @ln AND FirstName = @fn
-                          AND (MiddleName = @mn OR (@mn = '' AND MiddleName IS NULL))
-                        LIMIT 1";
-                    using (var cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@ln", lastName);
-                        cmd.Parameters.AddWithValue("@fn", firstName);
-                        cmd.Parameters.AddWithValue("@mn", middleName);
-                        var res = cmd.ExecuteScalar();
-                        if (res == null)
-                        {
-                            MessageBox.Show("Пользователь с таким ФИО не найден.");
-                            return;
-                        }
-                        foundUserId = Convert.ToInt32(res);
-                    }
-                }
-
-                // Переключение на второй шаг
-                TBoxWorkLastName.Visibility = Visibility.Collapsed;
-                TBoxWorkFirstName.Visibility = Visibility.Collapsed;
-                TBoxWorkMiddleName.Visibility = Visibility.Collapsed;
-                TBoxWorkPhone.Visibility = Visibility.Collapsed;
-
-                TBoxWorkEmail.Visibility = Visibility.Visible;
-                TBoxWorkDep.Visibility = Visibility.Visible;
-                TBoxWorkPost.Visibility = Visibility.Visible;
-                TBoxWorkStatus.Visibility = Visibility.Visible;
-
-                BtnNextVis.Visibility = Visibility.Collapsed;
-                BtnAddVis.Visibility = Visibility.Visible;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка поиска: " + ex.Message);
-            }
-        }
-
-        // Шаг 2: добавление сотрудника
         private async void BtnAdd(object sender, RoutedEventArgs e)
         {
-            if (foundUserId == null)
-            {
-                MessageBox.Show("Сначала выполните поиск пользователя.");
-                return;
-            }
-
-            string email = TBoxWorkEmail.Text.Trim();
+            // 1. Получаем и проверяем поля
+            string fullName = TBoxWorkLFM.Text.Trim();
             string depName = TBoxWorkDep.Text.Trim();
             string posName = TBoxWorkPost.Text.Trim();
-            string status = TBoxWorkStatus.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(posName))
+            if (string.IsNullOrWhiteSpace(fullName) ||
+                string.IsNullOrWhiteSpace(depName) ||
+                string.IsNullOrWhiteSpace(posName))
             {
-                MessageBox.Show("Должность обязательна.");
+                MessageBox.Show("Заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(status))
-                status = "Работает"; // значение по умолчанию
+
+            // Разбиваем ФИО на части (ожидается минимум 2 слова)
+            string[] parts = Regex.Split(fullName, @"\s+");
+            if (parts.Length < 2)
+            {
+                MessageBox.Show("Введите фамилию и имя через пробел.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            string lastName = parts[0];
+            string firstName = parts[1];
+            string middleName = parts.Length > 2 ? parts[2] : null;
 
             try
             {
@@ -108,101 +54,114 @@ namespace SKAProject
                     await conn.OpenAsync();
                     using (var tx = conn.BeginTransaction())
                     {
-                        // 1. Получить или создать отдел
+                        // 2. Ищем пользователя
+                        string userQuery = middleName == null
+                            ? "SELECT UserID FROM users WHERE LastName = @ln AND FirstName = @fn AND (MiddleName IS NULL OR MiddleName = '') LIMIT 1"
+                            : "SELECT UserID FROM users WHERE LastName = @ln AND FirstName = @fn AND MiddleName = @mn LIMIT 1";
+
+                        int? userId = null;
+                        using (var cmd = new MySqlCommand(userQuery, conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@ln", lastName);
+                            cmd.Parameters.AddWithValue("@fn", firstName);
+                            if (middleName != null)
+                                cmd.Parameters.AddWithValue("@mn", middleName);
+
+                            var res = await cmd.ExecuteScalarAsync();
+                            if (res == null)
+                            {
+                                tx.Rollback();
+                                MessageBox.Show("Пользователь с таким ФИО не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+                            userId = Convert.ToInt32(res);
+                        }
+
+                        // 3. Проверяем, не является ли уже сотрудником
+                        string checkWorker = "SELECT COUNT(*) FROM workers WHERE UserID = @uid";
+                        using (var cmd = new MySqlCommand(checkWorker, conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@uid", userId.Value);
+                            long count = (long)await cmd.ExecuteScalarAsync();
+                            if (count > 0)
+                            {
+                                tx.Rollback();
+                                MessageBox.Show("Этот пользователь уже добавлен как сотрудник.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                                return;
+                            }
+                        }
+
+                        // 4. Получаем или создаём отдел
                         int? depId = null;
-                        if (!string.IsNullOrWhiteSpace(depName))
+                        string depQuery = "SELECT DepID FROM departments WHERE DepName = @name";
+                        using (var cmd = new MySqlCommand(depQuery, conn, tx))
                         {
-                            // Ищем отдел
-                            string depQuery = "SELECT DepID FROM departments WHERE DepName = @name";
-                            using (var cmd = new MySqlCommand(depQuery, conn, tx))
+                            cmd.Parameters.AddWithValue("@name", depName);
+                            var res = await cmd.ExecuteScalarAsync();
+                            if (res != null)
                             {
-                                cmd.Parameters.AddWithValue("@name", depName);
-                                var res = cmd.ExecuteScalar();
-                                if (res != null)
+                                depId = Convert.ToInt32(res);
+                            }
+                            else
+                            {
+                                string insDep = "INSERT INTO departments (DepName) VALUES (@name); SELECT LAST_INSERT_ID();";
+                                using (var cmdIns = new MySqlCommand(insDep, conn, tx))
                                 {
-                                    depId = Convert.ToInt32(res);
-                                }
-                                else
-                                {
-                                    // Создаём отдел
-                                    string insDep = @"INSERT INTO departments (DepName) VALUES (@name);
-                                                      SELECT LAST_INSERT_ID();";
-                                    using (var cmdIns = new MySqlCommand(insDep, conn, tx))
-                                    {
-                                        cmdIns.Parameters.AddWithValue("@name", depName);
-                                        depId = Convert.ToInt32(cmdIns.ExecuteScalar());
-                                    }
+                                    cmdIns.Parameters.AddWithValue("@name", depName);
+                                    depId = Convert.ToInt32(await cmdIns.ExecuteScalarAsync());
                                 }
                             }
                         }
 
-                        // 2. Получить или создать должность
+                        // 5. Получаем или создаём должность
                         int? posId = null;
-                        if (!string.IsNullOrWhiteSpace(posName))
+                        string posQuery = "SELECT PosID FROM positions WHERE PosName = @name";
+                        using (var cmd = new MySqlCommand(posQuery, conn, tx))
                         {
-                            string posQuery = "SELECT PosID FROM positions WHERE PosName = @name";
-                            using (var cmd = new MySqlCommand(posQuery, conn, tx))
+                            cmd.Parameters.AddWithValue("@name", posName);
+                            var res = await cmd.ExecuteScalarAsync();
+                            if (res != null)
                             {
-                                cmd.Parameters.AddWithValue("@name", posName);
-                                var res = cmd.ExecuteScalar();
-                                if (res != null)
+                                posId = Convert.ToInt32(res);
+                            }
+                            else
+                            {
+                                string insPos = "INSERT INTO positions (PosName) VALUES (@name); SELECT LAST_INSERT_ID();";
+                                using (var cmdIns = new MySqlCommand(insPos, conn, tx))
                                 {
-                                    posId = Convert.ToInt32(res);
-                                }
-                                else
-                                {
-                                    string insPos = @"INSERT INTO positions (PosName) VALUES (@name);
-                                                      SELECT LAST_INSERT_ID();";
-                                    using (var cmdIns = new MySqlCommand(insPos, conn, tx))
-                                    {
-                                        cmdIns.Parameters.AddWithValue("@name", posName);
-                                        posId = Convert.ToInt32(cmdIns.ExecuteScalar());
-                                    }
+                                    cmdIns.Parameters.AddWithValue("@name", posName);
+                                    posId = Convert.ToInt32(await cmdIns.ExecuteScalarAsync());
                                 }
                             }
                         }
 
-                        // 3. Вставить запись в workers
-                        string workerQuery = @"
+                        // 6. Добавляем запись в workers
+                        string insertWorker = @"
                             INSERT INTO workers (UserID, DepID, PosID, Status)
-                            VALUES (@uid, @did, @pid, @st)";
-                        using (var cmd = new MySqlCommand(workerQuery, conn, tx))
+                            VALUES (@uid, @did, @pid, 'Работает')";
+                        using (var cmd = new MySqlCommand(insertWorker, conn, tx))
                         {
-                            cmd.Parameters.AddWithValue("@uid", foundUserId.Value);
-                            cmd.Parameters.AddWithValue("@did", depId);
-                            cmd.Parameters.AddWithValue("@pid", posId);
-                            cmd.Parameters.AddWithValue("@st", status);
+                            cmd.Parameters.AddWithValue("@uid", userId.Value);
+                            cmd.Parameters.AddWithValue("@did", depId.HasValue ? (object)depId.Value : DBNull.Value);
+                            cmd.Parameters.AddWithValue("@pid", posId.HasValue ? (object)posId.Value : DBNull.Value);
                             await cmd.ExecuteNonQueryAsync();
                         }
 
-                        // 4. Обновить email пользователя, если указан
-                        if (!string.IsNullOrWhiteSpace(email))
-                        {
-                            string upd = "UPDATE users SET Email = @email WHERE UserID = @uid";
-                            using (var cmd = new MySqlCommand(upd, conn, tx))
-                            {
-                                cmd.Parameters.AddWithValue("@email", email);
-                                cmd.Parameters.AddWithValue("@uid", foundUserId.Value);
-                                await cmd.ExecuteNonQueryAsync();
-                            }
-                        }
-
                         tx.Commit();
-
-                        // Лог: «Добавлен сотрудник такой-то»
-                        string logMsg = $"Добавлен сотрудник: {foundUserId}";
-                        // или можно подставить ФИО из формы
-                        await Logger.LogAsync(Session.UserID, "Добавление сотрудника", "Управление персоналом", logMsg);
                     }
                 }
 
-                MessageBox.Show("Сотрудник успешно добавлен.");
+                // Логирование
+                await Logger.LogAsync(Session.UserID, "Добавление сотрудника", "Управление персоналом",
+                    $"Добавлен сотрудник: {fullName}, отдел: {depName}, должность: {posName}");
+
+                MessageBox.Show("Сотрудник успешно добавлен.", "Готово", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.DialogResult = true;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка добавления сотрудника: " + ex.Message);
+                MessageBox.Show("Ошибка добавления сотрудника: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
