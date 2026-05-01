@@ -13,11 +13,11 @@ namespace SKAProject.Styles {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
-    internal sealed partial class ImportBtnStyle : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class DeleteBtnStyle : global::System.Configuration.ApplicationSettingsBase {
         
-        private static ImportBtnStyle defaultInstance = ((ImportBtnStyle)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new ImportBtnStyle())));
+        private static DeleteBtnStyle defaultInstance = ((DeleteBtnStyle)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new DeleteBtnStyle())));
         
-        public static ImportBtnStyle Default {
+        public static DeleteBtnStyle Default {
             get {
                 return defaultInstance;
             }

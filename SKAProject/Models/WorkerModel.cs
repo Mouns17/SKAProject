@@ -8,6 +8,8 @@ namespace SKAProject.Models
 {
     public class WorkerModel
     {
+        public int UserId { get; set; }
+        public int WrkID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

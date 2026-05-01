@@ -54,7 +54,7 @@ namespace SKAProject
                 }
 
                 MessageBox.Show("Должность добавлена.");
-                await Logger.LogAsync(Session.UserID, "Создание должности", "Справочники", $"Должность: {post}");
+                await Logger.LogAsync(Session.UserID, "Создание должности", "Управление организацией", $"Должность: {post}");
                 DialogResult = true;
                 Close();
             }

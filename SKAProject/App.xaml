@@ -15,7 +15,8 @@
                 <ResourceDictionary Source="Styles/LogBtnStyle.xaml" />
                 <ResourceDictionary Source="Styles/RegBtnStyle.xaml" />
                 <ResourceDictionary Source="Styles/ExportBtnStyle.xaml" />
-                <ResourceDictionary Source="Styles/ImportBtnStyle.xaml" />
+                <ResourceDictionary Source="Styles/TaskBtnStyle.xaml" />
+                <ResourceDictionary Source="Styles/DeleteBtnStyle.xaml" />
                 <ResourceDictionary Source="Styles/ControlBtnStyle.xaml" />
                 <ResourceDictionary Source="Styles/ControlBtnStyle2.xaml" />
                 <ResourceDictionary Source="Styles/CardStyle.xaml" />

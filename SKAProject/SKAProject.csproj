@@ -156,15 +156,20 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ControlBtnStyle2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Styles\DeleteBtnStyle.Designer.cs">
+      <DependentUpon>DeleteBtnStyle.xaml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
     <Compile Include="Styles\ExportBtnStyle.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ExportBtnStyle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Styles\ImportBtnStyle.Designer.cs">
+    <Compile Include="Styles\TaskBtnStyle.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>ImportBtnStyle.xaml</DependentUpon>
+      <DependentUpon>TaskBtnStyle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Styles\LogBtnStyle.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -298,13 +303,19 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>ControlBtnStyle2.Designer.cs</LastGenOutput>
     </Page>
+    <Page Include="Styles\DeleteBtnStyle.xaml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteBtnStyle.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\ExportBtnStyle.xaml">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>ExportBtnStyle.Designer.cs</LastGenOutput>
     </Page>
-    <Page Include="Styles\ImportBtnStyle.xaml">
+    <Page Include="Styles\TaskBtnStyle.xaml">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>ImportBtnStyle.Designer.cs</LastGenOutput>
+      <LastGenOutput>TaskBtnStyle.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\LogBtnStyle.xaml">
       <Generator>SettingsSingleFileGenerator</Generator>

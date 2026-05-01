@@ -64,7 +64,7 @@ namespace SKAProject
                 }
 
                 MessageBox.Show("Отдел добавлен");
-                await Logger.LogAsync(Session.UserID, "Добавление отдела", "Управление персоналом", $"Добавлен отдел: {department}");
+                await Logger.LogAsync(Session.UserID, "Добавление отдела", "Управление организацией", $"Добавлен отдел: {department}");
                 Close();
             }
 

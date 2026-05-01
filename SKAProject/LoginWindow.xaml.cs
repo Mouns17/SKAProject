@@ -66,7 +66,6 @@ namespace SKAProject
                             // Логирование входа
                             await Logger.LogAsync(userId, "Вход в систему", "Авторизация", "Успешный вход");
 
-                            MessageBox.Show("Вход выполнен");
                             new MainWindow().Show();
                             this.Close();
                         }

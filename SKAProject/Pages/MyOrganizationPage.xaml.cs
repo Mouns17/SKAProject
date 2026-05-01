@@ -34,7 +34,7 @@ namespace SKAProject.Pages
                     }
 
                     // Количество сотрудников (работающих)
-                    string cntQuery = "SELECT COUNT(*) FROM workers WHERE Status = 'Pa6otaet'";
+                    string cntQuery = "SELECT COUNT(*) FROM workers WHERE Status = 'Paботает'";
                     using (var cmd = new MySqlCommand(cntQuery, conn))
                     {
                         long count = (long)await cmd.ExecuteScalarAsync();

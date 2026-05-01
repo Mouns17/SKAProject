@@ -155,24 +155,19 @@
                                     x:Name="EditWorkerButton"
                                     Width="180"
                                     Height="55"
-                                    Background="#1A1A1A"
-                                    BorderBrush="#2A2A2A"
-                                    BorderThickness="1"
+                                    Background="#6366F1"
                                     Click="EditWorkerButton_Click"
-                                    Cursor="Hand">
+                                    Cursor="Hand"
+                                    FontWeight="SemiBold">
                                     <Button.Template>
                                         <ControlTemplate TargetType="Button">
-                                            <Border
-                                                Background="{TemplateBinding Background}"
-                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                BorderThickness="{TemplateBinding BorderThickness}"
-                                                CornerRadius="15">
+                                            <Border Background="{TemplateBinding Background}" CornerRadius="15">
                                                 <Border.Effect>
                                                     <DropShadowEffect
                                                         BlurRadius="15"
                                                         Opacity="0.3"
                                                         ShadowDepth="0"
-                                                        Color="#000000" />
+                                                        Color="White" />
                                                 </Border.Effect>
                                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                             </Border>
@@ -296,6 +291,22 @@
 
                             <Button
                                 Grid.Column="7"
+                                Margin="0,0,160,0"
+                                Click="CreateTaskBtn_Click"
+                                Content="Создать задачу"
+                                Cursor="Hand"
+                                Style="{DynamicResource TaskBtnStyle}" />
+
+                            <Button
+                                Grid.Column="7"
+                                Margin="140,0,0,0"
+                                Click="DeleteBtn_Click"
+                                Content="Удалить"
+                                Cursor="Hand"
+                                Style="{DynamicResource DeleteBtnStyle}" />
+
+                            <Button
+                                Grid.Column="7"
                                 Margin="440,0,0,0"
                                 Click="ExportBtn_Click"
                                 Content="Экспорт в Excel"
@@ -333,32 +344,34 @@
                                 <Grid Height="60">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="330" />
-                                        <ColumnDefinition Width="220" />
-                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="80" />
+                                        <ColumnDefinition Width="350" />
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="230" />
                                         <ColumnDefinition Width="200" />
                                         <ColumnDefinition Width="250" />
-                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="100" />
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock
                                         Grid.Column="1"
-                                        Margin="30,0,0,0"
-                                        HorizontalAlignment="Left"
+                                        Margin="0,0,0,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="#4A5568"
+                                        Text="ID" />
+
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Margin="0,0,0,0"
+                                        HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="18"
                                         FontWeight="Bold"
                                         Foreground="#4A5568"
                                         Text="ФИО" />
-                                    <TextBlock
-                                        Grid.Column="2"
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        FontWeight="Bold"
-                                        Foreground="#4A5568"
-                                        Text="Отдел" />
                                     <TextBlock
                                         Grid.Column="3"
                                         Margin="10,0,0,0"
@@ -367,7 +380,7 @@
                                         FontSize="18"
                                         FontWeight="Bold"
                                         Foreground="#4A5568"
-                                        Text="Должность" />
+                                        Text="Отдел" />
                                     <TextBlock
                                         Grid.Column="4"
                                         Margin="10,0,0,0"
@@ -376,7 +389,7 @@
                                         FontSize="18"
                                         FontWeight="Bold"
                                         Foreground="#4A5568"
-                                        Text="Телефон" />
+                                        Text="Должность" />
                                     <TextBlock
                                         Grid.Column="5"
                                         Margin="10,0,0,0"
@@ -385,9 +398,18 @@
                                         FontSize="18"
                                         FontWeight="Bold"
                                         Foreground="#4A5568"
-                                        Text="Email" />
+                                        Text="Телефон" />
                                     <TextBlock
                                         Grid.Column="6"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="#4A5568"
+                                        Text="Email" />
+                                    <TextBlock
+                                        Grid.Column="7"
                                         Margin="10,0,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
@@ -420,26 +442,36 @@
                                                 <Grid Height="65">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="330" />
-                                                        <ColumnDefinition Width="220" />
-                                                        <ColumnDefinition Width="220" />
+                                                        <ColumnDefinition Width="60" />
+                                                        <ColumnDefinition Width="350" />
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition Width="230" />
                                                         <ColumnDefinition Width="200" />
                                                         <ColumnDefinition Width="250" />
-                                                        <ColumnDefinition Width="150" />
-                                                        <ColumnDefinition Width="120" />
-                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="100" />
                                                     </Grid.ColumnDefinitions>
 
                                                     <CheckBox
                                                         Grid.Column="0"
-                                                        Margin="15,0,0,0"
+                                                        Margin="15,0,0,-10"
+                                                        HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         Cursor="Hand"
                                                         IsChecked="{Binding IsSelected}" />
 
-                                                    <StackPanel
+                                                    <TextBlock
                                                         Grid.Column="1"
-                                                        Margin="10,0,0,0"
+                                                        Margin="0,0,20,0"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="16"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="#4A5568"
+                                                        Text="{Binding WrkID}" />
+
+                                                    <StackPanel
+                                                        Grid.Column="2"
+                                                        Margin="0,0,0,0"
                                                         VerticalAlignment="Center"
                                                         Orientation="Vertical">
                                                         <TextBlock
@@ -448,39 +480,35 @@
                                                             FontWeight="SemiBold"
                                                             Foreground="#2D3748"
                                                             Text="{Binding FullName}" />
-                                                        <TextBlock
-                                                            FontSize="12"
-                                                            Foreground="#A0AEC0"
-                                                            Text="{Binding WorkerId}" />
                                                     </StackPanel>
 
                                                     <TextBlock
-                                                        Grid.Column="2"
-                                                        Margin="10,0,0,0"
+                                                        Grid.Column="3"
+                                                        Margin="0,0,0,0"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         Foreground="#4A5568"
                                                         Text="{Binding Department}" />
                                                     <TextBlock
-                                                        Grid.Column="3"
-                                                        Margin="10,0,0,0"
+                                                        Grid.Column="4"
+                                                        Margin="0,0,0,0"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         Foreground="#4A5568"
                                                         Text="{Binding Position}" />
                                                     <TextBlock
-                                                        Grid.Column="4"
-                                                        Margin="10,0,0,0"
+                                                        Grid.Column="5"
+                                                        Margin="0,0,0,0"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         Foreground="#4A5568"
                                                         Text="{Binding Phone}" />
                                                     <TextBlock
-                                                        Grid.Column="5"
-                                                        Margin="10,0,0,0"
+                                                        Grid.Column="6"
+                                                        Margin="0,0,0,0"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
@@ -489,8 +517,8 @@
 
                                                     <!--  Статус с цветовой индикацией  -->
                                                     <Border
-                                                        Grid.Column="6"
-                                                        Margin="10,0,0,0"
+                                                        Grid.Column="7"
+                                                        Margin="0,0,0,0"
                                                         Padding="10,5"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
@@ -498,63 +526,11 @@
                                                         CornerRadius="10">
                                                         <TextBlock
                                                             HorizontalAlignment="Left"
-                                                            FontSize="14"
+                                                            FontSize="12"
                                                             FontWeight="SemiBold"
                                                             Foreground="White"
                                                             Text="{Binding Status}" />
                                                     </Border>
-
-                                                    <!--  Кнопки действий  -->
-                                                    <StackPanel
-                                                        Grid.Column="7"
-                                                        Margin="0,0,0,0"
-                                                        VerticalAlignment="Center"
-                                                        Orientation="Horizontal">
-                                                        <!--  Создать задачу  -->
-                                                        <Button
-                                                            Margin="0,0,10,0"
-                                                            Padding="8,4"
-                                                            Background="#6366F1"
-                                                            BorderThickness="0"
-                                                            Click="CreateTask_Click"
-                                                            CommandParameter="{Binding WorkerId}"
-                                                            Cursor="Hand"
-                                                            Foreground="White">
-
-                                                            <Button.Template>
-                                                                <ControlTemplate TargetType="Button">
-                                                                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
-                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                                    </Border>
-                                                                </ControlTemplate>
-                                                            </Button.Template>
-
-                                                            <TextBlock FontSize="14" Text="Задача" />
-                                                        </Button>
-
-                                                        <!--  Редактировать  -->
-                                                        <Button
-                                                            Background="Transparent"
-                                                            BorderThickness="0"
-                                                            Click="EditWorkerRow_Click"
-                                                            CommandParameter="{Binding WorkerId}"
-                                                            Cursor="Hand">
-
-                                                            <TextBlock FontSize="18" Text="✏️" />
-                                                        </Button>
-
-                                                        <!--  Удалить  -->
-                                                        <Button
-                                                            Margin="10,0,0,0"
-                                                            Background="Transparent"
-                                                            BorderThickness="0"
-                                                            Click="DeleteWorker_Click"
-                                                            CommandParameter="{Binding WorkerId}"
-                                                            Cursor="Hand">
-
-                                                            <TextBlock FontSize="18" Text="🗑️" />
-                                                        </Button>
-                                                    </StackPanel>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>

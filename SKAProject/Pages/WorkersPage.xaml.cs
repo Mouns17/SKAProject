@@ -1,6 +1,7 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,47 +25,50 @@ namespace SKAProject.Pages
             StatusFilterComboBox.SelectionChanged += FilterChanged;
         }
 
-        // Создание задачи для выбранного сотрудника
-        private void CreateTask_Click(object sender, RoutedEventArgs e)
-        {
-            int workerId = Convert.ToInt32((sender as Button).CommandParameter);
-            // Заглушка – позже замените на открытие окна создания задачи
-            MessageBox.Show($"Создать задачу для сотрудника ID: {workerId}");
-        }
-
-        // Редактирование сотрудника по кнопке в строке таблицы
         private void EditWorkerRow_Click(object sender, RoutedEventArgs e)
         {
             int workerId = Convert.ToInt32((sender as Button).CommandParameter);
-            // Заглушка – можно открыть EditWorkerWindow (когда будет готово)
             MessageBox.Show($"Редактировать сотрудника ID: {workerId}");
 
-            // Пример реального вызова (если окно существует):
-            // var editWindow = new EditWorkerWindow(workerId);
-            // editWindow.ShowDialog();
-            // LoadWorkers();
         }
 
-        // Экспорт в Excel
         private void ExportBtn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Экспорт в Excel (функция в разработке)");
-            // Здесь будет вызов вашего экспорта
         }
 
         public class WorkerModel
         {
-            public int WrkId { get; set; }
+            private bool _isSelected;
+
+            public string UserId { get; set; }
+            public int WrkID { get; set; }
             public string FullName { get; set; }
             public string Department { get; set; }
             public string Position { get; set; }
             public string Phone { get; set; }
             public string Email { get; set; }
             public string Status { get; set; }
+
+            public bool IsSelected
+            {
+                get => _isSelected;
+                set
+                {
+                    if (_isSelected == value) return;
+                    _isSelected = value;
+                    OnPropertyChanged(nameof(IsSelected));
+                }
+            }
+
             public Brush StatusColor =>
                 Status == "Работает" ? Brushes.Green :
                 Status == "Уволен" ? Brushes.Red :
                 Status == "В отпуске" ? Brushes.Orange : Brushes.Gray;
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void OnPropertyChanged(string propertyName = null) =>
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private async void LoadWorkers()
@@ -92,7 +96,7 @@ namespace SKAProject.Pages
                         {
                             allWorkers.Add(new WorkerModel
                             {
-                                WrkId = reader.GetInt32("WrkID"),
+                                WrkID = reader.GetInt32("WrkID"),
                                 FullName = $"{reader["LastName"]} {reader["FirstName"]} {reader["MiddleName"]}",
                                 Department = reader["DepName"].ToString(),
                                 Position = reader["PosName"].ToString(),
@@ -170,10 +174,35 @@ namespace SKAProject.Pages
             MessageBox.Show("Редактирование сотрудника (заглушка)");
         }
 
-        private async void DeleteWorker_Click(object sender, RoutedEventArgs e)
+
+        private string GetValue(object val) =>
+            val == null || string.IsNullOrWhiteSpace(val.ToString()) ? "Пусто" : val.ToString();
+
+        private void CreateTaskBtn_Click(object sender, RoutedEventArgs e)
         {
-            int id = Convert.ToInt32((sender as Button).CommandParameter);
-            if (MessageBox.Show("Удалить сотрудника?", "Подтверждение", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+            int workerId = Convert.ToInt32((sender as Button).CommandParameter);
+            MessageBox.Show($"Создать задачу для сотрудника ID: {workerId}");
+        }
+
+        private async void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем ID всех отмеченных сотрудников
+            var selectedIds = allWorkers
+                .Where(w => w.IsSelected)
+                .Select(w => w.WrkID)
+                .ToList();
+
+            if (selectedIds.Count == 0)
+            {
+                MessageBox.Show("Выберите сотрудников для удаления.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            string message = selectedIds.Count == 1
+                ? "Удалить выбранного сотрудника?"
+                : $"Удалить {selectedIds.Count} выбранных сотрудников?";
+
+            if (MessageBox.Show(message, "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
 
             try
@@ -181,25 +210,36 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    using (var cmd = new MySqlCommand("DELETE FROM Workers WHERE WrkID = @id", conn))
+                    using (var tx = conn.BeginTransaction())
                     {
-                        cmd.Parameters.AddWithValue("@id", id);
-                        await cmd.ExecuteNonQueryAsync();
+                        // Удаляем записи из workers
+                        string deleteQuery = $"DELETE FROM workers WHERE WrkID IN ({string.Join(",", selectedIds)})";
+                        using (var cmd = new MySqlCommand(deleteQuery, conn, tx))
+                        {
+                            await cmd.ExecuteNonQueryAsync();
+                        }
+
+                        // Логируем удаление каждого сотрудника
+                        foreach (var id in selectedIds)
+                        {
+                            await Logger.LogAsync(Session.UserID, "Удаление сотрудника", "Управление персоналом", $"Удалён сотрудник с WrkID = {id}");
+                        }
+
+                        tx.Commit();
                     }
-
-                    string logMsg = $"Удалён сотрудник с WrkID = {id}";
-                    await Logger.LogAsync(Session.UserID, "Удаление сотрудника", "Управление персоналом", logMsg);
-
                 }
+
+                // Снимаем выделение и перезагружаем список
+                foreach (var w in allWorkers)
+                    w.IsSelected = false;
                 LoadWorkers();
+
+                MessageBox.Show("Выбранные сотрудники удалены.", "Готово", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка удаления: " + ex.Message);
+                MessageBox.Show("Ошибка удаления: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private string GetValue(object val) =>
-            val == null || string.IsNullOrWhiteSpace(val.ToString()) ? "Пусто" : val.ToString();
     }
 }
