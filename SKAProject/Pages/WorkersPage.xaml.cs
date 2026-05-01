@@ -37,9 +37,13 @@ namespace SKAProject.Pages
             MessageBox.Show("Экспорт в Excel (функция в разработке)");
         }
 
-        public class WorkerModel
+        public class WorkerModel : INotifyPropertyChanged
         {
             private bool _isSelected;
+            private bool _isEditing;
+            private string _editDepartment;
+            private string _editPosition;
+            private string _editStatus;
 
             public string UserId { get; set; }
             public int WrkID { get; set; }
@@ -59,6 +63,29 @@ namespace SKAProject.Pages
                     _isSelected = value;
                     OnPropertyChanged(nameof(IsSelected));
                 }
+            }
+
+            public bool IsEditing
+            {
+                get => _isEditing;
+                set { _isEditing = value; OnPropertyChanged(nameof(IsEditing)); }
+            }
+
+            // Эти свойства будут привязаны к ComboBox'ам
+            public string EditDepartment
+            {
+                get => _editDepartment ?? Department;
+                set { _editDepartment = value; OnPropertyChanged(nameof(EditDepartment)); }
+            }
+            public string EditPosition
+            {
+                get => _editPosition ?? Position;
+                set { _editPosition = value; OnPropertyChanged(nameof(EditPosition)); }
+            }
+            public string EditStatus
+            {
+                get => _editStatus ?? Status;
+                set { _editStatus = value; OnPropertyChanged(nameof(EditStatus)); }
             }
 
             public Brush StatusColor =>

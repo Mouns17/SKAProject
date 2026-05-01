@@ -453,51 +453,78 @@
 
                                                     <CheckBox
                                                         Grid.Column="0"
-                                                        Margin="15,0,0,-10"
+                                                        Margin="15,0,0,0"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         Cursor="Hand"
                                                         IsChecked="{Binding IsSelected}" />
 
+                                                    <!--  ID  -->
                                                     <TextBlock
                                                         Grid.Column="1"
-                                                        Margin="0,0,20,0"
+                                                        Margin="0,0,0,0"
                                                         HorizontalAlignment="Right"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
-                                                        FontWeight="SemiBold"
                                                         Foreground="#4A5568"
-                                                        Text="{Binding WrkID}" />
+                                                        Text="{Binding WrkId}" />
 
-                                                    <StackPanel
+                                                    <!--  ФИО  -->
+                                                    <TextBlock
                                                         Grid.Column="2"
                                                         Margin="0,0,0,0"
+                                                        HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
-                                                        Orientation="Vertical">
-                                                        <TextBlock
-                                                            HorizontalAlignment="Left"
-                                                            FontSize="16"
-                                                            FontWeight="SemiBold"
-                                                            Foreground="#2D3748"
-                                                            Text="{Binding FullName}" />
-                                                    </StackPanel>
+                                                        FontSize="16"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="#2D3748"
+                                                        Text="{Binding FullName}" />
 
+                                                    <!--  Отдел  -->
                                                     <TextBlock
+                                                        x:Name="txtDepartment"
                                                         Grid.Column="3"
                                                         Margin="0,0,0,0"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         Foreground="#4A5568"
-                                                        Text="{Binding Department}" />
+                                                        Text="{Binding Department}"
+                                                        Visibility="Visible" />
+                                                    <ComboBox
+                                                        x:Name="cmbDepartment"
+                                                        Grid.Column="3"
+                                                        Width="190"
+                                                        Height="30"
+                                                        Margin="0,0,0,0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="14"
+                                                        Visibility="Collapsed" />
+
+                                                    <!--  Должность  -->
                                                     <TextBlock
+                                                        x:Name="txtPosition"
                                                         Grid.Column="4"
                                                         Margin="0,0,0,0"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="16"
                                                         Foreground="#4A5568"
-                                                        Text="{Binding Position}" />
+                                                        Text="{Binding Position}"
+                                                        Visibility="Visible" />
+                                                    <ComboBox
+                                                        x:Name="cmbPosition"
+                                                        Grid.Column="4"
+                                                        Width="220"
+                                                        Height="30"
+                                                        Margin="0,0,0,0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="14"
+                                                        Visibility="Collapsed" />
+
+                                                    <!--  Телефон (не редактируем)  -->
                                                     <TextBlock
                                                         Grid.Column="5"
                                                         Margin="0,0,0,0"
@@ -506,6 +533,8 @@
                                                         FontSize="16"
                                                         Foreground="#4A5568"
                                                         Text="{Binding Phone}" />
+
+                                                    <!--  Email (не редактируем)  -->
                                                     <TextBlock
                                                         Grid.Column="6"
                                                         Margin="0,0,0,0"
@@ -515,24 +544,47 @@
                                                         Foreground="#4A5568"
                                                         Text="{Binding Email}" />
 
-                                                    <!--  Статус с цветовой индикацией  -->
+                                                    <!--  Статус  -->
                                                     <Border
+                                                        x:Name="brdStatus"
                                                         Grid.Column="7"
                                                         Margin="0,0,0,0"
-                                                        Padding="10,5"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         Background="{Binding StatusColor}"
-                                                        CornerRadius="10">
+                                                        CornerRadius="10"
+                                                        Visibility="Visible">
                                                         <TextBlock
+                                                            Margin="5,2"
                                                             HorizontalAlignment="Left"
                                                             FontSize="12"
                                                             FontWeight="SemiBold"
                                                             Foreground="White"
                                                             Text="{Binding Status}" />
                                                     </Border>
+                                                    <ComboBox
+                                                        x:Name="cmbStatus"
+                                                        Grid.Column="7"
+                                                        Width="90"
+                                                        Height="30"
+                                                        Margin="0,0,0,0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="14"
+                                                        Visibility="Collapsed" />
                                                 </Grid>
                                             </Border>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding IsEditing}" Value="True">
+                                                    <!--  Скрываем текст, показываем ComboBox  -->
+                                                    <Setter TargetName="txtDepartment" Property="Visibility" Value="Collapsed" />
+                                                    <Setter TargetName="cmbDepartment" Property="Visibility" Value="Visible" />
+                                                    <Setter TargetName="txtPosition" Property="Visibility" Value="Collapsed" />
+                                                    <Setter TargetName="cmbPosition" Property="Visibility" Value="Visible" />
+                                                    <Setter TargetName="brdStatus" Property="Visibility" Value="Collapsed" />
+                                                    <Setter TargetName="cmbStatus" Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
