@@ -103,6 +103,9 @@
       <DependentUpon>AddWorkerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataBase.cs" />
+    <Compile Include="EditWorkerWindow.xaml.cs">
+      <DependentUpon>EditWorkerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -226,6 +229,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddWorkerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditWorkerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

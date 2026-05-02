@@ -1,8 +1,8 @@
 ﻿using MySqlConnector;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +15,10 @@ namespace SKAProject.Pages
     {
         ObservableCollection<WorkerModel> allWorkers = new ObservableCollection<WorkerModel>();
 
+        public static List<string> DepartmentsAll = new List<string>();
+        public static List<string> PositionsAll = new List<string>();
+        public static List<string> StatusesAll = new List<string> { "Работает", "Уволен", "В отпуске" };
+
         public WorkersPage()
         {
             InitializeComponent();
@@ -25,18 +29,7 @@ namespace SKAProject.Pages
             StatusFilterComboBox.SelectionChanged += FilterChanged;
         }
 
-        private void EditWorkerRow_Click(object sender, RoutedEventArgs e)
-        {
-            int workerId = Convert.ToInt32((sender as Button).CommandParameter);
-            MessageBox.Show($"Редактировать сотрудника ID: {workerId}");
-
-        }
-
-        private void ExportBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Экспорт в Excel (функция в разработке)");
-        }
-
+        // ========== МОДЕЛЬ ==========
         public class WorkerModel : INotifyPropertyChanged
         {
             private bool _isSelected;
@@ -45,8 +38,8 @@ namespace SKAProject.Pages
             private string _editPosition;
             private string _editStatus;
 
-            public string UserId { get; set; }
             public int WrkID { get; set; }
+            public int UserId { get; set; }
             public string FullName { get; set; }
             public string Department { get; set; }
             public string Position { get; set; }
@@ -71,7 +64,6 @@ namespace SKAProject.Pages
                 set { _isEditing = value; OnPropertyChanged(nameof(IsEditing)); }
             }
 
-            // Эти свойства будут привязаны к ComboBox'ам
             public string EditDepartment
             {
                 get => _editDepartment ?? Department;
@@ -98,6 +90,7 @@ namespace SKAProject.Pages
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        // ========== ЗАГРУЗКА ДАННЫХ ==========
         private async void LoadWorkers()
         {
             try
@@ -107,7 +100,7 @@ namespace SKAProject.Pages
                 {
                     await conn.OpenAsync();
                     string query = @"
-                        SELECT w.WrkID,
+                        SELECT w.WrkID, u.UserID,
                                u.FirstName, u.LastName, u.MiddleName,
                                u.Phone, u.Email, w.Status,
                                COALESCE(d.DepName, 'Не указан') AS DepName,
@@ -124,6 +117,7 @@ namespace SKAProject.Pages
                             allWorkers.Add(new WorkerModel
                             {
                                 WrkID = reader.GetInt32("WrkID"),
+                                UserId = reader.GetInt32("UserID"),
                                 FullName = $"{reader["LastName"]} {reader["FirstName"]} {reader["MiddleName"]}",
                                 Department = reader["DepName"].ToString(),
                                 Position = reader["PosName"].ToString(),
@@ -133,6 +127,8 @@ namespace SKAProject.Pages
                             });
                         }
                     }
+
+                    await LoadDepartmentsAndPositions();
                 }
 
                 WorkersItemsControl.ItemsSource = allWorkers;
@@ -145,16 +141,45 @@ namespace SKAProject.Pages
             }
         }
 
+        private async Task LoadDepartmentsAndPositions()
+        {
+            try
+            {
+                using (var conn = DataBase.GetConnection())
+                {
+                    await conn.OpenAsync();
+                    DepartmentsAll.Clear();
+                    PositionsAll.Clear();
+
+                    using (var cmd = new MySqlCommand("SELECT DepName FROM departments ORDER BY DepName", conn))
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                            DepartmentsAll.Add(reader.GetString(0));
+                    }
+
+                    using (var cmd = new MySqlCommand("SELECT PosName FROM positions ORDER BY PosName", conn))
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                            PositionsAll.Add(reader.GetString(0));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка загрузки справочников: " + ex.Message);
+            }
+        }
+
         private void LoadFilters()
         {
-            // Отделы — из данных сотрудников (уникальные)
             DepartmentFilterComboBox.Items.Clear();
             DepartmentFilterComboBox.Items.Add("Все отделы");
             foreach (var dep in allWorkers.Select(w => w.Department).Distinct().OrderBy(d => d))
                 DepartmentFilterComboBox.Items.Add(dep);
             DepartmentFilterComboBox.SelectedIndex = 0;
 
-            // Должности
             PositionFilterComboBox.Items.Clear();
             PositionFilterComboBox.Items.Add("Все должности");
             foreach (var pos in allWorkers.Select(w => w.Position).Distinct().OrderBy(p => p))
@@ -181,13 +206,115 @@ namespace SKAProject.Pages
             WorkersItemsControl.ItemsSource = filtered;
         }
 
-        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ApplyFilters();
-        }
-
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) => ApplyFilters();
         private void FilterChanged(object sender, SelectionChangedEventArgs e) => ApplyFilters();
 
+        // ========== РЕДАКТИРОВАНИЕ ==========
+        private void EditWorkerButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = allWorkers.FirstOrDefault(w => w.IsSelected);
+            if (selected == null)
+            {
+                MessageBox.Show("Выберите сотрудника для редактирования.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            StartEditingWorker(selected);
+        }
+
+        private void StartEditingWorker(WorkerModel worker)
+        {
+            foreach (var w in allWorkers) w.IsEditing = false;
+            worker.EditDepartment = worker.Department;
+            worker.EditPosition = worker.Position;
+            worker.EditStatus = worker.Status;
+            worker.IsEditing = true;
+        }
+
+        private async void SaveWorker_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button button) || button.CommandParameter == null) return;
+            int workerId = Convert.ToInt32(button.CommandParameter);
+            var worker = allWorkers.FirstOrDefault(w => w.WrkID == workerId);
+            if (worker == null) return;
+
+            try
+            {
+                using (var conn = DataBase.GetConnection())
+                {
+                    await conn.OpenAsync();
+                    using (var tx = conn.BeginTransaction())
+                    {
+                        int? depId = await GetOrCreateDepartment(conn, tx, worker.EditDepartment);
+                        int? posId = await GetOrCreatePosition(conn, tx, worker.EditPosition);
+
+                        string update = "UPDATE workers SET DepID=@did, PosID=@pid, Status=@st WHERE WrkID=@wid";
+                        using (var cmd = new MySqlCommand(update, conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@did", (object)depId ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@pid", (object)posId ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@st", worker.EditStatus);
+                            cmd.Parameters.AddWithValue("@wid", worker.WrkID);
+                            await cmd.ExecuteNonQueryAsync();
+                        }
+                        tx.Commit();
+                    }
+                }
+
+                worker.Department = worker.EditDepartment;
+                worker.Position = worker.EditPosition;
+                worker.Status = worker.EditStatus;
+                worker.IsEditing = false;
+
+                await Logger.LogAsync(Session.UserID, "Редактирование сотрудника", "Управление персоналом",
+                    $"Обновлён сотрудник ID {worker.WrkID}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка сохранения: " + ex.Message);
+            }
+        }
+
+        private void CancelEditing_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button button) || button.CommandParameter == null) return;
+            int workerId = Convert.ToInt32(button.CommandParameter);
+            var worker = allWorkers.FirstOrDefault(w => w.WrkID == workerId);
+            if (worker != null) worker.IsEditing = false;
+        }
+
+        private async Task<int?> GetOrCreateDepartment(MySqlConnection conn, MySqlTransaction tx, string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) return null;
+            using (var cmd = new MySqlCommand("SELECT DepID FROM departments WHERE DepName=@n", conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@n", name);
+                var res = await cmd.ExecuteScalarAsync();
+                if (res != null) return Convert.ToInt32(res);
+            }
+            using (var cmd = new MySqlCommand("INSERT INTO departments (DepName) VALUES (@n); SELECT LAST_INSERT_ID();", conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@n", name);
+                return Convert.ToInt32(await cmd.ExecuteScalarAsync());
+            }
+        }
+
+        private async Task<int?> GetOrCreatePosition(MySqlConnection conn, MySqlTransaction tx, string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) return null;
+            using (var cmd = new MySqlCommand("SELECT PosID FROM positions WHERE PosName=@n", conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@n", name);
+                var res = await cmd.ExecuteScalarAsync();
+                if (res != null) return Convert.ToInt32(res);
+            }
+            using (var cmd = new MySqlCommand("INSERT INTO positions (PosName) VALUES (@n); SELECT LAST_INSERT_ID();", conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@n", name);
+                return Convert.ToInt32(await cmd.ExecuteScalarAsync());
+            }
+        }
+
+        // ========== ОСТАЛЬНЫЕ ОБРАБОТЧИКИ ==========
         private void AddWorkerButton_Click(object sender, RoutedEventArgs e)
         {
             var win = new AddWorkerWindow();
@@ -195,31 +322,23 @@ namespace SKAProject.Pages
             LoadWorkers();
         }
 
-        private void EditWorkerButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Редактирование сотрудника (заглушка)");
-        }
-
-        private string GetValue(object val) =>
-            val == null || string.IsNullOrWhiteSpace(val.ToString()) ? "Пусто" : val.ToString();
-
         private void CreateTaskBtn_Click(object sender, RoutedEventArgs e)
         {
-            int workerId = Convert.ToInt32((sender as Button).CommandParameter);
-            MessageBox.Show($"Создать задачу для сотрудника ID: {workerId}");
+            var selectedIds = allWorkers.Where(w => w.IsSelected).Select(w => w.WrkID).ToList();
+            if (selectedIds.Count == 0)
+            {
+                MessageBox.Show("Выберите сотрудников, для которых создаётся задача.");
+                return;
+            }
+            MessageBox.Show($"Создать задачу для сотрудников ID: {string.Join(", ", selectedIds)}");
         }
 
         private async void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Получаем ID всех отмеченных сотрудников
-            var selectedIds = allWorkers
-                .Where(w => w.IsSelected)
-                .Select(w => w.WrkID)
-                .ToList();
-
+            var selectedIds = allWorkers.Where(w => w.IsSelected).Select(w => w.WrkID).ToList();
             if (selectedIds.Count == 0)
             {
-                MessageBox.Show("Выберите сотрудников для удаления.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выберите сотрудников для удаления.");
                 return;
             }
 
@@ -237,34 +356,38 @@ namespace SKAProject.Pages
                     await conn.OpenAsync();
                     using (var tx = conn.BeginTransaction())
                     {
-                        // Удаляем записи из workers
                         string deleteQuery = $"DELETE FROM workers WHERE WrkID IN ({string.Join(",", selectedIds)})";
                         using (var cmd = new MySqlCommand(deleteQuery, conn, tx))
                         {
                             await cmd.ExecuteNonQueryAsync();
                         }
 
-                        // Логируем удаление каждого сотрудника
                         foreach (var id in selectedIds)
                         {
-                            await Logger.LogAsync(Session.UserID, "Удаление сотрудника", "Управление персоналом", $"Удалён сотрудник с WrkID = {id}");
+                            await Logger.LogAsync(Session.UserID, "Удаление сотрудника", "Управление персоналом",
+                                $"Удалён сотрудник с WrkID = {id}");
                         }
 
                         tx.Commit();
                     }
                 }
 
-                // Снимаем выделение и перезагружаем список
-                foreach (var w in allWorkers)
-                    w.IsSelected = false;
+                foreach (var w in allWorkers) w.IsSelected = false;
                 LoadWorkers();
-
-                MessageBox.Show("Выбранные сотрудники удалены.", "Готово", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выбранные сотрудники удалены.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка удаления: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка удаления: " + ex.Message);
             }
         }
+
+        private void ExportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Экспорт в Excel (функция в разработке)");
+        }
+
+        private string GetValue(object val) =>
+            val == null || string.IsNullOrWhiteSpace(val.ToString()) ? "Пусто" : val.ToString();
     }
 }
