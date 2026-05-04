@@ -388,7 +388,9 @@ namespace SKAProject.Pages
 
         private void ExportBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Экспорт в Excel (функция в разработке)");
+            var exportWindow = new ExportExcelWindow(allWorkers.ToList());
+            exportWindow.Owner = Window.GetWindow(this);
+            exportWindow.ShowDialog();
         }
 
         private string GetValue(object val) =>
