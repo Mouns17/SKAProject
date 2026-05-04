@@ -168,9 +168,6 @@
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegOrgWindow.xaml.cs">
-      <DependentUpon>RegOrgWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SendReportWindow.xaml.cs">
       <DependentUpon>SendReportWindow.xaml</DependentUpon>
     </Compile>
@@ -325,10 +322,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RegOrgWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

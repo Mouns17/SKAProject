@@ -1,11 +1,11 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MySqlConnector;
 
 namespace SKAProject.Pages
 {
@@ -44,22 +44,23 @@ namespace SKAProject.Pages
                     switch (EventType)
                     {
                         case "Авторизация":
-                            return new SolidColorBrush(Color.FromRgb(59, 130, 246));   // синий
+                            return new SolidColorBrush(Color.FromRgb(59, 130, 246)); // синий
                         case "Управление персоналом":
-                            return new SolidColorBrush(Color.FromRgb(16, 185, 129));   // зелёный
+                            return new SolidColorBrush(Color.FromRgb(16, 185, 129)); // зелёный
                         case "Пользователи":
-                            return new SolidColorBrush(Color.FromRgb(245, 158, 11));   // оранжевый
+                            return new SolidColorBrush(Color.FromRgb(245, 158, 11)); // оранжевый
                         case "Управление организацией":
-                            return new SolidColorBrush(Color.FromRgb(139, 92, 246));   // фиолетовый
+                            return new SolidColorBrush(Color.FromRgb(139, 92, 246)); // фиолетовый
                         case "Система":
-                            return new SolidColorBrush(Color.FromRgb(107, 114, 128));  // серый
+                            return new SolidColorBrush(Color.FromRgb(107, 114, 128)); // серый
                         default:
-                            return new SolidColorBrush(Color.FromRgb(156, 163, 175));  // серый по умолчанию
+                            return new SolidColorBrush(Color.FromRgb(156, 163, 175)); // серый по умолчанию
                     }
                 }
             }
 
             public event PropertyChangedEventHandler PropertyChanged;
+
             protected void OnPropertyChanged(string name) =>
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
@@ -72,7 +73,8 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    string query = @"
+                    string query =
+                        @"
                 SELECT l.LogID, l.UserID, l.Action, l.EventType, l.Description, l.CreatedAt,
                        CONCAT(u.LastName, ' ', u.FirstName, ' ', COALESCE(u.MiddleName, '')) AS UserFullName,
                        u.Login
@@ -112,16 +114,18 @@ namespace SKAProject.Pages
 
                             DateTime createdAt = reader.GetDateTime(reader.GetOrdinal("CreatedAt"));
 
-                            allLogs.Add(new LogEntry
-                            {
-                                LogId = logId,
-                                UserId = userId,
-                                UserName = userName,
-                                Action = action,
-                                EventType = eventType,
-                                Description = description,
-                                CreatedAt = createdAt
-                            });
+                            allLogs.Add(
+                                new LogEntry
+                                {
+                                    LogId = logId,
+                                    UserId = userId,
+                                    UserName = userName,
+                                    Action = action,
+                                    EventType = eventType,
+                                    Description = description,
+                                    CreatedAt = createdAt,
+                                }
+                            );
                         }
                     }
                 }
@@ -151,7 +155,9 @@ namespace SKAProject.Pages
         private void LoadEventTypes()
         {
             DepartmentFilterComboBox.Items.Clear();
-            DepartmentFilterComboBox.Items.Add(new ComboBoxItem { Content = "Все типы", IsSelected = true });
+            DepartmentFilterComboBox.Items.Add(
+                new ComboBoxItem { Content = "Все типы", IsSelected = true }
+            );
 
             var types = allLogs
                 .Select(l => l.EventType)
@@ -173,18 +179,25 @@ namespace SKAProject.Pages
             if (!string.IsNullOrWhiteSpace(search))
             {
                 filtered = filtered.Where(l =>
-                    (l.UserName != null && l.UserName.ToLower().Contains(search)) ||
-                    (l.Action != null && l.Action.ToLower().Contains(search)) ||
-                    (l.Description != null && l.Description.ToLower().Contains(search)));
+                    (l.UserName != null && l.UserName.ToLower().Contains(search))
+                    || (l.Action != null && l.Action.ToLower().Contains(search))
+                    || (l.Description != null && l.Description.ToLower().Contains(search))
+                );
             }
 
-            if (DepartmentFilterComboBox.SelectedItem is ComboBoxItem typeItem && typeItem.Tag != null)
+            if (
+                DepartmentFilterComboBox.SelectedItem is ComboBoxItem typeItem
+                && typeItem.Tag != null
+            )
             {
                 string type = typeItem.Tag.ToString();
                 filtered = filtered.Where(l => l.EventType == type);
             }
 
-            if (PositionFilterComboBox.SelectedItem is ComboBoxItem dateItem && dateItem.Tag != null)
+            if (
+                PositionFilterComboBox.SelectedItem is ComboBoxItem dateItem
+                && dateItem.Tag != null
+            )
             {
                 string dateTag = dateItem.Tag.ToString();
                 DateTime now = DateTime.Now;

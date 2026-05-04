@@ -1,5 +1,4 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -15,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySqlConnector;
 
 namespace SKAProject
 {
@@ -23,7 +23,6 @@ namespace SKAProject
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-
         public RegistrationWindow()
         {
             InitializeComponent();
@@ -47,7 +46,6 @@ namespace SKAProject
             BtnNextRegVis.Visibility = Visibility.Collapsed;
             BtnRegisterVis.Visibility = Visibility.Visible;
         }
-
 
         private async void BtnRegister(object sender, RoutedEventArgs e)
         {
@@ -78,7 +76,12 @@ namespace SKAProject
                         long exists = (long)await checkCmd.ExecuteScalarAsync();
                         if (exists > 0)
                         {
-                            MessageBox.Show("Этот логин уже используется. Пожалуйста, выберите другой.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show(
+                                "Этот логин уже используется. Пожалуйста, выберите другой.",
+                                "Ошибка",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning
+                            );
                             return;
                         }
                     }
@@ -89,10 +92,13 @@ namespace SKAProject
                         MySqlCommand cmdUser = new MySqlCommand(
                             @"INSERT INTO users (Login, Password, FirstName, LastName, MiddleName) 
                       VALUES (@lg, @ps, @fn, @ln, @mn); 
-                      SELECT LAST_INSERT_ID();", conn, tx);
+                      SELECT LAST_INSERT_ID();",
+                            conn,
+                            tx
+                        );
 
                         cmdUser.Parameters.AddWithValue("@lg", login);
-                        cmdUser.Parameters.AddWithValue("@ps", password);  // пароль лучше хэшировать, но пока оставим так
+                        cmdUser.Parameters.AddWithValue("@ps", password); // пароль лучше хэшировать, но пока оставим так
                         cmdUser.Parameters.AddWithValue("@fn", firstname);
                         cmdUser.Parameters.AddWithValue("@ln", lastname);
                         cmdUser.Parameters.AddWithValue("@mn", middlename);
@@ -101,7 +107,12 @@ namespace SKAProject
                         tx.Commit();
 
                         // Запись в лог
-                        await Logger.LogAsync(newUserId, "Регистрация нового пользователя", "Пользователи", $"Логин: {login}");
+                        await Logger.LogAsync(
+                            newUserId,
+                            "Регистрация нового пользователя",
+                            "Пользователи",
+                            $"Логин: {login}"
+                        );
                     }
                 }
 
@@ -111,7 +122,12 @@ namespace SKAProject
             }
             catch (MySqlException ex) when (ex.Number == 1062) // дубликат ключа
             {
-                MessageBox.Show("Этот логин уже занят. Выберите другой.", "Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(
+                    "Этот логин уже занят. Выберите другой.",
+                    "Ошибка регистрации",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
             }
             catch (Exception ex)
             {

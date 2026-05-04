@@ -1,7 +1,7 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
+using MySqlConnector;
 
 namespace SKAProject
 {
@@ -12,7 +12,13 @@ namespace SKAProject
         private readonly string _originalPos;
         private readonly string _originalStatus;
 
-        public EditWorkerWindow(int wrkId, string fullName, string department, string position, string status)
+        public EditWorkerWindow(
+            int wrkId,
+            string fullName,
+            string department,
+            string position,
+            string status
+        )
         {
             InitializeComponent();
 
@@ -41,9 +47,18 @@ namespace SKAProject
             string newPos = CmbPosition.SelectedItem?.ToString();
             string newStatus = CmbStatus.SelectedItem?.ToString();
 
-            if (string.IsNullOrWhiteSpace(newDep) || string.IsNullOrWhiteSpace(newPos) || string.IsNullOrWhiteSpace(newStatus))
+            if (
+                string.IsNullOrWhiteSpace(newDep)
+                || string.IsNullOrWhiteSpace(newPos)
+                || string.IsNullOrWhiteSpace(newStatus)
+            )
             {
-                MessageBox.Show("Заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(
+                    "Заполните все поля.",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
                 return;
             }
 
@@ -55,12 +70,27 @@ namespace SKAProject
                     using (var tx = conn.BeginTransaction())
                     {
                         // Получаем/создаём отдел
-                        int? depId = await GetOrCreateId(conn, tx, "departments", "DepID", "DepName", newDep);
+                        int? depId = await GetOrCreateId(
+                            conn,
+                            tx,
+                            "departments",
+                            "DepID",
+                            "DepName",
+                            newDep
+                        );
                         // Получаем/создаём должность
-                        int? posId = await GetOrCreateId(conn, tx, "positions", "PosID", "PosName", newPos);
+                        int? posId = await GetOrCreateId(
+                            conn,
+                            tx,
+                            "positions",
+                            "PosID",
+                            "PosName",
+                            newPos
+                        );
 
                         // Обновляем workers
-                        string update = "UPDATE workers SET DepID = @did, PosID = @pid, Status = @st WHERE WrkID = @wid";
+                        string update =
+                            "UPDATE workers SET DepID = @did, PosID = @pid, Status = @st WHERE WrkID = @wid";
                         using (var cmd = new MySqlCommand(update, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@did", (object)depId ?? DBNull.Value);
@@ -74,19 +104,35 @@ namespace SKAProject
                     }
                 }
 
-                await Logger.LogAsync(Session.UserID, "Редактирование сотрудника", "Управление персоналом",
-                    $"Обновлён сотрудник ID {_wrkId}: отдел={newDep}, должность={newPos}, статус={newStatus}");
+                await Logger.LogAsync(
+                    Session.UserID,
+                    "Редактирование сотрудника",
+                    "Управление персоналом",
+                    $"Обновлён сотрудник ID {_wrkId}: отдел={newDep}, должность={newPos}, статус={newStatus}"
+                );
 
                 DialogResult = true;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка сохранения: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Ошибка сохранения: " + ex.Message,
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
             }
         }
 
-        private async Task<int?> GetOrCreateId(MySqlConnection conn, MySqlTransaction tx, string table, string idCol, string nameCol, string name)
+        private async Task<int?> GetOrCreateId(
+            MySqlConnection conn,
+            MySqlTransaction tx,
+            string table,
+            string idCol,
+            string nameCol,
+            string name
+        )
         {
             // Ищем существующий
             string sel = $"SELECT {idCol} FROM {table} WHERE {nameCol} = @name";
@@ -94,11 +140,13 @@ namespace SKAProject
             {
                 cmd.Parameters.AddWithValue("@name", name);
                 var res = await cmd.ExecuteScalarAsync();
-                if (res != null) return Convert.ToInt32(res);
+                if (res != null)
+                    return Convert.ToInt32(res);
             }
 
             // Создаём новый
-            string ins = $"INSERT INTO {table} ({nameCol}) VALUES (@name); SELECT LAST_INSERT_ID();";
+            string ins =
+                $"INSERT INTO {table} ({nameCol}) VALUES (@name); SELECT LAST_INSERT_ID();";
             using (var cmd = new MySqlCommand(ins, conn, tx))
             {
                 cmd.Parameters.AddWithValue("@name", name);

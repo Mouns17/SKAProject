@@ -1,15 +1,18 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using MySqlConnector;
 
 namespace SKAProject
 {
     public partial class AddPostWindow : Window
     {
         public AddPostWindow() => InitializeComponent();
-        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => DragMove();
+
+        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
+            DragMove();
+
         private void BtnClose(object sender, RoutedEventArgs e) => Close();
 
         private async void BtnAdd(object sender, RoutedEventArgs e)
@@ -54,7 +57,12 @@ namespace SKAProject
                 }
 
                 MessageBox.Show("Должность добавлена.");
-                await Logger.LogAsync(Session.UserID, "Создание должности", "Управление организацией", $"Должность: {post}");
+                await Logger.LogAsync(
+                    Session.UserID,
+                    "Создание должности",
+                    "Управление организацией",
+                    $"Должность: {post}"
+                );
                 DialogResult = true;
                 Close();
             }

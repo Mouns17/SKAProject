@@ -1,5 +1,4 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MySqlConnector;
 
 namespace SKAProject.Pages
 {
@@ -17,7 +17,12 @@ namespace SKAProject.Pages
 
         public static List<string> DepartmentsAll = new List<string>();
         public static List<string> PositionsAll = new List<string>();
-        public static List<string> StatusesAll = new List<string> { "Работает", "Уволен", "В отпуске" };
+        public static List<string> StatusesAll = new List<string>
+        {
+            "Работает",
+            "Уволен",
+            "В отпуске",
+        };
 
         public WorkersPage()
         {
@@ -52,7 +57,8 @@ namespace SKAProject.Pages
                 get => _isSelected;
                 set
                 {
-                    if (_isSelected == value) return;
+                    if (_isSelected == value)
+                        return;
                     _isSelected = value;
                     OnPropertyChanged(nameof(IsSelected));
                 }
@@ -61,31 +67,49 @@ namespace SKAProject.Pages
             public bool IsEditing
             {
                 get => _isEditing;
-                set { _isEditing = value; OnPropertyChanged(nameof(IsEditing)); }
+                set
+                {
+                    _isEditing = value;
+                    OnPropertyChanged(nameof(IsEditing));
+                }
             }
 
             public string EditDepartment
             {
                 get => _editDepartment ?? Department;
-                set { _editDepartment = value; OnPropertyChanged(nameof(EditDepartment)); }
+                set
+                {
+                    _editDepartment = value;
+                    OnPropertyChanged(nameof(EditDepartment));
+                }
             }
             public string EditPosition
             {
                 get => _editPosition ?? Position;
-                set { _editPosition = value; OnPropertyChanged(nameof(EditPosition)); }
+                set
+                {
+                    _editPosition = value;
+                    OnPropertyChanged(nameof(EditPosition));
+                }
             }
             public string EditStatus
             {
                 get => _editStatus ?? Status;
-                set { _editStatus = value; OnPropertyChanged(nameof(EditStatus)); }
+                set
+                {
+                    _editStatus = value;
+                    OnPropertyChanged(nameof(EditStatus));
+                }
             }
 
             public Brush StatusColor =>
-                Status == "Работает" ? Brushes.Green :
-                Status == "Уволен" ? Brushes.Red :
-                Status == "В отпуске" ? Brushes.Orange : Brushes.Gray;
+                Status == "Работает" ? Brushes.Green
+                : Status == "Уволен" ? Brushes.Red
+                : Status == "В отпуске" ? Brushes.Orange
+                : Brushes.Gray;
 
             public event PropertyChangedEventHandler PropertyChanged;
+
             protected void OnPropertyChanged(string propertyName = null) =>
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -99,7 +123,8 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    string query = @"
+                    string query =
+                        @"
                         SELECT w.WrkID, u.UserID,
                                u.FirstName, u.LastName, u.MiddleName,
                                u.Phone, u.Email, w.Status,
@@ -114,17 +139,20 @@ namespace SKAProject.Pages
                     {
                         while (await reader.ReadAsync())
                         {
-                            allWorkers.Add(new WorkerModel
-                            {
-                                WrkID = reader.GetInt32("WrkID"),
-                                UserId = reader.GetInt32("UserID"),
-                                FullName = $"{reader["LastName"]} {reader["FirstName"]} {reader["MiddleName"]}",
-                                Department = reader["DepName"].ToString(),
-                                Position = reader["PosName"].ToString(),
-                                Phone = GetValue(reader["Phone"]),
-                                Email = GetValue(reader["Email"]),
-                                Status = reader["Status"].ToString()
-                            });
+                            allWorkers.Add(
+                                new WorkerModel
+                                {
+                                    WrkID = reader.GetInt32("WrkID"),
+                                    UserId = reader.GetInt32("UserID"),
+                                    FullName =
+                                        $"{reader["LastName"]} {reader["FirstName"]} {reader["MiddleName"]}",
+                                    Department = reader["DepName"].ToString(),
+                                    Position = reader["PosName"].ToString(),
+                                    Phone = GetValue(reader["Phone"]),
+                                    Email = GetValue(reader["Email"]),
+                                    Status = reader["Status"].ToString(),
+                                }
+                            );
                         }
                     }
 
@@ -151,14 +179,24 @@ namespace SKAProject.Pages
                     DepartmentsAll.Clear();
                     PositionsAll.Clear();
 
-                    using (var cmd = new MySqlCommand("SELECT DepName FROM departments ORDER BY DepName", conn))
+                    using (
+                        var cmd = new MySqlCommand(
+                            "SELECT DepName FROM departments ORDER BY DepName",
+                            conn
+                        )
+                    )
                     using (var reader = await cmd.ExecuteReaderAsync())
                     {
                         while (await reader.ReadAsync())
                             DepartmentsAll.Add(reader.GetString(0));
                     }
 
-                    using (var cmd = new MySqlCommand("SELECT PosName FROM positions ORDER BY PosName", conn))
+                    using (
+                        var cmd = new MySqlCommand(
+                            "SELECT PosName FROM positions ORDER BY PosName",
+                            conn
+                        )
+                    )
                     using (var reader = await cmd.ExecuteReaderAsync())
                     {
                         while (await reader.ReadAsync())
@@ -192,21 +230,29 @@ namespace SKAProject.Pages
             string search = SearchTextBox.Text?.ToLower() ?? "";
             string dep = DepartmentFilterComboBox.SelectedItem?.ToString() ?? "Все отделы";
             string pos = PositionFilterComboBox.SelectedItem?.ToString() ?? "Все должности";
-            string status = (StatusFilterComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Все статусы";
+            string status =
+                (StatusFilterComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString()
+                ?? "Все статусы";
 
-            var filtered = allWorkers.Where(w =>
-                (w.FullName.ToLower().Contains(search) ||
-                 w.Email.ToLower().Contains(search) ||
-                 w.Phone.ToLower().Contains(search)) &&
-                (dep == "Все отделы" || w.Department == dep) &&
-                (pos == "Все должности" || w.Position == pos) &&
-                (status == "Все статусы" || w.Status == status)
-            ).ToList();
+            var filtered = allWorkers
+                .Where(w =>
+                    (
+                        w.FullName.ToLower().Contains(search)
+                        || w.Email.ToLower().Contains(search)
+                        || w.Phone.ToLower().Contains(search)
+                    )
+                    && (dep == "Все отделы" || w.Department == dep)
+                    && (pos == "Все должности" || w.Position == pos)
+                    && (status == "Все статусы" || w.Status == status)
+                )
+                .ToList();
 
             WorkersItemsControl.ItemsSource = filtered;
         }
 
-        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) => ApplyFilters();
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) =>
+            ApplyFilters();
+
         private void FilterChanged(object sender, SelectionChangedEventArgs e) => ApplyFilters();
 
         // ========== РЕДАКТИРОВАНИЕ ==========
@@ -215,7 +261,12 @@ namespace SKAProject.Pages
             var selected = allWorkers.FirstOrDefault(w => w.IsSelected);
             if (selected == null)
             {
-                MessageBox.Show("Выберите сотрудника для редактирования.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    "Выберите сотрудника для редактирования.",
+                    "Информация",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
                 return;
             }
             StartEditingWorker(selected);
@@ -223,7 +274,8 @@ namespace SKAProject.Pages
 
         private void StartEditingWorker(WorkerModel worker)
         {
-            foreach (var w in allWorkers) w.IsEditing = false;
+            foreach (var w in allWorkers)
+                w.IsEditing = false;
             worker.EditDepartment = worker.Department;
             worker.EditPosition = worker.Position;
             worker.EditStatus = worker.Status;
@@ -232,10 +284,12 @@ namespace SKAProject.Pages
 
         private async void SaveWorker_Click(object sender, RoutedEventArgs e)
         {
-            if (!(sender is Button button) || button.CommandParameter == null) return;
+            if (!(sender is Button button) || button.CommandParameter == null)
+                return;
             int workerId = Convert.ToInt32(button.CommandParameter);
             var worker = allWorkers.FirstOrDefault(w => w.WrkID == workerId);
-            if (worker == null) return;
+            if (worker == null)
+                return;
 
             try
             {
@@ -247,7 +301,8 @@ namespace SKAProject.Pages
                         int? depId = await GetOrCreateDepartment(conn, tx, worker.EditDepartment);
                         int? posId = await GetOrCreatePosition(conn, tx, worker.EditPosition);
 
-                        string update = "UPDATE workers SET DepID=@did, PosID=@pid, Status=@st WHERE WrkID=@wid";
+                        string update =
+                            "UPDATE workers SET DepID=@did, PosID=@pid, Status=@st WHERE WrkID=@wid";
                         using (var cmd = new MySqlCommand(update, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@did", (object)depId ?? DBNull.Value);
@@ -265,8 +320,12 @@ namespace SKAProject.Pages
                 worker.Status = worker.EditStatus;
                 worker.IsEditing = false;
 
-                await Logger.LogAsync(Session.UserID, "Редактирование сотрудника", "Управление персоналом",
-                    $"Обновлён сотрудник ID {worker.WrkID}");
+                await Logger.LogAsync(
+                    Session.UserID,
+                    "Редактирование сотрудника",
+                    "Управление персоналом",
+                    $"Обновлён сотрудник ID {worker.WrkID}"
+                );
             }
             catch (Exception ex)
             {
@@ -276,38 +335,72 @@ namespace SKAProject.Pages
 
         private void CancelEditing_Click(object sender, RoutedEventArgs e)
         {
-            if (!(sender is Button button) || button.CommandParameter == null) return;
+            if (!(sender is Button button) || button.CommandParameter == null)
+                return;
             int workerId = Convert.ToInt32(button.CommandParameter);
             var worker = allWorkers.FirstOrDefault(w => w.WrkID == workerId);
-            if (worker != null) worker.IsEditing = false;
+            if (worker != null)
+                worker.IsEditing = false;
         }
 
-        private async Task<int?> GetOrCreateDepartment(MySqlConnection conn, MySqlTransaction tx, string name)
+        private async Task<int?> GetOrCreateDepartment(
+            MySqlConnection conn,
+            MySqlTransaction tx,
+            string name
+        )
         {
-            if (string.IsNullOrWhiteSpace(name)) return null;
-            using (var cmd = new MySqlCommand("SELECT DepID FROM departments WHERE DepName=@n", conn, tx))
+            if (string.IsNullOrWhiteSpace(name))
+                return null;
+            using (
+                var cmd = new MySqlCommand(
+                    "SELECT DepID FROM departments WHERE DepName=@n",
+                    conn,
+                    tx
+                )
+            )
             {
                 cmd.Parameters.AddWithValue("@n", name);
                 var res = await cmd.ExecuteScalarAsync();
-                if (res != null) return Convert.ToInt32(res);
+                if (res != null)
+                    return Convert.ToInt32(res);
             }
-            using (var cmd = new MySqlCommand("INSERT INTO departments (DepName) VALUES (@n); SELECT LAST_INSERT_ID();", conn, tx))
+            using (
+                var cmd = new MySqlCommand(
+                    "INSERT INTO departments (DepName) VALUES (@n); SELECT LAST_INSERT_ID();",
+                    conn,
+                    tx
+                )
+            )
             {
                 cmd.Parameters.AddWithValue("@n", name);
                 return Convert.ToInt32(await cmd.ExecuteScalarAsync());
             }
         }
 
-        private async Task<int?> GetOrCreatePosition(MySqlConnection conn, MySqlTransaction tx, string name)
+        private async Task<int?> GetOrCreatePosition(
+            MySqlConnection conn,
+            MySqlTransaction tx,
+            string name
+        )
         {
-            if (string.IsNullOrWhiteSpace(name)) return null;
-            using (var cmd = new MySqlCommand("SELECT PosID FROM positions WHERE PosName=@n", conn, tx))
+            if (string.IsNullOrWhiteSpace(name))
+                return null;
+            using (
+                var cmd = new MySqlCommand("SELECT PosID FROM positions WHERE PosName=@n", conn, tx)
+            )
             {
                 cmd.Parameters.AddWithValue("@n", name);
                 var res = await cmd.ExecuteScalarAsync();
-                if (res != null) return Convert.ToInt32(res);
+                if (res != null)
+                    return Convert.ToInt32(res);
             }
-            using (var cmd = new MySqlCommand("INSERT INTO positions (PosName) VALUES (@n); SELECT LAST_INSERT_ID();", conn, tx))
+            using (
+                var cmd = new MySqlCommand(
+                    "INSERT INTO positions (PosName) VALUES (@n); SELECT LAST_INSERT_ID();",
+                    conn,
+                    tx
+                )
+            )
             {
                 cmd.Parameters.AddWithValue("@n", name);
                 return Convert.ToInt32(await cmd.ExecuteScalarAsync());
@@ -327,8 +420,12 @@ namespace SKAProject.Pages
             var selectedWorkers = allWorkers.Where(w => w.IsSelected).ToList();
             if (selectedWorkers.Count == 0)
             {
-                MessageBox.Show("Выберите сотрудников, для которых создаётся задача.",
-                                "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    "Выберите сотрудников, для которых создаётся задача.",
+                    "Информация",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
                 return;
             }
 
@@ -348,11 +445,19 @@ namespace SKAProject.Pages
                 return;
             }
 
-            string message = selectedIds.Count == 1
-                ? "Удалить выбранного сотрудника?"
-                : $"Удалить {selectedIds.Count} выбранных сотрудников?";
+            string message =
+                selectedIds.Count == 1
+                    ? "Удалить выбранного сотрудника?"
+                    : $"Удалить {selectedIds.Count} выбранных сотрудников?";
 
-            if (MessageBox.Show(message, "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (
+                MessageBox.Show(
+                    message,
+                    "Подтверждение",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                ) != MessageBoxResult.Yes
+            )
                 return;
 
             try
@@ -362,7 +467,8 @@ namespace SKAProject.Pages
                     await conn.OpenAsync();
                     using (var tx = conn.BeginTransaction())
                     {
-                        string deleteQuery = $"DELETE FROM workers WHERE WrkID IN ({string.Join(",", selectedIds)})";
+                        string deleteQuery =
+                            $"DELETE FROM workers WHERE WrkID IN ({string.Join(",", selectedIds)})";
                         using (var cmd = new MySqlCommand(deleteQuery, conn, tx))
                         {
                             await cmd.ExecuteNonQueryAsync();
@@ -370,15 +476,20 @@ namespace SKAProject.Pages
 
                         foreach (var id in selectedIds)
                         {
-                            await Logger.LogAsync(Session.UserID, "Удаление сотрудника", "Управление персоналом",
-                                $"Удалён сотрудник с WrkID = {id}");
+                            await Logger.LogAsync(
+                                Session.UserID,
+                                "Удаление сотрудника",
+                                "Управление персоналом",
+                                $"Удалён сотрудник с WrkID = {id}"
+                            );
                         }
 
                         tx.Commit();
                     }
                 }
 
-                foreach (var w in allWorkers) w.IsSelected = false;
+                foreach (var w in allWorkers)
+                    w.IsSelected = false;
                 LoadWorkers();
                 MessageBox.Show("Выбранные сотрудники удалены.");
             }

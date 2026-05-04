@@ -47,7 +47,9 @@ namespace SKAProject
                     await conn.OpenAsync();
                     // Изменён запрос – теперь выбираем и UserID, и Role
                     var cmd = new MySqlCommand(
-                        @"SELECT UserID, Role FROM Users WHERE Login=@lg AND Password=@ps", conn);
+                        @"SELECT UserID, Role FROM Users WHERE Login=@lg AND Password=@ps",
+                        conn
+                    );
 
                     cmd.Parameters.AddWithValue("@lg", login);
                     cmd.Parameters.AddWithValue("@ps", password);
@@ -61,10 +63,15 @@ namespace SKAProject
 
                             // Сохраняем в сессию
                             Session.UserID = userId;
-                            Session.Role = role;          
+                            Session.Role = role;
 
                             // Логирование входа
-                            await Logger.LogAsync(userId, "Вход в систему", "Авторизация", "Успешный вход");
+                            await Logger.LogAsync(
+                                userId,
+                                "Вход в систему",
+                                "Авторизация",
+                                "Успешный вход"
+                            );
 
                             new MainWindow().Show();
                             this.Close();

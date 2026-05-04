@@ -1,11 +1,11 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using MySqlConnector;
 
 namespace SKAProject.Pages
 {
@@ -42,7 +42,10 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     conn.Open();
-                    var cmd = new MySqlCommand("SELECT FirstName FROM users WHERE UserID = @id", conn);
+                    var cmd = new MySqlCommand(
+                        "SELECT FirstName FROM users WHERE UserID = @id",
+                        conn
+                    );
                     cmd.Parameters.AddWithValue("@id", Session.UserID);
                     firstName = cmd.ExecuteScalar()?.ToString() ?? "";
                 }
@@ -60,7 +63,8 @@ namespace SKAProject.Pages
                     await conn.OpenAsync();
 
                     // Всего сотрудников (работающих)
-                    string empQuery = "SELECT COUNT(*) FROM workers WHERE Status IN ('Работает', 'В отпуске')";
+                    string empQuery =
+                        "SELECT COUNT(*) FROM workers WHERE Status IN ('Работает', 'В отпуске')";
                     using (var cmd = new MySqlCommand(empQuery, conn))
                     {
                         long count = (long)(await cmd.ExecuteScalarAsync());
@@ -68,7 +72,8 @@ namespace SKAProject.Pages
                     }
 
                     // Мои активные задачи (Новая + В работе)
-                    string taskQuery = @"SELECT COUNT(*) FROM tasks 
+                    string taskQuery =
+                        @"SELECT COUNT(*) FROM tasks 
                                          WHERE AssignedTo = @uid AND Status IN ('Новая','В работе')";
                     using (var cmd = new MySqlCommand(taskQuery, conn))
                     {
@@ -78,7 +83,8 @@ namespace SKAProject.Pages
                     }
 
                     // Отчётов на проверке (адресованных мне)
-                    string reportQuery = @"SELECT COUNT(*) FROM reports 
+                    string reportQuery =
+                        @"SELECT COUNT(*) FROM reports 
                                            WHERE RecipientID = @uid AND Status = 'На проверке'";
                     using (var cmd = new MySqlCommand(reportQuery, conn))
                     {
@@ -88,7 +94,8 @@ namespace SKAProject.Pages
                     }
 
                     // Новых задач за неделю (созданных кем-либо для меня)
-                    string recentQuery = @"SELECT COUNT(*) FROM tasks 
+                    string recentQuery =
+                        @"SELECT COUNT(*) FROM tasks 
                                            WHERE AssignedTo = @uid AND CreatedAt >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
                     using (var cmd = new MySqlCommand(recentQuery, conn))
                     {
@@ -112,7 +119,8 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    string query = @"
+                    string query =
+                        @"
                         SELECT l.CreatedAt, 
                                CONCAT(u.LastName, ' ', u.FirstName) AS UserName,
                                l.Action, l.Description
@@ -136,8 +144,12 @@ namespace SKAProject.Pages
                             int actionIdx = reader.GetOrdinal("Action");
 
                             // Безопасное чтение
-                            log.UserName = reader.IsDBNull(userIdx) ? "Система" : reader.GetString(userIdx);
-                            log.Description = reader.IsDBNull(descIdx) ? "" : reader.GetString(descIdx);
+                            log.UserName = reader.IsDBNull(userIdx)
+                                ? "Система"
+                                : reader.GetString(userIdx);
+                            log.Description = reader.IsDBNull(descIdx)
+                                ? ""
+                                : reader.GetString(descIdx);
                             log.Action = reader.GetString(actionIdx); // Action не должно быть NULL, но можно тоже проверить
 
                             logs.Add(log);

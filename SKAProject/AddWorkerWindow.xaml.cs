@@ -1,10 +1,10 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using MySqlConnector;
 
 namespace SKAProject
 {
@@ -17,7 +17,9 @@ namespace SKAProject
             InitializeComponent();
         }
 
-        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => DragMove();
+        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
+            DragMove();
+
         private void BtnClose(object sender, RoutedEventArgs e) => Close();
 
         private async void BtnAdd(object sender, RoutedEventArgs e)
@@ -27,11 +29,18 @@ namespace SKAProject
             string depName = TBoxWorkDep.Text.Trim();
             string posName = TBoxWorkPost.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(fullName) ||
-                string.IsNullOrWhiteSpace(depName) ||
-                string.IsNullOrWhiteSpace(posName))
+            if (
+                string.IsNullOrWhiteSpace(fullName)
+                || string.IsNullOrWhiteSpace(depName)
+                || string.IsNullOrWhiteSpace(posName)
+            )
             {
-                MessageBox.Show("Заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(
+                    "Заполните все поля.",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
                 return;
             }
 
@@ -39,7 +48,12 @@ namespace SKAProject
             string[] parts = Regex.Split(fullName, @"\s+");
             if (parts.Length < 2)
             {
-                MessageBox.Show("Введите фамилию и имя через пробел.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(
+                    "Введите фамилию и имя через пробел.",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
                 return;
             }
 
@@ -55,9 +69,10 @@ namespace SKAProject
                     using (var tx = conn.BeginTransaction())
                     {
                         // 2. Ищем пользователя
-                        string userQuery = middleName == null
-                            ? "SELECT UserID FROM users WHERE LastName = @ln AND FirstName = @fn AND (MiddleName IS NULL OR MiddleName = '') LIMIT 1"
-                            : "SELECT UserID FROM users WHERE LastName = @ln AND FirstName = @fn AND MiddleName = @mn LIMIT 1";
+                        string userQuery =
+                            middleName == null
+                                ? "SELECT UserID FROM users WHERE LastName = @ln AND FirstName = @fn AND (MiddleName IS NULL OR MiddleName = '') LIMIT 1"
+                                : "SELECT UserID FROM users WHERE LastName = @ln AND FirstName = @fn AND MiddleName = @mn LIMIT 1";
 
                         int? userId = null;
                         using (var cmd = new MySqlCommand(userQuery, conn, tx))
@@ -71,7 +86,12 @@ namespace SKAProject
                             if (res == null)
                             {
                                 tx.Rollback();
-                                MessageBox.Show("Пользователь с таким ФИО не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(
+                                    "Пользователь с таким ФИО не найден.",
+                                    "Ошибка",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error
+                                );
                                 return;
                             }
                             userId = Convert.ToInt32(res);
@@ -86,7 +106,12 @@ namespace SKAProject
                             if (count > 0)
                             {
                                 tx.Rollback();
-                                MessageBox.Show("Этот пользователь уже добавлен как сотрудник.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show(
+                                    "Этот пользователь уже добавлен как сотрудник.",
+                                    "Информация",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Information
+                                );
                                 return;
                             }
                         }
@@ -104,7 +129,8 @@ namespace SKAProject
                             }
                             else
                             {
-                                string insDep = "INSERT INTO departments (DepName) VALUES (@name); SELECT LAST_INSERT_ID();";
+                                string insDep =
+                                    "INSERT INTO departments (DepName) VALUES (@name); SELECT LAST_INSERT_ID();";
                                 using (var cmdIns = new MySqlCommand(insDep, conn, tx))
                                 {
                                     cmdIns.Parameters.AddWithValue("@name", depName);
@@ -126,7 +152,8 @@ namespace SKAProject
                             }
                             else
                             {
-                                string insPos = "INSERT INTO positions (PosName) VALUES (@name); SELECT LAST_INSERT_ID();";
+                                string insPos =
+                                    "INSERT INTO positions (PosName) VALUES (@name); SELECT LAST_INSERT_ID();";
                                 using (var cmdIns = new MySqlCommand(insPos, conn, tx))
                                 {
                                     cmdIns.Parameters.AddWithValue("@name", posName);
@@ -136,14 +163,21 @@ namespace SKAProject
                         }
 
                         // 6. Добавляем запись в workers
-                        string insertWorker = @"
+                        string insertWorker =
+                            @"
                             INSERT INTO workers (UserID, DepID, PosID, Status)
                             VALUES (@uid, @did, @pid, 'Работает')";
                         using (var cmd = new MySqlCommand(insertWorker, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@uid", userId.Value);
-                            cmd.Parameters.AddWithValue("@did", depId.HasValue ? (object)depId.Value : DBNull.Value);
-                            cmd.Parameters.AddWithValue("@pid", posId.HasValue ? (object)posId.Value : DBNull.Value);
+                            cmd.Parameters.AddWithValue(
+                                "@did",
+                                depId.HasValue ? (object)depId.Value : DBNull.Value
+                            );
+                            cmd.Parameters.AddWithValue(
+                                "@pid",
+                                posId.HasValue ? (object)posId.Value : DBNull.Value
+                            );
                             await cmd.ExecuteNonQueryAsync();
                         }
 
@@ -152,16 +186,30 @@ namespace SKAProject
                 }
 
                 // Логирование
-                await Logger.LogAsync(Session.UserID, "Добавление сотрудника", "Управление персоналом",
-                    $"Добавлен сотрудник: {fullName}, отдел: {depName}, должность: {posName}");
+                await Logger.LogAsync(
+                    Session.UserID,
+                    "Добавление сотрудника",
+                    "Управление персоналом",
+                    $"Добавлен сотрудник: {fullName}, отдел: {depName}, должность: {posName}"
+                );
 
-                MessageBox.Show("Сотрудник успешно добавлен.", "Готово", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    "Сотрудник успешно добавлен.",
+                    "Готово",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
                 this.DialogResult = true;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка добавления сотрудника: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Ошибка добавления сотрудника: " + ex.Message,
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
             }
         }
     }

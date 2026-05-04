@@ -1,5 +1,4 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySqlConnector;
 
 namespace SKAProject
 {
@@ -43,7 +43,11 @@ namespace SKAProject
 
                     using (MySqlTransaction tx = conn.BeginTransaction())
                     {
-                        MySqlCommand cmdUser = new MySqlCommand(@"INSERT INTO Departments(DepName) VALUES(@dep); SELECT LAST_INSERT_ID();", conn, tx);
+                        MySqlCommand cmdUser = new MySqlCommand(
+                            @"INSERT INTO Departments(DepName) VALUES(@dep); SELECT LAST_INSERT_ID();",
+                            conn,
+                            tx
+                        );
 
                         // Передаём параметры в запрос
                         cmdUser.Parameters.AddWithValue("@dep", department);
@@ -64,10 +68,14 @@ namespace SKAProject
                 }
 
                 MessageBox.Show("Отдел добавлен");
-                await Logger.LogAsync(Session.UserID, "Добавление отдела", "Управление организацией", $"Добавлен отдел: {department}");
+                await Logger.LogAsync(
+                    Session.UserID,
+                    "Добавление отдела",
+                    "Управление организацией",
+                    $"Добавлен отдел: {department}"
+                );
                 Close();
             }
-
             // При каких то ошибках связанных с БД
             catch (Exception ex)
             {

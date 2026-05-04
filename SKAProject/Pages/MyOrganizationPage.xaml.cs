@@ -1,10 +1,10 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using MySqlConnector;
 
 namespace SKAProject.Pages
 {
@@ -16,8 +16,10 @@ namespace SKAProject.Pages
         private string _currentPhone = "";
 
         // Коллекции для списков
-        private ObservableCollection<DepartmentItem> _departments = new ObservableCollection<DepartmentItem>();
-        private ObservableCollection<PositionItem> _positions = new ObservableCollection<PositionItem>();
+        private ObservableCollection<DepartmentItem> _departments =
+            new ObservableCollection<DepartmentItem>();
+        private ObservableCollection<PositionItem> _positions =
+            new ObservableCollection<PositionItem>();
 
         public MyOrganizationPage()
         {
@@ -51,7 +53,8 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    string query = "SELECT Address, Phone, Email FROM company_info WHERE CompanyID = 1";
+                    string query =
+                        "SELECT Address, Phone, Email FROM company_info WHERE CompanyID = 1";
                     using (var cmd = new MySqlCommand(query, conn))
                     using (var reader = await cmd.ExecuteReaderAsync())
                     {
@@ -62,17 +65,29 @@ namespace SKAProject.Pages
                             int phoneIdx = reader.GetOrdinal("Phone");
                             int emailIdx = reader.GetOrdinal("Email");
 
-                            _currentAddress = reader.IsDBNull(addrIdx) ? "" : reader.GetString(addrIdx);
-                            _currentEmail = reader.IsDBNull(emailIdx) ? "" : reader.GetString(emailIdx);
-                            _currentPhone = reader.IsDBNull(phoneIdx) ? "" : reader.GetString(phoneIdx);
+                            _currentAddress = reader.IsDBNull(addrIdx)
+                                ? ""
+                                : reader.GetString(addrIdx);
+                            _currentEmail = reader.IsDBNull(emailIdx)
+                                ? ""
+                                : reader.GetString(emailIdx);
+                            _currentPhone = reader.IsDBNull(phoneIdx)
+                                ? ""
+                                : reader.GetString(phoneIdx);
                         }
                     }
                 }
 
                 // Обновляем отображение
-                TBlockOrgAddress.Text = string.IsNullOrWhiteSpace(_currentAddress) ? "Не указан" : _currentAddress;
-                TBlockOrgEmail.Text = string.IsNullOrWhiteSpace(_currentEmail) ? "Не указан" : _currentEmail;
-                TBlockOrgPhone.Text = string.IsNullOrWhiteSpace(_currentPhone) ? "Не указан" : _currentPhone;
+                TBlockOrgAddress.Text = string.IsNullOrWhiteSpace(_currentAddress)
+                    ? "Не указан"
+                    : _currentAddress;
+                TBlockOrgEmail.Text = string.IsNullOrWhiteSpace(_currentEmail)
+                    ? "Не указан"
+                    : _currentEmail;
+                TBlockOrgPhone.Text = string.IsNullOrWhiteSpace(_currentPhone)
+                    ? "Не указан"
+                    : _currentPhone;
                 TBlockOrgName.Text = "Моя организация";
             }
             catch (Exception ex)
@@ -96,11 +111,13 @@ namespace SKAProject.Pages
                     {
                         while (await reader.ReadAsync())
                         {
-                            _departments.Add(new DepartmentItem
-                            {
-                                DepID = reader.GetInt32("DepID"),
-                                DepName = reader.GetString("DepName")
-                            });
+                            _departments.Add(
+                                new DepartmentItem
+                                {
+                                    DepID = reader.GetInt32("DepID"),
+                                    DepName = reader.GetString("DepName"),
+                                }
+                            );
                         }
                     }
                 }
@@ -126,11 +143,13 @@ namespace SKAProject.Pages
                     {
                         while (await reader.ReadAsync())
                         {
-                            _positions.Add(new PositionItem
-                            {
-                                PosID = reader.GetInt32("PosID"),
-                                PosName = reader.GetString("PosName")
-                            });
+                            _positions.Add(
+                                new PositionItem
+                                {
+                                    PosID = reader.GetInt32("PosID"),
+                                    PosName = reader.GetString("PosName"),
+                                }
+                            );
                         }
                     }
                 }
@@ -151,7 +170,8 @@ namespace SKAProject.Pages
                     await conn.OpenAsync();
 
                     // Сотрудники
-                    string workerSql = "SELECT COUNT(*) FROM workers WHERE Status IN ('Работает', 'В отпуске')";
+                    string workerSql =
+                        "SELECT COUNT(*) FROM workers WHERE Status IN ('Работает', 'В отпуске')";
                     using (var cmd = new MySqlCommand(workerSql, conn))
                     {
                         long cnt = (long)await cmd.ExecuteScalarAsync();
@@ -184,12 +204,10 @@ namespace SKAProject.Pages
         // ===== Редактирование организации (как в профиле) =====
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-
             if (Session.Role == "User")
             {
                 BtnEdit.Visibility = Visibility.Collapsed;
             }
-
             else
             {
                 // Переключаем в режим редактирования
@@ -237,7 +255,8 @@ namespace SKAProject.Pages
                 {
                     await conn.OpenAsync();
                     // Обновляем company_info (предполагается, что CompanyID = 1)
-                    string update = @"UPDATE company_info SET Address = @addr, Phone = @phone, Email = @email
+                    string update =
+                        @"UPDATE company_info SET Address = @addr, Phone = @phone, Email = @email
                                       WHERE CompanyID = 1";
                     using (var cmd = new MySqlCommand(update, conn))
                     {
@@ -249,15 +268,21 @@ namespace SKAProject.Pages
                 }
 
                 // Логгируем
-                await Logger.LogAsync(Session.UserID, "Редактирование организации", "Организация",
-                    "Обновлены контактные данные");
+                await Logger.LogAsync(
+                    Session.UserID,
+                    "Редактирование организации",
+                    "Организация",
+                    "Обновлены контактные данные"
+                );
 
                 // Обновляем поля и возвращаем просмотр
                 _currentAddress = newAddress;
                 _currentEmail = newEmail;
                 _currentPhone = newPhone;
 
-                TBlockOrgAddress.Text = string.IsNullOrWhiteSpace(newAddress) ? "Не указан" : newAddress;
+                TBlockOrgAddress.Text = string.IsNullOrWhiteSpace(newAddress)
+                    ? "Не указан"
+                    : newAddress;
                 TBlockOrgEmail.Text = string.IsNullOrWhiteSpace(newEmail) ? "Не указан" : newEmail;
                 TBlockOrgPhone.Text = string.IsNullOrWhiteSpace(newPhone) ? "Не указан" : newPhone;
 
@@ -295,11 +320,18 @@ namespace SKAProject.Pages
         // ===== Удаление =====
         private async void DeleteDepartment_Click(object sender, RoutedEventArgs e)
         {
-            if (!(sender is Button button) || button.CommandParameter == null) return;
+            if (!(sender is Button button) || button.CommandParameter == null)
+                return;
             int depId = Convert.ToInt32(button.CommandParameter);
 
-            if (MessageBox.Show("Удалить отдел и всех сотрудников в нём?", "Подтверждение",
-                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (
+                MessageBox.Show(
+                    "Удалить отдел и всех сотрудников в нём?",
+                    "Подтверждение",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning
+                ) == MessageBoxResult.Yes
+            )
             {
                 try
                 {
@@ -326,8 +358,12 @@ namespace SKAProject.Pages
                         }
                     }
 
-                    await Logger.LogAsync(Session.UserID, "Удаление отдела", "Управление организацией",
-                        $"Удалён отдел с ID={depId}");
+                    await Logger.LogAsync(
+                        Session.UserID,
+                        "Удаление отдела",
+                        "Управление организацией",
+                        $"Удалён отдел с ID={depId}"
+                    );
                     LoadDepartments();
                     LoadStatistics();
                 }
@@ -340,11 +376,18 @@ namespace SKAProject.Pages
 
         private async void DeletePosition_Click(object sender, RoutedEventArgs e)
         {
-            if (!(sender is Button button) || button.CommandParameter == null) return;
+            if (!(sender is Button button) || button.CommandParameter == null)
+                return;
             int posId = Convert.ToInt32(button.CommandParameter);
 
-            if (MessageBox.Show("Удалить должность и сбросить её у сотрудников?", "Подтверждение",
-                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (
+                MessageBox.Show(
+                    "Удалить должность и сбросить её у сотрудников?",
+                    "Подтверждение",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning
+                ) == MessageBoxResult.Yes
+            )
             {
                 try
                 {
@@ -371,8 +414,12 @@ namespace SKAProject.Pages
                         }
                     }
 
-                    await Logger.LogAsync(Session.UserID, "Удаление должности", "Управление организацией",
-                        $"Удалена должность с ID={posId}");
+                    await Logger.LogAsync(
+                        Session.UserID,
+                        "Удаление должности",
+                        "Управление организацией",
+                        $"Удалена должность с ID={posId}"
+                    );
                     LoadPositions();
                     LoadStatistics();
                 }

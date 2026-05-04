@@ -15,14 +15,19 @@ namespace SKAProject
 
             // Загружаем выбранную тему
             string uri = $"/Resources/{themeName}Theme.xaml";
-            _currentThemeDictionary = new ResourceDictionary { Source = new Uri(uri, UriKind.Relative) };
+            _currentThemeDictionary = new ResourceDictionary
+            {
+                Source = new Uri(uri, UriKind.Relative),
+            };
 
             Application.Current.Resources.MergedDictionaries.Add(_currentThemeDictionary);
 
             // Сохраняем выбор пользователя (опционально)
             Properties.Settings.Default.Theme = themeName;
             Properties.Settings.Default.Save();
-            Console.WriteLine($"Загружена тема: {themeName}, кол-во словарей: {Application.Current.Resources.MergedDictionaries.Count}");
+            Console.WriteLine(
+                $"Загружена тема: {themeName}, кол-во словарей: {Application.Current.Resources.MergedDictionaries.Count}"
+            );
         }
 
         public static void LoadSavedTheme()

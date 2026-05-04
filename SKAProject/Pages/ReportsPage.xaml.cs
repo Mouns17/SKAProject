@@ -1,5 +1,4 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -9,12 +8,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MySqlConnector;
 
 namespace SKAProject.Pages
 {
     public partial class ReportsPage : Page
     {
-        private ObservableCollection<ReportModel> _allReports = new ObservableCollection<ReportModel>();
+        private ObservableCollection<ReportModel> _allReports =
+            new ObservableCollection<ReportModel>();
 
         public ReportsPage()
         {
@@ -40,10 +41,14 @@ namespace SKAProject.Pages
                 {
                     switch (Status)
                     {
-                        case "Принято": return Brushes.Green;
-                        case "Отклонено": return Brushes.Red;
-                        case "На проверке": return Brushes.Orange;
-                        default: return Brushes.Gray;
+                        case "Принято":
+                            return Brushes.Green;
+                        case "Отклонено":
+                            return Brushes.Red;
+                        case "На проверке":
+                            return Brushes.Orange;
+                        default:
+                            return Brushes.Gray;
                     }
                 }
             }
@@ -61,7 +66,8 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    string query = @"
+                    string query =
+                        @"
                         SELECT r.ReportID, r.ReportDate, r.Description, r.FilePath, r.Status,
                                CONCAT(a.LastName, ' ', a.FirstName) AS AuthorName,
                                CONCAT(rc.LastName, ' ', rc.FirstName) AS RecipientName
@@ -98,16 +104,18 @@ namespace SKAProject.Pages
 
                                 string status = reader.GetString("Status");
 
-                                _allReports.Add(new ReportModel
-                                {
-                                    ReportID = reportId,
-                                    AuthorName = authorName,
-                                    RecipientName = recipientName,
-                                    ReportDate = reportDate,
-                                    Description = description,
-                                    FilePath = filePath,
-                                    Status = status
-                                });
+                                _allReports.Add(
+                                    new ReportModel
+                                    {
+                                        ReportID = reportId,
+                                        AuthorName = authorName,
+                                        RecipientName = recipientName,
+                                        ReportDate = reportDate,
+                                        Description = description,
+                                        FilePath = filePath,
+                                        Status = status,
+                                    }
+                                );
                             }
                         }
                     }
@@ -138,21 +146,25 @@ namespace SKAProject.Pages
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             SearchPlaceholder.Visibility = string.IsNullOrWhiteSpace(SearchTextBox.Text)
-                ? Visibility.Visible : Visibility.Collapsed;
+                ? Visibility.Visible
+                : Visibility.Collapsed;
 
             string search = SearchTextBox.Text?.ToLower() ?? "";
-            var filtered = _allReports.Where(r =>
-                r.ReportID.ToString().Contains(search) ||
-                r.AuthorName.ToLower().Contains(search) ||
-                r.Description.ToLower().Contains(search) ||
-                r.Status.ToLower().Contains(search)
-            ).ToList();
+            var filtered = _allReports
+                .Where(r =>
+                    r.ReportID.ToString().Contains(search)
+                    || r.AuthorName.ToLower().Contains(search)
+                    || r.Description.ToLower().Contains(search)
+                    || r.Status.ToLower().Contains(search)
+                )
+                .ToList();
             ReportsItemsControl.ItemsSource = filtered;
         }
 
         private void DownloadFile_Click(object sender, RoutedEventArgs e)
         {
-            if (!(sender is Button button) || button.CommandParameter == null) return;
+            if (!(sender is Button button) || button.CommandParameter == null)
+                return;
             string filePath = button.CommandParameter.ToString();
             if (File.Exists(filePath))
             {
@@ -173,14 +185,16 @@ namespace SKAProject.Pages
 
         private async void AcceptReport_Click(object sender, RoutedEventArgs e)
         {
-            if (!(sender is Button button) || button.CommandParameter == null) return;
+            if (!(sender is Button button) || button.CommandParameter == null)
+                return;
             int reportId = Convert.ToInt32(button.CommandParameter);
             await ChangeReportStatusAsync(reportId, "Принято");
         }
 
         private async void RejectReport_Click(object sender, RoutedEventArgs e)
         {
-            if (!(sender is Button button) || button.CommandParameter == null) return;
+            if (!(sender is Button button) || button.CommandParameter == null)
+                return;
             int reportId = Convert.ToInt32(button.CommandParameter);
             await ChangeReportStatusAsync(reportId, "Отклонено");
         }
@@ -201,8 +215,12 @@ namespace SKAProject.Pages
                     }
                 }
 
-                await Logger.LogAsync(Session.UserID, "Изменение статуса отчёта", "Отчёты",
-                    $"Отчёт ID={reportId} переведён в статус «{newStatus}»");
+                await Logger.LogAsync(
+                    Session.UserID,
+                    "Изменение статуса отчёта",
+                    "Отчёты",
+                    $"Отчёт ID={reportId} переведён в статус «{newStatus}»"
+                );
 
                 LoadReports();
             }
@@ -217,8 +235,12 @@ namespace SKAProject.Pages
             using (var workbook = new ClosedXML.Excel.XLWorkbook())
             {
                 var ws = workbook.Worksheets.Add("Отчеты");
-                ws.Cell(1, 1).Value = "№"; ws.Cell(1, 2).Value = "От кого"; ws.Cell(1, 3).Value = "Кому";
-                ws.Cell(1, 4).Value = "Дата"; ws.Cell(1, 5).Value = "Описание"; ws.Cell(1, 6).Value = "Статус";
+                ws.Cell(1, 1).Value = "№";
+                ws.Cell(1, 2).Value = "От кого";
+                ws.Cell(1, 3).Value = "Кому";
+                ws.Cell(1, 4).Value = "Дата";
+                ws.Cell(1, 5).Value = "Описание";
+                ws.Cell(1, 6).Value = "Статус";
 
                 int row = 2;
                 foreach (var r in _allReports)
@@ -233,7 +255,11 @@ namespace SKAProject.Pages
                 }
                 ws.Columns().AdjustToContents();
 
-                var dlg = new Microsoft.Win32.SaveFileDialog { Filter = "Excel files (*.xlsx)|*.xlsx", FileName = "Отчеты.xlsx" };
+                var dlg = new Microsoft.Win32.SaveFileDialog
+                {
+                    Filter = "Excel files (*.xlsx)|*.xlsx",
+                    FileName = "Отчеты.xlsx",
+                };
                 if (dlg.ShowDialog() == true)
                 {
                     workbook.SaveAs(dlg.FileName);

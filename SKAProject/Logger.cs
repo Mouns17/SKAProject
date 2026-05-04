@@ -1,19 +1,25 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using MySqlConnector;
 
 namespace SKAProject
 {
     public static class Logger
     {
-        public static async Task LogAsync(int? userId, string action, string eventType, string description = "")
+        public static async Task LogAsync(
+            int? userId,
+            string action,
+            string eventType,
+            string description = ""
+        )
         {
             try
             {
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    string query = @"INSERT INTO logs (UserID, Action, EventType, Description, CreatedAt)
+                    string query =
+                        @"INSERT INTO logs (UserID, Action, EventType, Description, CreatedAt)
                                      VALUES (@uid, @action, @type, @desc, NOW())";
                     using (var cmd = new MySqlCommand(query, conn))
                     {

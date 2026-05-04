@@ -1,5 +1,4 @@
-﻿using SKAProject.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -13,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SKAProject.Pages;
 
 namespace SKAProject
 {
@@ -20,10 +20,11 @@ namespace SKAProject
     {
         private RegOrgWindow _regOrgWindow;
         public static Frame MainFrameStatic { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
-            MainFrameStatic = MainFrame; 
+            MainFrameStatic = MainFrame;
             MainFrame.Navigate(new HomePage());
             ApplyRoleAccess();
             ThemeManager.LoadSavedTheme();
@@ -34,10 +35,10 @@ namespace SKAProject
             if (Session.Role != "User")
                 return;
 
-            BtnWorkers.Visibility = Visibility.Collapsed;       
-            BtnOrganization.Visibility = Visibility.Collapsed;   
-            BtnReports.Visibility = Visibility.Collapsed;        
-            BtnLogs.Visibility = Visibility.Collapsed;                                                           
+            BtnWorkers.Visibility = Visibility.Collapsed;
+            BtnOrganization.Visibility = Visibility.Collapsed;
+            BtnReports.Visibility = Visibility.Collapsed;
+            BtnLogs.Visibility = Visibility.Collapsed;
         }
 
         private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -109,10 +110,10 @@ namespace SKAProject
             MainFrame.Navigate(new Pages.ReportsPage());
         }
 
-        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-            
-        }
+        private void MainFrame_Navigated(
+            object sender,
+            System.Windows.Navigation.NavigationEventArgs e
+        ) { }
 
         private void ThemeToggleButton_Checked(object sender, RoutedEventArgs e)
         {

@@ -1,11 +1,11 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using MySqlConnector;
 
 namespace SKAProject.Pages
 {
@@ -43,7 +43,8 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    string query = @"
+                    string query =
+                        @"
                         SELECT t.TaskID, t.Title, t.CreatedAt, t.Deadline,
                                t.Priority, t.Status,
                                CONCAT(u.LastName, ' ', u.FirstName) AS CreatedBy
@@ -72,16 +73,18 @@ namespace SKAProject.Pages
                                 string title = reader.GetString("Title");
                                 string status = reader.GetString("Status");
 
-                                _allTasks.Add(new TaskModel
-                                {
-                                    TaskId = taskId,
-                                    CreatedByName = createdBy,
-                                    CreatedAt = createdAt,
-                                    Deadline = deadline,
-                                    Priority = priority,
-                                    Title = title,
-                                    Status = status
-                                });
+                                _allTasks.Add(
+                                    new TaskModel
+                                    {
+                                        TaskId = taskId,
+                                        CreatedByName = createdBy,
+                                        CreatedAt = createdAt,
+                                        Deadline = deadline,
+                                        Priority = priority,
+                                        Title = title,
+                                        Status = status,
+                                    }
+                                );
                             }
                         }
                     }
@@ -110,14 +113,18 @@ namespace SKAProject.Pages
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             SearchPlaceholder.Visibility = string.IsNullOrWhiteSpace(SearchTextBox.Text)
-                ? Visibility.Visible : Visibility.Collapsed;
+                ? Visibility.Visible
+                : Visibility.Collapsed;
 
             string search = SearchTextBox.Text?.ToLower() ?? "";
-            var filtered = _allTasks.Where(t =>
-                t.TaskId.ToString().Contains(search) ||
-                t.Priority.ToLower().Contains(search) ||
-                t.Status.ToLower().Contains(search) ||
-                t.Title.ToLower().Contains(search)).ToList();
+            var filtered = _allTasks
+                .Where(t =>
+                    t.TaskId.ToString().Contains(search)
+                    || t.Priority.ToLower().Contains(search)
+                    || t.Status.ToLower().Contains(search)
+                    || t.Title.ToLower().Contains(search)
+                )
+                .ToList();
 
             TasksItemsControl.ItemsSource = filtered;
         }

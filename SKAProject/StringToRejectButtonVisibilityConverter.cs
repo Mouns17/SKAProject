@@ -9,10 +9,17 @@ namespace SKAProject
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value is string status && status == "На проверке") ? Visibility.Visible : Visibility.Collapsed;
+            return (value is string status && status == "На проверке")
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(
+            object value,
+            Type targetType,
+            object parameter,
+            CultureInfo culture
+        )
         {
             throw new NotImplementedException();
         }

@@ -1,9 +1,9 @@
-﻿using ClosedXML.Excel;
-using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using ClosedXML.Excel;
+using Microsoft.Win32;
 
 namespace SKAProject
 {
@@ -17,7 +17,10 @@ namespace SKAProject
             _workers = workers;
         }
 
-        private void MainBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void MainBorder_MouseLeftButtonDown(
+            object sender,
+            System.Windows.Input.MouseButtonEventArgs e
+        )
         {
             DragMove();
         }
@@ -32,7 +35,7 @@ namespace SKAProject
             var sfd = new SaveFileDialog
             {
                 Filter = "Excel files (*.xlsx)|*.xlsx",
-                FileName = "Сотрудники.xlsx"
+                FileName = "Сотрудники.xlsx",
             };
             if (sfd.ShowDialog() == true)
             {
@@ -45,7 +48,12 @@ namespace SKAProject
             string path = TBoxPath.Text.Trim();
             if (string.IsNullOrWhiteSpace(path))
             {
-                MessageBox.Show("Укажите путь для сохранения файла.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(
+                    "Укажите путь для сохранения файла.",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
                 return;
             }
 
@@ -80,13 +88,23 @@ namespace SKAProject
                     workbook.SaveAs(path);
                 }
 
-                MessageBox.Show("Экспорт успешно завершён!", "Готово", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    "Экспорт успешно завершён!",
+                    "Готово",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
                 DialogResult = true;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка экспорта: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Ошибка экспорта: " + ex.Message,
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
             }
         }
     }
