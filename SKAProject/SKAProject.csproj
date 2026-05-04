@@ -170,6 +170,9 @@
     <Compile Include="RegOrgWindow.xaml.cs">
       <DependentUpon>RegOrgWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SendReportWindow.xaml.cs">
+      <DependentUpon>SendReportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -330,6 +333,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SendReportWindow.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingsWindow.xaml">

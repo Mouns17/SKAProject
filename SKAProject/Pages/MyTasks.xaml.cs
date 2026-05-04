@@ -124,8 +124,9 @@ namespace SKAProject.Pages
 
         private void ReportCreate_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Функция отправки отчёта находится в разработке.");
-            // Здесь будет открытие окна создания отчёта
+            var reportWindow = new SendReportWindow(Session.UserID);
+            reportWindow.Owner = Window.GetWindow(this);
+            reportWindow.ShowDialog();
         }
     }
 }

@@ -1,0 +1,144 @@
+﻿<Window
+    x:Class="SKAProject.SendReportWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    Width="520"
+    Height="500"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="Arian"
+    ResizeMode="NoResize"
+    Topmost="True"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Normal"
+    WindowStyle="None">
+    <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
+        <Border
+            Width="520"
+            Height="500"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="#EDF4FF"
+            BorderBrush="#6366F1"
+            BorderThickness="1"
+            CornerRadius="20">
+            <Grid>
+                <StackPanel>
+                    <Button
+                        Margin="475,5,0,80"
+                        Click="BtnClose"
+                        Content="✖︎"
+                        Style="{DynamicResource ControlBtnStyle}" />
+
+                    <TextBlock
+                        Margin="0,-60,0,0"
+                        HorizontalAlignment="Center"
+                        FontSize="28"
+                        FontWeight="Bold"
+                        Text="Отправка отчёта" />
+
+                    <TextBlock
+                        Margin="0,-25,0,0"
+                        FontSize="12"
+                        Foreground="#6366F1"
+                        Text="Заполните данные для отправки отчёта"
+                        TextAlignment="Center" />
+
+                    <Border
+                        Height="1"
+                        Margin="40,0,40,0"
+                        Background="{DynamicResource DividerBrush}" />
+
+                    <!--  Кому  -->
+                    <TextBlock
+                        Margin="60,15,0,5"
+                        HorizontalAlignment="Left"
+                        FontSize="14"
+                        Foreground="#4A5568"
+                        Text="Кому:" />
+                    <ComboBox
+                        x:Name="CmbRecipient"
+                        Width="400"
+                        Height="35"
+                        Margin="0,0,0,10"
+                        HorizontalAlignment="Center"
+                        DisplayMemberPath="FullName"
+                        SelectedValuePath="UserID" />
+
+                    <!--  Дата отчёта  -->
+                    <TextBlock
+                        Margin="60,0,0,5"
+                        HorizontalAlignment="Left"
+                        FontSize="14"
+                        Foreground="#4A5568"
+                        Text="Дата:" />
+                    <DatePicker
+                        x:Name="DpReportDate"
+                        Width="400"
+                        Height="35"
+                        Margin="0,0,0,10"
+                        HorizontalAlignment="Center"
+                        SelectedDate="{x:Static system:DateTime.Now}" />
+
+                    <!--  Описание  -->
+                    <TextBlock
+                        Margin="60,0,0,5"
+                        HorizontalAlignment="Left"
+                        FontSize="14"
+                        Foreground="#4A5568"
+                        Text="Описание:" />
+                    <TextBox
+                        x:Name="TBoxDescription"
+                        Width="400"
+                        Height="70"
+                        Margin="0,0,0,10"
+                        HorizontalAlignment="Center"
+                        AcceptsReturn="True"
+                        Style="{DynamicResource TxtBoxStyle}"
+                        Tag="Введите текст отчёта"
+                        TextWrapping="Wrap" />
+
+                    <!--  Файл  -->
+                    <Grid Margin="60,5,60,10">
+                        <StackPanel>
+                            <Button
+                                x:Name="BtnAttach"
+                                Width="150"
+                                Height="35"
+                                Background="#6366F1"
+                                BorderThickness="0"
+                                Click="BtnAttach_Click"
+                                Content="📎 Прикрепить файл"
+                                Cursor="Hand"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Style="{DynamicResource ControlBtnStyle}" />
+                            <TextBlock
+                                x:Name="TxtAttachedFile"
+                                Margin="0,5,0,0"
+                                FontSize="12"
+                                Foreground="#4A5568"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Border
+                        Height="1"
+                        Margin="40,0,40,10"
+                        Background="{DynamicResource DividerBrush}" />
+
+                    <Button
+                        x:Name="BtnSend"
+                        Width="200"
+                        Height="42"
+                        Margin="0,10,0,100"
+                        Click="BtnSend_Click"
+                        Content="Отправить"
+                        Style="{DynamicResource LogBtnStyle}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

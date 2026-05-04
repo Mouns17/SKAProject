@@ -6,6 +6,19 @@
     <Application.Resources>
         <ResourceDictionary>
 
+            <Style TargetType="ComboBox">
+                <Setter Property="Height" Value="35" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderBrush" Value="#6366F1" />
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="Height" Value="35" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderBrush" Value="#6366F1" />
+            </Style>
+
             <ResourceDictionary.MergedDictionaries>
                 <!--  Тема по умолчанию (будет заменена при загрузке сохранённой)  -->
                 <ResourceDictionary Source="/Resources/LightTheme.xaml" />
