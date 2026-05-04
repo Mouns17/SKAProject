@@ -10,12 +10,12 @@ namespace SKAProject
 {
     public partial class CreateTaskWindow : Window
     {
-        private readonly List<int> _workerIds;
+        private readonly List<int> _userIds;  // теперь храним UserId
 
-        public CreateTaskWindow(List<int> workerIds)
+        public CreateTaskWindow(List<int> userIds)
         {
             InitializeComponent();
-            _workerIds = workerIds;
+            _userIds = userIds;
         }
 
         private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -30,7 +30,7 @@ namespace SKAProject
 
         private async void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
-            if (_workerIds == null || _workerIds.Count == 0)
+            if (_userIds == null || _userIds.Count == 0)
             {
                 MessageBox.Show("Не выбраны сотрудники.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -54,32 +54,30 @@ namespace SKAProject
                     await conn.OpenAsync();
                     using (var tx = conn.BeginTransaction())
                     {
-                        foreach (int workerId in _workerIds)
+                        foreach (int userId in _userIds)  // используем userId
                         {
                             string insert = @"
-                                INSERT INTO tasks (Title, Description, CreatedBy, AssignedTo, Status, Priority, Deadline, CreatedAt)
-                                VALUES (@title, @desc, @createdBy, @assignedTo, 'Новая', @priority, @deadline, NOW())";
+                            INSERT INTO tasks (Title, Description, CreatedBy, AssignedTo, Status, Priority, Deadline, CreatedAt)
+                            VALUES (@title, @desc, @createdBy, @assignedTo, 'Новая', @priority, @deadline, NOW())";
                             using (var cmd = new MySqlCommand(insert, conn, tx))
                             {
                                 cmd.Parameters.AddWithValue("@title", title);
                                 cmd.Parameters.AddWithValue("@desc", description ?? "");
                                 cmd.Parameters.AddWithValue("@createdBy", Session.UserID);
-                                cmd.Parameters.AddWithValue("@assignedTo", workerId);
+                                cmd.Parameters.AddWithValue("@assignedTo", userId);
                                 cmd.Parameters.AddWithValue("@priority", priority);
                                 cmd.Parameters.AddWithValue("@deadline", (object)deadline ?? DBNull.Value);
                                 await cmd.ExecuteNonQueryAsync();
                             }
 
-                            // Логируем создание задачи
                             await Logger.LogAsync(Session.UserID, "Создание задачи", "Задачи",
-                                $"Создана задача для сотрудника (WrkID={workerId}): {title}");
+                                $"Создана задача для пользователя (UserID={userId}): {title}");
                         }
-
                         tx.Commit();
                     }
                 }
 
-                MessageBox.Show($"Создано задач: {_workerIds.Count}", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Создано задач: {_userIds.Count}", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
                 Close();
             }

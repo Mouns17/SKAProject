@@ -123,6 +123,7 @@
     <Compile Include="AddPostWindow.xaml.cs">
       <DependentUpon>AddPostWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BoolToVisibilityConverter.cs" />
     <Compile Include="CreateTaskWindow.xaml.cs">
       <DependentUpon>CreateTaskWindow.xaml</DependentUpon>
     </Compile>
@@ -177,6 +178,8 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StringToAcceptButtonVisibilityConverter.cs" />
+    <Compile Include="StringToRejectButtonVisibilityConverter.cs" />
     <Compile Include="Styles\CardStyle.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

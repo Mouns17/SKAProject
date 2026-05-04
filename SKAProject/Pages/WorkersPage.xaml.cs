@@ -324,15 +324,17 @@ namespace SKAProject.Pages
 
         private void CreateTaskBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selectedIds = allWorkers.Where(w => w.IsSelected).Select(w => w.WrkID).ToList();
-            if (selectedIds.Count == 0)
+            var selectedWorkers = allWorkers.Where(w => w.IsSelected).ToList();
+            if (selectedWorkers.Count == 0)
             {
                 MessageBox.Show("Выберите сотрудников, для которых создаётся задача.",
                                 "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
-            var taskWindow = new CreateTaskWindow(selectedIds);
+            // Передаём UserId, а не WrkID
+            var userIds = selectedWorkers.Select(w => w.UserId).ToList();
+            var taskWindow = new CreateTaskWindow(userIds);
             taskWindow.Owner = Window.GetWindow(this);
             taskWindow.ShowDialog();
         }

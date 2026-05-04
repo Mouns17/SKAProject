@@ -2,9 +2,13 @@
     x:Class="SKAProject.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SKAProject"
     StartupUri="LoginWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <local:StringToAcceptButtonVisibilityConverter x:Key="StringToAcceptButtonVisibilityConverter" />
+            <local:StringToRejectButtonVisibilityConverter x:Key="StringToRejectButtonVisibilityConverter" />
 
             <Style TargetType="ComboBox">
                 <Setter Property="Height" Value="35" />
@@ -20,10 +24,7 @@
             </Style>
 
             <ResourceDictionary.MergedDictionaries>
-                <!--  Тема по умолчанию (будет заменена при загрузке сохранённой)  -->
                 <ResourceDictionary Source="/Resources/LightTheme.xaml" />
-
-                <!--  Стили  -->
                 <ResourceDictionary Source="Styles/TxtBoxStyle.xaml" />
                 <ResourceDictionary Source="Styles/LogBtnStyle.xaml" />
                 <ResourceDictionary Source="Styles/RegBtnStyle.xaml" />
@@ -39,7 +40,6 @@
                 <ResourceDictionary Source="Styles/WorkerCardStyle.xaml" />
                 <ResourceDictionary Source="Styles/StatusBadgeStyle.xaml" />
                 <ResourceDictionary Source="Styles/ThemeToggleButtonStyle.xaml" />
-
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
