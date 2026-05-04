@@ -272,7 +272,7 @@
                                     Margin="0,50,0,0"
                                     HorizontalAlignment="Center"
                                     FontFamily="Arian Bold"
-                                    FontSize="60"
+                                    FontSize="50"
                                     Foreground="{DynamicResource ForegroundColor1}"
                                     TextWrapping="Wrap" />
                             </StackPanel>
