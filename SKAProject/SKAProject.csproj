@@ -99,6 +99,9 @@
     <Compile Include="AddPostWindow.xaml.cs">
       <DependentUpon>AddPostWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateTaskWindow.xaml.cs">
+      <DependentUpon>CreateTaskWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddWorkerWindow.xaml.cs">
       <DependentUpon>AddWorkerWindow.xaml</DependentUpon>
     </Compile>
@@ -227,6 +230,10 @@
     <Page Include="AddPostWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateTaskWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="AddWorkerWindow.xaml">
       <SubType>Designer</SubType>

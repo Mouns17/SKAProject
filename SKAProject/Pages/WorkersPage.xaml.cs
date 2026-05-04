@@ -327,10 +327,14 @@ namespace SKAProject.Pages
             var selectedIds = allWorkers.Where(w => w.IsSelected).Select(w => w.WrkID).ToList();
             if (selectedIds.Count == 0)
             {
-                MessageBox.Show("Выберите сотрудников, для которых создаётся задача.");
+                MessageBox.Show("Выберите сотрудников, для которых создаётся задача.",
+                                "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            MessageBox.Show($"Создать задачу для сотрудников ID: {string.Join(", ", selectedIds)}");
+
+            var taskWindow = new CreateTaskWindow(selectedIds);
+            taskWindow.Owner = Window.GetWindow(this);
+            taskWindow.ShowDialog();
         }
 
         private async void DeleteBtn_Click(object sender, RoutedEventArgs e)
