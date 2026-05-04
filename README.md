@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="SKAProject/Resources/logo.png" alt="СКА Логотип" width="120" />
+  <img src="Resources/logo.svg" alt="СКА Логотип" width="150" />
   <h1>СКА — Система Контроля и Анализа</h1>
   <p>
     <strong>Умное решение для управления персоналом, задачами и отчётностью в организациях</strong>
