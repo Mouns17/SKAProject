@@ -20,7 +20,11 @@
                         <Setter Property="Background" Value="Transparent" />
                         <Setter Property="Template">
                             <Setter.Value>
-                                <ControlTemplate TargetType="ScrollBar" />
+                                <ControlTemplate TargetType="ScrollBar">
+                                    <Grid>
+                                        <Border Background="Transparent" />
+                                    </Grid>
+                                </ControlTemplate>
                             </Setter.Value>
                         </Setter>
                     </Style>
@@ -49,12 +53,71 @@
                             Text="Управление информацией о вашей организации" />
                     </StackPanel>
 
-                    <!--  1  -->
-                    <StackPanel Grid.Row="1">
+                    <!--  Блок с названием и иконкой  -->
+                    <Border
+                        Grid.Row="1"
+                        Margin="0,0,0,30"
+                        Background="{DynamicResource BackgroundColor6}"
+                        CornerRadius="30">
+                        <Border.Effect>
+                            <DropShadowEffect
+                                BlurRadius="15"
+                                Opacity="1"
+                                ShadowDepth="0"
+                                Color="#010210" />
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border
+                                Grid.Column="0"
+                                Width="150"
+                                Height="150"
+                                Margin="20,30,0,30"
+                                Background="{DynamicResource BackgroundColor3}"
+                                CornerRadius="20"
+                                Opacity="0.4">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="70"
+                                    Foreground="{DynamicResource BackgroundColor6}"
+                                    Text="🏢" />
+                            </Border>
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="20,0,0,0"
+                                VerticalAlignment="Center">
+                                <TextBlock
+                                    x:Name="TBlockOrgName"
+                                    FontFamily="Arian Bold"
+                                    FontSize="60"
+                                    Foreground="{DynamicResource BackgroundColor3}"
+                                    Text="Моя организация" />
+                                <TextBlock
+                                    x:Name="TBlockOrgOwner"
+                                    Margin="0,5,0,0"
+                                    FontSize="24"
+                                    Foreground="{DynamicResource BackgroundColor3}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!--  Основная информация + Статистика + Сотрудники  -->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Основная информация  -->
                         <Border
-                            Margin="0,0,0,0"
-                            Background="{DynamicResource BackgroundColor6}"
-                            CornerRadius="30">
+                            Grid.Column="0"
+                            Margin="0,0,20,20"
+                            Background="{DynamicResource BackgroundColor3}"
+                            CornerRadius="20">
                             <Border.Effect>
                                 <DropShadowEffect
                                     BlurRadius="15"
@@ -62,285 +125,444 @@
                                     ShadowDepth="0"
                                     Color="#010210" />
                             </Border.Effect>
-
                             <StackPanel>
                                 <Border
-                                    Width="150"
-                                    Height="150"
-                                    Margin="0,30,1150,30"
-                                    Background="{DynamicResource BackgroundColor3}"
-                                    CornerRadius="20"
-                                    Opacity="0.4">
+                                    Height="50"
+                                    Margin="10,10,10,20"
+                                    Background="{DynamicResource BackgroundColor6}"
+                                    CornerRadius="30">
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        FontSize="70"
-                                        Foreground="{DynamicResource BackgroundColor6}"
-                                        Text="🏢" />
+                                        FontFamily="Arian Bold"
+                                        FontSize="30"
+                                        Foreground="{DynamicResource BackgroundColor3}"
+                                        Text="Основная информация" />
                                 </Border>
-                                <TextBlock
-                                    x:Name="TBlockOrgName"
-                                    Margin="300,-140,100,60"
-                                    FontFamily="Arian Bold"
-                                    FontSize="65"
-                                    Foreground="{DynamicResource BackgroundColor3}"
-                                    Text="Моя организация" />
-                            </StackPanel>
-                        </Border>
-                    </StackPanel>
-
-                    <!--  2  -->
-                    <StackPanel Grid.Row="2">
-                        <Border
-                            Height="50"
-                            Margin="500,40,500,20"
-                            Background="{DynamicResource BackgroundColor3}"
-                            CornerRadius="30">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Opacity="1"
-                                    ShadowDepth="0"
-                                    Color="#010210" />
-                            </Border.Effect>
-
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="Arian Bold"
-                                FontSize="30"
-                                Foreground="{DynamicResource ForegroundColor1}"
-                                Text="Основная информация" />
-                        </Border>
-
-                        <Border
-                            Height="270"
-                            Margin="0,0,300,0"
-                            Background="{DynamicResource BackgroundColor3}"
-                            CornerRadius="30">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Opacity="1"
-                                    ShadowDepth="0"
-                                    Color="#010210" />
-                            </Border.Effect>
-
-                            <StackPanel>
-                                <TextBlock
-                                    x:Name="TBlockOrgAddress"
-                                    Margin="20,30,500,0"
-                                    FontFamily="Arian Bold"
-                                    FontSize="45"
-                                    Foreground="{DynamicResource ForegroundColor1}"
-                                    Text="Адрес:" />
-                                <TextBlock
-                                    x:Name="TBlockOrgEmail"
-                                    Margin="20,30,500,0"
-                                    FontFamily="Arian Bold"
-                                    FontSize="45"
-                                    Foreground="{DynamicResource ForegroundColor1}"
-                                    Text="Email:" />
-                                <TextBlock
-                                    x:Name="TBlockOrgPhone"
-                                    Margin="20,30,500,0"
-                                    FontFamily="Arian Bold"
-                                    FontSize="45"
-                                    Foreground="{DynamicResource ForegroundColor1}"
-                                    Text="Телефон:" />
-                            </StackPanel>
-                        </Border>
-
-                        <Border
-                            Height="50"
-                            Margin="1150,-600,0,20"
-                            Background="{DynamicResource BackgroundColor3}"
-                            CornerRadius="30">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Opacity="1"
-                                    ShadowDepth="0"
-                                    Color="#010210" />
-                            </Border.Effect>
-
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="Arian Bold"
-                                FontSize="30"
-                                Foreground="{DynamicResource ForegroundColor1}"
-                                Text="Сотрудников" />
-                        </Border>
-
-                        <Border
-                            Height="270"
-                            Margin="1150,-270,0,0"
-                            Background="{DynamicResource BackgroundColor3}"
-                            CornerRadius="30">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Opacity="1"
-                                    ShadowDepth="0"
-                                    Color="#010210" />
-                            </Border.Effect>
-
-                            <TextBlock
-                                x:Name="TBlockOrgCountWorkers"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="Arian Bold"
-                                FontSize="60"
-                                Foreground="{DynamicResource ForegroundColor1}"
-                                Text="0" />
-                        </Border>
-                    </StackPanel>
-
-                    <!--  3  -->
-                    <StackPanel Grid.Row="3">
-                        <Border
-                            Height="50"
-                            Margin="500,40,500,20"
-                            Background="{DynamicResource BackgroundColor3}"
-                            CornerRadius="30">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Opacity="1"
-                                    ShadowDepth="0"
-                                    Color="#010210" />
-                            </Border.Effect>
-
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="Arian Bold"
-                                FontSize="30"
-                                Foreground="{DynamicResource ForegroundColor1}"
-                                Text="Управление организацией" />
-                        </Border>
-
-                        <Border
-                            Height="270"
-                            Margin="0,0,1200,20"
-                            Background="{DynamicResource BackgroundColor6}"
-                            CornerRadius="30">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Opacity="1"
-                                    ShadowDepth="0"
-                                    Color="#010210" />
-                            </Border.Effect>
-
-                            <StackPanel>
-                                <TextBlock
-                                    Margin="30,30,30,0"
-                                    FontFamily="Arian Bold"
-                                    FontSize="35"
-                                    Foreground="{DynamicResource BackgroundColor3}"
-                                    Text="Добавить отделы"
-                                    TextWrapping="Wrap" />
-                                <Button
-                                    Width="100"
-                                    Height="100"
-                                    Margin="0,40,0,0"
-                                    Click="BtnAddDepartment"
-                                    Content="+"
-                                    FontSize="60"
-                                    Style="{DynamicResource RegOrgBtnStyle}" />
+                                <!--  Адрес  -->
+                                <StackPanel Margin="20,0">
+                                    <TextBlock
+                                        Margin="0,0,0,5"
+                                        FontSize="22"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource ForegroundColor1}"
+                                        Text="Адрес:" />
+                                    <TextBlock
+                                        x:Name="TBlockOrgAddress"
+                                        FontFamily="Arian Bold"
+                                        FontSize="24"
+                                        Foreground="{DynamicResource ForegroundColor1}"
+                                        Text=""
+                                        Visibility="Visible" />
+                                    <TextBox
+                                        x:Name="TBoxAddress"
+                                        Margin="0,0,0,10"
+                                        FontFamily="Arian"
+                                        FontSize="24"
+                                        Style="{DynamicResource TxtBoxStyle}"
+                                        Text=""
+                                        Visibility="Collapsed" />
+                                </StackPanel>
+                                <!--  Email  -->
+                                <StackPanel Margin="20,15,20,0">
+                                    <TextBlock
+                                        Margin="0,0,0,5"
+                                        FontSize="22"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource ForegroundColor1}"
+                                        Text="Email:" />
+                                    <TextBlock
+                                        x:Name="TBlockOrgEmail"
+                                        FontFamily="Arian Bold"
+                                        FontSize="24"
+                                        Foreground="{DynamicResource ForegroundColor1}"
+                                        Text=""
+                                        Visibility="Visible" />
+                                    <TextBox
+                                        x:Name="TBoxEmail"
+                                        Margin="0,0,0,10"
+                                        FontFamily="Arian"
+                                        FontSize="24"
+                                        Style="{DynamicResource TxtBoxStyle}"
+                                        Text=""
+                                        Visibility="Collapsed" />
+                                </StackPanel>
+                                <!--  Телефон  -->
+                                <StackPanel Margin="20,15,20,20">
+                                    <TextBlock
+                                        Margin="0,0,0,5"
+                                        FontSize="22"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource ForegroundColor1}"
+                                        Text="Телефон:" />
+                                    <TextBlock
+                                        x:Name="TBlockOrgPhone"
+                                        FontFamily="Arian Bold"
+                                        FontSize="24"
+                                        Foreground="{DynamicResource ForegroundColor1}"
+                                        Text=""
+                                        Visibility="Visible" />
+                                    <TextBox
+                                        x:Name="TBoxPhone"
+                                        Margin="0,0,0,10"
+                                        FontFamily="Arian"
+                                        FontSize="24"
+                                        Style="{DynamicResource TxtBoxStyle}"
+                                        Text=""
+                                        Visibility="Collapsed" />
+                                </StackPanel>
                             </StackPanel>
                         </Border>
 
-                        <Border
-                            Height="270"
-                            Margin="260,-290,920,20"
-                            Background="{DynamicResource BackgroundColor6}"
-                            CornerRadius="30">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Opacity="1"
-                                    ShadowDepth="0"
-                                    Color="#010210" />
-                            </Border.Effect>
-
-                            <StackPanel>
-                                <TextBlock
-                                    Margin="30,30,30,0"
-                                    FontFamily="Arian Bold"
-                                    FontSize="35"
-                                    Foreground="{DynamicResource BackgroundColor3}"
-                                    Text="Добавить должности"
-                                    TextWrapping="Wrap" />
-                                <Button
-                                    Width="100"
-                                    Height="100"
-                                    Margin="0,40,0,0"
-                                    Click="BtnAddPost"
-                                    Content="+"
-                                    FontSize="60"
-                                    Style="{DynamicResource RegOrgBtnStyle}" />
-                            </StackPanel>
-                        </Border>
-
-                        <Border
-                            Height="270"
-                            Margin="550,-310,0,0"
-                            Background="{DynamicResource BackgroundColor3}"
-                            CornerRadius="30">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Opacity="1"
-                                    ShadowDepth="0"
-                                    Color="#010210" />
-                            </Border.Effect>
-
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="Arian Bold"
-                                FontSize="60"
-                                Foreground="{DynamicResource ForegroundColor1}"
-                                Text="Здесь что то будет" />
-                        </Border>
-                    </StackPanel>
-
-                    <!--  Кнопки действий  -->
-                    <StackPanel
-                        Grid.Row="4"
-                        Margin="0,20,0,0"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
-                        <Button
-                            Width="180"
-                            Height="60"
-                            Margin="0,40,20,0"
-                            Background="#6366F1"
-                            Cursor="Hand"
-                            FontWeight="SemiBold">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" CornerRadius="12">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <!--  Правая колонка: статистика и сотрудники  -->
+                        <StackPanel Grid.Column="1" Width="300">
+                            <!--  Статистика  -->
+                            <Border
+                                Margin="0,0,0,20"
+                                Background="{DynamicResource BackgroundColor3}"
+                                CornerRadius="20">
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        BlurRadius="15"
+                                        Opacity="1"
+                                        ShadowDepth="0"
+                                        Color="#010210" />
+                                </Border.Effect>
+                                <StackPanel>
+                                    <Border
+                                        Height="50"
+                                        Margin="10,10,10,15"
+                                        Background="{DynamicResource BackgroundColor6}"
+                                        CornerRadius="30">
+                                        <TextBlock
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontFamily="Arian Bold"
+                                            FontSize="24"
+                                            Foreground="{DynamicResource BackgroundColor3}"
+                                            Text="Общая статистика" />
                                     </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock
-                                    Margin="0,0,8,0"
-                                    FontSize="18"
-                                    Foreground="White"
-                                    Text="✏️" />
-                                <TextBlock
-                                    FontSize="18"
-                                    Foreground="White"
-                                    Text="Редактировать" />
+                                    <StackPanel Margin="15,0,15,15">
+                                        <TextBlock
+                                            Margin="0,0,0,5"
+                                            FontSize="18"
+                                            Foreground="{DynamicResource ForegroundColor1}"
+                                            Text="👥 Сотрудников:" />
+                                        <TextBlock
+                                            x:Name="TxtEmployeeCount"
+                                            Margin="0,0,0,15"
+                                            FontSize="28"
+                                            FontWeight="Bold"
+                                            Foreground="#6366F1" />
+                                        <TextBlock
+                                            Margin="0,0,0,5"
+                                            FontSize="18"
+                                            Foreground="{DynamicResource ForegroundColor1}"
+                                            Text="📌 Отделов:" />
+                                        <TextBlock
+                                            x:Name="TxtDepartmentCount"
+                                            Margin="0,0,0,15"
+                                            FontSize="28"
+                                            FontWeight="Bold"
+                                            Foreground="#6366F1" />
+                                        <TextBlock
+                                            Margin="0,0,0,5"
+                                            FontSize="18"
+                                            Foreground="{DynamicResource ForegroundColor1}"
+                                            Text="💼 Должностей:" />
+                                        <TextBlock
+                                            x:Name="TxtPositionCount"
+                                            FontSize="28"
+                                            FontWeight="Bold"
+                                            Foreground="#6366F1" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!--  Кнопка Редактировать (в режиме просмотра)  -->
+                            <Button
+                                x:Name="BtnEdit"
+                                Width="180"
+                                Height="60"
+                                Margin="0,0,0,10"
+                                Background="#6366F1"
+                                Click="BtnEdit_Click"
+                                Cursor="Hand"
+                                FontWeight="SemiBold">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,0,8,0"
+                                        FontSize="18"
+                                        Foreground="White"
+                                        Text="✏️" />
+                                    <TextBlock
+                                        FontSize="18"
+                                        Foreground="White"
+                                        Text="Редактировать" />
+                                </StackPanel>
+                            </Button>
+
+                            <!--  Кнопки Сохранить и Отмена (скрыты)  -->
+                            <StackPanel
+                                x:Name="PanelSaveCancel"
+                                Margin="0,0,0,10"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal"
+                                Visibility="Collapsed">
+                                <Button
+                                    x:Name="BtnSave"
+                                    Width="120"
+                                    Height="60"
+                                    Margin="0,0,10,0"
+                                    Background="#10B981"
+                                    Click="BtnSave_Click"
+                                    Cursor="Hand"
+                                    FontWeight="SemiBold">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            Margin="0,0,8,0"
+                                            FontSize="18"
+                                            Foreground="White"
+                                            Text="💾" />
+                                        <TextBlock
+                                            FontSize="18"
+                                            Foreground="White"
+                                            Text="Сохранить" />
+                                    </StackPanel>
+                                </Button>
+                                <Button
+                                    x:Name="BtnCancel"
+                                    Width="120"
+                                    Height="60"
+                                    Background="#6B7280"
+                                    Click="BtnCancel_Click"
+                                    Cursor="Hand"
+                                    FontWeight="SemiBold">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            Margin="0,0,8,0"
+                                            FontSize="18"
+                                            Foreground="White"
+                                            Text="↩" />
+                                        <TextBlock
+                                            FontSize="18"
+                                            Foreground="White"
+                                            Text="Отмена" />
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
-                        </Button>
-                    </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--  Отделы и должности  -->
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Отделы  -->
+                        <Border
+                            Grid.Column="0"
+                            Margin="0,0,0,20"
+                            Background="{DynamicResource BackgroundColor3}"
+                            CornerRadius="20">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
+                            </Border.Effect>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Border
+                                    Height="50"
+                                    Margin="10,10,10,15"
+                                    Background="{DynamicResource BackgroundColor6}"
+                                    CornerRadius="20">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontFamily="Arian Bold"
+                                        FontSize="28"
+                                        Foreground="{DynamicResource BackgroundColor3}"
+                                        Text="Отделы" />
+                                </Border>
+                                <Button
+                                    Grid.Row="1"
+                                    Height="40"
+                                    Margin="20,0,20,10"
+                                    Background="{DynamicResource BackgroundColor6}"
+                                    Click="BtnAddDepartment"
+                                    Content="+ Добавить отдел"
+                                    Cursor="Hand"
+                                    FontSize="16"
+                                    Foreground="White"
+                                    Style="{DynamicResource LogBtnStyle}" />
+                                <Border
+                                    Grid.Row="2"
+                                    Height="1"
+                                    Margin="20,0"
+                                    Background="#E2E8F0" />
+                                <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+                                    <ItemsControl x:Name="DepartmentsItemsControl">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="15,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="40" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        FontSize="18"
+                                                        Foreground="{DynamicResource ForegroundColor1}"
+                                                        Text="{Binding DepName}" />
+                                                    <Button
+                                                        Grid.Column="1"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        Click="DeleteDepartment_Click"
+                                                        CommandParameter="{Binding DepID}"
+                                                        Cursor="Hand">
+                                                        <TextBlock FontSize="16" Text="🗑️" />
+                                                    </Button>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+
+                        <!--  Должности  -->
+                        <Border
+                            Grid.Column="2"
+                            Margin="0,0,0,20"
+                            Background="{DynamicResource BackgroundColor3}"
+                            CornerRadius="20">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
+                            </Border.Effect>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Border
+                                    Height="50"
+                                    Margin="10,10,10,15"
+                                    Background="{DynamicResource BackgroundColor6}"
+                                    CornerRadius="20">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontFamily="Arian Bold"
+                                        FontSize="28"
+                                        Foreground="{DynamicResource BackgroundColor3}"
+                                        Text="Должности" />
+                                </Border>
+                                <Button
+                                    Grid.Row="1"
+                                    Height="40"
+                                    Margin="20,0,20,10"
+                                    Background="{DynamicResource BackgroundColor6}"
+                                    Click="BtnAddPost"
+                                    Content="+ Добавить должность"
+                                    Cursor="Hand"
+                                    FontSize="16"
+                                    Foreground="White"
+                                    Style="{DynamicResource LogBtnStyle}" />
+                                <Border
+                                    Grid.Row="2"
+                                    Height="1"
+                                    Margin="20,0"
+                                    Background="#E2E8F0" />
+                                <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+                                    <ItemsControl x:Name="PositionsItemsControl">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="15,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="40" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        FontSize="18"
+                                                        Foreground="{DynamicResource ForegroundColor1}"
+                                                        Text="{Binding PosName}" />
+                                                    <Button
+                                                        Grid.Column="1"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        Click="DeletePosition_Click"
+                                                        CommandParameter="{Binding PosID}"
+                                                        Cursor="Hand">
+                                                        <TextBlock FontSize="16" Text="🗑️" />
+                                                    </Button>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <!--  Резервное место для будущих виджетов (можно убрать)  -->
+                    <Grid Grid.Row="4" Height="200">
+                        <Border Background="{DynamicResource BackgroundColor3}" CornerRadius="20">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Opacity="1"
+                                    ShadowDepth="0"
+                                    Color="#010210" />
+                            </Border.Effect>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="40"
+                                Foreground="{DynamicResource ForegroundColor1}"
+                                Opacity="0.3"
+                                Text="Здесь что-то будет" />
+                        </Border>
+                    </Grid>
                 </Grid>
             </ScrollViewer>
         </Border>

@@ -60,7 +60,7 @@ namespace SKAProject.Pages
                     await conn.OpenAsync();
 
                     // Всего сотрудников (работающих)
-                    string empQuery = "SELECT COUNT(*) FROM workers WHERE Status='Работает'";
+                    string empQuery = "SELECT COUNT(*) FROM workers WHERE Status IN ('Работает', 'В отпуске')";
                     using (var cmd = new MySqlCommand(empQuery, conn))
                     {
                         long count = (long)(await cmd.ExecuteScalarAsync());
