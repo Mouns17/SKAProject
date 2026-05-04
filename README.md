@@ -101,15 +101,15 @@
 
 | Окно авторизации | Главное меню |
 |------------------|--------------|
-| ![Логин](Screenshots/login.png) | ![Главное меню](Screenshots/dashboard.png) |
+| ![Логин](Screenshots/LoginWindow.png) | ![Главное меню](Screenshots/MainWindow.png) |
 
 | Список сотрудников | Профиль |
 |-------------------|---------|
-| ![Сотрудники](Screenshots/workers.png) | ![Профиль](Screenshots/profile.png) |
+| ![Сотрудники](Screenshots/WorkersPage.png) | ![Профиль](Screenshots/ProfilePage.png) |
 
 | Мои задачи | Отчёты |
 |------------|--------|
-| ![Задачи](Screenshots/tasks.png) | ![Отчёты](Screenshots/reports.png) |
+| ![Задачи](Screenshots/MyTasksPage.png) | ![Отчёты](Screenshots/ReportsPage.png) |
 
 ---
 
