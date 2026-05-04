@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- Фон (опционально) -->
+  <rect width="500" height="500" rx="100" fill="#6366F1" />
+
+  <!-- Центральный элемент: щит -->
+  <path d="M250 60 L380 130 L380 270 Q380 370 250 440 Q120 370 120 270 L120 130 Z"
+        fill="#FFFFFF" opacity="0.95" />
+
+  <!-- Внутренний щит -->
+  <path d="M250 90 L350 145 L350 260 Q350 340 250 390 Q150 340 150 260 L150 145 Z"
+        fill="none" stroke="#6366F1" stroke-width="8" />
+
+  <!-- Буквы СКА -->
+  <text x="250" y="280" font-family="Arial, sans-serif" font-size="80" font-weight="bold"
+        fill="#6366F1" text-anchor="middle" letter-spacing="8">СКА</text>
+
+  <!-- Линия под буквами -->
+  <line x1="170" y1="295" x2="330" y2="295" stroke="#6366F1" stroke-width="6"
+        stroke-linecap="round" />
+
+  <!-- График (стилизованный) -->
+  <polyline points="160,340 200,310 240,330 280,280 320,290 340,300"
+            fill="none" stroke="#6366F1" stroke-width="10" stroke-linecap="round"
+            stroke-linejoin="round" />
+
+  <!-- Точка на графике -->
+  <circle cx="340" cy="300" r="12" fill="#10B981" stroke="#FFFFFF" stroke-width="4" />
+</svg>
