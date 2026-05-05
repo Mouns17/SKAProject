@@ -9,7 +9,6 @@
     <img src="https://img.shields.io/badge/платформа-WPF-blueviolet?style=for-the-badge&logo=windows" alt="Платформа" />
     <img src="https://img.shields.io/badge/язык-C%23%2010.0-%23239120?style=for-the-badge&logo=c-sharp" alt="Язык" />
     <img src="https://img.shields.io/badge/БД-MySQL%20%7C%20SQLite-%234479A1?style=for-the-badge&logo=mysql" alt="База данных" />
-    <img src="https://img.shields.io/badge/лицензия-MIT-yellow?style=for-the-badge" alt="Лицензия" />
   </p>
 </div>
 
