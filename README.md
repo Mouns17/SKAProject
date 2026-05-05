@@ -137,19 +137,60 @@
 
 ```
 SKAProject/
-├── SKAProject/                 # основной проект WPF
-│   ├── Pages/                  # страницы приложения (WorkerPage, ProfilePage, LogsPage, ...)
-│   ├── Windows/                # модальные окна (AddWorkerWindow, EditWorkerWindow, ...)
-│   ├── Styles/                 # XAML стили (кнопки, текстовые поля, карточки)
-│   ├── Themes/                 # темы оформления (LightTheme.xaml, DarkTheme.xaml)
-│   ├── Resources/              # изображения, шрифты, иконки
-│   ├── Models/                 # внутренние модели данных
-│   ├── DataBase.cs             # класс подключения к БД
-│   ├── Logger.cs               # система логирования
-│   ├── Session.cs              # сессия текущего пользователя
-│   └── App.xaml                # точка входа
-├── SKADataBase/                # SQL‑скрипты для создания структуры БД
-├── Fonts/                      # шрифты (Arian)
+├── Images/                                          # изображения и иконки
+├── Models/                                          # модели данных
+│   ├── OrganizationModel.cs
+│   ├── ProfileModel.cs
+│   └── WorkerModel.cs
+├── Pages/                                           # страницы приложения
+│   ├── HomePage.xaml
+│   ├── LogsPage.xaml
+│   ├── MyOrganizationPage.xaml
+│   ├── MyTasks.xaml
+│   ├── ProfilePage.xaml
+│   ├── ReportsPage.xaml
+│   └── WorkersPage.xaml
+├── Resources/                                       # ресурсы и темы оформления
+│   ├── DarkTheme.xaml
+│   └── LightTheme.xaml
+├── Styles/                                          # XAML‑стили элементов
+│   ├── CardStyle.xaml
+│   ├── ControlBtnStyle.xaml
+│   ├── ControlBtnStyle2.xaml
+│   ├── DeleteBtnStyle.xaml
+│   ├── ExportBtnStyle.xaml
+│   ├── LogBtnStyle.xaml
+│   ├── MenuBtnStyle.xaml
+│   ├── ModernCardStyle.xaml
+│   ├── RegBtnStyle.xaml
+│   ├── RegOrgBtnStyle.xaml
+│   ├── StatusBadgeStyle.xaml
+│   ├── TaskBtnStyle.xaml
+│   ├── ThemeToggleButtonStyle.xaml
+│   ├── TxtBoxStyle.xaml
+│   └── WorkerCardStyle.xaml
+├── AddDepartmentWindow.xaml                         # модальные окна
+├── AddPostWindow.xaml
+├── AddWorkerWindow.xaml
+├── App.config
+├── App.xaml                                         # точка входа
+├── BoolToVisibilityConverter.cs                     # конвертеры значений
+├── StringToAcceptButtonVisibilityConverter.cs
+├── StringToRejectButtonVisibilityConverter.cs
+├── CreateTaskWindow.xaml
+├── DataBase.cs                                      # класс подключения к БД
+├── EditWorkerWindow.xaml
+├── ExportExcelWindow.xaml
+├── Logger.cs                                        # система логирования
+├── LoginWindow.xaml                                 # окно авторизации
+├── MainWindow.xaml                                  # главное окно
+├── packages.config
+├── RegistrationWindow.xaml                          # окно регистрации
+├── SendReportWindow.xaml
+├── Session.cs                                       # сессия пользователя
+├── SettingsWindow.xaml
+├── ThemeManager.cs                                  # управление темами
+├── Fonts/                                           # шрифты (Arian)
 ├── .gitignore
 ├── README.md
 └── SKAProject.sln
