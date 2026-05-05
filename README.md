@@ -98,17 +98,29 @@
 ## 🖼️ Скриншоты
 
 
-| Окно авторизации | Главное меню |
-|------------------|--------------|
-| ![Логин](Screenshots/LoginWindow.png) | ![Главное меню](Screenshots/MainWindow.png) |
+| Окно авторизации |
+|------------------|
+| ![Логин](Screenshots/LoginWindow.png) |
 
-| Список сотрудников | Профиль |
-|-------------------|---------|
-| ![Сотрудники](Screenshots/WorkersPage.png) | ![Профиль](Screenshots/ProfilePage.png) |
+| Главное меню |
+|--------------|
+| ![Главное меню](Screenshots/MainWindow.png) |
 
-| Мои задачи | Отчёты |
-|------------|--------|
-| ![Задачи](Screenshots/MyTasksPage.png) | ![Отчёты](Screenshots/ReportsPage.png) |
+| Список сотрудников |
+|-------------------|
+| ![Сотрудники](Screenshots/WorkersPage.png) |
+
+| Профиль |
+|---------|
+| ![Профиль](Screenshots/ProfilePage.png) |
+
+| Мои задачи |
+|------------|
+| ![Задачи](Screenshots/MyTasksPage.png) |
+
+| Отчёты |
+|--------|
+| ![Отчёты](Screenshots/ReportsPage.png) |
 
 ---
 
