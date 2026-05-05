@@ -10,6 +10,80 @@
             <local:StringToAcceptButtonVisibilityConverter x:Key="StringToAcceptButtonVisibilityConverter" />
             <local:StringToRejectButtonVisibilityConverter x:Key="StringToRejectButtonVisibilityConverter" />
 
+            <Viewbox
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                x:Key="LogoIcon"
+                Width="120"
+                Height="120">
+                <Canvas Width="500" Height="500">
+                    <!--  Фон  -->
+                    <Rectangle
+                        Width="500"
+                        Height="500"
+                        Fill="#6366F1"
+                        RadiusX="100"
+                        RadiusY="100" />
+
+                    <!--  Центральный элемент: щит  -->
+                    <Path
+                        Data="M250 60 L380 130 L380 270 Q380 370 250 440 Q120 370 120 270 L120 130 Z"
+                        Fill="#FFFFFF"
+                        Opacity="0.95" />
+
+                    <!--  Внутренний щит  -->
+                    <Path
+                        Data="M250 90 L350 145 L350 260 Q350 340 250 390 Q150 340 150 260 L150 145 Z"
+                        Fill="Transparent"
+                        Stroke="#6366F1"
+                        StrokeThickness="8" />
+
+                    <!--  Буквы СКА  -->
+                    <TextBlock
+                        Canvas.Left="140"
+                        Canvas.Top="200"
+                        Width="220"
+                        FontFamily="Arial"
+                        FontSize="80"
+                        FontWeight="Bold"
+                        Foreground="#6366F1"
+                        Text="СКА"
+                        TextAlignment="Center" />
+
+                    <!--  Линия под буквами  -->
+                    <Line
+                        Stroke="#6366F1"
+                        StrokeEndLineCap="Round"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="6"
+                        X1="170"
+                        X2="330"
+                        Y1="295"
+                        Y2="295" />
+
+                    <!--  График (стилизованный)  -->
+                    <Polyline
+                        Fill="Transparent"
+                        Points="160,340 200,310 240,330 280,280 320,290 340,300"
+                        Stroke="#6366F1"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="10" />
+
+                    <!--  Точка на графике  -->
+                    <Ellipse
+                        Canvas.Left="328"
+                        Canvas.Top="288"
+                        Width="24"
+                        Height="24"
+                        Fill="#10B981"
+                        Stroke="White"
+                        StrokeThickness="4" />
+                </Canvas>
+            </Viewbox>
+
+
             <Style TargetType="ComboBox">
                 <Setter Property="Height" Value="35" />
                 <Setter Property="FontSize" Value="14" />

@@ -109,33 +109,13 @@
             BorderThickness="0,0,1,0">
             <StackPanel Margin="0,20,0,20">
 
-                <Image
-                    Width="115"
-                    Height="80"
-                    Margin="0,0,170,0"
-                    Source="\Images\Logotype.png" />
-
-                <TextBlock
-                    Width="100"
-                    Height="100"
-                    Margin="60,-80,0,0"
-                    FontFamily="Arian Bold"
-                    FontSize="40"
-                    Foreground="{DynamicResource ForegroundColor1}"
-                    Text="СКА" />
-
-                <TextBlock
-                    Width="187"
-                    Height="100"
-                    Margin="153,-58,0,0"
-                    FontFamily="Arian Bold"
-                    FontSize="17"
-                    Foreground="{DynamicResource ForegroundColor1}"
-                    Text="СИСТЕМА КОНТРОЛЯ И АНАЛИЗА"
-                    TextWrapping="Wrap" />
+                <ContentControl
+                    Width="120"
+                    Height="120"
+                    Content="{StaticResource LogoIcon}" />
 
                 <Button
-                    Margin="0,-40,20,0"
+                    Margin="0,20,20,0"
                     Click="Home_Click"
                     Content="🏠  Главное меню"
                     Style="{DynamicResource MenuBtnStyle}" />
@@ -235,13 +215,13 @@
 
                 <ToggleButton
                     x:Name="ThemeToggleButton"
-                    Margin="200,0,0,-350"
+                    Margin="200,0,0,-290"
                     Checked="ThemeToggleButton_Checked"
                     Style="{DynamicResource ThemeToggleButtonStyle}"
                     Unchecked="ThemeToggleButton_Unchecked" />
 
                 <Button
-                    Margin="0,150,140,0"
+                    Margin="0,120,140,0"
                     Click="Logout_Click"
                     Content="🚪  Logout"
                     Style="{DynamicResource MenuBtnStyle}" />
