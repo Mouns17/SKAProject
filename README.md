@@ -108,7 +108,7 @@
 
 1. **Клонируйте репозиторий**
    ```bash
-   git clone https://github.com/yourusername/SKAProject.git
+   git clone https://github.com/Mouns17/SKAProject.git
    ```
 
 2. **Откройте решение** `SKAProject.sln` в Visual Studio 2022.
