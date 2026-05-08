@@ -199,9 +199,6 @@
       <DependentUpon>SendReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Session.cs" />
-    <Compile Include="SettingsWindow.xaml.cs">
-      <DependentUpon>SettingsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\StringToAcceptButtonVisibilityConverter.cs" />
     <Compile Include="Models\StringToRejectButtonVisibilityConverter.cs" />
     <Compile Include="Styles\CardStyle.Designer.cs">
@@ -395,10 +392,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SendReportWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
