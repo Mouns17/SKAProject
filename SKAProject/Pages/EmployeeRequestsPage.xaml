@@ -1,14 +1,256 @@
-﻿<Page x:Class="SKAProject.Pages.EmployeeRequestsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:SKAProject.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="EmployeeRequestsPage">
+﻿<Page
+    x:Class="SKAProject.Pages.EmployeeRequestsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Заявки сотрудников"
+    Background="{DynamicResource ContentBackgroundBrush}"
+    FontFamily="Arian">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-    <Grid>
-        
+        <TextBlock
+            Grid.Row="0"
+            Margin="0,0,0,20"
+            FontSize="36"
+            FontWeight="SemiBold"
+            Foreground="{DynamicResource ForegroundColor1}"
+            Text="Заявки сотрудников" />
+        <TextBlock
+            Grid.Row="1"
+            Margin="0,0,0,25"
+            FontSize="22"
+            Foreground="{DynamicResource ForegroundColor1}"
+            Text="Список заявок, поданных сотрудниками" />
+
+        <!--  Кнопки создания заявки (для демонстрации, позже можно сделать отдельное окно)  -->
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,0,0,15"
+            Orientation="Horizontal">
+            <Button
+                x:Name="BtnAdd"
+                Width="220"
+                Height="45"
+                Background="{DynamicResource BackgroundColor6}"
+                BorderThickness="0"
+                Click="BtnAdd_Click"
+                Content="+ Новая заявка"
+                Cursor="Hand"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Foreground="White">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+        <Border
+            Grid.Row="3"
+            Background="{DynamicResource BackgroundColor3}"
+            CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="15"
+                    Opacity="0.8"
+                    ShadowDepth="0"
+                    Color="#010210" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="0"
+                    Padding="10,5"
+                    Background="#F0F5FF"
+                    BorderBrush="#D0D9E8"
+                    BorderThickness="0,0,0,2"
+                    CornerRadius="20 20 0 0">
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="180" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="№" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Дата" />
+                        <TextBlock
+                            Grid.Column="2"
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Тип" />
+                        <TextBlock
+                            Grid.Column="3"
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Сотрудник" />
+                        <TextBlock
+                            Grid.Column="4"
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Причина" />
+                        <TextBlock
+                            Grid.Column="5"
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Статус" />
+                        <TextBlock
+                            Grid.Column="6"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Действие" />
+                    </Grid>
+                </Border>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="RequestsItemsControl">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Padding="5"
+                                    BorderBrush="#E2E8F0"
+                                    BorderThickness="0,0,0,1">
+                                    <Grid Height="45">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="180" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="#4A5568"
+                                            Text="{Binding RowNumber}" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="#4A5568"
+                                            Text="{Binding RequestDate, StringFormat='dd.MM.yyyy'}" />
+                                        <TextBlock
+                                            Grid.Column="2"
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="#2D3748"
+                                            Text="{Binding RequestType}" />
+                                        <TextBlock
+                                            Grid.Column="3"
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="#2D3748"
+                                            Text="{Binding EmployeeFullName}" />
+                                        <TextBlock
+                                            Grid.Column="4"
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="#4A5568"
+                                            Text="{Binding Reason}"
+                                            TextTrimming="CharacterEllipsis" />
+                                        <TextBlock
+                                            Grid.Column="5"
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            FontWeight="SemiBold"
+                                            Foreground="#6366F1"
+                                            Text="{Binding Status}" />
+                                        <StackPanel
+                                            Grid.Column="6"
+                                            HorizontalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Button
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Click="ApproveRequest_Click"
+                                                CommandParameter="{Binding Id}"
+                                                Content="✔"
+                                                Cursor="Hand"
+                                                FontSize="18"
+                                                Foreground="#10B981"
+                                                ToolTip="Утвердить"
+                                                Visibility="{Binding CanApprove, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                            <Button
+                                                Margin="10,0,0,0"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Click="RejectRequest_Click"
+                                                CommandParameter="{Binding Id}"
+                                                Content="✖"
+                                                Cursor="Hand"
+                                                FontSize="18"
+                                                Foreground="#EF4444"
+                                                ToolTip="Отклонить"
+                                                Visibility="{Binding CanApprove, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                            <Button
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Click="DeleteRequest_Click"
+                                                CommandParameter="{Binding Id}"
+                                                Content="🗑️"
+                                                Cursor="Hand"
+                                                FontSize="16"
+                                                ToolTip="Удалить" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

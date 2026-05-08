@@ -1,14 +1,208 @@
-﻿<Page x:Class="SKAProject.Pages.UsersPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:SKAProject.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="UsersPage">
+﻿<Page
+    x:Class="SKAProject.Pages.UsersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Пользователи"
+    Background="{DynamicResource ContentBackgroundBrush}"
+    FontFamily="Arian">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-    <Grid>
-        
+        <TextBlock
+            Grid.Row="0"
+            Margin="0,0,0,20"
+            FontSize="36"
+            FontWeight="SemiBold"
+            Foreground="{DynamicResource ForegroundColor1}"
+            Text="Пользователи системы" />
+        <TextBlock
+            Grid.Row="1"
+            Margin="0,0,0,25"
+            FontSize="22"
+            Foreground="{DynamicResource ForegroundColor1}"
+            Text="Управление учётными записями и ролями" />
+
+        <Border
+            Grid.Row="2"
+            Background="{DynamicResource BackgroundColor3}"
+            CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="15"
+                    Opacity="0.8"
+                    ShadowDepth="0"
+                    Color="#010210" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="0"
+                    Padding="10,5"
+                    Background="#F0F5FF"
+                    BorderBrush="#D0D9E8"
+                    BorderThickness="0,0,0,2"
+                    CornerRadius="20 20 0 0">
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="180" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="80" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="ID" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Логин" />
+                        <TextBlock
+                            Grid.Column="2"
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="ФИО" />
+                        <TextBlock
+                            Grid.Column="3"
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Email" />
+                        <TextBlock
+                            Grid.Column="4"
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Роль" />
+                        <TextBlock
+                            Grid.Column="5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Активирован" />
+                        <TextBlock
+                            Grid.Column="6"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#4A5568"
+                            Text="Действие" />
+                    </Grid>
+                </Border>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="UsersItemsControl">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Padding="5"
+                                    BorderBrush="#E2E8F0"
+                                    BorderThickness="0,0,0,1">
+                                    <Grid Height="45">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="200" />
+                                            <ColumnDefinition Width="180" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="80" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="#4A5568"
+                                            Text="{Binding UserID}" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="#2D3748"
+                                            Text="{Binding Login}" />
+                                        <TextBlock
+                                            Grid.Column="2"
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="#2D3748"
+                                            Text="{Binding FullName}" />
+                                        <TextBlock
+                                            Grid.Column="3"
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="#4A5568"
+                                            Text="{Binding Email}" />
+
+                                        <!--  Редактирование роли  -->
+                                        <ComboBox
+                                            Grid.Column="4"
+                                            Width="160"
+                                            Height="30"
+                                            Margin="5,0"
+                                            FontSize="14"
+                                            ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=AvailableRoles}"
+                                            SelectedItem="{Binding SelectedRole, Mode=TwoWay}"
+                                            SelectionChanged="RoleComboBox_SelectionChanged"
+                                            Tag="{Binding UserID}" />
+
+                                        <!--  Статус активации  -->
+                                        <TextBlock
+                                            Grid.Column="5"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="{Binding ActivatedColor}"
+                                            Text="{Binding ActivatedText}" />
+
+                                        <!--  Кнопка удаления  -->
+                                        <Button
+                                            Grid.Column="6"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderThickness="0"
+                                            Click="DeleteUser_Click"
+                                            CommandParameter="{Binding UserID}"
+                                            Content="🗑️"
+                                            Cursor="Hand" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
