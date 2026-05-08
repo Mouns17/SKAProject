@@ -37,21 +37,20 @@ namespace SKAProject.Pages
         private async void BtnCalculate_Click(object sender, RoutedEventArgs e)
         {
             _payroll.Clear();
-            int month = CmbMonth.SelectedIndex + 1; // 1‑‑12
-            // В реальном проекте нужно учитывать год и фактически отработанное время.
-            // Здесь просто демонстрируем расчёт по данным из таблицы salary.
+            int month = CmbMonth.SelectedIndex + 1; // 1‑‑12 (месяц пока не используется)
 
             try
             {
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
+
+                    // Убрана фильтрация по workers – видим всех, у кого есть оклад
                     string query = @"
-                        SELECT u.LastName, u.FirstName, s.Salary, s.Bonus
-                        FROM salary s
-                        JOIN users u ON s.EmployeeUserID = u.UserID
-                        WHERE u.UserID IN (SELECT UserID FROM workers WHERE Status IN ('Работает','В отпуске'))
-                        ORDER BY u.LastName, u.FirstName";
+                SELECT u.LastName, u.FirstName, s.Salary, s.Bonus
+                FROM salary s
+                JOIN users u ON s.EmployeeUserID = u.UserID
+                ORDER BY u.LastName, u.FirstName";
                     using (var cmd = new MySqlCommand(query, conn))
                     using (var reader = await cmd.ExecuteReaderAsync())
                     {
@@ -68,9 +67,12 @@ namespace SKAProject.Pages
                         }
                     }
                 }
+
                 PayrollItemsControl.ItemsSource = _payroll;
+
                 if (_payroll.Count == 0)
-                    MessageBox.Show("Нет данных для расчёта. Проверьте, назначены ли оклады сотрудникам.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Нет назначенных окладов. Сначала добавьте оклады через страницу «Оклады и надбавки».",
+                                    "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
