@@ -441,7 +441,6 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
-
                 <!--  Рабочая область – светло-серый фон  -->
                 <Border Grid.Column="1" Background="{DynamicResource ContentBackgroundBrush}">
                     <Frame

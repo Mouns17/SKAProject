@@ -491,7 +491,7 @@ namespace SKAProject.Pages
                 foreach (var w in allWorkers)
                     w.IsSelected = false;
                 LoadWorkers();
-                MessageBox.Show("Выбранные сотрудники удалены.");
+                MessageBox.Show("Выбранные сотрудники успешно удалены");
             }
             catch (Exception ex)
             {

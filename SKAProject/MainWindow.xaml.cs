@@ -1,6 +1,6 @@
 ﻿using SKAProject.Pages;
-using System;
-using System.Configuration;
+using System.Windows.Controls;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 

@@ -1,9 +1,12 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace SKAProject.Pages
 {
@@ -15,23 +18,15 @@ namespace SKAProject.Pages
             LoadData();
         }
 
-        public class RecentLogEntry
-        {
-            public DateTime CreatedAt { get; set; }
-            public string CreatedAtStr => CreatedAt.ToString("dd.MM.yyyy HH:mm");
-            public string UserName { get; set; }
-            public string Action { get; set; }
-            public string Description { get; set; }
-        }
-
         private async void LoadData()
         {
             await LoadSummaryCounts();
-            await LoadRecentLogs();
-            SetWelcomeMessage();
+            await LoadTaskProgress();
+            LoadWelcomeInfo();
+            LoadNotifications();
         }
 
-        private void SetWelcomeMessage()
+        private void LoadWelcomeInfo()
         {
             string firstName = "";
             try
@@ -39,13 +34,25 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     conn.Open();
-                    var cmd = new MySqlCommand("SELECT FirstName FROM users WHERE UserID = @id", conn);
+                    var cmd = new MySqlCommand("SELECT FirstName, Role FROM users WHERE UserID = @id", conn);
                     cmd.Parameters.AddWithValue("@id", Session.UserID);
-                    firstName = cmd.ExecuteScalar()?.ToString() ?? "";
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            firstName = reader["FirstName"]?.ToString() ?? "";
+                            string role = reader["Role"]?.ToString() ?? "Пользователь";
+                            TxtRole.Text = role;
+                        }
+                    }
                 }
             }
             catch { }
-            TxtWelcomeUser.Text = string.IsNullOrWhiteSpace(firstName) ? "" : $"Рады вас видеть, {firstName}!";
+
+            TxtWelcomeUser.Text = string.IsNullOrWhiteSpace(firstName)
+                ? "Добро пожаловать!"
+                : $"Привет, {firstName}!";
+            TxtCurrentDate.Text = DateTime.Now.ToString("dddd, d MMMM yyyy");
         }
 
         private async Task LoadSummaryCounts()
@@ -56,42 +63,29 @@ namespace SKAProject.Pages
                 {
                     await conn.OpenAsync();
 
-                    // Сотрудники (Работает + В отпуске)
                     string empQuery = "SELECT COUNT(*) FROM workers WHERE Status IN ('Работает', 'В отпуске')";
                     using (var cmd = new MySqlCommand(empQuery, conn))
-                    {
-                        long count = (long)(await cmd.ExecuteScalarAsync());
-                        TxtTotalEmployees.Text = count.ToString();
-                    }
+                        TxtTotalEmployees.Text = ((long)await cmd.ExecuteScalarAsync()).ToString();
 
-                    // Мои активные задачи (Новая + В работе)
-                    string taskQuery = @"SELECT COUNT(*) FROM tasks
-                                         WHERE AssignedTo = @uid AND Status IN ('Новая','В работе')";
+                    string taskQuery = "SELECT COUNT(*) FROM tasks WHERE AssignedTo = @uid AND Status IN ('Новая','В работе')";
                     using (var cmd = new MySqlCommand(taskQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@uid", Session.UserID);
-                        long count = (long)(await cmd.ExecuteScalarAsync());
-                        TxtMyTasks.Text = count.ToString();
+                        TxtMyTasks.Text = ((long)await cmd.ExecuteScalarAsync()).ToString();
                     }
 
-                    // Отчётов на проверке (адресованных мне)
-                    string reportQuery = @"SELECT COUNT(*) FROM reports
-                                           WHERE RecipientID = @uid AND Status = 'На проверке'";
+                    string reportQuery = "SELECT COUNT(*) FROM reports WHERE RecipientID = @uid AND Status = 'На проверке'";
                     using (var cmd = new MySqlCommand(reportQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@uid", Session.UserID);
-                        long count = (long)(await cmd.ExecuteScalarAsync());
-                        TxtPendingReports.Text = count.ToString();
+                        TxtPendingReports.Text = ((long)await cmd.ExecuteScalarAsync()).ToString();
                     }
 
-                    // Новых задач за неделю (созданных для меня)
-                    string recentQuery = @"SELECT COUNT(*) FROM tasks
-                                           WHERE AssignedTo = @uid AND CreatedAt >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
+                    string recentQuery = "SELECT COUNT(*) FROM tasks WHERE AssignedTo = @uid AND CreatedAt >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
                     using (var cmd = new MySqlCommand(recentQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@uid", Session.UserID);
-                        long count = (long)(await cmd.ExecuteScalarAsync());
-                        TxtRecentTasks.Text = count.ToString();
+                        TxtRecentTasks.Text = ((long)await cmd.ExecuteScalarAsync()).ToString();
                     }
                 }
             }
@@ -101,45 +95,64 @@ namespace SKAProject.Pages
             }
         }
 
-        private async Task LoadRecentLogs()
+        private async Task LoadTaskProgress()
         {
             try
             {
-                var logs = new ObservableCollection<RecentLogEntry>();
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    string query = @"
-                        SELECT l.CreatedAt,
-                               CONCAT(u.LastName, ' ', u.FirstName) AS UserName,
-                               l.Action, l.Description
-                        FROM logs l
-                        LEFT JOIN users u ON l.UserID = u.UserID
-                        ORDER BY l.CreatedAt DESC
-                        LIMIT 15";
-                    using (var cmd = new MySqlCommand(query, conn))
-                    using (var reader = await cmd.ExecuteReaderAsync())
+
+                    // Сначала получаем общее количество задач
+                    string totalQuery = "SELECT COUNT(*) FROM tasks WHERE AssignedTo = @uid";
+                    long totalCount = 0;
+                    using (var cmd = new MySqlCommand(totalQuery, conn))
                     {
-                        while (await reader.ReadAsync())
-                        {
-                            logs.Add(new RecentLogEntry
-                            {
-                                CreatedAt = reader.GetDateTime("CreatedAt"),
-                                // Получаем индекс и используем его
-                                UserName = reader.IsDBNull(reader.GetOrdinal("UserName")) ? "Система" : reader.GetString(reader.GetOrdinal("UserName")),
-                                // Для поля, которое не может быть NULL, можно сразу строку, но если поле может быть NULL, тоже используем GetOrdinal
-                                Action = reader.GetString(reader.GetOrdinal("Action")),
-                                Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? "" : reader.GetString(reader.GetOrdinal("Description"))
-                            });
-                        }
+                        cmd.Parameters.AddWithValue("@uid", Session.UserID);
+                        totalCount = (long)await cmd.ExecuteScalarAsync();
                     }
+
+                    // Затем получаем количество завершённых задач
+                    string completedQuery = "SELECT COUNT(*) FROM tasks WHERE AssignedTo = @uid AND Status = 'Завершена'";
+                    long completed = 0;
+                    using (var cmd = new MySqlCommand(completedQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@uid", Session.UserID);
+                        completed = (long)await cmd.ExecuteScalarAsync();
+                    }
+
+                    // Вычисляем процент
+                    int percent = 0;
+                    if (totalCount > 0)
+                        percent = (int)Math.Round((double)completed / totalCount * 100);
+
+                    TaskProgressBar.Value = percent;
+                    TxtTotalTasks.Text = totalCount.ToString();
+                    TxtCompletedTasks.Text = completed.ToString();
+                    TxtProgressPercent.Text = $"{percent}%";
                 }
-                RecentLogsItemsControl.ItemsSource = logs;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка загрузки логов: " + ex.Message);
+                // При ошибке просто оставляем значения по умолчанию (0)
             }
         }
+
+        private void LoadNotifications()
+        {
+            // Пример учебных уведомлений – позже можно загружать из БД
+            var notifications = new ObservableCollection<dynamic>
+            {
+                new { Icon = "📋", Message = "Вам назначена новая задача «Подготовить отчёт»", TimeAgo = "5 минут назад" },
+                new { Icon = "✅", Message = "Ваш отчёт «Март 2026» принят руководителем", TimeAgo = "1 час назад" },
+                new { Icon = "📄", Message = "Заявка на отпуск утверждена", TimeAgo = "3 часа назад" }
+            };
+            NotificationsItemsControl.ItemsSource = notifications;
+        }
+
+        // Быстрые действия
+        private void OpenMyTasks(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new MyTasks());
+        private void OpenSendReport(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new SendReportPage());
+        private void OpenProfile(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new ProfilePage());
     }
 }

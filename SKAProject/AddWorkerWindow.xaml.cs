@@ -193,12 +193,8 @@ namespace SKAProject
                     $"Добавлен сотрудник: {fullName}, отдел: {depName}, должность: {posName}"
                 );
 
-                MessageBox.Show(
-                    "Сотрудник успешно добавлен.",
-                    "Готово",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information
-                );
+                MessageBox.Show("Сотрудник успешно добавлен");
+               
                 this.DialogResult = true;
                 this.Close();
             }
