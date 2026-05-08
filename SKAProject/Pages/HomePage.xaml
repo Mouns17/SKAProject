@@ -2,306 +2,277 @@
     x:Class="SKAProject.Pages.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="MainMenuPage"
-    Width="1520"
-    Height="1080"
+    Title="HomePage"
+    Background="{DynamicResource ContentBackgroundBrush}"
     FontFamily="Arian">
-    <Grid Margin="0,60,0,0">
-        <Border
-            Margin="-5,0,-5,15"
-            Padding="0"
-            Background="#EDF4FF"
-            BorderBrush="{DynamicResource BackgroundColor6}"
-            BorderThickness="1"
-            CornerRadius="30">
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <ScrollViewer.Resources>
-                    <Style TargetType="ScrollBar">
-                        <Setter Property="Width" Value="6" />
-                        <Setter Property="Background" Value="Transparent" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ScrollBar">
-                                    <Grid>
-                                        <Border Background="Transparent" />
-                                    </Grid>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ScrollViewer.Resources>
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-                <Grid Margin="40,30,40,50">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+        <!--  Приветствие  -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,25">
+            <TextBlock
+                FontSize="36"
+                FontWeight="SemiBold"
+                Foreground="{DynamicResource ForegroundColor1}"
+                Text="Главное меню" />
+            <TextBlock
+                Margin="0,8,0,0"
+                FontSize="22"
+                Foreground="{DynamicResource ForegroundColor1}"
+                Text="Добро пожаловать!" />
+            <TextBlock
+                x:Name="TxtWelcomeUser"
+                Margin="0,6,0,0"
+                FontSize="18"
+                Foreground="{DynamicResource BackgroundColor6}"
+                Text="" />
+        </StackPanel>
 
-                    <!--  Приветствие  -->
-                    <StackPanel Grid.Row="0" Margin="0,0,0,30">
+        <!--  Карточки с информацией  -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Всего сотрудников  -->
+                <Border
+                    Grid.Column="0"
+                    Margin="0,0,15,0"
+                    Padding="20"
+                    Background="{DynamicResource BackgroundColor3}"
+                    CornerRadius="20">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Opacity="0.8"
+                            ShadowDepth="0"
+                            Color="#010210" />
+                    </Border.Effect>
+                    <StackPanel>
                         <TextBlock
-                            FontSize="40"
+                            Margin="0,0,0,10"
+                            FontSize="30"
+                            Text="👥" />
+                        <TextBlock
+                            FontSize="18"
                             FontWeight="SemiBold"
                             Foreground="{DynamicResource ForegroundColor1}"
-                            Text="Главное меню" />
+                            Text="Сотрудников (активных)" />
                         <TextBlock
-                            Margin="0,8,0,0"
-                            FontSize="28"
+                            x:Name="TxtTotalEmployees"
+                            Margin="0,5,0,0"
+                            FontSize="36"
+                            FontWeight="Bold"
+                            Foreground="#6366F1"
+                            Text="0" />
+                    </StackPanel>
+                </Border>
+
+                <!--  Мои задачи  -->
+                <Border
+                    Grid.Column="1"
+                    Margin="0,0,15,0"
+                    Padding="20"
+                    Background="{DynamicResource BackgroundColor3}"
+                    CornerRadius="20">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Opacity="0.8"
+                            ShadowDepth="0"
+                            Color="#010210" />
+                    </Border.Effect>
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            FontSize="30"
+                            Text="📋" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="SemiBold"
                             Foreground="{DynamicResource ForegroundColor1}"
-                            Text="Добро пожаловать, пользователь!" />
+                            Text="Мои активные задачи" />
                         <TextBlock
-                            x:Name="TxtWelcomeUser"
-                            Margin="0,6,0,0"
-                            FontSize="22"
-                            Foreground="{DynamicResource BackgroundColor6}"
-                            Text="" />
+                            x:Name="TxtMyTasks"
+                            Margin="0,5,0,0"
+                            FontSize="36"
+                            FontWeight="Bold"
+                            Foreground="#10B981"
+                            Text="0" />
                     </StackPanel>
+                </Border>
 
-                    <!--  Карточки с информацией  -->
-                    <StackPanel Grid.Row="1" Margin="0,0,0,25">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <!--  Всего сотрудников  -->
-                            <Border
-                                Grid.Column="0"
-                                Margin="0,0,15,0"
-                                Padding="20"
-                                Background="{DynamicResource BackgroundColor3}"
-                                CornerRadius="20">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        BlurRadius="15"
-                                        Opacity="0.8"
-                                        ShadowDepth="0"
-                                        Color="#010210" />
-                                </Border.Effect>
-                                <StackPanel>
-                                    <TextBlock
-                                        Margin="0,0,0,10"
-                                        FontSize="30"
-                                        Text="👥" />
-                                    <TextBlock
-                                        FontSize="18"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource ForegroundColor1}"
-                                        Text="Всего сотрудников" />
-                                    <TextBlock
-                                        x:Name="TxtTotalEmployees"
-                                        Margin="0,5,0,0"
-                                        FontSize="36"
-                                        FontWeight="Bold"
-                                        Foreground="#6366F1"
-                                        Text="0" />
-                                </StackPanel>
-                            </Border>
-
-                            <!--  Мои задачи  -->
-                            <Border
-                                Grid.Column="1"
-                                Margin="0,0,15,0"
-                                Padding="20"
-                                Background="{DynamicResource BackgroundColor3}"
-                                CornerRadius="20">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        BlurRadius="15"
-                                        Opacity="0.8"
-                                        ShadowDepth="0"
-                                        Color="#010210" />
-                                </Border.Effect>
-                                <StackPanel>
-                                    <TextBlock
-                                        Margin="0,0,0,10"
-                                        FontSize="30"
-                                        Text="📋" />
-                                    <TextBlock
-                                        FontSize="18"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource ForegroundColor1}"
-                                        Text="Мои активные задачи" />
-                                    <TextBlock
-                                        x:Name="TxtMyTasks"
-                                        Margin="0,5,0,0"
-                                        FontSize="36"
-                                        FontWeight="Bold"
-                                        Foreground="#10B981"
-                                        Text="0" />
-                                </StackPanel>
-                            </Border>
-
-                            <!--  Отчёты на проверке  -->
-                            <Border
-                                Grid.Column="2"
-                                Margin="0,0,15,0"
-                                Padding="20"
-                                Background="{DynamicResource BackgroundColor3}"
-                                CornerRadius="20">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        BlurRadius="15"
-                                        Opacity="0.8"
-                                        ShadowDepth="0"
-                                        Color="#010210" />
-                                </Border.Effect>
-                                <StackPanel>
-                                    <TextBlock
-                                        Margin="0,0,0,10"
-                                        FontSize="30"
-                                        Text="📄" />
-                                    <TextBlock
-                                        FontSize="18"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource ForegroundColor1}"
-                                        Text="Отчётов на проверке" />
-                                    <TextBlock
-                                        x:Name="TxtPendingReports"
-                                        Margin="0,5,0,0"
-                                        FontSize="36"
-                                        FontWeight="Bold"
-                                        Foreground="#F59E0B"
-                                        Text="0" />
-                                </StackPanel>
-                            </Border>
-
-                            <!--  Недавно созданных задач (за 7 дней)  -->
-                            <Border
-                                Grid.Column="3"
-                                Padding="20"
-                                Background="{DynamicResource BackgroundColor3}"
-                                CornerRadius="20">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        BlurRadius="15"
-                                        Opacity="0.8"
-                                        ShadowDepth="0"
-                                        Color="#010210" />
-                                </Border.Effect>
-                                <StackPanel>
-                                    <TextBlock
-                                        Margin="0,0,0,10"
-                                        FontSize="30"
-                                        Text="⭐" />
-                                    <TextBlock
-                                        FontSize="18"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource ForegroundColor1}"
-                                        Text="Новых задач за неделю" />
-                                    <TextBlock
-                                        x:Name="TxtRecentTasks"
-                                        Margin="0,5,0,0"
-                                        FontSize="36"
-                                        FontWeight="Bold"
-                                        Foreground="#8B5CF6"
-                                        Text="0" />
-                                </StackPanel>
-                            </Border>
-                        </Grid>
+                <!--  Отчётов на проверке  -->
+                <Border
+                    Grid.Column="2"
+                    Margin="0,0,15,0"
+                    Padding="20"
+                    Background="{DynamicResource BackgroundColor3}"
+                    CornerRadius="20">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Opacity="0.8"
+                            ShadowDepth="0"
+                            Color="#010210" />
+                    </Border.Effect>
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            FontSize="30"
+                            Text="📄" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource ForegroundColor1}"
+                            Text="Отчётов на проверке" />
+                        <TextBlock
+                            x:Name="TxtPendingReports"
+                            Margin="0,5,0,0"
+                            FontSize="36"
+                            FontWeight="Bold"
+                            Foreground="#F59E0B"
+                            Text="0" />
                     </StackPanel>
+                </Border>
 
-                    <!--  Последние действия  -->
-                    <Border
-                        Grid.Row="2"
-                        Background="{DynamicResource BackgroundColor3}"
-                        CornerRadius="20">
-                        <Border.Effect>
-                            <DropShadowEffect
-                                BlurRadius="15"
-                                Opacity="1"
-                                ShadowDepth="0"
-                                Color="#010210" />
-                        </Border.Effect>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
+                <!--  Новых задач за неделю  -->
+                <Border
+                    Grid.Column="3"
+                    Padding="20"
+                    Background="{DynamicResource BackgroundColor3}"
+                    CornerRadius="20">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Opacity="0.8"
+                            ShadowDepth="0"
+                            Color="#010210" />
+                    </Border.Effect>
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            FontSize="30"
+                            Text="⭐" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource ForegroundColor1}"
+                            Text="Новых задач за неделю" />
+                        <TextBlock
+                            x:Name="TxtRecentTasks"
+                            Margin="0,5,0,0"
+                            FontSize="36"
+                            FontWeight="Bold"
+                            Foreground="#8B5CF6"
+                            Text="0" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
 
-                            <Border
-                                Grid.Row="0"
-                                Padding="15,10"
-                                Background="#F0F5FF"
-                                BorderBrush="#D0D9E8"
-                                BorderThickness="0,0,0,2"
-                                CornerRadius="20 20 0 0">
-                                <TextBlock
-                                    FontSize="22"
-                                    FontWeight="Bold"
-                                    Foreground="#4A5568"
-                                    Text="Последние действия в системе" />
-                            </Border>
+        <!--  Последние действия  -->
+        <Border
+            Grid.Row="2"
+            Background="{DynamicResource BackgroundColor3}"
+            CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="15"
+                    Opacity="1"
+                    ShadowDepth="0"
+                    Color="#010210" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-                            <ScrollViewer
-                                Grid.Row="1"
-                                HorizontalScrollBarVisibility="Disabled"
-                                VerticalScrollBarVisibility="Auto">
-                                <ScrollViewer.Resources>
-                                    <Style TargetType="ScrollBar">
-                                        <Setter Property="Width" Value="6" />
-                                        <Setter Property="Background" Value="Transparent" />
-                                    </Style>
-                                </ScrollViewer.Resources>
+                <Border
+                    Grid.Row="0"
+                    Padding="15,10"
+                    Background="#F0F5FF"
+                    BorderBrush="#D0D9E8"
+                    BorderThickness="0,0,0,2"
+                    CornerRadius="20 20 0 0">
+                    <TextBlock
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="#4A5568"
+                        Text="Последние действия в системе" />
+                </Border>
 
-                                <ItemsControl x:Name="RecentLogsItemsControl">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border
-                                                Background="Transparent"
-                                                BorderBrush="#E2E8F0"
-                                                BorderThickness="0,0,0,1">
-                                                <Grid Height="50">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="200" />
-                                                        <ColumnDefinition Width="220" />
-                                                        <ColumnDefinition Width="200" />
-                                                        <ColumnDefinition Width="*" />
-                                                    </Grid.ColumnDefinitions>
+                <ScrollViewer
+                    Grid.Row="1"
+                    HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer.Resources>
+                        <Style TargetType="ScrollBar">
+                            <Setter Property="Width" Value="6" />
+                            <Setter Property="Background" Value="Transparent" />
+                        </Style>
+                    </ScrollViewer.Resources>
 
-                                                    <TextBlock
-                                                        Grid.Column="0"
-                                                        Margin="15,0,0,0"
-                                                        VerticalAlignment="Center"
-                                                        FontSize="14"
-                                                        Foreground="#4A5568"
-                                                        Text="{Binding CreatedAtStr}" />
-                                                    <TextBlock
-                                                        Grid.Column="1"
-                                                        Margin="5,0,0,0"
-                                                        VerticalAlignment="Center"
-                                                        FontSize="14"
-                                                        Foreground="#2D3748"
-                                                        Text="{Binding UserName}" />
-                                                    <TextBlock
-                                                        Grid.Column="2"
-                                                        Margin="5,0,0,0"
-                                                        VerticalAlignment="Center"
-                                                        FontSize="14"
-                                                        Foreground="#4A5568"
-                                                        Text="{Binding Action}" />
-                                                    <TextBlock
-                                                        Grid.Column="3"
-                                                        Margin="5,0,0,0"
-                                                        VerticalAlignment="Center"
-                                                        FontSize="14"
-                                                        Foreground="#4A5568"
-                                                        Text="{Binding Description}"
-                                                        TextTrimming="CharacterEllipsis" />
-                                                </Grid>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </ScrollViewer>
-                        </Grid>
-                    </Border>
-                </Grid>
-            </ScrollViewer>
+                    <ItemsControl x:Name="RecentLogsItemsControl">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Background="Transparent"
+                                    BorderBrush="#E2E8F0"
+                                    BorderThickness="0,0,0,1">
+                                    <Grid Height="50">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="180" />
+                                            <ColumnDefinition Width="220" />
+                                            <ColumnDefinition Width="200" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            Margin="15,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            Foreground="#4A5568"
+                                            Text="{Binding CreatedAtStr}" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            Foreground="#2D3748"
+                                            Text="{Binding UserName}" />
+                                        <TextBlock
+                                            Grid.Column="2"
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            Foreground="#4A5568"
+                                            Text="{Binding Action}" />
+                                        <TextBlock
+                                            Grid.Column="3"
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            Foreground="#4A5568"
+                                            Text="{Binding Description}"
+                                            TextTrimming="CharacterEllipsis" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </Border>
     </Grid>
 </Page>

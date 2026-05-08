@@ -1,6 +1,5 @@
 ﻿using MySqlConnector;
 using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -13,7 +12,6 @@ namespace SKAProject.Pages
         {
             InitializeComponent();
 
-            // Часы
             var timer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 1) };
             timer.Tick += (o, t) => { TBlockTime.Text = DateTime.Now.ToString("HH:mm"); };
             timer.Start();
@@ -26,6 +24,7 @@ namespace SKAProject.Pages
             try
             {
                 int userId = Session.UserID;
+
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
@@ -33,8 +32,8 @@ namespace SKAProject.Pages
                         SELECT u.FirstName, u.LastName, u.MiddleName,
                                u.Email, u.Phone, u.Role,
                                d.DepName, p.PosName
-                        FROM Users u
-                        LEFT JOIN Workers w ON u.UserID = w.UserID
+                        FROM users u
+                        LEFT JOIN workers w ON u.UserID = w.UserID
                         LEFT JOIN departments d ON w.DepID = d.DepID
                         LEFT JOIN positions p ON w.PosID = p.PosID
                         WHERE u.UserID = @id";
@@ -51,10 +50,11 @@ namespace SKAProject.Pages
                                 string email = reader["Email"]?.ToString() ?? "";
                                 string phone = reader["Phone"]?.ToString() ?? "";
                                 string role = reader["Role"]?.ToString() ?? "";
-                                string dep = reader["DepName"]?.ToString() ?? "Не указан";
-                                string post = reader["PosName"]?.ToString() ?? "Не указана";
+                                int depIdx = reader.GetOrdinal("DepName");
+                                int postIdx = reader.GetOrdinal("PosName");
+                                string dep = reader.IsDBNull(depIdx) ? "Не указан" : reader.GetString(depIdx);
+                                string post = reader.IsDBNull(postIdx) ? "Не указана" : reader.GetString(postIdx);
 
-                                // Отображение
                                 TBlockNames.Text = $"ФИО: {lastName} {firstName} {middleName}";
                                 TBlockRole.Text = $"Роль: {role}";
                                 TBlockEmail.Text = $"Email: {email}";
@@ -62,9 +62,8 @@ namespace SKAProject.Pages
                                 TBlockDep.Text = $"Отдел: {dep}";
                                 TBlockPost.Text = $"Должность: {post}";
 
-                                // Сохраняем текущие значения для редактирования
-                                TBoxFirstName.Text = firstName;
                                 TBoxLastName.Text = lastName;
+                                TBoxFirstName.Text = firstName;
                                 TBoxMiddleName.Text = middleName;
                                 TBoxEmail.Text = email;
                                 TBoxPhone.Text = phone;
@@ -83,34 +82,28 @@ namespace SKAProject.Pages
             }
         }
 
-        // Вход в режим редактирования
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            // Скрываем текстовые блоки
             TBlockNames.Visibility = Visibility.Collapsed;
             TBlockEmail.Visibility = Visibility.Collapsed;
             TBlockPhone.Visibility = Visibility.Collapsed;
 
-            // Показываем TextBox'ы
-            TBoxFirstName.Visibility = Visibility.Visible;
             TBoxLastName.Visibility = Visibility.Visible;
+            TBoxFirstName.Visibility = Visibility.Visible;
             TBoxMiddleName.Visibility = Visibility.Visible;
             TBoxEmail.Visibility = Visibility.Visible;
             TBoxPhone.Visibility = Visibility.Visible;
 
-            // Меняем кнопки
             BtnEdit.Visibility = Visibility.Collapsed;
             BtnSave.Visibility = Visibility.Visible;
             BtnCancel.Visibility = Visibility.Visible;
         }
 
-        // Отмена редактирования (возврат к просмотру)
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             ToggleViewMode();
         }
 
-        // Сохранение изменений
         private async void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(TBoxFirstName.Text) || string.IsNullOrWhiteSpace(TBoxLastName.Text))
@@ -125,7 +118,7 @@ namespace SKAProject.Pages
                 {
                     await conn.OpenAsync();
                     string query = @"
-                        UPDATE Users 
+                        UPDATE users
                         SET FirstName = @fn, LastName = @ln, MiddleName = @mn,
                             Email = @email, Phone = @phone
                         WHERE UserID = @id";
@@ -141,15 +134,15 @@ namespace SKAProject.Pages
                     }
                 }
 
-                await Logger.LogAsync(Session.UserID, "Редактирование профиля", "Пользователи", "Обновлены личные данные");
+                await Logger.LogAsync(Session.UserID, "Редактирование профиля", "Пользователи",
+                    "Обновлены личные данные");
 
-                // Обновляем отображение
                 TBlockNames.Text = $"ФИО: {TBoxLastName.Text} {TBoxFirstName.Text} {TBoxMiddleName.Text}";
                 TBlockEmail.Text = $"Email: {TBoxEmail.Text}";
                 TBlockPhone.Text = $"Телефон: {TBoxPhone.Text}";
 
                 MessageBox.Show("Данные сохранены.");
-                ToggleViewMode(); // возврат в режим просмотра
+                ToggleViewMode();
             }
             catch (Exception ex)
             {
@@ -163,8 +156,8 @@ namespace SKAProject.Pages
             TBlockEmail.Visibility = Visibility.Visible;
             TBlockPhone.Visibility = Visibility.Visible;
 
-            TBoxFirstName.Visibility = Visibility.Collapsed;
             TBoxLastName.Visibility = Visibility.Collapsed;
+            TBoxFirstName.Visibility = Visibility.Collapsed;
             TBoxMiddleName.Visibility = Visibility.Collapsed;
             TBoxEmail.Visibility = Visibility.Collapsed;
             TBoxPhone.Visibility = Visibility.Collapsed;

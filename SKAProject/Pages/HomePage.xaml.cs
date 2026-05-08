@@ -1,11 +1,9 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using MySqlConnector;
 
 namespace SKAProject.Pages
 {
@@ -35,23 +33,19 @@ namespace SKAProject.Pages
 
         private void SetWelcomeMessage()
         {
-            // Получаем имя текущего пользователя (если есть)
             string firstName = "";
             try
             {
                 using (var conn = DataBase.GetConnection())
                 {
                     conn.Open();
-                    var cmd = new MySqlCommand(
-                        "SELECT FirstName FROM users WHERE UserID = @id",
-                        conn
-                    );
+                    var cmd = new MySqlCommand("SELECT FirstName FROM users WHERE UserID = @id", conn);
                     cmd.Parameters.AddWithValue("@id", Session.UserID);
                     firstName = cmd.ExecuteScalar()?.ToString() ?? "";
                 }
             }
             catch { }
-            TxtWelcomeUser.Text = $"Рады вас видеть, {firstName}!";
+            TxtWelcomeUser.Text = string.IsNullOrWhiteSpace(firstName) ? "" : $"Рады вас видеть, {firstName}!";
         }
 
         private async Task LoadSummaryCounts()
@@ -62,9 +56,8 @@ namespace SKAProject.Pages
                 {
                     await conn.OpenAsync();
 
-                    // Всего сотрудников (работающих)
-                    string empQuery =
-                        "SELECT COUNT(*) FROM workers WHERE Status IN ('Работает', 'В отпуске')";
+                    // Сотрудники (Работает + В отпуске)
+                    string empQuery = "SELECT COUNT(*) FROM workers WHERE Status IN ('Работает', 'В отпуске')";
                     using (var cmd = new MySqlCommand(empQuery, conn))
                     {
                         long count = (long)(await cmd.ExecuteScalarAsync());
@@ -72,8 +65,7 @@ namespace SKAProject.Pages
                     }
 
                     // Мои активные задачи (Новая + В работе)
-                    string taskQuery =
-                        @"SELECT COUNT(*) FROM tasks 
+                    string taskQuery = @"SELECT COUNT(*) FROM tasks
                                          WHERE AssignedTo = @uid AND Status IN ('Новая','В работе')";
                     using (var cmd = new MySqlCommand(taskQuery, conn))
                     {
@@ -83,8 +75,7 @@ namespace SKAProject.Pages
                     }
 
                     // Отчётов на проверке (адресованных мне)
-                    string reportQuery =
-                        @"SELECT COUNT(*) FROM reports 
+                    string reportQuery = @"SELECT COUNT(*) FROM reports
                                            WHERE RecipientID = @uid AND Status = 'На проверке'";
                     using (var cmd = new MySqlCommand(reportQuery, conn))
                     {
@@ -93,9 +84,8 @@ namespace SKAProject.Pages
                         TxtPendingReports.Text = count.ToString();
                     }
 
-                    // Новых задач за неделю (созданных кем-либо для меня)
-                    string recentQuery =
-                        @"SELECT COUNT(*) FROM tasks 
+                    // Новых задач за неделю (созданных для меня)
+                    string recentQuery = @"SELECT COUNT(*) FROM tasks
                                            WHERE AssignedTo = @uid AND CreatedAt >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
                     using (var cmd = new MySqlCommand(recentQuery, conn))
                     {
@@ -119,9 +109,8 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    string query =
-                        @"
-                        SELECT l.CreatedAt, 
+                    string query = @"
+                        SELECT l.CreatedAt,
                                CONCAT(u.LastName, ' ', u.FirstName) AS UserName,
                                l.Action, l.Description
                         FROM logs l
@@ -133,26 +122,15 @@ namespace SKAProject.Pages
                     {
                         while (await reader.ReadAsync())
                         {
-                            var log = new RecentLogEntry();
-
-                            // Поле CreatedAt всегда должно быть, получаем напрямую
-                            log.CreatedAt = reader.GetDateTime("CreatedAt");
-
-                            // Получаем индексы для Nullable полей
-                            int userIdx = reader.GetOrdinal("UserName");
-                            int descIdx = reader.GetOrdinal("Description");
-                            int actionIdx = reader.GetOrdinal("Action");
-
-                            // Безопасное чтение
-                            log.UserName = reader.IsDBNull(userIdx)
-                                ? "Система"
-                                : reader.GetString(userIdx);
-                            log.Description = reader.IsDBNull(descIdx)
-                                ? ""
-                                : reader.GetString(descIdx);
-                            log.Action = reader.GetString(actionIdx); // Action не должно быть NULL, но можно тоже проверить
-
-                            logs.Add(log);
+                            logs.Add(new RecentLogEntry
+                            {
+                                CreatedAt = reader.GetDateTime("CreatedAt"),
+                                // Получаем индекс и используем его
+                                UserName = reader.IsDBNull(reader.GetOrdinal("UserName")) ? "Система" : reader.GetString(reader.GetOrdinal("UserName")),
+                                // Для поля, которое не может быть NULL, можно сразу строку, но если поле может быть NULL, тоже используем GetOrdinal
+                                Action = reader.GetString(reader.GetOrdinal("Action")),
+                                Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? "" : reader.GetString(reader.GetOrdinal("Description"))
+                            });
                         }
                     }
                 }
