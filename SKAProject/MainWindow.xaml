@@ -171,6 +171,11 @@
                     Margin="20,0,0,0"
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
+                    <Image
+                        Width="25"
+                        Height="25"
+                        Margin="0,0,8,0"
+                        Source="/Images/LogoIconSKA.png" />
                     <TextBlock
                         VerticalAlignment="Center"
                         FontSize="13"
