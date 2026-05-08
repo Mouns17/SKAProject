@@ -104,9 +104,9 @@
                                     <Border.Effect>
                                         <DropShadowEffect
                                             BlurRadius="15"
-                                            Opacity="0.4"
+                                            Opacity="0.3"
                                             ShadowDepth="0"
-                                            Color="#6366F1" />
+                                            Color="White" />
                                     </Border.Effect>
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Border>
@@ -131,7 +131,8 @@
                         Height="55"
                         Background="#6366F1"
                         Click="EditWorkerButton_Click"
-                        Cursor="Hand">
+                        Cursor="Hand"
+                        FontWeight="SemiBold">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" CornerRadius="15">

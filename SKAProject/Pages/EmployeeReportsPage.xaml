@@ -1,14 +1,389 @@
-﻿<Page x:Class="SKAProject.Pages.EmployeeReportsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:SKAProject.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="EmployeeReportsPage">
+﻿<Page
+    x:Class="SKAProject.Pages.EmployeeReportsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Отчёты сотрудников"
+    Background="{DynamicResource ContentBackgroundBrush}"
+    FontFamily="Arian">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-    <Grid>
-        
+        <!--  Заголовок  -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,25">
+            <TextBlock
+                FontSize="36"
+                FontWeight="SemiBold"
+                Foreground="{DynamicResource ForegroundColor1}"
+                Text="Отчёты сотрудников" />
+            <TextBlock
+                Margin="0,8,0,0"
+                FontSize="22"
+                Foreground="{DynamicResource ForegroundColor1}"
+                Text="Просмотр и анализ отчётов" />
+        </StackPanel>
+
+        <!--  Поиск  -->
+        <Border
+            Grid.Row="1"
+            Height="55"
+            Margin="0,0,0,20"
+            Background="{DynamicResource BackgroundColor3}"
+            BorderBrush="{DynamicResource BackgroundColor6}"
+            BorderThickness="1"
+            CornerRadius="15">
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="15"
+                    Opacity="0.8"
+                    ShadowDepth="0"
+                    Color="#010210" />
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="20,0,10,0"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    Foreground="{DynamicResource ForegroundColor1}"
+                    Text="🔍" />
+                <TextBox
+                    x:Name="SearchTextBox"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    FontFamily="Arian"
+                    FontSize="18"
+                    Foreground="{DynamicResource ForegroundColor1}" />
+                <TextBlock
+                    x:Name="SearchPlaceholder"
+                    Grid.Column="1"
+                    Margin="2,0,0,0"
+                    VerticalAlignment="Center"
+                    FontFamily="Arian"
+                    FontSize="18"
+                    Foreground="#8899AA"
+                    IsHitTestVisible="False"
+                    Text="Поиск по автору, описанию, статусу..." />
+            </Grid>
+        </Border>
+
+        <!--  Таблица отчётов + статистика  -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border
+                Grid.Column="0"
+                Margin="0,0,20,0"
+                Background="{DynamicResource BackgroundColor3}"
+                CornerRadius="20">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        Opacity="1"
+                        ShadowDepth="0"
+                        Color="#010210" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Заголовок таблицы  -->
+                    <Border
+                        Grid.Row="0"
+                        Background="#F0F5FF"
+                        BorderBrush="#D0D9E8"
+                        BorderThickness="0,0,0,2"
+                        CornerRadius="20 20 0 0">
+                        <Grid Height="50">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="220" />
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="200" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="№" />
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Автор" />
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Дата" />
+                            <TextBlock
+                                Grid.Column="3"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Описание" />
+                            <TextBlock
+                                Grid.Column="4"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Статус" />
+                            <TextBlock
+                                Grid.Column="5"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Действия" />
+                        </Grid>
+                    </Border>
+
+                    <!--  Список отчётов  -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="ReportsItemsControl">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Background="Transparent"
+                                        BorderBrush="#E2E8F0"
+                                        BorderThickness="0,0,0,1">
+                                        <Grid Height="50">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80" />
+                                                <ColumnDefinition Width="220" />
+                                                <ColumnDefinition Width="160" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="150" />
+                                                <ColumnDefinition Width="200" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock
+                                                Grid.Column="0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="16"
+                                                Foreground="#4A5568"
+                                                Text="{Binding ReportID}" />
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="16"
+                                                Foreground="#2D3748"
+                                                Text="{Binding AuthorName}" />
+                                            <TextBlock
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="16"
+                                                Foreground="#4A5568"
+                                                Text="{Binding ReportDate, StringFormat='dd.MM.yyyy'}" />
+                                            <TextBlock
+                                                Grid.Column="3"
+                                                Margin="10,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontSize="16"
+                                                Foreground="#4A5568"
+                                                Text="{Binding Description}"
+                                                TextTrimming="CharacterEllipsis" />
+                                            <TextBlock
+                                                Grid.Column="4"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="16"
+                                                FontWeight="SemiBold"
+                                                Foreground="{Binding StatusColor}"
+                                                Text="{Binding Status}" />
+                                            <StackPanel
+                                                Grid.Column="5"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Button
+                                                    Margin="0,0,5,0"
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    Click="AcceptReport_Click"
+                                                    CommandParameter="{Binding ReportID}"
+                                                    Content="✔"
+                                                    Cursor="Hand"
+                                                    FontSize="18"
+                                                    Foreground="#10B981"
+                                                    ToolTip="Принять"
+                                                    Visibility="{Binding CanDecide, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                                <Button
+                                                    Margin="0,0,5,0"
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    Click="RejectReport_Click"
+                                                    CommandParameter="{Binding ReportID}"
+                                                    Content="✖"
+                                                    Cursor="Hand"
+                                                    FontSize="18"
+                                                    Foreground="#EF4444"
+                                                    ToolTip="Отклонить"
+                                                    Visibility="{Binding CanDecide, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                                <Button
+                                                    Margin="0,0,5,0"
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    Click="DownloadFile_Click"
+                                                    CommandParameter="{Binding FilePath}"
+                                                    Content="📥"
+                                                    Cursor="Hand"
+                                                    FontSize="18"
+                                                    ToolTip="Скачать файл"
+                                                    Visibility="{Binding HasFile, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!--  Статистика  -->
+            <Border
+                Grid.Column="1"
+                Width="380"
+                Padding="20"
+                Background="{DynamicResource BackgroundColor3}"
+                CornerRadius="20">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        Opacity="1"
+                        ShadowDepth="0"
+                        Color="#010210" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Margin="0,0,0,20"
+                        FontSize="24"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource ForegroundColor1}">
+                        Статистика
+                    </TextBlock>
+                    <Border
+                        Grid.Row="1"
+                        Margin="0,0,0,15"
+                        Padding="15"
+                        Background="#F0F5FF"
+                        CornerRadius="15">
+                        <StackPanel>
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Всего отчётов" />
+                            <TextBlock
+                                x:Name="TxtTotalReports"
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="{DynamicResource ForegroundColor1}"
+                                Text="0" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,0,0,15"
+                        Padding="15"
+                        Background="#F0F5FF"
+                        CornerRadius="15">
+                        <StackPanel>
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Принято" />
+                            <TextBlock
+                                x:Name="TxtAcceptedReports"
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="#10B981"
+                                Text="0" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="3"
+                        Margin="0,0,0,15"
+                        Padding="15"
+                        Background="#F0F5FF"
+                        CornerRadius="15">
+                        <StackPanel>
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="На проверке" />
+                            <TextBlock
+                                x:Name="TxtPendingReports"
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="#F59E0B"
+                                Text="0" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="4"
+                        Margin="0,0,0,0"
+                        Padding="15"
+                        Background="#F0F5FF"
+                        CornerRadius="15">
+                        <StackPanel>
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="#4A5568"
+                                Text="Отклонено" />
+                            <TextBlock
+                                x:Name="TxtRejectedReports"
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="#EF4444"
+                                Text="0" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Page>
