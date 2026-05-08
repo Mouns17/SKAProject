@@ -31,6 +31,28 @@
     <SolidColorBrush x:Key="ThemeSwitchBorderBrush" Color="#718096" />
     <SolidColorBrush x:Key="ThemeSwitchForeground" Color="White" />
 
+    <SolidColorBrush x:Key="TitleBarBackgroundBrush" Color="#00000F" />
+    <SolidColorBrush x:Key="WindowButtonHoverBrush" Color="#2B2B3C" />
+    <SolidColorBrush x:Key="WindowButtonPressedBrush" Color="#2B2B3C" />
+
+    <SolidColorBrush x:Key="MainBackgroundBrush" Color="#040D21" />
+    <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#040D21" />
+    <SolidColorBrush x:Key="ContentBackgroundBrush" Color="#040D21" />
+    <SolidColorBrush x:Key="BorderBackground" Color="#E0E0E0" />
+
+    <DropShadowEffect
+        x:Key="SidebarShadow"
+        BlurRadius="15"
+        Opacity="0.08"
+        ShadowDepth="3"
+        Color="#000000" />
+    <DropShadowEffect
+        x:Key="TitleBarShadow"
+        BlurRadius="10"
+        Opacity="0.06"
+        ShadowDepth="2"
+        Color="#000000" />
+
     <LinearGradientBrush x:Key="DividerBrush" StartPoint="0,0" EndPoint="1,0">
         <GradientStop Offset="0" Color="#00333355" />
         <GradientStop Offset="0.5" Color="#818CF8" />

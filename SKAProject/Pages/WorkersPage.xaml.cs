@@ -504,6 +504,8 @@ namespace SKAProject.Pages
             var exportWindow = new ExportExcelWindow(allWorkers.ToList());
             exportWindow.Owner = Window.GetWindow(this);
             exportWindow.ShowDialog();
+
+            
         }
 
         private string GetValue(object val) =>

@@ -35,7 +35,7 @@
     <SolidColorBrush x:Key="TitleBarBackgroundBrush" Color="#F0F5FF" />
     <SolidColorBrush x:Key="WindowButtonHoverBrush" Color="#E2E8F0" />
     <SolidColorBrush x:Key="WindowButtonPressedBrush" Color="#CBD5E1" />
-
+    <SolidColorBrush x:Key="BorderBackground" Color="#6366F1" />
 
     <SolidColorBrush x:Key="MainBackgroundBrush" Color="#EDF4FF" />
 

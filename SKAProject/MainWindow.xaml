@@ -142,11 +142,30 @@
                 Background="{DynamicResource TitleBarBackgroundBrush}"
                 Effect="{DynamicResource TitleBarShadow}"
                 MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
+
+                <Border
+                    Grid.Column="0"
+                    Height="1"
+                    VerticalAlignment="Bottom"
+                    Background="{DynamicResource BackgroundColor6}" />
+
+                <Border
+                    Grid.Column="1"
+                    Height="1"
+                    VerticalAlignment="Bottom"
+                    Background="{DynamicResource BackgroundColor6}" />
+
+                <Border
+                    Grid.Column="2"
+                    Height="1"
+                    VerticalAlignment="Bottom"
+                    Background="{DynamicResource BackgroundColor6}" />
 
                 <StackPanel
                     Margin="20,0,0,0"
@@ -211,7 +230,7 @@
                             <Border
                                 Height="1"
                                 Margin="15,5,15,10"
-                                Background="#E2E8F0" />
+                                Background="{DynamicResource BorderBackground}" />
                             <TextBlock Style="{StaticResource CategoryHeaderStyle}" Text="Главное" />
 
                             <Button Click="NavigateToMainMenu" Style="{StaticResource MenuItemStyle}">
@@ -255,7 +274,7 @@
                             <Border
                                 Height="1"
                                 Margin="15,5,15,10"
-                                Background="{DynamicResource BackgroundColor6}"
+                                Background="{DynamicResource BorderBackground}"
                                 CornerRadius="1" />
                             <TextBlock
                                 x:Name="CategoryHR"
@@ -327,7 +346,7 @@
                             <Border
                                 Height="1"
                                 Margin="15,5,15,10"
-                                Background="{DynamicResource BackgroundColor6}"
+                                Background="{DynamicResource BorderBackground}"
                                 CornerRadius="1" />
                             <TextBlock
                                 x:Name="CategoryPayroll"
@@ -375,7 +394,7 @@
                             <Border
                                 Height="1"
                                 Margin="15,5,15,10"
-                                Background="{DynamicResource BackgroundColor6}"
+                                Background="{DynamicResource BorderBackground}"
                                 CornerRadius="1" />
                             <TextBlock
                                 x:Name="CategoryAdmin"

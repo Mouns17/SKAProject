@@ -125,7 +125,7 @@
                     Width="160"
                     Height="45"
                     Margin="0,0,0,0"
-                    HorizontalContentAlignment="Center"
+                    HorizontalContentAlignment="Left"
                     VerticalContentAlignment="Center"
                     Background="{DynamicResource BackgroundColor3}"
                     BorderThickness="0"
@@ -173,8 +173,8 @@
                 <Border
                     Grid.Row="0"
                     Background="#F0F5FF"
-                    BorderBrush="#D0D9E8"
-                    BorderThickness="0,0,0,2"
+                    BorderBrush="{DynamicResource BackgroundColor6}"
+                    BorderThickness="0,0,0,1"
                     CornerRadius="20 20 0 0">
                     <Grid Height="60">
                         <Grid.ColumnDefinitions>
