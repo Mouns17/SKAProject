@@ -245,5 +245,44 @@ namespace SKAProject.Pages
         {
             ApplyFilters();
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string message = "Очистить все записи в логах?";
+
+            if (
+                MessageBox.Show(
+                    message,
+                    "Подтверждение",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                ) != MessageBoxResult.Yes
+            )
+                return;
+
+            try
+            {
+                using (var conn = DataBase.GetConnection())
+                {
+                    await conn.OpenAsync();
+                    using (var tx = conn.BeginTransaction())
+                    {
+                        string deleteQuery =
+                            $"DELETE FROM logs";
+                        using (var cmd = new MySqlCommand(deleteQuery, conn, tx))
+                        {
+                            await cmd.ExecuteNonQueryAsync();
+                        }
+
+                        tx.Commit();
+                    }
+                }
+                MessageBox.Show("Логи очищены.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка очистки: " + ex.Message);
+            }
+        }
     }
 }

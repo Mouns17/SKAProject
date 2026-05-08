@@ -30,6 +30,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <!--  Поисковая строка  -->
@@ -85,7 +86,7 @@
                 <!--  Фильтр по отделу  -->
                 <TextBlock
                     Grid.Column="1"
-                    Margin="0,0,270,0"
+                    Margin="0,0,220,0"
                     VerticalAlignment="Center"
                     FontSize="20"
                     Foreground="{DynamicResource ForegroundColor1}"
@@ -95,7 +96,7 @@
                     Grid.Column="1"
                     Width="200"
                     Height="45"
-                    Margin="20,0,0,0"
+                    Margin="70,0,0,0"
                     HorizontalContentAlignment="Left"
                     VerticalContentAlignment="Center"
                     Background="{DynamicResource BackgroundColor3}"
@@ -114,17 +115,17 @@
                 <!--  Фильтр по должности  -->
                 <TextBlock
                     Grid.Column="2"
-                    Margin="0,0,250,0"
+                    Margin="0,0,200,0"
                     VerticalAlignment="Center"
                     FontSize="20"
                     Foreground="{DynamicResource ForegroundColor1}"
                     Text="По дате:" />
                 <ComboBox
                     x:Name="PositionFilterComboBox"
-                    Grid.Column="3"
+                    Grid.Column="2"
                     Width="160"
                     Height="45"
-                    Margin="0,0,0,0"
+                    Margin="50,0,0,0"
                     HorizontalContentAlignment="Left"
                     VerticalContentAlignment="Center"
                     Background="{DynamicResource BackgroundColor3}"
@@ -147,6 +148,14 @@
                     <ComboBoxItem Content="Последние 7 дней" Tag="7days" />
                     <ComboBoxItem Content="Последние 30 дней" Tag="30days" />
                 </ComboBox>
+
+                <Button
+                    Grid.Column="3"
+                    Width="40"
+                    Margin="0,0,20,0"
+                    Click="Button_Click"
+                    Content="🗑"
+                    Style="{DynamicResource DeleteBtnStyle}" />
             </Grid>
         </StackPanel>
 

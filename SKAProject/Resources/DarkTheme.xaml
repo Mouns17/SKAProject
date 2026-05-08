@@ -39,6 +39,7 @@
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#040D21" />
     <SolidColorBrush x:Key="ContentBackgroundBrush" Color="#040D21" />
     <SolidColorBrush x:Key="BorderBackground" Color="#E0E0E0" />
+    <SolidColorBrush x:Key="ForegroundColor2" Color="#6180FF" />
 
     <DropShadowEffect
         x:Key="SidebarShadow"
