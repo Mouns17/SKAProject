@@ -123,21 +123,21 @@
     <Compile Include="AddPostWindow.xaml.cs">
       <DependentUpon>AddPostWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BoolToVisibilityConverter.cs" />
+    <Compile Include="Models\BoolToVisibilityConverter.cs" />
     <Compile Include="CreateTaskWindow.xaml.cs">
       <DependentUpon>CreateTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddWorkerWindow.xaml.cs">
       <DependentUpon>AddWorkerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataBase.cs" />
+    <Compile Include="Models\DataBase.cs" />
     <Compile Include="EditWorkerWindow.xaml.cs">
       <DependentUpon>EditWorkerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExportExcelWindow.xaml.cs">
       <DependentUpon>ExportExcelWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Logger.cs" />
+    <Compile Include="Models\Logger.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -198,12 +198,12 @@
     <Compile Include="SendReportWindow.xaml.cs">
       <DependentUpon>SendReportWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Session.cs" />
+    <Compile Include="Models\Session.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StringToAcceptButtonVisibilityConverter.cs" />
-    <Compile Include="StringToRejectButtonVisibilityConverter.cs" />
+    <Compile Include="Models\StringToAcceptButtonVisibilityConverter.cs" />
+    <Compile Include="Models\StringToRejectButtonVisibilityConverter.cs" />
     <Compile Include="Styles\CardStyle.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -279,7 +279,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>WorkerCardStyle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThemeManager.cs" />
+    <Compile Include="Models\ThemeManager.cs" />
     <Page Include="AddDepartmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

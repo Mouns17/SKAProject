@@ -51,19 +51,19 @@ namespace SKAProject
         // ========== Навигация ==========
         private void NavigateToMainMenu(object sender, RoutedEventArgs e) => MainFrame.Navigate(new HomePage());
         private void NavigateToMyTasks(object sender, RoutedEventArgs e) => MainFrame.Navigate(new MyTasks());
-        private void NavigateToSendReport(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
+        private void NavigateToSendReport(object sender, RoutedEventArgs e) => MainFrame.Navigate(new SendReportPage());
         private void NavigateToProfile(object sender, RoutedEventArgs e) => MainFrame.Navigate(new ProfilePage());
         private void NavigateToWorkers(object sender, RoutedEventArgs e) => MainFrame.Navigate(new WorkersPage());
-        private void NavigateToStaffSchedule(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
-        private void NavigateToOrders(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
-        private void NavigateToEmployeeRequests(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
-        private void NavigateToEmployeeReports(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
-        private void NavigateToSalaries(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
-        private void NavigateToPayroll(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
-        private void NavigateToFinancialReports(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
-        private void NavigateToOrganization(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
-        private void NavigateToUsers(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
-        private void NavigateToLogs(object sender, RoutedEventArgs e) => MessageBox.Show("Пользователи (заглушка)");
+        private void NavigateToStaffSchedule(object sender, RoutedEventArgs e) => MainFrame.Navigate(new StaffSchedulePage());
+        private void NavigateToOrders(object sender, RoutedEventArgs e) => MainFrame.Navigate(new OrdersPage());
+        private void NavigateToEmployeeRequests(object sender, RoutedEventArgs e) => MainFrame.Navigate(new EmployeeRequestsPage());
+        private void NavigateToEmployeeReports(object sender, RoutedEventArgs e) => MainFrame.Navigate(new EmployeeReportsPage());
+        private void NavigateToSalaries(object sender, RoutedEventArgs e) => MainFrame.Navigate(new SalariesPage());
+        private void NavigateToPayroll(object sender, RoutedEventArgs e) => MainFrame.Navigate(new PayrollPage());
+        private void NavigateToFinancialReports(object sender, RoutedEventArgs e) => MainFrame.Navigate(new FinancialReportsPage());
+        private void NavigateToOrganization(object sender, RoutedEventArgs e) => MainFrame.Navigate(new MyOrganizationPage());
+        private void NavigateToUsers(object sender, RoutedEventArgs e) => MainFrame.Navigate(new UsersPage());
+        private void NavigateToLogs(object sender, RoutedEventArgs e) => MainFrame.Navigate(new LogsPage());
 
         // ========== Скрытие пунктов меню по ролям ==========
         private void ApplyRoleRestrictions()
@@ -74,7 +74,7 @@ namespace SKAProject
             bool isHR = role == "HR";
             bool isAccountant = role == "Accountant";
             bool isDirector = role == "Director";
-            bool isDeptHead = role == "DepartmentHead";
+            bool isDeptHead = role == "DepartmentHead"; 
             bool isUser = role == "User";
 
             // Кадры
