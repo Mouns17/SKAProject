@@ -122,7 +122,7 @@
         <Style x:Key="CategoryHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="Foreground" Value="#8899AA" />
+            <Setter Property="Foreground" Value="#7673FF" />
             <Setter Property="Margin" Value="18,0,0,6" />
         </Style>
     </Window.Resources>

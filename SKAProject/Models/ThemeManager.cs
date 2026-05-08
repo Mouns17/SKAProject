@@ -21,13 +21,6 @@ namespace SKAProject
             };
 
             Application.Current.Resources.MergedDictionaries.Add(_currentThemeDictionary);
-
-            // Сохраняем выбор пользователя (опционально)
-            Properties.Settings.Default.Theme = themeName;
-            Properties.Settings.Default.Save();
-            Console.WriteLine(
-                $"Загружена тема: {themeName}, кол-во словарей: {Application.Current.Resources.MergedDictionaries.Count}"
-            );
         }
 
         public static void LoadSavedTheme()

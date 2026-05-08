@@ -5,7 +5,7 @@
     <SolidColorBrush x:Key="BackgroundColor3" Color="#2B2B3C" />
     <SolidColorBrush x:Key="BackgroundColor4" Color="#1E1E2E" />
     <SolidColorBrush x:Key="BackgroundColor5" Color="#3E3E5C" />
-    <SolidColorBrush x:Key="BackgroundColor6" Color="#818CF8" />
+    <SolidColorBrush x:Key="BackgroundColor6" Color="#516CF8" />
     <SolidColorBrush x:Key="ForegroundColor1" Color="#E0E0E0" />
 
     <SolidColorBrush x:Key="TextForeground" Color="#E0E0E0" />
