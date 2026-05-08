@@ -254,8 +254,9 @@
                             <!--  === Кадры ===  -->
                             <Border
                                 Height="1"
-                                Margin="15,8,15,10"
-                                Background="#E2E8F0" />
+                                Margin="15,5,15,10"
+                                Background="{DynamicResource BackgroundColor6}"
+                                CornerRadius="1" />
                             <TextBlock
                                 x:Name="CategoryHR"
                                 Style="{StaticResource CategoryHeaderStyle}"
@@ -325,8 +326,9 @@
                             <!--  === Расчёты ===  -->
                             <Border
                                 Height="1"
-                                Margin="15,8,15,10"
-                                Background="#E2E8F0" />
+                                Margin="15,5,15,10"
+                                Background="{DynamicResource BackgroundColor6}"
+                                CornerRadius="1" />
                             <TextBlock
                                 x:Name="CategoryPayroll"
                                 Style="{StaticResource CategoryHeaderStyle}"
@@ -372,8 +374,9 @@
                             <!--  === Администрирование ===  -->
                             <Border
                                 Height="1"
-                                Margin="15,8,15,10"
-                                Background="#E2E8F0" />
+                                Margin="15,5,15,10"
+                                Background="{DynamicResource BackgroundColor6}"
+                                CornerRadius="1" />
                             <TextBlock
                                 x:Name="CategoryAdmin"
                                 Style="{StaticResource CategoryHeaderStyle}"
