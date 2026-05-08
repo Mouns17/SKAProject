@@ -392,19 +392,6 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Border
-                    Grid.Row="0"
-                    Padding="15,10"
-                    Background="#F0F5FF"
-                    BorderBrush="#D0D9E8"
-                    BorderThickness="0,0,0,2"
-                    CornerRadius="20 20 0 0">
-                    <TextBlock
-                        FontSize="22"
-                        FontWeight="Bold"
-                        Foreground="#4A5568"
-                        Text="🔔 Последние уведомления" />
-                </Border>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <ItemsControl x:Name="NotificationsItemsControl">
                         <ItemsControl.ItemTemplate>

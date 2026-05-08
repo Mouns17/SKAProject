@@ -1,25 +1,18 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using MySqlConnector;
 
 namespace SKAProject.Pages
 {
     public partial class MyOrganizationPage : Page
     {
-        // Основные данные
-        private string _currentAddress = "";
-        private string _currentEmail = "";
-        private string _currentPhone = "";
-
-        // Коллекции для списков
-        private ObservableCollection<DepartmentItem> _departments =
-            new ObservableCollection<DepartmentItem>();
-        private ObservableCollection<PositionItem> _positions =
-            new ObservableCollection<PositionItem>();
+        private string _currentAddress = "", _currentEmail = "", _currentPhone = "";
+        private ObservableCollection<DepartmentItem> _departments = new ObservableCollection<DepartmentItem>();
+        private ObservableCollection<PositionItem> _positions = new ObservableCollection<PositionItem>();
 
         public MyOrganizationPage()
         {
@@ -88,7 +81,6 @@ namespace SKAProject.Pages
                 TBlockOrgPhone.Text = string.IsNullOrWhiteSpace(_currentPhone)
                     ? "Не указан"
                     : _currentPhone;
-                TBlockOrgName.Text = "Моя организация";
             }
             catch (Exception ex)
             {
@@ -224,7 +216,6 @@ namespace SKAProject.Pages
                 TBoxPhone.Visibility = Visibility.Visible;
 
                 BtnEdit.Visibility = Visibility.Collapsed;
-                PanelSaveCancel.Visibility = Visibility.Visible;
             }
         }
 
@@ -240,7 +231,6 @@ namespace SKAProject.Pages
             TBlockOrgPhone.Visibility = Visibility.Visible;
 
             BtnEdit.Visibility = Visibility.Visible;
-            PanelSaveCancel.Visibility = Visibility.Collapsed;
         }
 
         private async void BtnSave_Click(object sender, RoutedEventArgs e)
