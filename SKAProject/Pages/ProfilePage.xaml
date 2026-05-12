@@ -102,7 +102,7 @@
                                 x:Name="TBoxLastName"
                                 Width="180"
                                 FontFamily="Arian"
-                                FontSize="40"
+                                FontSize="25"
                                 Style="{DynamicResource TxtBoxStyle}"
                                 Tag="Фамилия" />
                             <TextBox
@@ -110,7 +110,7 @@
                                 Width="180"
                                 Margin="10,0,0,0"
                                 FontFamily="Arian"
-                                FontSize="40"
+                                FontSize="25"
                                 Style="{DynamicResource TxtBoxStyle}"
                                 Tag="Имя" />
                             <TextBox
@@ -118,7 +118,7 @@
                                 Width="180"
                                 Margin="10,0,0,0"
                                 FontFamily="Arian"
-                                FontSize="40"
+                                FontSize="25"
                                 Style="{DynamicResource TxtBoxStyle}"
                                 Tag="Отчество" />
                         </StackPanel>

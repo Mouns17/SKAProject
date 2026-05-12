@@ -10,7 +10,7 @@
     Height="480"
     AllowsTransparency="True"
     Background="Transparent"
-    FontFamily="Arian"
+    FontFamily="{StaticResource Arian}"
     ResizeMode="NoResize"
     Topmost="True"
     WindowStartupLocation="CenterScreen"

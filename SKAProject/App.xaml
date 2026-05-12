@@ -83,8 +83,8 @@
                 </Canvas>
             </Viewbox>
 
-            <FontFamily x:Key="Arian">/Fonts/Arian.otf#Arian</FontFamily>
-            <FontFamily x:Key="Arian_Bold">/Fonts/Arian-Bold.otf#Arian Bold</FontFamily>
+            <FontFamily x:Key="Arian">/Fonts/Arian_normal.otf#Arian</FontFamily>
+            <FontFamily x:Key="Arian_Bold">/Fonts/Arian_Bold.otf#Arian Bold</FontFamily>
 
             <Style x:Key="PwdBoxStyle" TargetType="PasswordBox">
                 <Setter Property="Background" Value="Transparent" />

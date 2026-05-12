@@ -10,7 +10,7 @@
     MinHeight="700"
     AllowsTransparency="True"
     Background="Transparent"
-    FontFamily="Arian"
+    FontFamily="{StaticResource Arian}"
     ResizeMode="CanResizeWithGrip"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None">

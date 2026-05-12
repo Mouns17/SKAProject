@@ -104,5 +104,31 @@ namespace SKAProject.Pages
             reportWindow.Owner = Window.GetWindow(this);
             reportWindow.ShowDialog();
         }
+
+        private async void CompleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button btn) || btn.CommandParameter == null) return;
+            int taskId = Convert.ToInt32(btn.CommandParameter);
+            try
+            {
+                using (var conn = DataBase.GetConnection())
+                {
+                    await conn.OpenAsync();
+                    var cmd = new MySqlCommand("UPDATE tasks SET Status='Завершена' WHERE TaskID=@id AND AssignedTo=@uid", conn);
+                    cmd.Parameters.AddWithValue("@id", taskId);
+                    cmd.Parameters.AddWithValue("@uid", Session.UserID);
+                    int rows = await cmd.ExecuteNonQueryAsync();
+                    if (rows > 0)
+                    {
+                        await Logger.LogAsync(Session.UserID, "Завершение задачи", "Задачи", $"Задача {taskId} отмечена как выполненная");
+                        LoadTasks();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+            }
+        }
     }
 }

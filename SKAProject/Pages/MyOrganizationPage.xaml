@@ -181,6 +181,7 @@
                     </StackPanel>
                 </Border>
 
+                <!--  Кнопка Редактировать (по умолчанию видна)  -->
                 <Button
                     x:Name="BtnEdit"
                     Width="180"
@@ -208,6 +209,67 @@
                         <TextBlock Text="Редактировать" />
                     </StackPanel>
                 </Button>
+
+                <!--  Панель с кнопками Сохранить и Отмена (скрыта по умолчанию)  -->
+                <StackPanel
+                    x:Name="PanelSaveCancel"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Visibility="Collapsed">
+                    <Button
+                        x:Name="BtnSave"
+                        Width="120"
+                        Height="45"
+                        Margin="0,0,10,0"
+                        Background="#10B981"
+                        BorderThickness="0"
+                        Click="BtnSave_Click"
+                        Cursor="Hand"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="White">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,8,0"
+                                FontSize="18"
+                                Text="💾" />
+                            <TextBlock Text="Сохранить" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                        x:Name="BtnCancel"
+                        Width="120"
+                        Height="45"
+                        Background="#6B7280"
+                        BorderThickness="0"
+                        Click="BtnCancel_Click"
+                        Cursor="Hand"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="White">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,8,0"
+                                FontSize="18"
+                                Text="↩" />
+                            <TextBlock Text="Отмена" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </Grid>
 

@@ -193,30 +193,23 @@ namespace SKAProject.Pages
             }
         }
 
-        // ===== Редактирование организации (как в профиле) =====
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (Session.Role == "User")
-            {
-                BtnEdit.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                // Переключаем в режим редактирования
-                TBlockOrgAddress.Visibility = Visibility.Collapsed;
-                TBlockOrgEmail.Visibility = Visibility.Collapsed;
-                TBlockOrgPhone.Visibility = Visibility.Collapsed;
+            // Переключаем в режим редактирования
+            TBlockOrgAddress.Visibility = Visibility.Collapsed;
+            TBlockOrgEmail.Visibility = Visibility.Collapsed;
+            TBlockOrgPhone.Visibility = Visibility.Collapsed;
 
-                TBoxAddress.Text = _currentAddress;
-                TBoxEmail.Text = _currentEmail;
-                TBoxPhone.Text = _currentPhone;
+            TBoxAddress.Text = _currentAddress;
+            TBoxEmail.Text = _currentEmail;
+            TBoxPhone.Text = _currentPhone;
 
-                TBoxAddress.Visibility = Visibility.Visible;
-                TBoxEmail.Visibility = Visibility.Visible;
-                TBoxPhone.Visibility = Visibility.Visible;
+            TBoxAddress.Visibility = Visibility.Visible;
+            TBoxEmail.Visibility = Visibility.Visible;
+            TBoxPhone.Visibility = Visibility.Visible;
 
-                BtnEdit.Visibility = Visibility.Collapsed;
-            }
+            BtnEdit.Visibility = Visibility.Collapsed;
+            PanelSaveCancel.Visibility = Visibility.Visible;
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -231,6 +224,7 @@ namespace SKAProject.Pages
             TBlockOrgPhone.Visibility = Visibility.Visible;
 
             BtnEdit.Visibility = Visibility.Visible;
+            PanelSaveCancel.Visibility = Visibility.Collapsed;
         }
 
         private async void BtnSave_Click(object sender, RoutedEventArgs e)
