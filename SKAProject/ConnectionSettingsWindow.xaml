@@ -1,0 +1,109 @@
+﻿<Window
+    x:Class="SKAProject.ConnectionSettingsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Настройка подключения к БД"
+    Width="420"
+    Height="500"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="Arian"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None">
+    <Grid MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
+        <Border
+            Width="420"
+            Height="500"
+            Background="#EDF4FF"
+            BorderBrush="#6366F1"
+            BorderThickness="1"
+            CornerRadius="20">
+            <StackPanel Margin="20">
+                <Button
+                    HorizontalAlignment="Right"
+                    Click="BtnClose_Click"
+                    Content="✕"
+                    Style="{DynamicResource ControlBtnStyle}" />
+
+                <TextBlock
+                    Margin="0,0,0,20"
+                    HorizontalAlignment="Center"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="#2D3748"
+                    Text="Подключение к базе данных" />
+
+                <TextBlock
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    Foreground="#4A5568"
+                    Text="Сервер:" />
+                <TextBox
+                    x:Name="TxtServer"
+                    Height="35"
+                    Margin="0,0,0,10"
+                    Style="{DynamicResource TxtBoxStyle}"
+                    Text="localhost" />
+
+                <TextBlock
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    Foreground="#4A5568"
+                    Text="Порт:" />
+                <TextBox
+                    x:Name="TxtPort"
+                    Height="35"
+                    Margin="0,0,0,10"
+                    Style="{DynamicResource TxtBoxStyle}"
+                    Text="3306" />
+
+                <TextBlock
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    Foreground="#4A5568"
+                    Text="База данных:" />
+                <TextBox
+                    x:Name="TxtDatabase"
+                    Height="35"
+                    Margin="0,0,0,10"
+                    Style="{DynamicResource TxtBoxStyle}"
+                    Text="SKADataBase" />
+
+                <TextBlock
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    Foreground="#4A5568"
+                    Text="Пользователь:" />
+                <TextBox
+                    x:Name="TxtUser"
+                    Height="35"
+                    Margin="0,0,0,10"
+                    Style="{DynamicResource TxtBoxStyle}" />
+
+                <TextBlock
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    Foreground="#4A5568"
+                    Text="Пароль:" />
+                <PasswordBox
+                    x:Name="PwdPassword"
+                    Height="35"
+                    Margin="0,0,0,20"
+                    FontFamily="Arian"
+                    Style="{DynamicResource PwdBoxStyle}" />
+
+                <Button
+                    Height="40"
+                    Background="#6366F1"
+                    BorderThickness="0"
+                    Click="BtnSave_Click"
+                    Content="Сохранить"
+                    Cursor="Hand"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Foreground="White" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

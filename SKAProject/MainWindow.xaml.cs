@@ -97,5 +97,11 @@ namespace SKAProject
             BtnUsers.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
             BtnLogs.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
         }
+
+        private void BtnConnectionSettings(object sender, RoutedEventArgs e)
+        {
+            var settingsWindow = new ConnectionSettingsWindow();
+            settingsWindow.ShowDialog();
+        }
     }
 }
