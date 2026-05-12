@@ -496,6 +496,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Fonts\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
