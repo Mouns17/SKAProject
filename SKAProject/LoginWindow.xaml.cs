@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySqlConnector;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySqlConnector;
 
 namespace SKAProject
 {
@@ -23,18 +12,21 @@ namespace SKAProject
             InitializeComponent();
         }
 
+        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => DragMove();
+        private void BtnClose(object sender, RoutedEventArgs e) => Close();
+        private void BtnRollup(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+
         private void OpenRegWindow(object sender, RoutedEventArgs e)
         {
-            RegistrationWindow reg = new RegistrationWindow();
-            reg.Show();
-            this.Close();
+            new RegistrationWindow().Show();
+            Close();
         }
 
         private async void BtnEnter(object sender, RoutedEventArgs e)
         {
             string login = TBoxLogin.Text.Trim();
             string password = TboxPassword.Text.Trim();
-            if (login == "" || password == "")
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Введите логин и пароль");
                 return;
@@ -45,12 +37,7 @@ namespace SKAProject
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    // Изменён запрос – теперь выбираем и UserID, и Role
-                    var cmd = new MySqlCommand(
-                        @"SELECT UserID, Role FROM Users WHERE Login=@lg AND Password=@ps",
-                        conn
-                    );
-
+                    var cmd = new MySqlCommand("SELECT UserID, Role FROM users WHERE Login=@lg AND Password=@ps", conn);
                     cmd.Parameters.AddWithValue("@lg", login);
                     cmd.Parameters.AddWithValue("@ps", password);
 
@@ -60,21 +47,11 @@ namespace SKAProject
                         {
                             int userId = reader.GetInt32("UserID");
                             string role = reader.GetString("Role");
-
-                            // Сохраняем в сессию
                             Session.UserID = userId;
                             Session.Role = role;
-
-                            // Логирование входа
-                            await Logger.LogAsync(
-                                userId,
-                                "Вход в систему",
-                                "Авторизация",
-                                "Успешный вход"
-                            );
-
+                            await Logger.LogAsync(userId, "Вход в систему", "Авторизация", "Успешный вход");
                             new MainWindow().Show();
-                            this.Close();
+                            Close();
                         }
                         else
                         {
@@ -87,21 +64,6 @@ namespace SKAProject
             {
                 MessageBox.Show("Ошибка авторизации: " + ex.Message);
             }
-        }
-
-        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
-        private void BtnClose(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void BtnRollup(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
         }
     }
 }

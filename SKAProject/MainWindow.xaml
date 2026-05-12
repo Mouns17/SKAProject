@@ -185,12 +185,6 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal">
-                    <Button
-                        x:Name="BtnConnectionSettings"
-                        Margin="0,0,5,0"
-                        BorderBrush="Transparent"
-                        Click="OpenConnectionSettings_Click"
-                        Content="🔧 Настройка подключения" />
                     <ToggleButton
                         Margin="0,0,5,0"
                         Checked="ThemeToggle_Checked"
@@ -283,6 +277,7 @@
 
                             <!--  === Кадры ===  -->
                             <Border
+                                x:Name="CategorySeparatorHR"
                                 Height="1"
                                 Margin="15,5,15,10"
                                 Background="{DynamicResource BorderBackground}"
@@ -355,6 +350,7 @@
 
                             <!--  === Расчёты ===  -->
                             <Border
+                                x:Name="CategorySeparatorPayroll"
                                 Height="1"
                                 Margin="15,5,15,10"
                                 Background="{DynamicResource BorderBackground}"
@@ -403,6 +399,7 @@
 
                             <!--  === Администрирование ===  -->
                             <Border
+                                x:Name="CategorySeparatorAdmin"
                                 Height="1"
                                 Margin="15,5,15,10"
                                 Background="{DynamicResource BorderBackground}"

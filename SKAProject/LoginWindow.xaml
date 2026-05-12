@@ -102,8 +102,7 @@
                             Margin="0,10,0,15"
                             HorizontalAlignment="Center"
                             Style="{DynamicResource TxtBoxStyle}"
-                            Tag="Введите логин"
-                            Text="AdminLogin2026" />
+                            Tag="Введите логин" />
 
                         <TextBox
                             x:Name="TboxPassword"
@@ -112,8 +111,7 @@
                             Margin="0,10,0,15"
                             HorizontalAlignment="Center"
                             Style="{DynamicResource TxtBoxStyle}"
-                            Tag="Введите пароль"
-                            Text="Admin2026Password" />
+                            Tag="Введите пароль" />
 
                         <Border
                             Height="1"

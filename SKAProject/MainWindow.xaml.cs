@@ -78,6 +78,7 @@ namespace SKAProject
             bool isUser = role == "User";
 
             // Кадры
+            CategorySeparatorHR.Visibility = (isAdmin || isHR || isDirector || isDeptHead) ? Visibility.Visible : Visibility.Collapsed;
             CategoryHR.Visibility = (isAdmin || isHR || isDirector || isDeptHead) ? Visibility.Visible : Visibility.Collapsed;
             BtnEmployees.Visibility = (isAdmin || isHR || isDirector || isDeptHead) ? Visibility.Visible : Visibility.Collapsed;
             BtnStaffSchedule.Visibility = (isAdmin || isHR) ? Visibility.Visible : Visibility.Collapsed;
@@ -86,22 +87,19 @@ namespace SKAProject
             BtnEmployeeReports.Visibility = (isAdmin || isHR || isDeptHead || isDirector) ? Visibility.Visible : Visibility.Collapsed;
 
             // Расчёты
+            CategorySeparatorPayroll.Visibility = (isAdmin || isAccountant) ? Visibility.Visible : Visibility.Collapsed;
             CategoryPayroll.Visibility = (isAdmin || isAccountant) ? Visibility.Visible : Visibility.Collapsed;
             BtnSalaries.Visibility = (isAdmin || isAccountant) ? Visibility.Visible : Visibility.Collapsed;
             BtnPayroll.Visibility = (isAdmin || isAccountant) ? Visibility.Visible : Visibility.Collapsed;
             BtnFinancialReports.Visibility = (isAdmin || isAccountant || isDirector) ? Visibility.Visible : Visibility.Collapsed;
 
             // Администрирование
+            CategorySeparatorAdmin.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
             CategoryAdmin.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
             BtnOrganization.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
             BtnUsers.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
             BtnLogs.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private void BtnConnectionSettings(object sender, RoutedEventArgs e)
-        {
-            var settingsWindow = new ConnectionSettingsWindow();
-            settingsWindow.ShowDialog();
-        }
     }
 }

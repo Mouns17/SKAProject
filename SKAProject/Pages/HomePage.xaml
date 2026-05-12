@@ -14,7 +14,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!--  1. Приветственный блок с аватаром  -->
+        <!--  1. Приветственный блок  -->
         <Border
             Grid.Row="0"
             Margin="0,0,0,20"
@@ -53,8 +53,7 @@
                         x:Name="TxtWelcomeUser"
                         FontSize="28"
                         FontWeight="SemiBold"
-                        Foreground="{DynamicResource ForegroundColor1}"
-                        Text="Добро пожаловать!" />
+                        Foreground="{DynamicResource ForegroundColor1}" />
                     <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
                         <TextBlock
                             Margin="0,0,5,0"
@@ -77,7 +76,7 @@
             </Grid>
         </Border>
 
-        <!--  2. Карточки с ключевыми показателями  -->
+        <!--  2. Карточки показателей  -->
         <StackPanel Grid.Row="1" Margin="0,0,0,20">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -87,7 +86,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!--  Всего сотрудников  -->
+                <!--  Сотрудников  -->
                 <Border
                     Grid.Column="0"
                     Margin="0,0,15,0"
@@ -110,7 +109,7 @@
                             FontSize="18"
                             FontWeight="SemiBold"
                             Foreground="{DynamicResource ForegroundColor1}"
-                            Text="Сотрудников (активных)" />
+                            Text="Сотрудников" />
                         <TextBlock
                             x:Name="TxtTotalEmployees"
                             Margin="0,5,0,0"
@@ -121,7 +120,7 @@
                     </StackPanel>
                 </Border>
 
-                <!--  Мои активные задачи  -->
+                <!--  Моих активных задач  -->
                 <Border
                     Grid.Column="1"
                     Margin="0,0,15,0"
@@ -224,14 +223,12 @@
             </Grid>
         </StackPanel>
 
-        <!--  3. Прогресс-бар и быстрые действия  -->
+        <!--  3. Прогресс задач + быстрые действия  -->
         <Grid Grid.Row="2" Margin="0,0,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
-            <!--  Прогресс выполнения задач  -->
             <Border
                 Grid.Column="0"
                 Margin="0,0,15,0"
@@ -252,49 +249,32 @@
                         FontWeight="SemiBold"
                         Foreground="{DynamicResource ForegroundColor1}"
                         Text="📈 Прогресс задач" />
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <TextBlock
-                            Grid.Row="0"
-                            Margin="0,0,0,5"
-                            FontSize="16"
-                            Foreground="{DynamicResource ForegroundColor1}">
-                            <Run Text="Выполнено " />
-                            <Run x:Name="TxtCompletedTasks" Text="0" />
-                            <Run Text=" из " />
-                            <Run x:Name="TxtTotalTasks" Text="0" />
-                        </TextBlock>
-                        <Border
-                            Grid.Row="1"
-                            Height="12"
-                            Margin="0,0,0,10"
-                            Background="#E2E8F0"
-                            CornerRadius="6">
-                            <ProgressBar
-                                x:Name="TaskProgressBar"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Foreground="#10B981"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="0" />
-                        </Border>
-                        <TextBlock
-                            x:Name="TxtProgressPercent"
-                            Grid.Row="2"
-                            FontSize="16"
-                            FontWeight="SemiBold"
+                    <TextBlock Margin="0,0,0,5" FontSize="16">
+                        <Run Text="Выполнено " /><Run x:Name="TxtCompletedTasks" Text="0" />
+                        <Run Text=" из " /><Run x:Name="TxtTotalTasks" Text="0" />
+                    </TextBlock>
+                    <Border
+                        Height="12"
+                        Margin="0,0,0,10"
+                        Background="#E2E8F0"
+                        CornerRadius="6">
+                        <ProgressBar
+                            x:Name="TaskProgressBar"
+                            Background="Transparent"
+                            BorderThickness="0"
                             Foreground="#10B981"
-                            Text="0%" />
-                    </Grid>
+                            Maximum="100"
+                            Minimum="0"
+                            Value="0" />
+                    </Border>
+                    <TextBlock
+                        x:Name="TxtProgressPercent"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="#10B981"
+                        Text="0%" />
                 </StackPanel>
             </Border>
-
-            <!--  Быстрые действия  -->
             <Border
                 Grid.Column="1"
                 Width="280"
@@ -375,7 +355,7 @@
             </Border>
         </Grid>
 
-        <!--  4. Последние уведомления (вместо системных логов)  -->
+        <!--  4. Сводка по организации + мои последние отчёты  -->
         <Border
             Grid.Row="3"
             Background="{DynamicResource BackgroundColor3}"
@@ -387,55 +367,66 @@
                     ShadowDepth="0"
                     Color="#010210" />
             </Border.Effect>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <ItemsControl x:Name="NotificationsItemsControl">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border
-                                    Padding="10,8"
-                                    BorderBrush="#E2E8F0"
-                                    BorderThickness="0,0,0,1">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Border
-                                            Grid.Column="0"
-                                            Width="36"
-                                            Height="36"
-                                            Margin="0,0,12,0"
-                                            Background="#E0E7FF"
-                                            CornerRadius="18">
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="18"
-                                                Text="{Binding Icon}" />
-                                        </Border>
-                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                            <TextBlock
-                                                FontSize="16"
-                                                Foreground="#2D3748"
-                                                Text="{Binding Message}" />
-                                            <TextBlock
-                                                Margin="0,4,0,0"
-                                                FontSize="13"
-                                                Foreground="#8899AA"
-                                                Text="{Binding TimeAgo}" />
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-            </Grid>
+            <StackPanel>
+                <TextBlock
+                    Margin="15,10,0,5"
+                    FontSize="22"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource ForegroundColor1}"
+                    Text="ℹ️ Общая информация" />
+                <Grid Margin="15,0" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,0,10,0"
+                        FontSize="18"
+                        Foreground="{DynamicResource BackgroundColor6}"
+                        Text="🏢 Организация:" />
+                    <TextBlock
+                        x:Name="TxtOrgName"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="18"
+                        Foreground="{DynamicResource ForegroundColor1}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,20,10,0"
+                        FontSize="18"
+                        Foreground="{DynamicResource BackgroundColor6}"
+                        Text="📞 Телефон:" />
+                    <TextBlock
+                        x:Name="TxtOrgPhone"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,20,0,0"
+                        FontSize="18"
+                        Foreground="{DynamicResource ForegroundColor1}" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0,20,10,0"
+                        FontSize="18"
+                        Foreground="{DynamicResource BackgroundColor6}"
+                        Text="📧 Email:" />
+                    <TextBlock
+                        x:Name="TxtOrgEmail"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="0,20,0,0"
+                        FontSize="18"
+                        Foreground="{DynamicResource ForegroundColor1}" />
+                </Grid>
+            </StackPanel>
         </Border>
     </Grid>
 </Page>

@@ -1,26 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using MySqlConnector;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MySqlConnector;
 
 namespace SKAProject
 {
-    /// <summary>
-    /// Логика взаимодействия для RegistrationWindow.xaml
-    /// </summary>
     public partial class RegistrationWindow : Window
     {
         public RegistrationWindow()
@@ -28,9 +12,14 @@ namespace SKAProject
             InitializeComponent();
         }
 
-        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => DragMove();
+        private void BtnClose(object sender, RoutedEventArgs e) => Close();
+        private void BtnRollup(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+
+        private void BtnBack(object sender, RoutedEventArgs e)
         {
-            DragMove();
+            new LoginWindow().Show();
+            Close();
         }
 
         private void BtnNextReg(object sender, RoutedEventArgs e)
@@ -55,7 +44,6 @@ namespace SKAProject
             string lastname = TBoxLastName.Text.Trim();
             string middlename = TBoxMiddleName.Text.Trim();
 
-            // Проверка на пустые поля
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Заполните все обязательные поля (логин и пароль).");
@@ -64,92 +52,56 @@ namespace SKAProject
 
             try
             {
-                using (MySqlConnection conn = DataBase.GetConnection())
+                using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
 
-                    // Проверяем, не занят ли логин
-                    string checkQuery = "SELECT COUNT(*) FROM users WHERE Login = @lg";
-                    using (var checkCmd = new MySqlCommand(checkQuery, conn))
+                    // Проверяем количество существующих пользователей
+                    string countQuery = "SELECT COUNT(*) FROM users";
+                    string role;
+                    using (var cmd = new MySqlCommand(countQuery, conn))
                     {
-                        checkCmd.Parameters.AddWithValue("@lg", login);
-                        long exists = (long)await checkCmd.ExecuteScalarAsync();
+                        long userCount = (long)await cmd.ExecuteScalarAsync();
+                        role = userCount == 0 ? "Owner" : "User";
+                    }
+
+                    // Проверяем уникальность логина
+                    string checkLogin = "SELECT COUNT(*) FROM users WHERE Login = @lg";
+                    using (var cmd = new MySqlCommand(checkLogin, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@lg", login);
+                        long exists = (long)await cmd.ExecuteScalarAsync();
                         if (exists > 0)
                         {
-                            MessageBox.Show(
-                                "Этот логин уже используется. Пожалуйста, выберите другой.",
-                                "Ошибка",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Warning
-                            );
+                            MessageBox.Show("Этот логин уже используется. Пожалуйста, выберите другой.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                             return;
                         }
                     }
 
-                    // Начинаем транзакцию только после проверки
-                    using (var tx = conn.BeginTransaction())
+                    // Создаём пользователя
+                    string insert = @"INSERT INTO users (Login, Password, FirstName, LastName, MiddleName, Role, Activated)
+                                      VALUES (@lg, @ps, @fn, @ln, @mn, @role, 1)";
+                    using (var cmd = new MySqlCommand(insert, conn))
                     {
-                        MySqlCommand cmdUser = new MySqlCommand(
-                            @"INSERT INTO users (Login, Password, FirstName, LastName, MiddleName) 
-                      VALUES (@lg, @ps, @fn, @ln, @mn); 
-                      SELECT LAST_INSERT_ID();",
-                            conn,
-                            tx
-                        );
-
-                        cmdUser.Parameters.AddWithValue("@lg", login);
-                        cmdUser.Parameters.AddWithValue("@ps", password); // пароль лучше хэшировать, но пока оставим так
-                        cmdUser.Parameters.AddWithValue("@fn", firstname);
-                        cmdUser.Parameters.AddWithValue("@ln", lastname);
-                        cmdUser.Parameters.AddWithValue("@mn", middlename);
-
-                        int newUserId = Convert.ToInt32(await cmdUser.ExecuteScalarAsync());
-                        tx.Commit();
-
-                        // Запись в лог
-                        await Logger.LogAsync(
-                            newUserId,
-                            "Регистрация нового пользователя",
-                            "Пользователи",
-                            $"Логин: {login}"
-                        );
+                        cmd.Parameters.AddWithValue("@lg", login);
+                        cmd.Parameters.AddWithValue("@ps", password);
+                        cmd.Parameters.AddWithValue("@fn", firstname);
+                        cmd.Parameters.AddWithValue("@ln", lastname);
+                        cmd.Parameters.AddWithValue("@mn", middlename);
+                        cmd.Parameters.AddWithValue("@role", role);
+                        await cmd.ExecuteNonQueryAsync();
                     }
-                }
 
-                MessageBox.Show("Регистрация успешно завершена!");
-                new LoginWindow().Show();
-                this.Close();
-            }
-            catch (MySqlException ex) when (ex.Number == 1062) // дубликат ключа
-            {
-                MessageBox.Show(
-                    "Этот логин уже занят. Выберите другой.",
-                    "Ошибка регистрации",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning
-                );
+                    await Logger.LogAsync(null, "Регистрация нового пользователя", "Пользователи", $"Логин: {login}, Роль: {role}");
+                    MessageBox.Show($"Регистрация успешно завершена! Ваша роль: {role}", "Готово", MessageBoxButton.OK, MessageBoxImage.Information);
+                    new LoginWindow().Show();
+                    Close();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка регистрации: " + ex.Message);
+                MessageBox.Show("Ошибка регистрации: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void BtnBack(object sender, RoutedEventArgs e)
-        {
-            LoginWindow login = new LoginWindow();
-            login.Show();
-            this.Close();
-        }
-
-        private void BtnRollup(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void BtnClose(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }
