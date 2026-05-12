@@ -505,7 +505,7 @@ namespace SKAProject.Pages
             exportWindow.Owner = Window.GetWindow(this);
             exportWindow.ShowDialog();
 
-            
+
         }
 
         private string GetValue(object val) =>
