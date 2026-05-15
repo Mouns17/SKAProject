@@ -256,13 +256,13 @@
                                     <TextBlock VerticalAlignment="Center" Text="Мои задачи" />
                                 </StackPanel>
                             </Button>
-                            <Button Click="NavigateToSendReport" Style="{StaticResource MenuItemStyle}">
+                            <Button Click="NavigateToCreateRequestPage" Style="{StaticResource MenuItemStyle}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock
                                         Margin="0,0,8,0"
                                         FontSize="18"
                                         Text="📄" />
-                                    <TextBlock VerticalAlignment="Center" Text="Отправить отчёт" />
+                                    <TextBlock VerticalAlignment="Center" Text="Создать заявку" />
                                 </StackPanel>
                             </Button>
                             <Button Click="NavigateToProfile" Style="{StaticResource MenuItemStyle}">

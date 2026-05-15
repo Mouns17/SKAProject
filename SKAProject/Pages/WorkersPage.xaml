@@ -131,7 +131,8 @@
                         Height="55"
                         Background="#6366F1"
                         Click="EditWorkerButton_Click"
-                        Cursor="Hand">
+                        Cursor="Hand"
+                        FontWeight="SemiBold">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" CornerRadius="15">
@@ -230,6 +231,7 @@
                 </ComboBox>
 
                 <TextBlock
+                    x:Name="TBlockStatusWP"
                     Grid.Column="4"
                     Margin="0,0,15,0"
                     VerticalAlignment="Center"
@@ -264,6 +266,7 @@
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
                     <Button
+                        x:Name="CreateTaskBtn"
                         Margin="0,0,10,0"
                         Click="CreateTaskBtn_Click"
                         Content="Создать задачу"

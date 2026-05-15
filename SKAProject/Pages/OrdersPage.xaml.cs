@@ -47,11 +47,11 @@ namespace SKAProject.Pages
                 {
                     await conn.OpenAsync();
                     string query = @"
-                SELECT o.Id, o.OrderNumber, o.OrderDate, o.OrderType,
-                       CONCAT(u.LastName, ' ', u.FirstName, ' ', COALESCE(u.MiddleName, '')) AS EmployeeFullName
-                FROM orders o
-                JOIN users u ON o.EmployeeUserID = u.UserID
-                ORDER BY o.OrderDate DESC";
+                        SELECT o.Id, o.OrderNumber, o.OrderDate, o.OrderType,
+                               CONCAT(u.LastName, ' ', u.FirstName, ' ', COALESCE(u.MiddleName, '')) AS EmployeeFullName
+                        FROM orders o
+                        JOIN users u ON o.EmployeeUserID = u.UserID
+                        ORDER BY o.OrderDate DESC";
                     using (var cmd = new MySqlCommand(query, conn))
                     using (var reader = await cmd.ExecuteReaderAsync())
                     {
@@ -70,6 +70,7 @@ namespace SKAProject.Pages
                         }
                     }
                 }
+                OrdersItemsControl.ItemsSource = _orders;
             }
             catch (Exception ex)
             {

@@ -260,8 +260,9 @@
                                                 Text="{Binding Title}"
                                                 TextTrimming="CharacterEllipsis" />
                                             <Button
+                                                x:Name="CompleteTaskBtn"
                                                 Grid.Column="6"
-                                                Background="Transparent"
+                                                Background="#6366F1"
                                                 BorderThickness="0"
                                                 Click="CompleteTask_Click"
                                                 CommandParameter="{Binding TaskId}"

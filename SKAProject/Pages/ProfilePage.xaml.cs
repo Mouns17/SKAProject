@@ -136,8 +136,6 @@ namespace SKAProject.Pages
             PanelEditFullName.Visibility = Visibility.Visible;
             TBoxPhone.Visibility = Visibility.Visible;
             TBoxEmail.Visibility = Visibility.Visible;
-            TBoxSnils.Visibility = Visibility.Visible;
-            TBoxAddress.Visibility = Visibility.Visible;
 
             BtnEdit.Visibility = Visibility.Collapsed;
             BtnSave.Visibility = Visibility.Visible;
@@ -222,8 +220,6 @@ namespace SKAProject.Pages
             PanelEditFullName.Visibility = Visibility.Collapsed;
             TBoxPhone.Visibility = Visibility.Collapsed;
             TBoxEmail.Visibility = Visibility.Collapsed;
-            TBoxSnils.Visibility = Visibility.Collapsed;
-            TBoxAddress.Visibility = Visibility.Collapsed;
 
             BtnEdit.Visibility = Visibility.Visible;
             BtnSave.Visibility = Visibility.Collapsed;

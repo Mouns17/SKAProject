@@ -144,7 +144,7 @@ namespace SKAProject.Pages
         }
 
         private void OpenMyTasks(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new MyTasks());
-        private void OpenSendReport(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new SendReportPage());
+        private void OpenSendReport(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new CreateRequestPage());
         private void OpenProfile(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new ProfilePage());
     }
 }

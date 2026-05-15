@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using MySqlConnector;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -238,15 +239,13 @@ namespace SKAProject.Pages
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    // Обновляем company_info (предполагается, что CompanyID = 1)
-                    string update =
-                        @"UPDATE company_info SET Address = @addr, Phone = @phone, Email = @email
-                                      WHERE CompanyID = 1";
-                    using (var cmd = new MySqlCommand(update, conn))
+                    string insert = @"INSERT INTO company_info (Address, Phone, Email)
+                                      VALUES (@ad, @ph, @em)";
+                    using (var cmd = new MySqlCommand(insert, conn))
                     {
-                        cmd.Parameters.AddWithValue("@addr", newAddress);
-                        cmd.Parameters.AddWithValue("@phone", newPhone);
-                        cmd.Parameters.AddWithValue("@email", newEmail);
+                        cmd.Parameters.AddWithValue("@ad", newAddress);
+                        cmd.Parameters.AddWithValue("@ph", newPhone);
+                        cmd.Parameters.AddWithValue("@em", newEmail);
                         await cmd.ExecuteNonQueryAsync();
                     }
                 }

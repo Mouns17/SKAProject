@@ -1,10 +1,8 @@
 ﻿using MySqlConnector;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,7 +15,6 @@ namespace SKAProject.Pages
         public PayrollPage()
         {
             InitializeComponent();
-            // Заполняем ComboBox месяцами
             for (int i = 1; i <= 12; i++)
                 CmbMonth.Items.Add(new ComboBoxItem { Content = new DateTime(2020, i, 1).ToString("MMMM", CultureInfo.CurrentCulture) });
             CmbMonth.SelectedIndex = DateTime.Now.Month - 1;
@@ -37,7 +34,7 @@ namespace SKAProject.Pages
         private async void BtnCalculate_Click(object sender, RoutedEventArgs e)
         {
             _payroll.Clear();
-            int month = CmbMonth.SelectedIndex + 1; // 1‑‑12 (месяц пока не используется)
+            int month = CmbMonth.SelectedIndex + 1;
 
             try
             {
@@ -45,7 +42,6 @@ namespace SKAProject.Pages
                 {
                     await conn.OpenAsync();
 
-                    // Убрана фильтрация по workers – видим всех, у кого есть оклад
                     string query = @"
                 SELECT u.LastName, u.FirstName, s.Salary, s.Bonus
                 FROM salary s

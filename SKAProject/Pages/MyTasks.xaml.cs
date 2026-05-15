@@ -107,27 +107,39 @@ namespace SKAProject.Pages
 
         private async void CompleteTask_Click(object sender, RoutedEventArgs e)
         {
+            // 1. Получаем кнопку, которую нажали
             if (!(sender is Button btn) || btn.CommandParameter == null) return;
+
+            // 2. Сразу скрываем и блокируем нажатую кнопку
+            btn.IsEnabled = false;
+            btn.Visibility = Visibility.Collapsed;
+
             int taskId = Convert.ToInt32(btn.CommandParameter);
+
             try
             {
                 using (var conn = DataBase.GetConnection())
                 {
                     await conn.OpenAsync();
-                    var cmd = new MySqlCommand("UPDATE tasks SET Status='Завершена' WHERE TaskID=@id AND AssignedTo=@uid", conn);
+                    var cmd = new MySqlCommand(
+                        "UPDATE tasks SET Status='Завершена' WHERE TaskID=@id AND AssignedTo=@uid", conn);
                     cmd.Parameters.AddWithValue("@id", taskId);
                     cmd.Parameters.AddWithValue("@uid", Session.UserID);
                     int rows = await cmd.ExecuteNonQueryAsync();
                     if (rows > 0)
                     {
-                        await Logger.LogAsync(Session.UserID, "Завершение задачи", "Задачи", $"Задача {taskId} отмечена как выполненная");
-                        LoadTasks();
+                        await Logger.LogAsync(Session.UserID, "Завершение задачи", "Задачи",
+                            $"Задача {taskId} отмечена как выполненная");
+                        LoadTasks(); // Перезагружаем список — все кнопки восстановятся
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка: " + ex.Message);
+                // В случае ошибки возвращаем кнопку обратно
+                btn.IsEnabled = true;
+                btn.Visibility = Visibility.Visible;
             }
         }
     }

@@ -186,8 +186,8 @@
     <Compile Include="Pages\SalariesPage.xaml.cs">
       <DependentUpon>SalariesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SendReportPage.xaml.cs">
-      <DependentUpon>SendReportPage.xaml</DependentUpon>
+    <Compile Include="Pages\CreateRequestPage.xaml.cs">
+      <DependentUpon>CreateRequestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StaffSchedulePage.xaml.cs">
       <DependentUpon>StaffSchedulePage.xaml</DependentUpon>
@@ -375,7 +375,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\SendReportPage.xaml">
+    <Page Include="Pages\CreateRequestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

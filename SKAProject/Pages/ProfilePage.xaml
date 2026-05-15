@@ -206,9 +206,9 @@
                         <TextBox
                             x:Name="TBoxPhone"
                             Width="230"
-                            Margin="100,0,0,0"
+                            Margin="0,0,0,0"
                             FontFamily="Arian"
-                            FontSize="20"
+                            FontSize="17"
                             Style="{DynamicResource TxtBoxStyle}"
                             Tag="Телефон"
                             Visibility="Collapsed" />
@@ -223,9 +223,9 @@
                         <TextBox
                             x:Name="TBoxEmail"
                             Width="260"
-                            Margin="70,0,0,0"
+                            Margin="0,5,0,0"
                             FontFamily="Arian"
-                            FontSize="20"
+                            FontSize="17"
                             Style="{DynamicResource TxtBoxStyle}"
                             Tag="Email"
                             Visibility="Collapsed" />
@@ -259,15 +259,6 @@
                             FontSize="20"
                             Foreground="{DynamicResource ForegroundColor1}"
                             Text="СНИЛС:" />
-                        <TextBox
-                            x:Name="TBoxSnils"
-                            Width="240"
-                            Margin="80,0,0,0"
-                            FontFamily="Arian"
-                            FontSize="20"
-                            Style="{DynamicResource TxtBoxStyle}"
-                            Tag="Email"
-                            Visibility="Collapsed" />
 
                         <TextBlock
                             x:Name="TBlockAddress"
@@ -276,15 +267,6 @@
                             FontSize="20"
                             Foreground="{DynamicResource ForegroundColor1}"
                             Text="Адрес:" />
-                        <TextBox
-                            x:Name="TBoxAddress"
-                            Width="260"
-                            Margin="70,0,0,0"
-                            FontFamily="Arian"
-                            FontSize="20"
-                            Style="{DynamicResource TxtBoxStyle}"
-                            Tag="Email"
-                            Visibility="Collapsed" />
                     </StackPanel>
                 </Border>
             </Grid>

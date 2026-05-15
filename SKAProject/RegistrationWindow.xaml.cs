@@ -56,7 +56,6 @@ namespace SKAProject
                 {
                     await conn.OpenAsync();
 
-                    // Проверяем количество существующих пользователей
                     string countQuery = "SELECT COUNT(*) FROM users";
                     string role;
                     using (var cmd = new MySqlCommand(countQuery, conn))
@@ -65,7 +64,6 @@ namespace SKAProject
                         role = userCount == 0 ? "Owner" : "User";
                     }
 
-                    // Проверяем уникальность логина
                     string checkLogin = "SELECT COUNT(*) FROM users WHERE Login = @lg";
                     using (var cmd = new MySqlCommand(checkLogin, conn))
                     {
@@ -78,7 +76,6 @@ namespace SKAProject
                         }
                     }
 
-                    // Создаём пользователя
                     string insert = @"INSERT INTO users (Login, Password, FirstName, LastName, MiddleName, Role, Activated)
                                       VALUES (@lg, @ps, @fn, @ln, @mn, @role, 1)";
                     using (var cmd = new MySqlCommand(insert, conn))

@@ -407,7 +407,6 @@ namespace SKAProject.Pages
             }
         }
 
-        // ========== ОСТАЛЬНЫЕ ОБРАБОТЧИКИ ==========
         private void AddWorkerButton_Click(object sender, RoutedEventArgs e)
         {
             var win = new AddWorkerWindow();
@@ -429,7 +428,7 @@ namespace SKAProject.Pages
                 return;
             }
 
-            // Передаём UserId, а не WrkID
+            // Передаём UserId
             var userIds = selectedWorkers.Select(w => w.UserId).ToList();
             var taskWindow = new CreateTaskWindow(userIds);
             taskWindow.Owner = Window.GetWindow(this);
@@ -504,8 +503,6 @@ namespace SKAProject.Pages
             var exportWindow = new ExportExcelWindow(allWorkers.ToList());
             exportWindow.Owner = Window.GetWindow(this);
             exportWindow.ShowDialog();
-
-
         }
 
         private string GetValue(object val) =>
